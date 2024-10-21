@@ -39,7 +39,7 @@ class LoginController extends GetxController {
 
         userController.userData.value = response;
 
-        Get.off(() => HomeViewPage(), transition: Transition.rightToLeft);
+        Get.off(() => const HomeViewPage(), transition: Transition.rightToLeft);
       } else {
         throw Exception("Resposta inválida da API");
       }

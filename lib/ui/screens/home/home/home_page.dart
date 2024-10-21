@@ -78,15 +78,15 @@ class _HomePageState extends State<HomePage> {
           title: AppLocalizations.of(context)!.home_credit),
     ];
 
-    final List<String> iconPaths = [
-      'assets/icons/ic_home_payment.png',
-      'assets/icons/ic_home_qrcode.png',
-      'assets/icons/ic_home_payment_invoice.png',
-      'assets/icons/ic_home_transfer.png',
-      'assets/icons/ic_home_recharge.png',
-      'assets/icons/ic_store.png',
-      'assets/icons/ic_home_pix.png'
-    ];
+    final Map<String, String> localIconPaths = {
+      "1": 'assets/icons/ic_home_payment.png',
+      "2": 'assets/icons/ic_home_qrcode.png',
+      "10": 'assets/icons/ic_home_payment_invoice.png',
+      "11": 'assets/icons/ic_home_transfer.png',
+      "12": 'assets/icons/ic_home_recharge.png',
+      "14": 'assets/icons/ic_store.png',
+      "19": 'assets/icons/ic_home_pix.png',
+    };
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -252,46 +252,41 @@ class _HomePageState extends State<HomePage> {
                     Expanded(
                       child: GridView.builder(
                         scrollDirection: Axis.vertical,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           childAspectRatio: 1.0,
                         ),
-                        itemCount:
-                            homeController.icons.length + manualIcons.length,
+                        itemCount: homeController.icons.length + manualIcons.length,
                         itemBuilder: (context, index) {
+                          // Se o index for menor que o tamanho da lista de ícones da API, processa os ícones da API
                           if (index < homeController.icons.length) {
                             IconModel iconModel = homeController.icons[index];
-                            return HomeIcons(
-                              iconUrl: iconPaths[index],
-                              text: iconModel.title!,
-                              isLocal: true,
-                              onPressed: () async {
-                                switch (iconModel.id) {
-                                  case "1":
-                                    Get.to(() => const PaymentLinkValue(),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                  case "2":
-                                    Get.to(() => const QrcodeScreen(),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                  case "10":
-                                    Get.to(() => const BarcodeScanScreen(),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                  case "11":
-                                    Get.to(() => const TransferContactPage(),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                  case "12":
-                                    Get.defaultDialog(
-                                        title: AppLocalizations.of(context)!
-                                            .message,
+
+                            if (iconModel.isActive! && localIconPaths.containsKey(iconModel.id)) {
+                              return HomeIcons(
+                                iconUrl: localIconPaths[iconModel.id]!,
+                                text: iconModel.title!,
+                                isLocal: true,
+                                onPressed: () async {
+                                  switch (iconModel.id) {
+                                    case "1":
+                                      Get.to(() => const PaymentLinkValue(), transition: Transition.rightToLeft);
+                                      break;
+                                    case "2":
+                                      Get.to(() => const QrcodeScreen(), transition: Transition.rightToLeft);
+                                      break;
+                                    case "10":
+                                      Get.to(() => const BarcodeScanScreen(), transition: Transition.rightToLeft);
+                                      break;
+                                    case "11":
+                                      Get.to(() => const TransferContactPage(), transition: Transition.rightToLeft);
+                                      break;
+                                    case "12":
+                                      Get.defaultDialog(
+                                        title: AppLocalizations.of(context)!.message,
                                         content: Column(
                                           children: [
-                                            Text(AppLocalizations.of(context)!
-                                                .unavailable),
+                                            Text(AppLocalizations.of(context)!.unavailable),
                                             Padding(
                                               padding: const EdgeInsets.all(16),
                                               child: SizedBox(
@@ -299,15 +294,10 @@ class _HomePageState extends State<HomePage> {
                                                 width: double.infinity,
                                                 child: ElevatedButton(
                                                   onPressed: () => Get.back(),
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                        secondaryColor,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              45),
+                                                  style: ElevatedButton.styleFrom(
+                                                    backgroundColor: secondaryColor,
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(45),
                                                     ),
                                                   ),
                                                   child: const Text(
@@ -319,26 +309,30 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                               ),
-                                            )
+                                            ),
                                           ],
-                                        ));
-                                    break;
-                                  case "14":
-                                    Get.to(() => const StorePage(),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                  case "19":
-                                    Get.to(() => PixHome(),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                  default:
-                                    break;
-                                }
-                              },
-                            );
-                          } else {
-                            IconModel manualIcon = manualIcons[
-                                index - homeController.icons.length];
+                                        ),
+                                      );
+                                      break;
+                                    case "14":
+                                      Get.to(() => const StorePage(), transition: Transition.rightToLeft);
+                                      break;
+                                    case "19":
+                                      Get.to(() => PixHome(), transition: Transition.rightToLeft);
+                                      break;
+                                    default:
+                                      break;
+                                  }
+                                },
+                              );
+                            } else {
+                              return Container(); // Retorna um container vazio se o ícone não estiver ativo ou disponível
+                            }
+                          }
+                          // Caso o index seja para os ícones manuais
+                          else {
+                            IconModel manualIcon = manualIcons[index - homeController.icons.length];
+
                             return HomeIcons(
                               iconUrl: manualIcon.icon!,
                               text: manualIcon.title!,
@@ -348,136 +342,118 @@ class _HomePageState extends State<HomePage> {
                                   case "20":
                                     if (defaulter == 'true') {
                                       Get.defaultDialog(
-                                          backgroundColor: Colors.white,
-                                          title: AppLocalizations.of(context)!
-                                              .message,
-                                          titleStyle: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                          content: Column(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .block_access,
-                                                  textAlign: TextAlign.center,
+                                        backgroundColor: Colors.white,
+                                        title: AppLocalizations.of(context)!.message,
+                                        titleStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                        content: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                AppLocalizations.of(context)!.block_access,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () => Get.back(),
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: secondaryColor,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(45),
                                                 ),
                                               ),
-                                              ElevatedButton(
-                                                onPressed: () => Get.back(),
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      secondaryColor,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            45),
-                                                  ),
-                                                ),
-                                                child: const Text(
-                                                  'OK',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                              )
-                                            ],
-                                          ));
+                                              child: const Text(
+                                                'OK',
+                                                style: TextStyle(color: Colors.white),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
                                     } else {
-                                      Get.to(() => const GroupsScreen(),
-                                          transition: Transition.rightToLeft);
+                                      Get.to(() => const GroupsScreen(), transition: Transition.rightToLeft);
                                     }
                                     break;
                                   case "21":
                                     if (defaulter == 'true') {
                                       Get.defaultDialog(
-                                          backgroundColor: Colors.white,
-                                          title: AppLocalizations.of(context)!
-                                              .message,
-                                          titleStyle: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                          content: Column(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .block_access,
-                                                  textAlign: TextAlign.center,
+                                        backgroundColor: Colors.white,
+                                        title: AppLocalizations.of(context)!.message,
+                                        titleStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                        content: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                AppLocalizations.of(context)!.block_access,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () => Get.back(),
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: secondaryColor,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(45),
                                                 ),
                                               ),
-                                              ElevatedButton(
-                                                onPressed: () => Get.back(),
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      secondaryColor,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            45),
-                                                  ),
-                                                ),
-                                                child: const Text(
-                                                  'OK',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                              )
-                                            ],
-                                          ));
+                                              child: const Text(
+                                                'OK',
+                                                style: TextStyle(color: Colors.white),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
                                     } else {
-                                      Get.to(() => const SavingsScreen(),
-                                          transition: Transition.rightToLeft);
+                                      Get.to(() => const SavingsScreen(), transition: Transition.rightToLeft);
                                     }
                                     break;
                                   case "22":
                                     if (defaulter == 'true') {
                                       Get.defaultDialog(
-                                          backgroundColor: Colors.white,
-                                          title: AppLocalizations.of(context)!
-                                              .message,
-                                          titleStyle: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                          content: Column(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .block_access,
-                                                  textAlign: TextAlign.center,
+                                        backgroundColor: Colors.white,
+                                        title: AppLocalizations.of(context)!.message,
+                                        titleStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                        content: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                AppLocalizations.of(context)!.block_access,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () => Get.back(),
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: secondaryColor,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(45),
                                                 ),
                                               ),
-                                              ElevatedButton(
-                                                onPressed: () => Get.back(),
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      secondaryColor,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            45),
-                                                  ),
-                                                ),
-                                                child: const Text(
-                                                  'OK',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                              )
-                                            ],
-                                          ));
+                                              child: const Text(
+                                                'OK',
+                                                style: TextStyle(color: Colors.white),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
                                     } else {
-                                      Get.to(() => const CreditScreen(),
-                                          transition: Transition.rightToLeft);
+                                      Get.to(() => const CreditScreen(), transition: Transition.rightToLeft);
                                       break;
                                     }
                                 }
