@@ -11,6 +11,7 @@ import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_scan.d
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
+import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLinkValue.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
@@ -84,8 +85,10 @@ class _HomePageState extends State<HomePage> {
       "10": 'assets/icons/ic_home_payment_invoice.png',
       "11": 'assets/icons/ic_home_transfer.png',
       "12": 'assets/icons/ic_home_recharge.png',
-      "14": 'assets/icons/ic_store.png',
+      "14": 'assets/icons/ic_home_store.png',
       "19": 'assets/icons/ic_home_pix.png',
+      "30": 'assets/icons/ic_home_store.png',
+      "31": 'assets/icons/ic_home_store.png',
     };
 
     return Scaffold(
@@ -252,17 +255,19 @@ class _HomePageState extends State<HomePage> {
                     Expanded(
                       child: GridView.builder(
                         scrollDirection: Axis.vertical,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           childAspectRatio: 1.0,
                         ),
-                        itemCount: homeController.icons.length + manualIcons.length,
+                        itemCount:
+                            homeController.icons.length + manualIcons.length,
                         itemBuilder: (context, index) {
-                          // Se o index for menor que o tamanho da lista de ícones da API, processa os ícones da API
                           if (index < homeController.icons.length) {
                             IconModel iconModel = homeController.icons[index];
 
-                            if (iconModel.isActive! && localIconPaths.containsKey(iconModel.id)) {
+                            if (iconModel.isActive! &&
+                                localIconPaths.containsKey(iconModel.id)) {
                               return HomeIcons(
                                 iconUrl: localIconPaths[iconModel.id]!,
                                 text: iconModel.title!,
@@ -270,23 +275,29 @@ class _HomePageState extends State<HomePage> {
                                 onPressed: () async {
                                   switch (iconModel.id) {
                                     case "1":
-                                      Get.to(() => const PaymentLinkValue(), transition: Transition.rightToLeft);
+                                      Get.to(() => const PaymentLinkValue(),
+                                          transition: Transition.rightToLeft);
                                       break;
                                     case "2":
-                                      Get.to(() => const QrcodeScreen(), transition: Transition.rightToLeft);
+                                      Get.to(() => const QrcodeScreen(),
+                                          transition: Transition.rightToLeft);
                                       break;
                                     case "10":
-                                      Get.to(() => const BarcodeScanScreen(), transition: Transition.rightToLeft);
+                                      Get.to(() => const BarcodeScanScreen(),
+                                          transition: Transition.rightToLeft);
                                       break;
                                     case "11":
-                                      Get.to(() => const TransferContactPage(), transition: Transition.rightToLeft);
+                                      Get.to(() => const TransferContactPage(),
+                                          transition: Transition.rightToLeft);
                                       break;
                                     case "12":
                                       Get.defaultDialog(
-                                        title: AppLocalizations.of(context)!.message,
+                                        title: AppLocalizations.of(context)!
+                                            .message,
                                         content: Column(
                                           children: [
-                                            Text(AppLocalizations.of(context)!.unavailable),
+                                            Text(AppLocalizations.of(context)!
+                                                .unavailable),
                                             Padding(
                                               padding: const EdgeInsets.all(16),
                                               child: SizedBox(
@@ -294,10 +305,15 @@ class _HomePageState extends State<HomePage> {
                                                 width: double.infinity,
                                                 child: ElevatedButton(
                                                   onPressed: () => Get.back(),
-                                                  style: ElevatedButton.styleFrom(
-                                                    backgroundColor: secondaryColor,
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(45),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        secondaryColor,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              45),
                                                     ),
                                                   ),
                                                   child: const Text(
@@ -315,10 +331,28 @@ class _HomePageState extends State<HomePage> {
                                       );
                                       break;
                                     case "14":
-                                      Get.to(() => const StorePage(), transition: Transition.rightToLeft);
+                                      Get.to(() => const StorePage(),
+                                          transition: Transition.rightToLeft);
                                       break;
                                     case "19":
-                                      Get.to(() => PixHome(), transition: Transition.rightToLeft);
+                                      Get.to(() => PixHome(),
+                                          transition: Transition.rightToLeft);
+                                      break;
+                                    case "30":
+                                      Get.to(
+                                          () => WebviewPage(
+                                                url: 'https://mibank4.com',
+                                                pageTitle: iconModel.title!,
+                                              ),
+                                          transition: Transition.rightToLeft);
+                                      break;
+                                    case "31":
+                                      Get.to(
+                                          () => WebviewPage(
+                                                url: 'https://mibank4.com/#faq',
+                                                pageTitle: iconModel.title!,
+                                              ),
+                                          transition: Transition.rightToLeft);
                                       break;
                                     default:
                                       break;
@@ -326,12 +360,11 @@ class _HomePageState extends State<HomePage> {
                                 },
                               );
                             } else {
-                              return Container(); // Retorna um container vazio se o ícone não estiver ativo ou disponível
+                              return Container();
                             }
-                          }
-                          // Caso o index seja para os ícones manuais
-                          else {
-                            IconModel manualIcon = manualIcons[index - homeController.icons.length];
+                          } else {
+                            IconModel manualIcon = manualIcons[
+                                index - homeController.icons.length];
 
                             return HomeIcons(
                               iconUrl: manualIcon.icon!,
@@ -343,18 +376,20 @@ class _HomePageState extends State<HomePage> {
                                     if (defaulter == 'true') {
                                       Get.defaultDialog(
                                         backgroundColor: Colors.white,
-                                        title: AppLocalizations.of(context)!.message,
+                                        title: AppLocalizations.of(context)!
+                                            .message,
                                         titleStyle: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
-                                            fontWeight: FontWeight.bold
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                         content: Column(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Text(
-                                                AppLocalizations.of(context)!.block_access,
+                                                AppLocalizations.of(context)!
+                                                    .block_access,
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -363,37 +398,42 @@ class _HomePageState extends State<HomePage> {
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor: secondaryColor,
                                                 shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(45),
+                                                  borderRadius:
+                                                      BorderRadius.circular(45),
                                                 ),
                                               ),
                                               child: const Text(
                                                 'OK',
-                                                style: TextStyle(color: Colors.white),
+                                                style: TextStyle(
+                                                    color: Colors.white),
                                               ),
                                             ),
                                           ],
                                         ),
                                       );
                                     } else {
-                                      Get.to(() => const GroupsScreen(), transition: Transition.rightToLeft);
+                                      Get.to(() => const GroupsScreen(),
+                                          transition: Transition.rightToLeft);
                                     }
                                     break;
                                   case "21":
                                     if (defaulter == 'true') {
                                       Get.defaultDialog(
                                         backgroundColor: Colors.white,
-                                        title: AppLocalizations.of(context)!.message,
+                                        title: AppLocalizations.of(context)!
+                                            .message,
                                         titleStyle: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
-                                            fontWeight: FontWeight.bold
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                         content: Column(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Text(
-                                                AppLocalizations.of(context)!.block_access,
+                                                AppLocalizations.of(context)!
+                                                    .block_access,
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -402,37 +442,42 @@ class _HomePageState extends State<HomePage> {
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor: secondaryColor,
                                                 shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(45),
+                                                  borderRadius:
+                                                      BorderRadius.circular(45),
                                                 ),
                                               ),
                                               child: const Text(
                                                 'OK',
-                                                style: TextStyle(color: Colors.white),
+                                                style: TextStyle(
+                                                    color: Colors.white),
                                               ),
                                             ),
                                           ],
                                         ),
                                       );
                                     } else {
-                                      Get.to(() => const SavingsScreen(), transition: Transition.rightToLeft);
+                                      Get.to(() => const SavingsScreen(),
+                                          transition: Transition.rightToLeft);
                                     }
                                     break;
                                   case "22":
                                     if (defaulter == 'true') {
                                       Get.defaultDialog(
                                         backgroundColor: Colors.white,
-                                        title: AppLocalizations.of(context)!.message,
+                                        title: AppLocalizations.of(context)!
+                                            .message,
                                         titleStyle: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
-                                            fontWeight: FontWeight.bold
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                         content: Column(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Text(
-                                                AppLocalizations.of(context)!.block_access,
+                                                AppLocalizations.of(context)!
+                                                    .block_access,
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -441,19 +486,22 @@ class _HomePageState extends State<HomePage> {
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor: secondaryColor,
                                                 shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(45),
+                                                  borderRadius:
+                                                      BorderRadius.circular(45),
                                                 ),
                                               ),
                                               child: const Text(
                                                 'OK',
-                                                style: TextStyle(color: Colors.white),
+                                                style: TextStyle(
+                                                    color: Colors.white),
                                               ),
                                             ),
                                           ],
                                         ),
                                       );
                                     } else {
-                                      Get.to(() => const CreditScreen(), transition: Transition.rightToLeft);
+                                      Get.to(() => const CreditScreen(),
+                                          transition: Transition.rightToLeft);
                                       break;
                                     }
                                 }

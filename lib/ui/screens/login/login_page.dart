@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:mask_shifter_v2/mask_shifter.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class LoginPage extends StatefulWidget {
   final String? lang;
@@ -27,19 +26,14 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
   String document = '';
   final VerifyController _verifyController = Get.put(VerifyController());
   final LanguageController _languageController = Get.put(LanguageController());
-  MaskTextInputFormatter _maskFormatter = cpfMaskFormatter;
 
   void _updateMaskFormatter() {
     final text = _documentController.text;
 
     if (text.length > 13) {
-      setState(() {
-        _maskFormatter = cnpjMaskFormatter;
-      });
+      setState(() {});
     } else {
-      setState(() {
-        _maskFormatter = cpfMaskFormatter;
-      });
+      setState(() {});
     }
   }
 
@@ -113,15 +107,23 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
                         ),
                       ),
                       PopupMenuItem<String>(
-                    value: 'es',
-                    child: Row(
-                      children: [
-                        Image.asset('assets/icons/ic_flag_es.png', width: 30,),
-                        const SizedBox(width: 5,),
-                        const Text('ES', style: TextStyle(color: Colors.white),),
-                      ],
-                    ),
-                  ),
+                        value: 'es',
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/icons/ic_flag_es.png',
+                              width: 30,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Text(
+                              'ES',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                     icon: Stack(
                       alignment: Alignment.center,
@@ -224,7 +226,8 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
             child: InkWell(
               onTap: () async {
                 await SharedPreferencesFunctions.saveString(
-                    key: 'codeLang', value: AppLocalizations.of(context)!.codeLang);
+                    key: 'codeLang',
+                    value: AppLocalizations.of(context)!.codeLang);
                 Get.to(() => const PrivacyPolicyPage(),
                     transition: Transition.rightToLeft);
               },
@@ -238,7 +241,8 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
           InkWell(
             onTap: () async {
               await SharedPreferencesFunctions.saveString(
-                  key: 'codeLang', value: AppLocalizations.of(context)!.codeLang);
+                  key: 'codeLang',
+                  value: AppLocalizations.of(context)!.codeLang);
               Get.to(() => const OnboardingPage(),
                   transition: Transition.rightToLeft);
             },
