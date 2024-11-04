@@ -57,4 +57,23 @@ class AppRoutes {
   static const String transferConfirm = '/transfer_confirm';
   static const String transferSuccess = '/transfer_success';
   static const String transferVoucher = '/transfer_voucher';
+
+  //Rotas de Pix
+  static const String pixHome = '/pix_home';
+  static const String pixMyKeys = '/pix_my_keys';
+  static const String pixKeyManagement = '/pix_key_management';
+  static const String pixAddKey = '/pix_add_key';
+  static const String pixAddValue = '/pix_add_value';
+  static const String pixDecode = '/pix_code';
+  static const String pixCopyPaste = '/pix_copy_paste';
+  static const String pixManualKey = '/pix_manual_key';
+  static const String pixMyLimits = '/pix_limits';
+  static const String pixNewKey = '/pix_new_key';
+  static const String pixQRReceive = '/pix_qr_code';
+  static const String pixReceive = '/pix_receive';
+  static const String pixStatement = '/pix_statement';
+  static const String pixSuccess = '/pix_success';
+  static const String pixTransfer = '/pix_transfer';
+  static const String pixWithKey = '/pix_with_key';
+  static const String pixInvoice = '/pix_invoice';
 }

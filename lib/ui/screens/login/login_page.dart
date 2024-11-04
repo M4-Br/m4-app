@@ -179,7 +179,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   contentPadding: EdgeInsets.zero,
-                  labelText: AppLocalizations.of(context)!.cpf,
+                  labelText: 'cpf'.tr,
                   labelStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -207,7 +207,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
                         minimumSize: const Size(double.infinity, 50),
                       ),
                       child: Text(
-                        AppLocalizations.of(context)!.access,
+                        'access'.tr,
                         style:
                             const TextStyle(color: Colors.white, fontSize: 16),
                       ),
@@ -227,12 +227,12 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
               onTap: () async {
                 await SharedPreferencesFunctions.saveString(
                     key: 'codeLang',
-                    value: AppLocalizations.of(context)!.codeLang);
+                    value: 'codeLang'.tr);
                 Get.to(() => const PrivacyPolicyPage(),
                     transition: Transition.rightToLeft);
               },
               child: Text(
-                AppLocalizations.of(context)!.terms,
+                'terms'.tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.white, fontSize: 16),
               ),
@@ -242,7 +242,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
             onTap: () async {
               await SharedPreferencesFunctions.saveString(
                   key: 'codeLang',
-                  value: AppLocalizations.of(context)!.codeLang);
+                  value: 'codeLang'.tr);
               Get.to(() => const OnboardingPage(),
                   transition: Transition.rightToLeft);
             },
@@ -252,7 +252,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Text(
-                  AppLocalizations.of(context)!.register,
+                  'register'.tr,
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
@@ -273,7 +273,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
           .toString();
 
       await SharedPreferencesFunctions.saveString(
-          key: 'codeLang', value: AppLocalizations.of(context)!.codeLang);
+          key: 'codeLang', value: 'codeLang'.tr);
 
       try {
         await _verifyController.verifyDocument(cpf, 0);
