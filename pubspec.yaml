@@ -68,6 +68,7 @@ dependencies:
   camera_android_camerax: ^0.6.8+2
   simple_html_css: ^5.0.0
   local_auth: ^2.3.0
+  flutter_native_splash: ^2.4.1
 
 
 dev_dependencies:
