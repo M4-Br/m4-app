@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_password_reg
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OnboardingApprovedPage extends StatefulWidget {
   const OnboardingApprovedPage({super.key});
@@ -27,11 +26,11 @@ class _OnboardingApprovedPageState extends State<OnboardingApprovedPage> {
             children: [
               SvgPicture.asset('assets/images/miban4_colored_logo.svg', width: 180,),
               Text(
-                AppLocalizations.of(context)!.approved,
+                'approved'.tr,
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Text(
-                AppLocalizations.of(context)!.need_create_password,
+                'need_create_password'.tr,
                 textAlign: TextAlign.center,
               ),
               ElevatedButton(
@@ -48,7 +47,7 @@ class _OnboardingApprovedPageState extends State<OnboardingApprovedPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    AppLocalizations.of(context)!.create_password,
+                    'create_password'.tr,
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
@@ -58,7 +57,7 @@ class _OnboardingApprovedPageState extends State<OnboardingApprovedPage> {
                   Get.off(() => const LoginPage(), transition: Transition.leftToRight);
                 },
                 child: Text(
-                  AppLocalizations.of(context)!.back_login,
+                  'back_login'.tr,
                   style: const TextStyle(color: Colors.black),
                 ),
               )

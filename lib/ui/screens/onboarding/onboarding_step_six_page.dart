@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/step_seven_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_seven_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -91,7 +90,7 @@ class _OnboardingStepSixPageState extends State<OnboardingStepSixPage> {
         child: Column(
           children: [
             Text(
-              AppLocalizations.of(context)!.every_ok,
+              'every_ok'.tr,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -100,7 +99,7 @@ class _OnboardingStepSixPageState extends State<OnboardingStepSixPage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(
-                AppLocalizations.of(context)!.plastic,
+                'plastic'.tr,
                 style: const TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
@@ -112,7 +111,7 @@ class _OnboardingStepSixPageState extends State<OnboardingStepSixPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Text(AppLocalizations.of(context)!.front_photo),
+                    Text('front_photo'.tr),
                     const Spacer(),
                     if (frontPhotoSend)
                       const Icon(Icons.check, color: Colors.green),
@@ -133,7 +132,7 @@ class _OnboardingStepSixPageState extends State<OnboardingStepSixPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Text(AppLocalizations.of(context)!.back_photo),
+                    Text('back_photo'.tr),
                     const Spacer(),
                     if (backPhotoSend)
                       const Icon(Icons.check, color: Colors.green),
@@ -172,7 +171,7 @@ class _OnboardingStepSixPageState extends State<OnboardingStepSixPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    AppLocalizations.of(context)!.next,
+                    'next'.tr,
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),

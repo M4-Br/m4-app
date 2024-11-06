@@ -1,7 +1,6 @@
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/validators/create_password_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class OnboardingPasswordRegisterPage extends StatefulWidget {
@@ -51,9 +50,8 @@ class _OnboardingPasswordRegisterPageState extends State<OnboardingPasswordRegis
         title: widget.page == 1
             ? SafeArea(
                 child: Text(
-                  AppLocalizations.of(context)!
-                      .password_register_cnpj
-                      .toUpperCase(),
+                  'password_register_cnpj'
+                      .toUpperCase().tr,
                   style: const TextStyle(color: Colors.white, fontSize: 20),
                 ),
               )
@@ -75,13 +73,13 @@ class _OnboardingPasswordRegisterPageState extends State<OnboardingPasswordRegis
         child: Column(
           children: [
             Text(
-              AppLocalizations.of(context)!.password_create,
+              'password_create'.tr,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Text(
-                AppLocalizations.of(context)!.password_need,
+                'password_need'.tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
@@ -138,12 +136,12 @@ class _OnboardingPasswordRegisterPageState extends State<OnboardingPasswordRegis
                         ),
                         contentPadding: EdgeInsets.zero,
                         hintText: '',
-                        labelText: AppLocalizations.of(context)!.password),
+                        labelText: 'password'.tr),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return AppLocalizations.of(context)!.password_create;
+                        return 'password_create'.tr;
                       } else if (value.length < 6) {
-                        return AppLocalizations.of(context)!.password_six;
+                        return 'password_six'.tr;
                       } else {
                         valuePassword = value;
                       }
@@ -197,12 +195,12 @@ class _OnboardingPasswordRegisterPageState extends State<OnboardingPasswordRegis
                           contentPadding: EdgeInsets.zero,
                           hintText: '',
                           labelText:
-                              AppLocalizations.of(context)!.password_confirm),
+                              'password_confirm'.tr),
                       validator: (valueConfirm) {
                         if (valueConfirm!.isEmpty) {
-                          return AppLocalizations.of(context)!.password_again;
+                          return 'password_again'.tr;
                         } else if (valueConfirm != valuePassword) {
-                          return AppLocalizations.of(context)!.password_equals;
+                          return 'password_equals'.tr;
                         } else {
                           valueConfirmPassword = valueConfirm;
                         }
@@ -231,7 +229,7 @@ class _OnboardingPasswordRegisterPageState extends State<OnboardingPasswordRegis
                     child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: Text(
-                        AppLocalizations.of(context)!.next,
+                        'next'.tr,
                         style:
                             const TextStyle(color: Colors.white, fontSize: 16),
                       ),

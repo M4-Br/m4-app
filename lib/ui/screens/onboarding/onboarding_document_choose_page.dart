@@ -2,7 +2,6 @@
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_six_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class OnboardingDocumentChoosePage extends StatefulWidget {
@@ -39,7 +38,7 @@ class _OnboardingDocumentChoosePageState extends State<OnboardingDocumentChooseP
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              AppLocalizations.of(context)!.choose_document,
+              'choose_document'.tr,
               textAlign: TextAlign.center,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
@@ -87,7 +86,7 @@ class _OnboardingDocumentChoosePageState extends State<OnboardingDocumentChooseP
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Text(
-                  AppLocalizations.of(context)!.next,
+                  'next'.tr,
                   style: const TextStyle(color: Colors.white),
                 ),
               ),

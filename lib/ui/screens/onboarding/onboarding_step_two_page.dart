@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/step_three_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_one_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class OnboardingStepTwoPage extends StatefulWidget {
@@ -59,7 +58,7 @@ class _OnboardingStepTwoPageState extends State<OnboardingStepTwoPage> with Vali
           children: [
             const SizedBox(height: 0),
             Text(
-              AppLocalizations.of(context)!.phone_register,
+              'phone_register'.tr,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -68,7 +67,7 @@ class _OnboardingStepTwoPageState extends State<OnboardingStepTwoPage> with Vali
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Text(
-                AppLocalizations.of(context)!.for_secure_phone,
+                'for_secure_phone'.tr,
                 style: const TextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
@@ -102,7 +101,7 @@ class _OnboardingStepTwoPageState extends State<OnboardingStepTwoPage> with Vali
                       borderSide: BorderSide(color: Colors.red),
                     ),
                     contentPadding: EdgeInsets.zero,
-                    labelText: AppLocalizations.of(context)!.phone,
+                    labelText: 'phone'.tr,
                     labelStyle: const TextStyle(
                       color: Colors.black54,
                       fontSize: 15,
@@ -128,7 +127,7 @@ class _OnboardingStepTwoPageState extends State<OnboardingStepTwoPage> with Vali
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          AppLocalizations.of(context)!.next,
+                          'next'.tr,
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),

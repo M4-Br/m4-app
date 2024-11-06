@@ -3,7 +3,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/validators/phone_confirm_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OnboardingPhoneConfirmPage extends StatefulWidget {
   const OnboardingPhoneConfirmPage(
@@ -74,25 +73,25 @@ class _OnboardingPhoneConfirmPageState extends State<OnboardingPhoneConfirmPage>
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                AppLocalizations.of(context)!.phone_confirm,
+                'phone_confirm'.tr,
                 style:
                     const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
             ),
             Text(
-              AppLocalizations.of(context)!.email_send_code,
+              'email_send_code'.tr,
               style: const TextStyle(fontSize: 16),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                AppLocalizations.of(context)!.email_perhaps,
+                'email_perhaps'.tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16),
               ),
             ),
             Text(
-              AppLocalizations.of(context)!.email_insert_code,
+              'email_insert_code'.tr,
               style: const TextStyle(fontSize: 12),
             ),
             Padding(
@@ -160,7 +159,7 @@ class _OnboardingPhoneConfirmPageState extends State<OnboardingPhoneConfirmPage>
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          AppLocalizations.of(context)!.next,
+                          'next'.tr,
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -172,7 +171,7 @@ class _OnboardingPhoneConfirmPageState extends State<OnboardingPhoneConfirmPage>
             TextButton(
               onPressed: () {},
               child: Text(
-                AppLocalizations.of(context)!.email_send,
+                'email_send'.tr,
                 style: const TextStyle(
                     color: Colors.black54,
                     decoration: TextDecoration.underline,
@@ -186,9 +185,7 @@ class _OnboardingPhoneConfirmPageState extends State<OnboardingPhoneConfirmPage>
   }
 
   Future<void> _sendConfirmation() async {
-    print("${widget.id} ${widget.phonePrefix} ${widget.phoneNumber}");
-
-    try {
+      try {
       _phoneConfirmController.confirmPhone(
           widget.id!, widget.phonePrefix!, widget.phoneNumber!, code);
     } catch (error) {

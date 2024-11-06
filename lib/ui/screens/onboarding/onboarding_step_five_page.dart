@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/onBoarding/commom_textfield.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/step_six_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -92,34 +91,34 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
 
   @override
   Widget build(BuildContext context) {
-    lang = AppLocalizations.of(context)!.codeLang;
+    lang = 'codeLang'.tr;
 
     List<String> gender = [
-      AppLocalizations.of(context)!.gender_male,
-      AppLocalizations.of(context)!.gender_female,
-      AppLocalizations.of(context)!.gender_another,
-      AppLocalizations.of(context)!.gender_notDefined
+      'gender_male'.tr,
+      'gender_female'.tr,
+      'gender_another'.tr,
+      'gender_notDefined'.tr
     ];
 
     List<String> maritalStatus = [
-      AppLocalizations.of(context)!.marital_status_single,
-      AppLocalizations.of(context)!.marital_status_married,
-      AppLocalizations.of(context)!.marital_status_legally_separated,
-      AppLocalizations.of(context)!.marital_status_widowed,
-      AppLocalizations.of(context)!.marital_status_cohabitant,
-      AppLocalizations.of(context)!.marital_status_separated
+      'marital_status_single'.tr,
+      'marital_status_married'.tr,
+      'marital_status_legally_separated'.tr,
+      'marital_status_widowed'.tr,
+      'marital_status_cohabitant'.tr,
+      'marital_status_separated'.tr
     ];
 
     List<String> maritalStatusEn = ["Single", "Married"];
 
     List<String> nationality = [
-      AppLocalizations.of(context)!.nationality_brazilian,
-      AppLocalizations.of(context)!.nationality_foreigner
+      'nationality_brazilian'.tr,
+      'nationality_foreigner'.tr
     ];
 
     List<String> pep = [
-      AppLocalizations.of(context)!.pep_no,
-      AppLocalizations.of(context)!.pep_yes
+      'pep_no'.tr,
+      'pep_yes'.tr
     ];
 
     return Scaffold(
@@ -145,7 +144,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
             child: Column(
               children: [
                 Text(
-                  AppLocalizations.of(context)!.personal_data,
+                  'personal_data'.tr,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -154,7 +153,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                 Padding(
                   padding: const EdgeInsets.only(top: 16, bottom: 16),
                   child: Text(
-                    AppLocalizations.of(context)!.pay_attention,
+                    'pay_attention'.tr,
                     style: const TextStyle(fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
@@ -184,7 +183,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                         borderSide: BorderSide(color: secondaryColor),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText: AppLocalizations.of(context)!.document_name,
+                      labelText: 'document_name'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 15,
@@ -220,7 +219,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                       ),
                       contentPadding: EdgeInsets.zero,
                       labelText:
-                          AppLocalizations.of(context)!.document_mother_name,
+                          'document_mother_name'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 15,
@@ -233,7 +232,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                   padding: const EdgeInsets.only(top: 10),
                   child: DropdownButton<String>(
                     dropdownColor: Colors.white,
-                    hint: Text(AppLocalizations.of(context)!.document_gender),
+                    hint: Text('document_gender'.tr),
                     value: selectedGender.isEmpty ? null : selectedGender,
                     isExpanded: true,
                     underline: Container(
@@ -285,7 +284,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                       ),
                       contentPadding: EdgeInsets.zero,
                       labelText:
-                          AppLocalizations.of(context)!.document_birthday,
+                          'document_birthday'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 15,
@@ -298,7 +297,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                   child: DropdownButton<String>(
                     dropdownColor: Colors.white,
                     hint: Text(
-                        AppLocalizations.of(context)!.document_marital_status),
+                        'document_marital_status'.tr),
                     value: selectedMaritalStatus.isEmpty
                         ? null
                         : selectedMaritalStatus,
@@ -337,7 +336,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                   child: DropdownButton<String>(
                     dropdownColor: Colors.white,
                     hint: Text(
-                        AppLocalizations.of(context)!.document_nationality),
+                        'document_nationality'.tr),
                     value: selectedNacionality.isEmpty
                         ? null
                         : selectedNacionality,
@@ -389,7 +388,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                         borderSide: BorderSide(color: secondaryColor),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText: AppLocalizations.of(context)!.document_rg,
+                      labelText: 'document_rg'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 15,
@@ -402,7 +401,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                   padding: const EdgeInsets.only(top: 10),
                   child: DropdownButton<String>(
                     dropdownColor: Colors.white,
-                    hint: Text(AppLocalizations.of(context)!.document_state),
+                    hint: Text('document_state'.tr),
                     value: _selectedResidencialState.isEmpty
                         ? null
                         : _selectedResidencialState,
@@ -455,7 +454,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                       ),
                       contentPadding: EdgeInsets.zero,
                       labelText:
-                          AppLocalizations.of(context)!.document_rgEmission,
+                          'document_rgEmission'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 15,
@@ -466,7 +465,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                 ),
                 commonTextField(
                     _rgDate,
-                    AppLocalizations.of(context)!.document_rg_date,
+                    'document_rg_date'.tr,
                     TextInputType.datetime,
                     "",
                     birthMaskFormatter, (text) {
@@ -485,7 +484,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                   child: Row(
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.document_pep,
+                        'document_pep'.tr,
                         style: const TextStyle(fontSize: 16),
                       ),
                       const SizedBox(width: 8),
@@ -498,9 +497,9 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                 ),
                 DropdownButton<String>(
                   dropdownColor: Colors.white,
-                  hint: Text(AppLocalizations.of(context)!.document_pep),
+                  hint: Text('document_pep'.tr),
                   value: _selectedPep.isEmpty
-                      ? AppLocalizations.of(context)!.pep_no
+                      ? 'pep_no'.tr
                       : _selectedPep,
                   isExpanded: true,
                   underline: Container(
@@ -519,11 +518,11 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                     setState(() {
                       _selectedPep = newValue!;
                       if (_selectedPep ==
-                          AppLocalizations.of(context)!.pep_yes) {
+                          'pep_yes'.tr) {
                         _isPep = true;
                         _pepFinal = true;
                       } else if (_selectedPep ==
-                          AppLocalizations.of(context)!.pep_no) {
+                          'pep_no'.tr) {
                         _isPep = false;
                         _pepFinal = false;
                       }
@@ -534,7 +533,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                   visible: _isPep,
                   child: commonTextField(
                       _pepDate,
-                      AppLocalizations.of(context)!.document_pep_date,
+                      'document_pep_date'.tr,
                       TextInputType.datetime,
                       "",
                       birthMaskFormatter, (text) {
@@ -565,7 +564,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                           child: Padding(
                             padding: const EdgeInsets.all(16),
                             child: Text(
-                              AppLocalizations.of(context)!.next,
+                              'next'.tr,
                               style: const TextStyle(color: Colors.white),
                             ),
                           ),
@@ -590,7 +589,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
             content: Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                AppLocalizations.of(context)!.pep,
+                'pep'.tr,
                 style: const TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),

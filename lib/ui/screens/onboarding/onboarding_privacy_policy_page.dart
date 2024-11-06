@@ -5,8 +5,6 @@ import 'package:app_flutter_miban4/ui/screens/home/credit/credit_mutual_detail.d
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simple_html_css/simple_html_css.dart';
 
 class OnboardingPrivacyPolicyPage extends StatefulWidget {
@@ -90,8 +88,7 @@ class _OnboardingPrivacyPolicyPageState
                                                 },
                                               ),
                                               Text(
-                                                AppLocalizations.of(context)!
-                                                    .read_policy,
+                                                'read_policy'.tr,
                                                 style: const TextStyle(
                                                     fontSize: 14,
                                                     color: Colors.black),
@@ -136,7 +133,7 @@ class _OnboardingPrivacyPolicyPageState
                                             child: Padding(
                                               padding: const EdgeInsets.all(16),
                                               child: Text(
-                                                AppLocalizations.of(context)!.next,
+                                                'next'.tr,
                                                 style: const TextStyle(
                                                     color: Colors.white),
                                               ),

@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/ui/controllers/onboarding/step_one_controller
 import 'package:app_flutter_miban4/ui/screens/login/login_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_privacy_policy_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -50,7 +49,7 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
 
   @override
   Widget build(BuildContext context) {
-    lang = AppLocalizations.of(context)!.codeLang;
+    lang = 'codeLang'.tr;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -73,7 +72,7 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
           children: [
             const SizedBox(height: 80),
             Text(
-              AppLocalizations.of(context)!.welcome,
+              'welcome'.tr,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -82,7 +81,7 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                AppLocalizations.of(context)!.insert_cpf,
+                'insert_cpf'.tr,
                 style: const TextStyle(fontSize: 16),
               ),
             ),
@@ -165,7 +164,7 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
                           _navigateToPrivacyPolicy();
                         },
                         child: Text(
-                          AppLocalizations.of(context)!.read_policy,
+                          'read_policy'.tr,
                           style: const TextStyle(
                             fontSize: 14,
                             color: Colors.black87,
@@ -193,7 +192,7 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          AppLocalizations.of(context)!.next,
+                          'next'.tr,
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),

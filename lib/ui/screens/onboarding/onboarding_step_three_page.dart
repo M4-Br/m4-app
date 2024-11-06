@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/controllers/onboarding/step_four_controlle
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_two_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class OnboardingStepThreePage extends StatefulWidget {
@@ -84,14 +83,14 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
 
   @override
   Widget build(BuildContext context) {
-    lang = AppLocalizations.of(context)!.codeLang;
+    lang = 'codeLang'.tr;
 
     final List<String> residencialType = [
-      AppLocalizations.of(context)!.address_type_own,
-      AppLocalizations.of(context)!.address_type_rent,
-      AppLocalizations.of(context)!.address_type_financed,
-      AppLocalizations.of(context)!.address_type_company,
-      AppLocalizations.of(context)!.address_type_parents
+      'address_type_own'.tr,
+      'address_type_rent'.tr,
+      'address_type_financed'.tr,
+      'address_type_company'.tr,
+      'address_type_parents'.tr
     ];
 
     final List<String> residentialTypeEn = [
@@ -123,7 +122,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: Text(
-                  AppLocalizations.of(context)!.full_address_information,
+                  'full_address_information'.tr,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black54,
@@ -163,7 +162,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText: AppLocalizations.of(context)!.address_cep,
+                          labelText: 'address_cep'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.black54,
                             fontSize: 15,
@@ -176,7 +175,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: DropdownButtonFormField<String>(
                         dropdownColor: Colors.white,
-                        hint: Text(AppLocalizations.of(context)!.address_type),
+                        hint: Text('address_type'.tr),
                         key: UniqueKey(),
                         value: _selectedResidentialType.isEmpty
                             ? null
@@ -224,7 +223,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText: AppLocalizations.of(context)!.address,
+                          labelText: 'address'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.black54,
                             fontSize: 15,
@@ -260,7 +259,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                           ),
                           contentPadding: EdgeInsets.zero,
                           labelText:
-                              AppLocalizations.of(context)!.address_number,
+                              'address_number'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.black54,
                             fontSize: 15,
@@ -282,7 +281,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                               });
                             }),
                         Text(
-                          AppLocalizations.of(context)!.address_no_number,
+                          'address_no_number'.tr,
                           style: const TextStyle(fontSize: 14),
                         ),
                       ],
@@ -316,7 +315,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                           ),
                           contentPadding: EdgeInsets.zero,
                           labelText:
-                              AppLocalizations.of(context)!.address_complement,
+                              'address_complement'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.black54,
                             fontSize: 15,
@@ -350,8 +349,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText: AppLocalizations.of(context)!
-                              .address_neighborhood,
+                          labelText: 'address_neighborhood'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.black54,
                             fontSize: 15,
@@ -364,7 +362,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: DropdownButtonFormField<String>(
                         dropdownColor: Colors.white,
-                        hint: Text(AppLocalizations.of(context)!.address_state),
+                        hint: Text('address_state'.tr),
                         key: UniqueKey(),
                         value: _selectedState.isEmpty ? null : _selectedState,
                         items: _residencialState
@@ -406,7 +404,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText: AppLocalizations.of(context)!.address_city,
+                          labelText: 'address_city'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.black54,
                             fontSize: 15,
@@ -435,7 +433,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                           child: Padding(
                             padding: const EdgeInsets.all(16),
                             child: Text(
-                              AppLocalizations.of(context)!.next,
+                              'next'.tr,
                               style: const TextStyle(color: Colors.white),
                             ),
                           ),

@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/step_two_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class OnboardingStepOnePage extends StatefulWidget {
@@ -65,7 +64,7 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
           children: [
             const SizedBox(height: 20),
             Text(
-              AppLocalizations.of(context)!.register_init,
+              'register_init'.tr,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -74,7 +73,7 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Text(
-                AppLocalizations.of(context)!.informations_continue,
+                'informations_continue'.tr,
                 style: const TextStyle(fontSize: 16),
               ),
             ),
@@ -110,7 +109,7 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
                           borderSide: BorderSide(color: Colors.red),
                         ),
                         contentPadding: EdgeInsets.zero,
-                        labelText: AppLocalizations.of(context)!.full_name,
+                        labelText: 'full_name'.tr,
                         labelStyle: const TextStyle(
                           color: Colors.black54,
                           fontSize: 15,
@@ -143,7 +142,7 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
                           borderSide: BorderSide(color: Colors.red),
                         ),
                         contentPadding: EdgeInsets.zero,
-                        labelText: AppLocalizations.of(context)!.nickname,
+                        labelText: 'nickname'.tr,
                         labelStyle: const TextStyle(
                           color: Colors.black54,
                           fontSize: 15,
@@ -160,9 +159,9 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) => combineValidators([
                         () => isNotEmpty(value,
-                            AppLocalizations.of(context)!.validator_empty),
+                            'validator_empty'.tr),
                         () => isValidEmail(value,
-                            AppLocalizations.of(context)!.validator_valid_email)
+                            'validator_valid_email'.tr)
                       ]),
                       style: const TextStyle(color: Colors.black, fontSize: 20),
                       decoration: const InputDecoration(
@@ -212,7 +211,7 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
                         ),
                         contentPadding: EdgeInsets.zero,
                         labelText:
-                            AppLocalizations.of(context)!.promotional_code,
+                            'promotional_code'.tr,
                         labelStyle: const TextStyle(
                           color: Colors.black54,
                           fontSize: 15,
@@ -240,7 +239,7 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          AppLocalizations.of(context)!.next,
+                          'next'.tr,
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),

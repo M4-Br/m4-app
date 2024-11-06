@@ -2,7 +2,6 @@ import 'package:app_flutter_miban4/data/util/helpers/validators.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/validators/email_confirm_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class OnboardingEmailConfirmPage extends StatefulWidget {
@@ -78,25 +77,25 @@ class _OnboardingEmailConfirmPageState extends State<OnboardingEmailConfirmPage>
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                AppLocalizations.of(context)!.email_confirm,
+                'email_confirm'.tr,
                 style:
                     const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
             ),
             Text(
-              AppLocalizations.of(context)!.email_send_code,
+              'email_send_code'.tr,
               style: const TextStyle(fontSize: 16),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                AppLocalizations.of(context)!.email_perhaps,
+                'email_perhaps'.tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16),
               ),
             ),
             Text(
-              AppLocalizations.of(context)!.email_insert_code,
+              'email_insert_code'.tr,
               style: const TextStyle(fontSize: 12),
             ),
             Padding(
@@ -164,7 +163,7 @@ class _OnboardingEmailConfirmPageState extends State<OnboardingEmailConfirmPage>
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          AppLocalizations.of(context)!.next,
+                          'next'.tr,
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -176,7 +175,7 @@ class _OnboardingEmailConfirmPageState extends State<OnboardingEmailConfirmPage>
             TextButton(
               onPressed: () {},
               child: Text(
-                AppLocalizations.of(context)!.email_send,
+                'email_send'.tr,
                 style: const TextStyle(
                     color: Colors.black54,
                     decoration: TextDecoration.underline,

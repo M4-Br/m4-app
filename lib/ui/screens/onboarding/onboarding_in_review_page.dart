@@ -2,7 +2,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/screens/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class OnboardingInReviewPage extends StatefulWidget {
@@ -26,14 +25,14 @@ class _OnboardingInReviewPageState extends State<OnboardingInReviewPage> {
             children: [
               SvgPicture.asset('assets/images/miban4_colored_logo.svg', width: 180,),
               Text(
-                AppLocalizations.of(context)!.analysis_progress,
+                'analysis_progress'.tr,
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Text(
-                AppLocalizations.of(context)!.request_sent,
+                'request_sent'.tr,
                 textAlign: TextAlign.center,
               ),
-              Text(AppLocalizations.of(context)!.know_more),
+              Text('know_more'.tr),
               ElevatedButton(
                 onPressed: () async {},
                 style: ElevatedButton.styleFrom(
@@ -46,7 +45,7 @@ class _OnboardingInReviewPageState extends State<OnboardingInReviewPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    AppLocalizations.of(context)!.want,
+                    'want'.tr,
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
@@ -56,7 +55,7 @@ class _OnboardingInReviewPageState extends State<OnboardingInReviewPage> {
                   Get.offAll(() => const LoginPage(), transition: Transition.leftToRight);
                 },
                 child: Text(
-                  AppLocalizations.of(context)!.back_login,
+                  'back_login'.tr,
                   style: const TextStyle(color: Colors.black),
                 ),
               )

@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/step_eight_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_eight_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -73,7 +72,7 @@ class _OnboardingStepSevenPageState extends State<OnboardingStepSevenPage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(
-                AppLocalizations.of(context)!.take_document_selfie,
+                'take_document_selfie'.tr,
                 style: const TextStyle(
                     fontSize: 20,
                     color: Colors.black54,
@@ -105,7 +104,7 @@ class _OnboardingStepSevenPageState extends State<OnboardingStepSevenPage> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      AppLocalizations.of(context)!.selfie_one,
+                      'selfie_one'.tr,
                       style: const TextStyle(
                         fontSize: 16,
                       ),
@@ -138,7 +137,7 @@ class _OnboardingStepSevenPageState extends State<OnboardingStepSevenPage> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      AppLocalizations.of(context)!.selfie_two,
+                      'selfie_two'.tr,
                       style: const TextStyle(
                         fontSize: 16,
                       ),
@@ -171,7 +170,7 @@ class _OnboardingStepSevenPageState extends State<OnboardingStepSevenPage> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      AppLocalizations.of(context)!.selfie_three,
+                      'selfie_three'.tr,
                       style: const TextStyle(
                         fontSize: 16,
                       ),
@@ -198,7 +197,7 @@ class _OnboardingStepSevenPageState extends State<OnboardingStepSevenPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          AppLocalizations.of(context)!.understood,
+                         'understood'.tr,
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),

@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/step_nine_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -72,11 +71,11 @@ class _OnboardingStepEightPageState extends State<OnboardingStepEightPage> {
         child: Column(
           children: [
             Text(
-              AppLocalizations.of(context)!.selfie,
+              'selfie'.tr,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(
-              AppLocalizations.of(context)!.dont_perfect,
+              'dont_perfect'.tr,
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -94,7 +93,7 @@ class _OnboardingStepEightPageState extends State<OnboardingStepEightPage> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(AppLocalizations.of(context)!.dont_gadgets)
+                  Text('dont_gadgets'.tr)
                 ],
               ),
             ),
@@ -110,7 +109,7 @@ class _OnboardingStepEightPageState extends State<OnboardingStepEightPage> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(AppLocalizations.of(context)!.focus_photo)
+                  Text('focus_photo'.tr)
                 ],
               ),
             ),
@@ -126,7 +125,7 @@ class _OnboardingStepEightPageState extends State<OnboardingStepEightPage> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(AppLocalizations.of(context)!.dont_glasses)
+                  Text('dont_glasses'.tr)
                 ],
               ),
             ),
@@ -147,7 +146,7 @@ class _OnboardingStepEightPageState extends State<OnboardingStepEightPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    AppLocalizations.of(context)!.understood,
+                    'understood'.tr,
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),

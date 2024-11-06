@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/step_five_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class OnboardingStepFourPage extends StatefulWidget {
@@ -65,7 +64,7 @@ class _OnboardingStepFourPageState extends State<OnboardingStepFourPage> with Va
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              AppLocalizations.of(context)!.income_inform,
+              'income_inform'.tr,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -95,7 +94,7 @@ class _OnboardingStepFourPageState extends State<OnboardingStepFourPage> with Va
                     borderSide: BorderSide(color: secondaryColor),
                   ),
                   contentPadding: EdgeInsets.zero,
-                  labelText: AppLocalizations.of(context)!.profession,
+                  labelText: 'profession'.tr,
                   suffixIcon: const Icon(Icons.arrow_drop_down),
                   labelStyle: const TextStyle(
                     color: Colors.black54,
@@ -137,7 +136,7 @@ class _OnboardingStepFourPageState extends State<OnboardingStepFourPage> with Va
                       borderSide: BorderSide(color: secondaryColor),
                     ),
                     contentPadding: EdgeInsets.zero,
-                    labelText: AppLocalizations.of(context)!.income,
+                    labelText: 'income'.tr,
                     labelStyle: const TextStyle(
                       color: Colors.black54,
                       fontSize: 15,
@@ -163,7 +162,7 @@ class _OnboardingStepFourPageState extends State<OnboardingStepFourPage> with Va
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          AppLocalizations.of(context)!.next,
+                          'next'.tr,
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -184,7 +183,7 @@ class _OnboardingStepFourPageState extends State<OnboardingStepFourPage> with Va
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          title: Text(AppLocalizations.of(context)!.choose_profession),
+            title: Text('choose_profession'.tr),
           content: Container(
             color: Colors.white,
             width: double.maxFinite,
