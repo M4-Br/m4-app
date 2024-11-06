@@ -1,6 +1,7 @@
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/screens/login/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SplashPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class SplashPageState extends State<SplashPage>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 2000),
     );
 
     _fadeAnimation = Tween<double>(begin: 0.1, end: 1.0).animate(_controller);
@@ -35,8 +36,7 @@ class SplashPageState extends State<SplashPage>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacement(context,
-            PageTransition(child: const LoginPage(), type: PageTransitionType.fade));
+        Get.offAll(() => const LoginPage(), transition: Transition.cupertino);
       }
     });
 

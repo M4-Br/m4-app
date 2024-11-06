@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/controllers/login/verify_document_controll
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:mask_shifter_v2/mask_shifter.dart';
 

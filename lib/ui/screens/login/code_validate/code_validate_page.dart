@@ -3,7 +3,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/login/cnpj/validate_code_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/login/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class CodeValidatePage extends StatefulWidget {
@@ -62,10 +61,9 @@ class _CodeValidatePageState extends State<CodeValidatePage> with ValidationsMix
         title: SafeArea(
           child: Text(
             widget.page == 1
-                ? AppLocalizations.of(context)!
-                    .password_register_cnpj
-                    .toUpperCase()
-                : AppLocalizations.of(context)!.email_confirm,
+                ? 'password_register_cnpj'
+                    .toUpperCase().tr
+                : 'email_confirm'.toUpperCase().tr,
             style: const TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),
@@ -91,27 +89,27 @@ class _CodeValidatePageState extends State<CodeValidatePage> with ValidationsMix
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                AppLocalizations.of(context)!.email_sendCode,
+                'email_sendCode'.tr,
                 style:
                     const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
             Text(
-              AppLocalizations.of(context)!.email_send_code,
+              'email_send_code'.tr,
               style: const TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                AppLocalizations.of(context)!.email_perhaps,
+                'email_perhaps'.tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16),
               ),
             ),
             Text(
-              AppLocalizations.of(context)!.email_insert_code,
+              'email_insert_code'.tr,
               style: const TextStyle(fontSize: 12),
             ),
             Padding(
@@ -179,7 +177,7 @@ class _CodeValidatePageState extends State<CodeValidatePage> with ValidationsMix
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          AppLocalizations.of(context)!.next,
+                          'next'.tr,
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -191,7 +189,7 @@ class _CodeValidatePageState extends State<CodeValidatePage> with ValidationsMix
             TextButton(
               onPressed: _sendCode,
               child: Text(
-                AppLocalizations.of(context)!.email_send,
+                'email_send'.tr,
                 style: const TextStyle(
                     color: Colors.black54,
                     decoration: TextDecoration.underline,

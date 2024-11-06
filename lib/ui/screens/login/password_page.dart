@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/login/login_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/login/code_validate/code_validate_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class PasswordPage extends StatefulWidget {
@@ -91,7 +90,7 @@ class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   contentPadding: EdgeInsets.zero,
-                  labelText: AppLocalizations.of(context)!.password,
+                  labelText: 'password'.tr,
                   labelStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -128,7 +127,7 @@ class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
                           minimumSize: const Size(double.infinity, 50),
                         ),
                         child: Text(
-                          AppLocalizations.of(context)!.access,
+                          'access'.tr,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 16),
                         ),
@@ -148,7 +147,7 @@ class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    AppLocalizations.of(context)!.forgot_password,
+                    'forgot_password'.tr,
                     style: const TextStyle(color: Colors.white, fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
@@ -175,6 +174,6 @@ class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
 
   _codeLang() async {
     await SharedPreferencesFunctions.saveString(
-        key: 'codeLang', value: AppLocalizations.of(context)!.codeLang);
+        key: 'codeLang', value: 'codeLang'.tr);
   }
 }
