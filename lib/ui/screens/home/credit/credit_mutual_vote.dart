@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/screens/home/credit/credit_voted.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreditMutualVote extends StatefulWidget {
   final String groupId;
@@ -38,7 +37,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.credit_credit.toUpperCase(),
+        title: 'credit_credit'.toUpperCase().tr,
         backPage: () => Get.back(),
       ),
       backgroundColor: primaryColor,
@@ -58,9 +57,8 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 32),
                         child: Text(
-                          AppLocalizations.of(context)!
-                              .credit_detail
-                              .toUpperCase(),
+                          'credit_detail'
+                              .toUpperCase().tr,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -108,9 +106,8 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 32),
                                 child: Text(
-                                  AppLocalizations.of(context)!
-                                      .credit_detail
-                                      .toUpperCase(),
+                                  'credit_detail'
+                                      .toUpperCase().tr,
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -151,9 +148,8 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 16),
                                   child: Text(
-                                    AppLocalizations.of(context)!
-                                        .credit_detail
-                                        .toUpperCase(),
+                                    'credit_detail'
+                                        .toUpperCase().tr,
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,
@@ -186,7 +182,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                                                 TextSpan(
                                                     text: user['name']),
                                                 TextSpan(
-                                                    text: ' ${AppLocalizations.of(context)!.credit_request_of} R\$${currencyFormat.format(mutual['main_amount'] / 100)}')
+                                                    text: ' ${'credit_request_of'.tr} R\$${currencyFormat.format(mutual['main_amount'] / 100)}')
                                               ]),
                                           textAlign: TextAlign.center,
                                         ),
@@ -208,7 +204,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
-                                                    AppLocalizations.of(context)!.credit_group,
+                                                    'credit_group'.tr,
                                                     style: const TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 16),
@@ -228,13 +224,13 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
-                                                    AppLocalizations.of(context)!.credit_payment,
+                                                    'credit_payment'.tr,
                                                     style: const TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 16),
                                                   ),
                                                   Text(
-                                                    '${mutual['mutual']['installment']}x ${AppLocalizations.of(context)!.off} R\$${currencyFormat.format(mutual['installment_amount'] / 100)}',
+                                                    '${mutual['mutual']['installment']}x ${'off'.tr} R\$${currencyFormat.format(mutual['installment_amount'] / 100)}',
                                                     style: const TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 16),
@@ -248,7 +244,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
-                                                    AppLocalizations.of(context)!.credit_fees_receive,
+                                                    'credit_fees_receive'.tr,
                                                     style: const TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 16),
@@ -268,7 +264,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
-                                                    AppLocalizations.of(context)!.credit_last_payment,
+                                                    'credit_last_payment'.tr,
                                                     style: const TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 16),
@@ -288,7 +284,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                                     ),
                                     const Spacer(),
                                     Text(
-                                      AppLocalizations.of(context)!.credit_agree,
+                                      'credit_agree'.tr,
                                       style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
@@ -323,7 +319,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
               onPressed: () => _getDialog(
                   id: widget.vote,
                   vote: 'reject',
-                  type: AppLocalizations.of(context)!.credit_vote_reject),
+                  type: 'credit_vote_reject'.tr),
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -332,9 +328,8 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  AppLocalizations.of(context)!
-                      .credit_reject
-                      .toUpperCase(),
+                  'credit_reject'
+                      .toUpperCase().tr,
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
@@ -343,7 +338,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
               onPressed: () => _getDialog(
                   id: widget.vote,
                   vote: 'accept',
-                  type: AppLocalizations.of(context)!.credit_vote_accept),
+                  type: 'credit_vote_accept'.tr),
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -352,9 +347,8 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  AppLocalizations.of(context)!
-                      .credit_accept
-                      .toUpperCase(),
+                  'credit_accept'
+                      .toUpperCase().tr,
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
@@ -387,13 +381,13 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
 
   _getDialog({required String id, required String vote, required String type}) {
     Get.defaultDialog(
-      title: AppLocalizations.of(context)!.credit_vote_title_dialog,
+      title: 'credit_vote_title_dialog'.tr,
       content: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
               Text(
-                '${AppLocalizations.of(context)!.credit_vote_dialog} $type ?',
+                '${'credit_vote_dialog'.tr} $type ?',
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 textAlign: TextAlign.center,
               ),
@@ -407,7 +401,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                           backgroundColor: Colors.grey),
                       onPressed: () => Get.back(),
                       child: Text(
-                        AppLocalizations.of(context)!.cancel,
+                        'cancel'.tr,
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -422,7 +416,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                         Get.back();
                       },
                       child: Text(
-                        AppLocalizations.of(context)!.confirm,
+                        'confirm'.tr,
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,

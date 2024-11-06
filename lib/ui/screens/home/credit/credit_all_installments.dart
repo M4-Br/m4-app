@@ -1,26 +1,21 @@
 import 'package:app_flutter_miban4/data/api/credit/get_all_credit.dart';
-import 'package:app_flutter_miban4/data/api/groups/getMyContributions.dart';
-import 'package:app_flutter_miban4/data/model/groups/contributionsModel.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_installments.dart';
-import 'package:app_flutter_miban4/ui/screens/home/groups/group_contribution_id.dart';
-import 'package:app_flutter_miban4/ui/screens/home/groups/group_data.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreditAllInstallments extends StatefulWidget {
   final int id;
   final String type;
 
   const CreditAllInstallments({
-    Key? key,
+    super.key,
     required this.id,
     required this.type,
-  }) : super(key: key);
+  });
 
   @override
   State<CreditAllInstallments> createState() => _CreditAllInstallmentsState();
@@ -53,10 +48,10 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
     return Scaffold(
       backgroundColor: primaryColor,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.credit_credit.toUpperCase(),
+        title: 'credit_credit'.toUpperCase().tr,
         backPage: () =>
-            Get.off(
-              HomeViewPage(),
+            Get.offAll(
+              const HomeViewPage(),
               transition: Transition.leftToRight,
             ),
       ),
@@ -99,7 +94,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
               color: Colors.white,
               child: Center(
                 child: Text(
-                  AppLocalizations.of(context)!.dont_have_credit,
+                  'dont_have_credit'.tr,
                   style: const TextStyle(color: Colors.black, fontSize: 18),
                 ),
               ),
@@ -140,8 +135,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .credit_paid_installment,
+                            'credit_paid_installment'.tr,
                             style: const TextStyle(
                                 color: Colors.white, fontSize: 16),
                           ),
@@ -158,7 +152,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
                       Column(
                         children: [
                           Text(
-                            AppLocalizations.of(context)!.credit_next_payment,
+                            'credit_next_payment'.tr,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -167,8 +161,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
                           Text(
                             nextPaymentDate.isNotEmpty
                                 ? nextPaymentDate
-                                : AppLocalizations.of(context)!
-                                .credit_all_installments_paid,
+                                : 'credit_all_installments_paid'.tr,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -200,7 +193,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.group_open,
+                              'group_open'.tr,
                               style: TextStyle(
                                   color: _isActive
                                       ? Colors.white
@@ -231,7 +224,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.group_paid,
+                              'group_paid'.tr,
                               style: TextStyle(
                                   color: !_isActive
                                       ? Colors.white
@@ -279,7 +272,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
     if (allInstalments == true) {
       return Center(
         child: Text(
-          AppLocalizations.of(context)!.all_paid,
+          'all_paid'.tr,
           textAlign: TextAlign.center,
           style: const TextStyle(color: Colors.black, fontSize: 18),
         ),
@@ -324,11 +317,11 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
           if (isFirstPending) {
             Get.dialog(AlertDialog(
               title: Text(
-                AppLocalizations.of(context)!.message,
+                'message'.tr,
                 textAlign: TextAlign.center,
               ),
               content: Text(
-                AppLocalizations.of(context)!.first_installment,
+                'first_installment'.tr,
                 textAlign: TextAlign.center,
               ),
               actions: [
@@ -423,8 +416,8 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
                 children: [
                   Text(
                     transaction['status'] == 'pending'
-                        ? AppLocalizations.of(context)!.group_payment
-                        : AppLocalizations.of(context)!.group_paid_date,
+                        ? 'group_payment'.tr
+                        : 'group_paid_date'.tr,
                     style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                   Text(
@@ -450,8 +443,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
                     ),
                   ),
                   Text(
-                    '${transaction['installment'] ?? ''} ${AppLocalizations.of(
-                        context)!.off} $installment',
+                    '${transaction['installment'] ?? ''} ${'off'.tr} $installment',
                     style: const TextStyle(color: Colors.black, fontSize: 15),
                   ),
                 ],

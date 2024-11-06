@@ -10,7 +10,6 @@ import 'package:app_flutter_miban4/ui/screens/home/perfil/financial_data_page.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreditMutualDetails extends StatefulWidget {
   final String id;
@@ -57,7 +56,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.credit_request.toUpperCase(),
+        title: 'credit_request'.toUpperCase().tr,
         backPage: () => Get.off(() => CreditMutualAvailable(id: widget.id),
             transition: Transition.leftToRight),
       ),
@@ -95,7 +94,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 32),
                         child: Text(
-                          AppLocalizations.of(context)!.credit_simulation,
+                          'credit_simulation'.tr,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -117,7 +116,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                           Padding(
                             padding: const EdgeInsets.only(top: 16),
                             child: Text(
-                              AppLocalizations.of(context)!.credit_you_receive,
+                              'credit_you_receive'.tr,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 18),
                               textAlign: TextAlign.center,
@@ -145,11 +144,10 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                     color: Colors.black, fontSize: 18),
                                 children: [
                                   TextSpan(
-                                      text: AppLocalizations.of(context)!
-                                          .credit_paid),
+                                      text: 'credit_paid'.tr),
                                   TextSpan(
                                       text:
-                                          ' ${simulatedResponse['installment']} x ${AppLocalizations.of(context)!.off} R\$${currencyFormat.format(simulatedResponse['installment_amount'] / 100)}',
+                                          ' ${simulatedResponse['installment']} x ${'off'.tr} R\$${currencyFormat.format(simulatedResponse['installment_amount'] / 100)}',
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold))
                                 ])),
@@ -167,8 +165,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          AppLocalizations.of(context)!
-                                              .credit_group,
+                                          'credit_group'.tr,
                                           style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16),
@@ -189,8 +186,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          AppLocalizations.of(context)!
-                                              .credit_pay_total,
+                                         'credit_pay_total'.tr,
                                           style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16),
@@ -219,8 +215,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          AppLocalizations.of(context)!
-                                              .credit_fee_value,
+                                          'credit_fee_value'.tr,
                                           style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16),
@@ -249,8 +244,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          AppLocalizations.of(context)!
-                                              .credit_fees,
+                                          'credit_fees'.tr,
                                           style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16),
@@ -265,9 +259,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                                     text:
                                                         '${currencyFormat.format(simulatedResponse['fee'] / 100)} % '),
                                                 TextSpan(
-                                                    text: AppLocalizations.of(
-                                                            context)!
-                                                        .credit_monthly)
+                                                    text: 'credit_monthly'.tr)
                                               ]),
                                         ),
                                       ],
@@ -278,8 +270,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        AppLocalizations.of(context)!
-                                            .credit_services,
+                                        'credit_services'.tr,
                                         style: const TextStyle(
                                             color: Colors.black, fontSize: 16),
                                       ),
@@ -343,8 +334,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                         _navigateToTerms();
                                       },
                                       child: Text(
-                                        AppLocalizations.of(context)!
-                                            .terms_read,
+                                        'terms_read'.tr,
                                         style: const TextStyle(
                                           fontSize: 16,
                                           color: Colors.black87,
@@ -375,9 +365,8 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                               borderRadius:
                                                   BorderRadius.circular(50))),
                                       child: Text(
-                                        AppLocalizations.of(context)!
-                                            .credit_request
-                                            .toUpperCase(),
+                                        'credit_request'
+                                            .toUpperCase().tr,
                                         style: const TextStyle(
                                             color: Colors.white, fontSize: 16),
                                       ))

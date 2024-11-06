@@ -13,7 +13,7 @@ class CardScreen extends StatelessWidget {
       appBar: AppBarDefault(
         title: AppLocalizations.of(context)!.card,
         backPage: () =>
-            Get.off(() => HomeViewPage(), transition: Transition.leftToRight),
+            Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),
     );
   }

@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreditVoted extends StatelessWidget {
   const CreditVoted({super.key});
@@ -13,9 +12,9 @@ class CreditVoted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.credit_credit.toUpperCase(),
+        title: 'credit_credit'.toUpperCase().tr,
         backPage: () =>
-            Get.off(() => HomeViewPage(), transition: Transition.leftToRight),
+            Get.offAll(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,7 +27,7 @@ class CreditVoted extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: Text(
-              AppLocalizations.of(context)!.credit_vote,
+              'credit_vote'.tr,
               style: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -39,7 +38,7 @@ class CreditVoted extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Text(
-              AppLocalizations.of(context)!.credit_voted_details,
+              'credit_voted_details'.tr,
               style: const TextStyle(color: Colors.black, fontSize: 16),
               textAlign: TextAlign.center,
             ),
@@ -61,7 +60,7 @@ class CreditVoted extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50))),
               child: Text(
-                AppLocalizations.of(context)!.credit_groups,
+                'credit_groups'.tr,
                 style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

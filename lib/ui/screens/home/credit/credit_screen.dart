@@ -2,11 +2,9 @@ import 'package:app_flutter_miban4/data/api/credit/user_mutuals.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_all_installments.dart';
-import 'package:app_flutter_miban4/ui/screens/home/groups/group_my_transactions.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/groups_credit.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class CreditScreen extends StatefulWidget {
@@ -31,7 +29,7 @@ class _CreditScreenState extends State<CreditScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.credit_credit.toUpperCase(),
+        title: 'credit_credit'.toUpperCase().tr,
         backPage: () =>
             Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),
@@ -92,7 +90,7 @@ class _CreditScreenState extends State<CreditScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         child: Text(
-                          AppLocalizations.of(context)!.credit_dont,
+                          'credit_dont'.tr,
                           style: const TextStyle(
                             color: Colors.black87,
                             fontSize: 18,
@@ -102,7 +100,7 @@ class _CreditScreenState extends State<CreditScreen> {
                         ),
                       ),
                       Text(
-                        AppLocalizations.of(context)!.credit_enter,
+                        'credit_enter'.tr,
                         style:
                             const TextStyle(color: Colors.grey, fontSize: 18),
                         textAlign: TextAlign.center,
@@ -124,9 +122,8 @@ class _CreditScreenState extends State<CreditScreen> {
                               ),
                             ),
                             child: Text(
-                              AppLocalizations.of(context)!
-                                  .credit_groups
-                                  .toUpperCase(),
+                              'credit_groups'
+                                  .toUpperCase().tr,
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -157,7 +154,7 @@ class _CreditScreenState extends State<CreditScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         child: Text(
-                          AppLocalizations.of(context)!.credit_dont,
+                          'credit_dont'.tr,
                           style: const TextStyle(
                             color: Colors.black87,
                             fontSize: 18,
@@ -167,7 +164,7 @@ class _CreditScreenState extends State<CreditScreen> {
                         ),
                       ),
                       Text(
-                        AppLocalizations.of(context)!.credit_enter,
+                        'credit_enter'.tr,
                         style:
                             const TextStyle(color: Colors.grey, fontSize: 18),
                         textAlign: TextAlign.center,
@@ -189,9 +186,8 @@ class _CreditScreenState extends State<CreditScreen> {
                               ),
                             ),
                             child: Text(
-                              AppLocalizations.of(context)!
-                                  .credit_groups
-                                  .toUpperCase(),
+                             'credit_groups'
+                                  .toUpperCase().tr,
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

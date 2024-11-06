@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreditInstallments extends StatefulWidget {
   final Map<String, dynamic>? creditInstallment;
@@ -51,9 +50,9 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
         Duration.zero,
         () {
           Get.dialog(AlertDialog(
-            title: Text(AppLocalizations.of(context)!.message, textAlign: TextAlign.center,),
+            title: Text('message'.tr, textAlign: TextAlign.center,),
             content:
-                Text(AppLocalizations.of(context)!.credit_installment_delayed, textAlign: TextAlign.center,),
+                Text('credit_installment_delayed'.tr, textAlign: TextAlign.center,),
             actions: [
               Align(
                 alignment: Alignment.center,
@@ -92,7 +91,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
         backgroundColor: primaryColor,
         centerTitle: true,
         title: Text(
-          AppLocalizations.of(context)!.credit_credit.toUpperCase(),
+          'credit_credit'.toUpperCase().tr,
           style:
               const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
@@ -112,12 +111,12 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
             children: [
               widget.pay == 0
                   ? Text(
-                      AppLocalizations.of(context)!.group_will_pay,
+                      'group_will_pay'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                       textAlign: TextAlign.center,
                     )
                   : Text(
-                      AppLocalizations.of(context)!.group_you_paid,
+                      'group_you_paid'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                       textAlign: TextAlign.center,
                     ),
@@ -135,7 +134,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.group_day,
+                      'group_day'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -158,11 +157,11 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.group_installment,
+                      'group_installment'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
-                      '${widget.creditInstallment!['installment']} ${AppLocalizations.of(context)!.off} ${widget.creditInstallment!['total_installment']}',
+                      '${widget.creditInstallment!['installment']} ${'off'.tr} ${widget.creditInstallment!['total_installment']}',
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ],
@@ -174,11 +173,11 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.credit_credit,
+                      'credit_credit'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.credit_credit,
+                      'credit_credit'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ],
@@ -206,7 +205,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.group_name,
+                      'group_name'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -222,7 +221,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.group_account,
+                      'group_account'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -239,7 +238,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.group_fees,
+                      'group_fees'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     const Text(
@@ -263,7 +262,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                 return AlertDialog.adaptive(
                                   backgroundColor: Colors.white,
                                   title: Text(
-                                    AppLocalizations.of(context)!.password,
+                                    'password'.tr,
                                     style: const TextStyle(
                                         color: Colors.black, fontSize: 20),
                                     textAlign: TextAlign.center,
@@ -341,10 +340,8 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                         backgroundColor:
                                                             Colors.red),
                                                     child: Text(
-                                                      AppLocalizations.of(
-                                                              context)!
-                                                          .cancel
-                                                          .toUpperCase(),
+                                                      'cancel'
+                                                          .toUpperCase().tr,
                                                       style: const TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 14,
@@ -405,10 +402,8 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                                               widget.type,
                                                                         ));
                                                                     Get.snackbar(
-                                                                        AppLocalizations.of(context)!
-                                                                            .dialog_success,
-                                                                        AppLocalizations.of(context)!
-                                                                            .dialog_payment,
+                                                                        'dialog_success'.tr,
+                                                                        'dialog_payment'.tr,
                                                                         snackPosition: SnackPosition
                                                                             .BOTTOM,
                                                                         duration: const Duration(
@@ -435,11 +430,8 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                                       false);
                                                                 });
                                                                 Get.snackbar(
-                                                                    AppLocalizations.of(context)!
-                                                                        .dialog_error,
-                                                                    AppLocalizations.of(
-                                                                            context)!
-                                                                        .dialog_password_incorrect,
+                                                                    'dialog_error'.tr,
+                                                                    'dialog_password_incorrect'.tr,
                                                                     snackPosition:
                                                                         SnackPosition
                                                                             .BOTTOM,
@@ -467,10 +459,8 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                                 backgroundColor:
                                                                     secondaryColor),
                                                             child: Text(
-                                                              AppLocalizations.of(
-                                                                      context)!
-                                                                  .group_pay
-                                                                  .toUpperCase(),
+                                                              'group_pay'
+                                                                  .toUpperCase().tr,
                                                               style: const TextStyle(
                                                                   color: Colors
                                                                       .white,
@@ -501,7 +491,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                             ),
                             backgroundColor: secondaryColor),
                         child: Text(
-                          AppLocalizations.of(context)!.group_pay.toUpperCase(),
+                          'group_pay'.toUpperCase().tr,
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

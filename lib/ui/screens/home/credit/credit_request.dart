@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreditRequest extends StatelessWidget {
   const CreditRequest({super.key});
@@ -13,7 +12,7 @@ class CreditRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarDefault(title: AppLocalizations.of(context)!.credit_credit.toUpperCase(), backPage: () => Get.off(() => HomeViewPage(), transition: Transition.leftToRight),),
+      appBar: AppBarDefault(title: 'credit_credit'.toUpperCase().tr, backPage: () => Get.offAll(() => const HomeViewPage(), transition: Transition.leftToRight),),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -25,7 +24,7 @@ class CreditRequest extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: Text(
-              AppLocalizations.of(context)!.credit_requested,
+              'credit_requested'.tr,
               style: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -36,7 +35,7 @@ class CreditRequest extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Text(
-              AppLocalizations.of(context)!.credit_request_wait,
+              'credit_request_wait'.tr,
               style: const TextStyle(color: Colors.black, fontSize: 16),
               textAlign: TextAlign.center,
             ),
@@ -58,7 +57,7 @@ class CreditRequest extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50))),
               child: Text(
-                AppLocalizations.of(context)!.credit_groups.toUpperCase(),
+                'credit_groups'.toUpperCase().tr,
                 style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

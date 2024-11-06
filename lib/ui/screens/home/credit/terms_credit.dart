@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/ui/screens/home/credit/credit_mutual_detail.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreditTerms extends StatefulWidget {
   String? id;
@@ -61,8 +60,7 @@ class _CreditTermsState extends State<CreditTerms> {
                                       Column(
                                         children: [
                                           Text(
-                                            AppLocalizations.of(context)!
-                                                .terms_credit,
+                                            'terms_credit'.tr,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16),
@@ -72,8 +70,7 @@ class _CreditTermsState extends State<CreditTerms> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 18),
                                             child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .terms_credit_read,
+                                              'terms_credit_read'.tr,
                                               style:
                                                   const TextStyle(fontSize: 16),
                                               textAlign: TextAlign.center,
@@ -104,8 +101,7 @@ class _CreditTermsState extends State<CreditTerms> {
                                                 },
                                               ),
                                               Text(
-                                                AppLocalizations.of(context)!
-                                                    .terms_read,
+                                                'terms_read'.tr,
                                                 style: const TextStyle(
                                                     fontSize: 16,
                                                     color: Colors.black),
@@ -147,7 +143,7 @@ class _CreditTermsState extends State<CreditTerms> {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Text(
-              AppLocalizations.of(context)!.next,
+              'next'.tr,
               style: const TextStyle(color: Colors.white),
             ),
           ),

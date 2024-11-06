@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreditMutualAvailable extends StatefulWidget {
   final String id;
@@ -42,7 +41,7 @@ class _CreditMutualAvailableState extends State<CreditMutualAvailable> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.credit_credit.toUpperCase(),
+        title: 'credit_credit'.toUpperCase().tr,
         backPage: () => widget.page == 0
             ? Get.off(() => const CreditScreen(),
                 transition: Transition.leftToRight)
@@ -101,12 +100,12 @@ class _CreditMutualAvailableState extends State<CreditMutualAvailable> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.credit_contribution,
+                          'credit_contribution'.tr,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 16),
                         ),
                         Text(
-                          AppLocalizations.of(context)!.credit_max_loan,
+                          'credit_max_loan'.tr,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 16),
                         )
@@ -199,16 +198,14 @@ class _CreditMutualAvailableState extends State<CreditMutualAvailable> {
                                     borderSide: BorderSide(color: Colors.red),
                                   ),
                                   contentPadding: EdgeInsets.zero,
-                                  labelText: AppLocalizations.of(context)!
-                                      .credit_request_value,
+                                  labelText: 'credit_request_value'.tr,
                                   labelStyle: const TextStyle(
                                     color: Colors.grey,
                                     fontSize: 18,
                                   ),
                                   hintText: '',
                                   errorText: _errorColorValue == Colors.red
-                                      ? AppLocalizations.of(context)!
-                                          .credit_request_over
+                                      ? 'credit_request_over'.tr
                                       : null,
                                 ),
                                 style: TextStyle(
@@ -241,8 +238,7 @@ class _CreditMutualAvailableState extends State<CreditMutualAvailable> {
                                     borderSide: BorderSide(color: Colors.red),
                                   ),
                                   contentPadding: EdgeInsets.zero,
-                                  labelText: AppLocalizations.of(context)!
-                                      .credit_installment,
+                                  labelText: 'credit_installment'.tr,
                                   labelStyle: const TextStyle(
                                     color: Colors.grey,
                                     fontSize: 18,
@@ -283,7 +279,7 @@ class _CreditMutualAvailableState extends State<CreditMutualAvailable> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50))),
             child: Text(
-              AppLocalizations.of(context)!.proceed,
+             'proceed'.tr,
               style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
