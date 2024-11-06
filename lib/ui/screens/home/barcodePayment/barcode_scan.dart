@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcodeConfirmPayment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:mask_shifter_v2/mask_shifter.dart';
 
@@ -37,7 +36,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pay_barcode,
+        title: 'pay_barcode'.tr,
         backPage: () => Get.back(),
       ),
       backgroundColor: Colors.white,
@@ -68,7 +67,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
                     borderSide: BorderSide(color: Colors.black),
                   ),
                   contentPadding: EdgeInsets.zero,
-                  labelText: AppLocalizations.of(context)!.barcode_barcode,
+                  labelText: 'barcode_barcode'.tr,
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -90,9 +89,8 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: secondaryColor),
                     child: Text(
-                      AppLocalizations.of(context)!
-                          .continue_barcode
-                          .toUpperCase(),
+                      'continue_barcode'
+                          .toUpperCase().tr,
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -116,7 +114,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: secondaryColor),
                     child: Text(
-                      AppLocalizations.of(context)!.barcode_auto.toUpperCase(),
+                      'barcode_auto'.toUpperCase().tr,
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -138,7 +136,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                AppLocalizations.of(context)!.barcode_info,
+                'barcode_info'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 textAlign: TextAlign.center,
               ),
@@ -146,7 +144,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                AppLocalizations.of(context)!.barcode_info_after,
+                'barcode_info_after'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 textAlign: TextAlign.center,
               ),

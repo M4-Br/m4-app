@@ -2,7 +2,6 @@ import 'package:app_flutter_miban4/data/model/barcode/barcode_payment_model.dart
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -23,9 +22,9 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.statement_title,
+        title: 'statement_title'.tr,
         backPage: () =>
-            Get.off(() => HomeViewPage(), transition: Transition.leftToRight),
+            Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -79,7 +78,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                   children: [
                     Flexible(
                       child: Text(
-                        AppLocalizations.of(context)!.statement_code,
+                        'statement_code'.tr,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16),
                         overflow: TextOverflow.visible,
@@ -104,7 +103,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.statement_value,
+                      'statement_value'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -122,7 +121,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                 ),
               ),
               Text(
-                AppLocalizations.of(context)!.statement_origin,
+                'statement_origin'.tr,
                 style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -134,7 +133,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.name,
+                      'name'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     const SizedBox(
@@ -159,7 +158,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.statement_document,
+                      'statement_document'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -175,7 +174,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.statement_institute,
+                      'statement_institute'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     const Text(
@@ -193,7 +192,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                 ),
               ),
               Text(
-                AppLocalizations.of(context)!.statement_destiny,
+                'statement_destiny'.tr,
                 style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -205,7 +204,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.name,
+                      'name'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Flexible(
@@ -227,7 +226,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.statement_document,
+                      'statement_document'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -243,7 +242,7 @@ class _BarcodeVoucherScreenState extends State<BarcodeVoucherScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.barcode_barcode,
+                      'barcode_barcode'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     const SizedBox(

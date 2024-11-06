@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_scan.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_voucher_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -46,7 +45,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pay,
+        title: 'pay'.tr,
         backPage: () => Get.off(() => const BarcodeScanScreen(),
             transition: Transition.leftToRight),
       ),
@@ -55,7 +54,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Text(
-              AppLocalizations.of(context)!.payment_total,
+              'payment_total'.tr,
               style: const TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
@@ -80,14 +79,14 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
           Align(
               alignment: Alignment.center,
               child: Text(
-                  '${AppLocalizations.of(context)!.balance_available}: R\$ ${currencyFormat.format(double.parse(widget.balance.balanceCents) / 100)}')),
+                  '${'balance_available'.tr}: R\$ ${currencyFormat.format(double.parse(widget.balance.balanceCents) / 100)}')),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.payment_realized,
+                  'payment_realized'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
@@ -106,7 +105,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.payment_expired,
+                  'payment_expired'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
@@ -124,7 +123,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.payment_receiver,
+                  'payment_receiver'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
@@ -142,7 +141,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.payment_barcode,
+                  'payment_barcode'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(
@@ -163,7 +162,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.payment_discount,
+                  'payment_discount'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
@@ -180,7 +179,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.payment_fees,
+                  'payment_fees'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
@@ -197,7 +196,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.payment_fine,
+                  'payment_fine'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
@@ -226,7 +225,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
                           alignment: Alignment.center,
                         ),
                         child: Text(
-                          AppLocalizations.of(context)!.pay_barcode,
+                          'pay_barcode'.tr,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 18),
                         ),
@@ -258,7 +257,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.password_insert,
+                    'password_insert'.tr,
                     style: const TextStyle(color: Colors.black, fontSize: 18),
                   ),
                   TextField(
@@ -306,7 +305,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
                             ),
                           ),
                           child: Text(
-                            AppLocalizations.of(context)!.confirm.toUpperCase(),
+                            'confirm'.toUpperCase().tr,
                             style: const TextStyle(color: Colors.white),
                           ),
                         ),
@@ -328,7 +327,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
                             ),
                           ),
                           child: Text(
-                            AppLocalizations.of(context)!.cancel.toUpperCase(),
+                            'cancel'.toUpperCase().tr,
                             style: const TextStyle(color: Colors.red),
                           ),
                         ),
