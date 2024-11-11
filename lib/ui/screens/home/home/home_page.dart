@@ -87,8 +87,8 @@ class _HomePageState extends State<HomePage> {
       "12": 'assets/icons/ic_home_recharge.png',
       "14": 'assets/icons/ic_home_store.png',
       "19": 'assets/icons/ic_home_pix.png',
-      "30": 'assets/icons/ic_home_store.png',
-      "31": 'assets/icons/ic_home_store.png',
+      "30": 'assets/icons/ic_home_faq.png', 
+      "31": 'assets/icons/ic_home_warning.png',
     };
 
     return Scaffold(
