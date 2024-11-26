@@ -1,32 +1,31 @@
 class StringsEsES {
-  static final Map<String, String> esES =
-  {
+  static final Map<String, String> esES = {
     "page1": "Página de Inicio de Sesión",
     "terms": "Al continuar, aceptas la política de privacidad",
     "cpf": "ID de Usuario",
     "access": "ACCEDER",
     "privacy_policy_title": "Política de Privacidad",
     "register": "REGISTRARSE",
-    "privacy_policy_read": "Lee hasta el final para aceptar la Política de Privacidad.",
-    "terms_credit": "Al continuar, aceptas los \n Términos y Condiciones de crédito",
-    "terms_credit_read": "Lee hasta el final para aceptar los Términos y Condiciones",
-    "terms_read": "He leído, comprendido y acepto \n los Términos y Condiciones de crédito",
-
+    "privacy_policy_read":
+        "Lee hasta el final para aceptar la Política de Privacidad.",
+    "terms_credit":
+        "Al continuar, aceptas los \n Términos y Condiciones de crédito",
+    "terms_credit_read":
+        "Lee hasta el final para aceptar los Términos y Condiciones",
+    "terms_read":
+        "He leído, comprendido y acepto \n los Términos y Condiciones de crédito",
     "page2": "Página de Contraseña",
     "password": "Contraseña",
     "forgot_password": "OLVIDÉ MI CONTRASEÑA",
-
     "page3": "Página de Inicio",
     "home": "INICIO",
     "card": "TARJETA",
     "statement": "ESTADO DE CUENTA",
     "perfil": "PERFIL",
-
     "page4": "Página de Registro Paso 1",
     "welcome": "Bienvenido",
     "insert_cpf": "Introduce tu documento para continuar",
     "read_policy": "He leído, aceptado y aprobado la Política de Privacidad",
-
     "page5": "Página de Registro Paso 2",
     "register_init": "¡Comencemos tu registro!",
     "informations_continue": "Ingresa alguna información para continuar:",
@@ -34,14 +33,14 @@ class StringsEsES {
     "nickname": "¿Cómo quieres que te llamen?",
     "promotional_code": "Código Promocional (opcional)",
     "confirm_email": "Confirma tu correo electrónico (e-mail)",
-
     "page6": "Página de Registro Paso 3",
     "phone_register": "Registro de Teléfono Móvil",
-    "for_secure_phone": "Para tu seguridad, registraremos tu telefono móvil para asegurar que solo tú puedas acceder a tu cuenta.",
+    "for_secure_phone":
+        "Para tu seguridad, registraremos tu telefono móvil para asegurar que solo tú puedas acceder a tu cuenta.",
     "phone": "Teléfono Móvil",
-
     "page7": "Página de Registro Paso 4",
-    "full_address_information": "Proporciona tu dirección residencial completa:",
+    "full_address_information":
+        "Proporciona tu dirección residencial completa:",
     "address_cep": "Código Postal",
     "address_type": "Tipo de Residencia",
     "address": "Dirección",
@@ -51,16 +50,15 @@ class StringsEsES {
     "address_neighborhood": "Barrio",
     "address_state": "Estado",
     "address_city": "Ciudad",
-
     "page8": "Página de Registro Paso 5",
     "income_inform": "Proporciona tu información de ingresos:",
     "profession": "Profesión",
     "income": "Ingresos",
     "choose_profession": "Elige una profesión",
-
     "page9": "Página de Registro Paso 6",
     "personal_data": "Información Personal",
-    "pay_attention": "Llena tu información según tu documento. Presta mucha atención, ya que estos detalles son importantes para nuestro análisis.",
+    "pay_attention":
+        "Llena tu información según tu documento. Presta mucha atención, ya que estos detalles son importantes para nuestro análisis.",
     "document_name": "Tu Nombre en el Documento",
     "document_mother_name": "Nombre Completo de la Madre",
     "document_gender": "Género",
@@ -73,53 +71,54 @@ class StringsEsES {
     "document_rgEmission": "Autoridad Emisora",
     "document_rg_date": "Fecha de Emisión",
     "document_pep_date": "FECHA DE INICIO DE PEP",
-
     "page10": "Página de Registro Paso 7",
-    "choose_document": "¿Qué tipo de documento de identificación deseas agregar?",
-
+    "choose_document":
+        "¿Qué tipo de documento de identificación deseas agregar?",
     "page101": "Página de Registro Paso 8",
     "take_document_selfie": "Selfie con Documento (ID)",
     "selfie_one": "Toma tu documento de identidad y sosténlo frente a ti.",
-    "selfie_two": "Asegúrate de que la foto del documento de identidad también esté hacia adelante.",
-    "selfie_three": "Tómate una selfie con tu documento de identificación visible.",
-
+    "selfie_two":
+        "Asegúrate de que la foto del documento de identidad también esté hacia adelante.",
+    "selfie_three":
+        "Tómate una selfie con tu documento de identificación visible.",
     "page11": "Página de Registro Paso 9",
     "every_ok": "¿Todo Listo?",
     "plastic": "Retira el plástico del documento y desdóblalo completamente",
     "front_photo": "FOTO FRONTAL",
     "back_photo": "FOTO POSTERIOR",
-
     "page12": "Página de Registro Paso 9",
     "selfie": "¡Hora de la Selfie!",
-    "dont_perfect": "No necesita ser una foto perfecta, pero tenemos algunas pautas que te ayudarán en el proceso.",
+    "dont_perfect":
+        "No necesita ser una foto perfecta, pero tenemos algunas pautas que te ayudarán en el proceso.",
     "dont_gadgets": "No se permiten accesorios.",
     "focus_photo": "Enfoca tu rostro.",
     "dont_glasses": "No se permiten gafas.",
-
     "page13": "Página de Análisis",
     "analysis_progress": "Análisis en progreso",
-    "request_sent": "Tu solicitud ha sido enviada.\n Estamos revisando tu registro.\n Recibirás más información en breve.",
+    "request_sent":
+        "Tu solicitud ha sido enviada.\n Estamos revisando tu registro.\n Recibirás más información en breve.",
     "know_more": "¿Quieres saber más sobre nosotros?",
     "want": "SÍ, QUIERO",
     "back_login": "Volver a la página principal",
-
     "page14": "Página Aprobada",
     "approved": "¡Tu registro ha sido aprobado!",
-    "need_create_password": "Solo necesitas crear una \n contraseña para empezar a usar la App.",
+    "need_create_password":
+        "Solo necesitas crear una \n contraseña para empezar a usar la App.",
     "create_password": "CREAR UNA CONTRASEÑA",
-
     "page15": "Página de Creación de Contraseña",
     "create_new_password": "Crea tu contraseña",
-    "password_justify": "La necesitarás cada vez que realices un pago,\n así que mantenla segura y recuérdala.\n Tu contraseña será una secuencia de 6 números.",
+    "password_justify":
+        "La necesitarás cada vez que realices un pago,\n así que mantenla segura y recuérdala.\n Tu contraseña será una secuencia de 6 números.",
     "confirm_password": "Confirmar contraseña",
     "change_app_password": "Cambiar la contraseña de la aplicación",
-    "change_password_password": "Contraseña actual de la aplicación (6 Dígitos)",
+    "change_password_password":
+        "Contraseña actual de la aplicación (6 Dígitos)",
     "change_password_new": "Nueva contraseña de la aplicación (6 Dígitos)",
-    "change_password_new_confirm": "Repetir nueva contraseña de la aplicación (6 Dígitos)",
+    "change_password_new_confirm":
+        "Repetir nueva contraseña de la aplicación (6 Dígitos)",
     "change_password_validate": "La contraseña debe tener 6 dígitos.",
     "change_password_not_equal": "Las contraseñas no coinciden",
     "change_password_changed": "Tu contraseña ha sido cambiada",
-
     "page17": "Pago con Código de Barras",
     "pay": "PAGAR",
     "payment_total": "PAGARÁS UN TOTAL DE:",
@@ -133,16 +132,16 @@ class StringsEsES {
     "pay_barcode": "PAGAR FACTURA",
     "barcode_barcode": "Código de Barras",
     "barcode_auto": "Escanear Código de Barras",
-    "barcode_info": "Las facturas se pueden pagar en días hábiles de 7 AM a 5 PM.",
-    "barcode_info_after": "Después de esta hora, solo será posible realizar el pago el próximo día hábil.",
-
+    "barcode_info":
+        "Las facturas se pueden pagar en días hábiles de 7 AM a 5 PM.",
+    "barcode_info_after":
+        "Después de esta hora, solo será posible realizar el pago el próximo día hábil.",
     "page18": "Comprobante de Factura",
     "invoice_success": "¡Pago completado con éxito!",
     "invoice_amount": "Monto pagado:",
     "invoice_date": "En el día:",
     "invoice_receiver": "Beneficiario:",
     "invoice_share": "Generar recibo",
-
     "page19": "Inicio de Pago Inmediato - PIX",
     "pix_manager_keys": "Gestión de Claves",
     "pix_manage_data": "Gestiona tus datos de PIX",
@@ -158,19 +157,16 @@ class StringsEsES {
     "pix_payQrCode": "Pagar a través de un Código QR",
     "pix_copyPaste": "Pix copiar y pegar",
     "pix_payCopy": "Pagar a través de atajos",
-
     "page20": "Mis Claves de PIX",
     "pix_keys": "CLAVES DE DIRECCIONAMIENTO",
     "pix_noKeys": "No se han creado claves Pix.",
     "pix_createKey": "REGISTRAR CLAVE",
     "pix_keyCopied": "Clave copiada al portapapeles",
-
     "page21": "Registrar Clave",
     "pix_registerKey": "REGISTRAR NUEVA CLAVE",
     "pix_newKey": "Nueva Clave",
     "pix_waitNewKey": "Por favor, espera mientras creamos \n tu nueva clave",
     "pix_createNewKey": "REGISTRAR CLAVE",
-
     "page22": "Gestor de Claves de Pix",
     "pix_keyManager": "GESTIÓN DE CLAVES",
     "pix_phoneKey": "Teléfono",
@@ -183,7 +179,6 @@ class StringsEsES {
     "pix_keyExclude": "La clave se desvinculará de tu cuenta",
     "pix_stayWithKey": "CONTINUAR CON LA CLAVE",
     "pix_deleteKey": "ELIMINAR LA CLAVE",
-
     "page23": "Recibir Pix",
     "pix_receiver": "RECIBIR PIX",
     "pix_selectKey": "Selecciona una clave o ",
@@ -193,15 +188,14 @@ class StringsEsES {
     "pix_identifier": "Identificador",
     "pix_description": "Descripción",
     "pix_value": "Valor (R\$)",
-
     "page24": "Pix con Clave",
     "pix_withKey": "PIX CON CLAVE",
-    "pix_addReceiverKey": "Agrega la clave del destinatario y realiza la búsqueda:",
+    "pix_addReceiverKey":
+        "Agrega la clave del destinatario y realiza la búsqueda:",
     "pix_keyType": "TIPO DE CLAVE",
     "pix_labelKey": "CLAVE",
     "pix_search": "BUSCAR",
     "pix_agencyAccount": "PIX CON AGENCIA Y CUENTA",
-
     "page25": "Transpasso  Pix",
     "pix_payValue": "Monto a pagar:",
     "pix_descriptionTransfer": "Agregar descripción (opcional)",
@@ -209,13 +203,11 @@ class StringsEsES {
     "pix_institution": "Institución",
     "pix_receiverTransfer": "Destinatario",
     "pix_keyKey": "Clave",
-
     "page26": "Crear Código QR de Valor",
     "demand_demand": "DEPÓSITO",
     "demand_value": "¿Cuánto depositar?",
     "demand_minimum": "Monto mínimo de transpasso \$ 10.00",
     "demand_fees": "Verificar tarifas",
-
     "page27": "Pantalla de Cuenta",
     "account_myAccount": "MI CUENTA",
     "account_myQr": "MI CÓDIGO QR",
@@ -235,7 +227,6 @@ class StringsEsES {
     "account_agency": "Agencia",
     "account_account": "Cuenta corriente",
     "account": "Cuenta:",
-
     "page28": "Transpasso",
     "transfer": "TRANSPASSO",
     "transfer_to": "¿A quién estás haciendo el transpasso?",
@@ -243,17 +234,14 @@ class StringsEsES {
     "transfer_new_contact": "Transpaso a un nuevo contacto",
     "transfer_cpf": "CPF o CNPJ",
     "transfer_document": "Número del documento",
-
     "page29": "Transpasso de la Banca",
     "transfer_miban": "Transpasso a cuenta Miban4",
     "transfer_other": "Transpasso a otro banco",
-
     "page30": "Valor de la Transpasso",
     "transfer_value": "¿Cual es el valor \n del transpasso?",
     "transfer_balance": "Saldo disponible",
     "transfer_minimum": "Monto mínimo de transpasso",
     "transfer_balance_savings": "Saldo disponible en ahorros",
-
     "page31": "Confirmar Transpasso",
     "transfer_confirm": "¿Quieres realizar una \n transpasso por el monto de:",
     "transfer_valueConfirm": "Valor",
@@ -262,12 +250,10 @@ class StringsEsES {
     "transfer_bank": "Banco:",
     "transfer_account": "Cuenta:",
     "transfer_fees": "Tarifa",
-
     "page32": "Transpasso Exitoso",
     "transfer_success": "¡Transpasso hecho con éxito!",
     "transfer_voucher": "VER RECIBO",
     "transfer_new": "REALIZAR OTRO TRANSPASSO",
-
     "page33": "Comprobante de Transpasso",
     "transfer_receipt": "RECIBO",
     "transfer_code": "Código:",
@@ -279,29 +265,27 @@ class StringsEsES {
     "transfer_name": "Nombre:",
     "transfer_destiny": "Destino:",
     "transfer_authCode": "CÓDIGO DE AUTENTICACIÓN",
-
     "page34": "Pantalla de Grupos",
     "groups_screen": "GRUPOS",
     "groups_add": "AÑADIR NUEVO GRUPO",
-
     "page35": "Crear Contraseña",
     "password_create": "Crea tu contraseña",
-    "password_need": "La necesitarás cada vez que realices un pago,\n así que mantenla segura y recuérdala.\n Tu contraseña será una secuencia de 6 números.",
+    "password_need":
+        "La necesitarás cada vez que realices un pago,\n así que mantenla segura y recuérdala.\n Tu contraseña será una secuencia de 6 números.",
     "password_six": "La contraseña debe contener 6 dígitos",
     "password_confirm": "Confirmar contraseña",
     "password_again": "Introduce la contraseña nuevamente",
     "password_equals": "Las contraseñas no coinciden",
-
     "page36": "Mi Código QR",
-    "myqr_description": "Usa tu código QR o comparte \n el enlace para recibir pagos",
-
+    "myqr_description":
+        "Usa tu código QR o comparte \n el enlace para recibir pagos",
     "pix_codeGenerated": "¡Código generado con éxito!",
-    "pix_dataVisible": "Los datos serán visibles para su lectura \n por parte del pagador.",
+    "pix_dataVisible":
+        "Los datos serán visibles para su lectura \n por parte del pagador.",
     "pix_copyLink": "COPIAR ENLACE",
     "pix_shareCode": "COMPARTIR",
     "pix_receiveAnother": "RECIBIR OTRO PIX",
     "pix_saveDevice": "GUARDAR EN EL DISPOSITIVO",
-
     "pix_registerNewKey": "REGISTRAR NUEVA CLAVE",
     "pix_choose_new": "Elige una opción",
     "pix_registerKey_inform": "Elige una clave para comenzar \n a usar tu Pix:",
@@ -309,7 +293,6 @@ class StringsEsES {
     "pix_phone": "Teléfono",
     "pix_anotherEmail": "Otro correo electrónico",
     "pix_anotherNumber": "Otro número",
-
     "pix_valueTo": "¿Quieres realizar un \n Pix por el monto de:",
     "pix_day": "En el día:",
     "pix_to": "A:",
@@ -319,7 +302,6 @@ class StringsEsES {
     "pix_city": "Ciudad:",
     "pix_due": "Fecha de vencimiento:",
     "pix_originalAmount": "Monto original:",
-
     "statement_title": "RECIBO",
     "statement_status": "Estado",
     "statement_code": "Código",
@@ -332,36 +314,29 @@ class StringsEsES {
     "statement_noData": "No hay transacciones en la fecha seleccionada",
     "statement_agency": "Agencia",
     "statement_account": "Cuenta",
-
     "pix_youReceived": "¡Has recibido un cobro!",
-
     "pix_copyAndPaste": "PIX COPIA Y PEGA",
     "pix_pasteCode": "Pega el código en el campo a continuación:",
     "pix_code": "Código",
-
     "pix_success": "¡Pix completado con éxito!",
-
     "display1": "Pantalla de Confirmación de Correo Electrónico",
     "email_confirm": "Confirmación de Correo Electrónico",
     "email_send_code": "Hemos enviado un código al correo registrado",
-    "email_perhaps": "Si no has recibido el correo, por favor revisa \n tu carpeta de correo no deseado o spam",
+    "email_perhaps":
+        "Si no has recibido el correo, por favor revisa \n tu carpeta de correo no deseado o spam",
     "email_insert_code": "INSERTA EL CÓDIGO AQUÍ",
     "email_send": "ENVIAR CÓDIGO",
-
     "password_register_cnpj": "Registro de contraseña CNPJ",
     "email_sendCode": "Confirmación de correo electrónico",
-
     "password_success": "¡Contraseña Registrada!",
-    "password_content": "Tu contraseña de 6 dígitos para la aplicación ha sido registrada con éxito.",
-
+    "password_content":
+        "Tu contraseña de 6 dígitos para la aplicación ha sido registrada con éxito.",
     "display2": "Pantalla de Confirmación de Teléfono",
     "phone_confirm": "Confirmación de Teléfono",
-
     "balance": "Estado del Saldo",
     "balance_available": "Saldo Disponible",
     "balance_transational": "Saldo en Ahorros",
     "balance_insufficient": "Saldo Insuficiente",
-
     "home_view": "Botones de inicio",
     "home_icon": "INICIO",
     "card_icon": "TARJETAS",
@@ -370,11 +345,9 @@ class StringsEsES {
     "home_groups": "Grupos",
     "home_economy": "Ahorros",
     "home_credit": "Crédito",
-
     "pix_component": "Saldo Pix",
     "pix_statement": "EXTRACTO PIX",
     "pix_myKeys": "MIS CLAVES",
-
     "no_groups": "No hay grupo creado.",
     "group_created_in": "Creado en:",
     "group_add_new": "Agregar nuevo grupo",
@@ -382,7 +355,6 @@ class StringsEsES {
     "group_active": "Grupos activos",
     "group_activation_pending": "Activación pendiente",
     "group_mutual_available": "Crédito disponible",
-
     "group_information": "INFORMACIÓN",
     "group_members": "MIEMBROS",
     "group_contribution": "Contribución total del grupo",
@@ -414,38 +386,33 @@ class StringsEsES {
     "group_account": "Cuenta",
     "group_fees": "Tarifa",
     "group_pay": "Pagar",
-
     "group_new": "NUEVO GRUPO",
     "group_new_name": "Nombre del grupo",
     "group_member": "Soy miembro",
     "group_data": "Datos generales",
-
     "group_credit_data": "Datos de crédito",
     "group_interest": "Interés",
     "group_installments": "Cantidad de cuotas",
     "group_priority": "Prioridad",
     "group_late_fees": "Cargos por demora",
     "group_billing": "Facturación",
-
     "group_economy_data": "Cuenta de ahorro",
     "group_period": "Período",
     "group_period_value": "Valor por período",
     "group_contributions_quantity": "Cantidad de contribuciones",
     "group_members_quantity": "Cantidad de miembros",
     "group_value_per_member": "Valor por miembro",
-
     "group_add_members": "Agregar miembros",
-    "group_search_details": "Buscar por documento (ID de usuario) para \n agregar miembros y enviar invitaciones.",
+    "group_search_details":
+        "Buscar por documento (ID de usuario) para \n agregar miembros y enviar invitaciones.",
     "group_search": "Buscar por documento",
     "group_invited": "Personas invitadas",
-
     "group_g": "Grupo",
-
     "group_created": "Grupo creado",
     "group_created_success": "¡Grupo creado con éxito!",
-    "group_wait": "Por favor espera a que los miembros acepten tu invitación.\n Puedes seguir el estado de tu grupo \n en el menú Grupos.",
+    "group_wait":
+        "Por favor espera a que los miembros acepten tu invitación.\n Puedes seguir el estado de tu grupo \n en el menú Grupos.",
     "group_see": "VER GRUPOS",
-
     "financial_info": "Información del cliente",
     "financial_inf_att": "Fecha de actualización",
     "financial_income": "Ingreso familiar (R\$ / MES)",
@@ -455,21 +422,17 @@ class StringsEsES {
     "financial_expenses": "Gastos (R\$)",
     "financial_utilities": "Servicios",
     "financial_another_expenses": "Otros gastos",
-
     "active": "Activo",
     "pending": "Activación pendiente",
     "available": "Crédito disponible",
     "inactive": "Inactivo",
-
     "revenue_generation": "Generación de ingresos",
     "health": "Salud",
     "repairs": "Reparaciones",
     "emergency_money": "Dinero de emergencia",
     "purchases": "Compras",
-
     "group_accept": "Aceptar",
     "group_reject": "Rechazar",
-
     "available_char": "caracteres disponibles",
     "button": "Botones",
     "dialogErro": "Error",
@@ -485,19 +448,16 @@ class StringsEsES {
     "proceed": "PROCEDER",
     "register_button": "Registrar",
     "off": "de",
-
     "credit_credit": "Crédito",
     "credit_dont": "Aún no has solicitado ningún crédito",
     "credit_enter": "Ingresa a tus grupos activos para solicitar un crédito",
     "credit_groups": "VER GRUPOS",
-
     "credit_contribution": "Tu contribución",
     "credit_max_loan": "Préstamo máximo",
     "credit_request_value": "¿Qué monto deseas solicitar?",
     "credit_request_over": "El monto excede el máximo disponible",
     "credit_installment": "Número de cuotas",
     "credit_installment_over": "El número de cuotas excede el máximo",
-
     "credit_request": "Solicitar crédito",
     "credit_simulation": "Simulación de crédito",
     "credit_you_receive": "Recibirás",
@@ -508,7 +468,6 @@ class StringsEsES {
     "credit_fees": "Tasa de interés",
     "credit_services": "Servicios",
     "credit_monthly": "mensual",
-
     "credit_detail": "Detalles del crédito",
     "credit_request_of": " desea un crédito de",
     "credit_payment": "Pago",
@@ -517,134 +476,105 @@ class StringsEsES {
     "credit_agree": "¿Aceptas el crédito?",
     "credit_reject": "Rechazar",
     "credit_accept": "Aceptar",
-
     "credit_vote": "¡Tu voto para el crédito \n ha sido registrado!",
-    "credit_voted_details": "En unas horas, recibirás el resultado final de la votación del crédito.",
-
+    "credit_voted_details":
+        "En unas horas, recibirás el resultado final de la votación del crédito.",
     "credit_requested": "¡Crédito solicitado!",
-    "credit_request_wait": "Por favor, espera a que los miembros acepten tu crédito. \nRecibirás una notificación con la respuesta a tu crédito.",
-
+    "credit_request_wait":
+        "Por favor, espera a que los miembros acepten tu crédito. \nRecibirás una notificación con la respuesta a tu crédito.",
     "savings": "Ahorros",
-
     "facilitator": "Rol Exclusivo de Facilitador",
-    "facilitator_explain": "La creación de grupos es una función exclusiva de los Facilitadores dentro de Miban4. Por favor, contacta a tu Facilitador para solicitar la creación de grupos. \n\nVisita nuestro sitio web para más detalles.",
+    "facilitator_explain":
+        "La creación de grupos es una función exclusiva de los Facilitadores dentro de Miban4. Por favor, contacta a tu Facilitador para solicitar la creación de grupos. \n\nVisita nuestro sitio web para más detalles.",
     "site": "VISITAR SITIO",
-
     "popScope": "Widget WillPopScope",
     "exit_page": "¿Realmente deseas salir?",
     "resume_register": "Puedes continuar el registro desde donde lo dejaste.",
-
     "validators": "Validadores",
     "validator_empty": "Este campo es obligatorio",
     "validator_valid_document": "El documento debe contener 11 caracteres",
     "validator_six_char": "La contraseña contiene 6 caracteres",
     "validator_valid_email": "Introduce un correo electrónico válido",
     "validator_password_confirm": "Las contraseñas no coinciden",
-
-    "pep": "Personas que hayan ocupado, en los últimos 5 (cinco) años, cargos, empleos o funciones relevantes en Brasil o en otros países, territorios y dependencias extranjeras, así como sus representantes, familiares y otras personas en sus relaciones cercanas.",
-
+    "pep":
+        "Personas que hayan ocupado, en los últimos 5 (cinco) años, cargos, empleos o funciones relevantes en Brasil o en otros países, territorios y dependencias extranjeras, así como sus representantes, familiares y otras personas en sus relaciones cercanas.",
     "wait": "Por favor, espera mientras completamos \n tu transferencia.",
-
     "notifications": "NOTIFICACIONES",
-
     "dateRanger": "Selector de fechas",
     "dateSave": "Guardar",
-
     "dialog_success": "Éxito",
     "dialog_error": "Mensaje",
     "dialog_someError": "Algo salió mal",
     "dialog_progress": "Espera",
     "dialog_password_incorrect": "Contraseña incorrecta",
     "dialog_payment": "¡Pago completado con éxito!",
-
     "group_no_group": "No hay grupos añadidos.",
-    "group_no_group_detail": "Agrega tu primer grupo y guarda junto con la comunidad.",
-
+    "group_no_group_detail":
+        "Agrega tu primer grupo y guarda junto con la comunidad.",
     "address_type_own": "Propio",
     "address_type_rent": "Alquiler",
     "address_type_financed": "Financiado",
     "address_type_company": "Empresa",
     "address_type_parents": "con padres",
-
     "gender_male": "Masculino",
     "gender_female": "Femenino",
     "gender_another": "Otro",
     "gender_notDefined": "No definido",
-
     "marital_status_single": "Soltero",
     "marital_status_married": "Casado",
     "marital_status_legally_separated": "Separado legalmente",
     "marital_status_widowed": "Viudo",
     "marital_status_cohabitant": "Conviviente",
     "marital_status_separated": "Separado",
-
     "nationality_brazilian": "Brasileño",
     "nationality_foreigner": "Extranjero",
-
     "pix_send": "Pix Enviado",
     "pix_received": "Pix Recibido",
     "transfer_send": "Transferencia Enviada",
     "transfer_received": "Transferencia Recibida",
-
     "continue_barcode": "Continuar",
     "dont_have_contribution": "No hay contribuciones para listar.",
     "dont_have_credit": "No hay cuotas de crédito para listar.",
     "credit_paid_installment": "Monto Pagado",
-
     "voucher_group_payment": "Pago",
     "voucher_group_code_payment": "Código:",
     "voucher_group_value_payment": "Valor:",
-
     "voucher_origin": "Origen",
     "voucher_destination": "Destino",
-
     "savings_created_at": "Creado en: ",
     "savings_savings": "Ahorros: \$",
     "savings_balance": "Saldo de Ahorros",
-
     "talk_to_us": "Habla con nosotros",
-
     "credit_approved": "Tu crédito ha sido aprobado",
-
     "name": "Nombre",
     "document": "ID de Usuario",
-
     "some_error": "Algo salió mal, por favor intenta de nuevo.",
-
     "logout": "¿Estás seguro de que quieres cerrar sesión?",
     "logout_exit": "Cerrar sesión",
-
     "message": "Mensaje",
-
     "pep_yes": "Sí",
     "pep_no": "No",
-
-    "invite_content": "Es necesario invitar al máximo número de miembros para proceder",
-
+    "invite_content":
+        "Es necesario invitar al máximo número de miembros para proceder",
     "house_own": "Propio",
     "house_rent": "Alquiler",
     "house_financed": "Financiado",
-
     "transport_car_own": "Coche Propio",
     "transport_motor_own": "Motocicleta Propia",
     "transport_financed_car": "Coche Financiado",
     "transport_financed_motor": "Motocicleta Financiada",
     "transport_public": "Público",
-
     "group_details": "Detalles del Grupo",
     "credit_details": "Detalles del Crédito",
-
     "credit_vote_title_dialog": "Confirmación de Voto",
     "credit_vote_dialog": "¿Deseas confirmar tu voto",
     "credit_vote_accept": "aceptando el crédito",
     "credit_vote_reject": "rechazando el crédito",
-
     "payment_link_generated": "Enlace de pago generado.",
     "payment_link_receive": "Total a recibir",
     "payment_link_share": "Compartir para comenzar a recibir",
     "payment_link_share_link": "Compartir Enlace",
     "payment_link_copy_link": "Copiar Enlace",
-
     "bank_choose": "Elegir un banco",
     "bank_search": "Buscar",
     "bank_agency": "Número de agencia (sin dígito)",
@@ -653,48 +583,42 @@ class StringsEsES {
     "bank_account_digit": "Dígito de cuenta",
     "bank_add_account": "Agregar Cuenta",
     "bank_agency_digit": "Dígito de agencia",
-
     "transactional_statement": "Transacciones",
     "savings_statement": "Ahorros",
     "account_waiting": "Tu cuenta aún no está activa",
     "account_savings_waiting": "Tu cuenta de ahorros aún no está activa",
-
-    "onboarding_confirm_selfie": "¿La foto salió bien? ¿El texto es claro? La imagen no debe contener reflejos.",
+    "onboarding_confirm_selfie":
+        "¿La foto salió bien? ¿El texto es claro? La imagen no debe contener reflejos.",
     "onboarding_confirm_again": "Tomar otra",
     "onboarding_confirm_cool": "Se ve bien",
-
     "transfer_add_person": "Agregar Persona",
-
     "share": "Compartir",
-
     "unavailable": "Temporalmente no disponible",
-
     "all_paid": "No hay transacciones pendientes.",
-
-    "credit_installment_delayed": "Cuota retrasada. Se aplican impuestos e intereses adicionales.",
-    "first_installment": "¡Advertencia! ¡El valor más antiguo debe ser pagado primero!",
+    "credit_installment_delayed":
+        "Cuota retrasada. Se aplican impuestos e intereses adicionales.",
+    "first_installment":
+        "¡Advertencia! ¡El valor más antiguo debe ser pagado primero!",
     "credit_next_payment": "Próximo Pago",
     "credit_all_installments_paid": "Todas las cuotas pagadas",
-
     "qr_code_error": "Error al leer el código QR, inténtalo de nuevo.",
     "qr_code_try_again": "Intentar de nuevo",
-
     "pix_limits_p2p": "PIX a cuentas de personas físicas",
     "pix_limits_p2b": "PIX a cuentas de personas jurídicas",
     "pix_limits_same_person": "PIX a cuentas de la misma titularidad",
-
     "language_portuguese": "Portugués",
     "language_english": "Inglés",
     "language_spanish": "Español",
-
     "block_access": "¡Acceso bloqueado por retraso en el pago!",
-
+    "available_plan": "Disponibles",
+    "plan_total": "Total en el plan: ",
+    "plan_date": "Válido hasta ",
+    "plan_add": "Adicional",
+    "plan_actual": "Plan Actual",
+    "plan_monthly": "Por mes",
     "success": "Éxito",
-
     "validator_isEmpty": "Completa el campo",
-
     "codeLang": "es-ES",
-
     "version": "Versión 5.5.0 - Lanzamiento (160)"
   };
 }

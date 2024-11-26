@@ -1,6 +1,5 @@
 class StringsEnUS {
-  static final Map<String, String> enUS =
-  {
+  static final Map<String, String> enUS = {
     "page1": "Login Page",
     "terms": "By continuing, you agree to the privacy policy",
     "cpf": "User ID",
@@ -11,22 +10,18 @@ class StringsEnUS {
     "terms_credit": "By continuing, you accept the \n credit terms",
     "terms_credit_read": "Read to the end to accept the Terms",
     "terms_read": "I have read, understood, and \n accept the credit terms",
-
     "page2": "Password Page",
     "password": "Password",
     "forgot_password": "FORGOT PASSWORD",
-
     "page3": "Home Page",
     "home": "HOME",
     "card": "CARD",
     "statement": "STATEMENT",
     "perfil": "PROFILE",
-
     "page4": "Onboarding Step 1 Page",
     "welcome": "Welcome",
     "insert_cpf": "Enter your document to continue",
     "read_policy": "I have read, agreed, and accepted the privacy policy",
-
     "page5": "Onboarding Step 2 page",
     "register_init": "Let's begin your registration!",
     "informations_continue": "Enter some information to proceed:",
@@ -34,12 +29,11 @@ class StringsEnUS {
     "nickname": "What do you want to be called?",
     "promotional_code": "Promotional Code (optional)",
     "confirm_email": "Confirm your email",
-
     "page6": "Onboarding Step 3 Page",
     "phone_register": "Phone Registration",
-    "for_secure_phone": "For your security, we will register your phone to ensure that only you can access your account.",
+    "for_secure_phone":
+        "For your security, we will register your phone to ensure that only you can access your account.",
     "phone": "Phone",
-
     "page7": "Onboarding Step 4 Page",
     "full_address_information": "Provide your complete residential address:",
     "address_cep": "ZIP Code",
@@ -51,16 +45,15 @@ class StringsEnUS {
     "address_neighborhood": "Neighborhood",
     "address_state": "State",
     "address_city": "City",
-
     "page8": "Onboarding Step 5",
     "income_inform": "Provide your income information:",
     "profession": "Profession",
     "income": "Income",
     "choose_profession": "Choose a profession",
-
     "page9": "Onboarding Step 6",
     "personal_data": "Personal Information",
-    "pay_attention": "Fill in your information according to your document. Pay close attention, as these details are important for our analysis.",
+    "pay_attention":
+        "Fill in your information according to your document. Pay close attention, as these details are important for our analysis.",
     "document_name": "Your Name on the Document",
     "document_mother_name": "Full Mother's Name",
     "document_gender": "Gender",
@@ -73,44 +66,43 @@ class StringsEnUS {
     "document_rgEmission": "Issuing Authority",
     "document_rg_date": "Date of Issue",
     "document_pep_date": "START DATE OF PEP",
-
     "page10": "Onboarding Step 7",
-    "choose_document": "What type of identification document do you want to add?",
-
+    "choose_document":
+        "What type of identification document do you want to add?",
     "page101": "Onboarding Step 8",
     "take_document_selfie": "Selfie with Document (ID)",
     "selfie_one": "Take your identity document and hold it in front of you.",
-    "selfie_two": "Ensure the photo of the identity document is also facing forward.",
+    "selfie_two":
+        "Ensure the photo of the identity document is also facing forward.",
     "selfie_three": "Take a selfie with your identification document visible.",
-
     "page11": "Onboarding Step 9",
     "every_ok": "Everything Ready?",
     "plastic": "Remove the plastic from the document and unfold it completely",
     "front_photo": "FRONT PHOTO",
     "back_photo": "BACK PHOTO",
-
     "page12": "Onboarding Step 9",
     "selfie": "Selfie Time!",
-    "dont_perfect": "It doesn't need to be a perfect photo, but we have some guidelines that will help you in the process.",
+    "dont_perfect":
+        "It doesn't need to be a perfect photo, but we have some guidelines that will help you in the process.",
     "dont_gadgets": "Accessories are not allowed.",
     "focus_photo": "Frame your face.",
     "dont_glasses": "Glasses are not allowed.",
-
     "page13": "Analysis Page",
     "analysis_progress": "Analysis in progress",
-    "request_sent": "Your request has been sent.\n We are currently reviewing your registration.\n You will receive more information shortly.",
+    "request_sent":
+        "Your request has been sent.\n We are currently reviewing your registration.\n You will receive more information shortly.",
     "know_more": "Want to know more about us?",
     "want": "YES, I DO",
     "back_login": "Back to the main page",
-
     "page14": "Approved Page",
     "approved": "Your registration has been approved!",
-    "need_create_password": "You just need to create a \n password to start using the App.",
+    "need_create_password":
+        "You just need to create a \n password to start using the App.",
     "create_password": "CREATE A PASSWORD",
-
     "page15": "Create Password Page",
     "create_new_password": "Create your password",
-    "password_justify": "You will need it whenever you make a payment,\n so keep it safe and remember it.\n Your password will be a sequence of 6 numbers.",
+    "password_justify":
+        "You will need it whenever you make a payment,\n so keep it safe and remember it.\n Your password will be a sequence of 6 numbers.",
     "confirm_password": "Confirm password",
     "change_app_password": "Change app password",
     "change_password_password": "Current App password (6 Digits)",
@@ -119,7 +111,6 @@ class StringsEnUS {
     "change_password_validate": "The password must be 6 digits.",
     "change_password_not_equal": "The passwords do not match",
     "change_password_changed": "Your password has been changed",
-
     "page17": "Barcode Payment",
     "pay": "PAY",
     "payment_total": "YOU WILL PAY A TOTAL OF:",
@@ -134,15 +125,14 @@ class StringsEnUS {
     "barcode_barcode": "Barcode",
     "barcode_auto": "Scan Barcode",
     "barcode_info": "The bills can be paid on business days from 7 AM to 5 PM.",
-    "barcode_info_after": "After this time, it will only be possible to make the payment on the next business day.",
-
+    "barcode_info_after":
+        "After this time, it will only be possible to make the payment on the next business day.",
     "page18": "Invoice Voucher",
     "invoice_success": "Payment successfully completed!",
     "invoice_amount": "Amount paid:",
     "invoice_date": "On the day:",
     "invoice_receiver": "Payee:",
     "invoice_share": "Generate receipt",
-
     "page19": "Pix Home",
     "pix_manager_keys": "Key Management",
     "pix_manage_data": "Manage your PIX data",
@@ -158,19 +148,16 @@ class StringsEnUS {
     "pix_payQrCode": "Pay through a QR Code",
     "pix_copyPaste": "Pix copy and paste",
     "pix_payCopy": "Pay through shortcuts",
-
     "page20": "Pix My Keys",
     "pix_keys": "ADDRESSING KEYS",
     "pix_noKeys": "No Pix keys created.",
     "pix_createKey": "REGISTER KEY",
     "pix_keyCopied": "Key copied to clipboard",
-
     "page21": "Register Key",
     "pix_registerKey": "REGISTER NEW KEY",
     "pix_newKey": "New Key",
     "pix_waitNewKey": "Please wait while we create \n your new key",
     "pix_createNewKey": "REGISTER KEY",
-
     "page22": "Pix Key Manager",
     "pix_keyManager": "KEY MANAGEMENT",
     "pix_phoneKey": "Phone",
@@ -183,7 +170,6 @@ class StringsEnUS {
     "pix_keyExclude": "The key will be unlinked from your account",
     "pix_stayWithKey": "CONTINUE WITH THE KEY",
     "pix_deleteKey": "DELETE THE KEY",
-
     "page23": "Pix Receive",
     "pix_receiver": "RECEIVE PIX",
     "pix_selectKey": "Select a key or ",
@@ -193,7 +179,6 @@ class StringsEnUS {
     "pix_identifier": "Identifier",
     "pix_description": "Description",
     "pix_value": "Value (R\$)",
-
     "page24": "Pix With Key",
     "pix_withKey": "PIX WITH KEY",
     "pix_addReceiverKey": "Add the receiver's key and perform the search:",
@@ -201,7 +186,6 @@ class StringsEnUS {
     "pix_labelKey": "KEY",
     "pix_search": "SEARCH",
     "pix_agencyAccount": "PIX WITH AGENCY AND ACCOUNT",
-
     "page25": "Pix Transfer",
     "pix_payValue": "Amount to pay:",
     "pix_descriptionTransfer": "Add description (optional)",
@@ -209,13 +193,11 @@ class StringsEnUS {
     "pix_institution": "Institution",
     "pix_receiverTransfer": "Receiver",
     "pix_keyKey": "Key",
-
     "page26": "Create Value QRCode",
     "demand_demand": "CASH IN",
     "demand_value": "How much to cash-in?",
     "demand_minimum": "Minimum transfer amount R\$ 10.00",
     "demand_fees": "Check fees",
-
     "page27": "Account Screen",
     "account_myAccount": "MY ACCOUNT",
     "account_myQr": "MY QR CODE",
@@ -235,7 +217,6 @@ class StringsEnUS {
     "account_agency": "Agency",
     "account_account": "Checking account",
     "account": "Account:",
-
     "page28": "Transfer",
     "transfer": "TRANSFER",
     "transfer_to": "Who are you transferring to?",
@@ -243,17 +224,14 @@ class StringsEnUS {
     "transfer_new_contact": "Transfer to a new contact",
     "transfer_cpf": "CPF or CNPJ",
     "transfer_document": "Number of document",
-
     "page29": "Transfer Bank",
     "transfer_miban": "Transfer to Miban4 account",
     "transfer_other": "Transfer to another bank",
-
     "page30": "Transfer Value",
     "transfer_value": "How much do you want \n to transfer?",
     "transfer_balance": "Available balance",
     "transfer_minimum": "Minimum transfer amount",
     "transfer_balance_savings": "Savings balance available",
-
     "page31": "Transfer Confirm",
     "transfer_confirm": "Do you want to make a \n transfer in the amount of:",
     "transfer_valueConfirm": "Value",
@@ -262,12 +240,10 @@ class StringsEnUS {
     "transfer_bank": "Bank:",
     "transfer_account": "Account:",
     "transfer_fees": "Fee",
-
     "page32": "Transfer Success",
     "transfer_success": "Transfer successfully completed!",
     "transfer_voucher": "VIEW RECEIPT",
     "transfer_new": "MAKE ANOTHER TRANSFER",
-
     "page33": "Transfer Voucher",
     "transfer_receipt": "RECEIPT",
     "transfer_code": "Code:",
@@ -279,29 +255,26 @@ class StringsEnUS {
     "transfer_name": "Name:",
     "transfer_destiny": "Destination:",
     "transfer_authCode": "AUTHENTICATION CODE",
-
     "page34": "Groups Screen",
     "groups_screen": "GROUPS",
     "groups_add": "ADD NEW GROUP",
-
     "page35": "Create password",
     "password_create": "Create your password",
-    "password_need": "You will need it every time you make a payment,\n so keep it safe and remember it.\n Your password will be a sequence of 6 numbers.",
+    "password_need":
+        "You will need it every time you make a payment,\n so keep it safe and remember it.\n Your password will be a sequence of 6 numbers.",
     "password_six": "The password must contain 6 digits",
     "password_confirm": "Confirm password",
     "password_again": "Enter the password again",
     "password_equals": "Passwords do not match",
-
     "page36": "My QR Code",
-    "myqr_description": "Use your QR code or share \n the link to receive payments",
-
+    "myqr_description":
+        "Use your QR code or share \n the link to receive payments",
     "pix_codeGenerated": "Code generated successfully!",
     "pix_dataVisible": "The data will be visible for reading \n by the payer.",
     "pix_copyLink": "COPY LINK",
     "pix_shareCode": "SHARE",
     "pix_receiveAnother": "RECEIVE ANOTHER PIX",
     "pix_saveDevice": "SAVE TO DEVICE",
-
     "pix_registerNewKey": "REGISTER NEW KEY",
     "pix_choose_new": "Choose an option",
     "pix_registerKey_inform": "Choose a key to start \n using your Pix:",
@@ -309,7 +282,6 @@ class StringsEnUS {
     "pix_phone": "Phone",
     "pix_anotherEmail": "Another email",
     "pix_anotherNumber": "Another number",
-
     "pix_valueTo": "Do you want to make a \n pix in the amount of:",
     "pix_day": "On the day:",
     "pix_to": "To:",
@@ -319,7 +291,6 @@ class StringsEnUS {
     "pix_city": "City:",
     "pix_due": "Due Date:",
     "pix_originalAmount": "Original amount:",
-
     "statement_title": "RECEIPT",
     "statement_status": "Status",
     "statement_code": "Code",
@@ -332,36 +303,29 @@ class StringsEnUS {
     "statement_noData": "No transactions on the selected date",
     "statement_agency": "Agency",
     "statement_account": "Account",
-
     "pix_youReceived": "You received a charge!",
-
     "pix_copyAndPaste": "PIX COPY AND PASTE",
     "pix_pasteCode": "Paste the code in the field below:",
     "pix_code": "Code",
-
     "pix_success": "Pix successfully completed!",
-
     "display1": "Email Confirmation Display",
     "email_confirm": "Email Confirmation",
     "email_send_code": "We have sent a code to the registered email",
-    "email_perhaps": "If you haven't received the email, please check \n your junk email or spam folder",
+    "email_perhaps":
+        "If you haven't received the email, please check \n your junk email or spam folder",
     "email_insert_code": "INSERT CODE HERE",
     "email_send": "SEND CODE",
-
     "password_register_cnpj": "CNPJ password registration",
     "email_sendCode": "Email confirmation",
-
     "password_success": "Password Registered!",
-    "password_content": "Your 6-digit password for the app has been successfully registered.",
-
+    "password_content":
+        "Your 6-digit password for the app has been successfully registered.",
     "display2": "Display Confirmação de Telefone",
     "phone_confirm": "Phone Confirmation",
-
     "balance": "Balance Status",
     "balance_available": "Available Balance",
     "balance_transational": "Savings Balance",
     "balance_insufficient": "Insufficient Balance",
-
     "home_view": "Home Buttons",
     "home_icon": "HOME",
     "card_icon": "CARDS",
@@ -370,11 +334,9 @@ class StringsEnUS {
     "home_groups": "Groups",
     "home_economy": "Savings",
     "home_credit": "Credit",
-
     "pix_component": "Pix Balance",
     "pix_statement": "PIX STATEMENT",
     "pix_myKeys": "MY KEYS",
-
     "no_groups": "No group created.",
     "group_created_in": "Created on:",
     "group_add_new": "Add New Group",
@@ -382,7 +344,6 @@ class StringsEnUS {
     "group_active": "Active Groups",
     "group_activation_pending": "Activation Pending",
     "group_mutual_available": "Available Credit",
-
     "group_information": "INFORMATION",
     "group_members": "MEMBERS",
     "group_contribution": "Total Group Contribution",
@@ -414,38 +375,33 @@ class StringsEnUS {
     "group_account": "Account",
     "group_fees": "Fee",
     "group_pay": "Pay",
-
     "group_new": "NEW GROUP",
     "group_new_name": "Group Name",
     "group_member": "I'm a Member",
     "group_data": "General Data",
-
     "group_credit_data": "Credit Data",
     "group_interest": "Interest",
     "group_installments": "Installments Quantity",
     "group_priority": "Priority",
     "group_late_fees": "Late Fees",
     "group_billing": "Billing",
-
     "group_economy_data": "Savings Account",
     "group_period": "Period",
     "group_period_value": "Value per Period",
     "group_contributions_quantity": "Contributions Quantity",
     "group_members_quantity": "Members Quantity",
     "group_value_per_member": "Value per Member",
-
     "group_add_members": "Add Members",
-    "group_search_details": "Search by document (UserID) to \n add members and send invitations.",
+    "group_search_details":
+        "Search by document (UserID) to \n add members and send invitations.",
     "group_search": "Search by document",
     "group_invited": "Invited People",
-
     "group_g": "Group",
-
     "group_created": "Group Created",
     "group_created_success": "Group created successfully!",
-    "group_wait": "Please wait for members to accept your invitation.\n You can track your group's status \n in the Groups menu.",
+    "group_wait":
+        "Please wait for members to accept your invitation.\n You can track your group's status \n in the Groups menu.",
     "group_see": "VIEW GROUPS",
-
     "financial_info": "Customer Information",
     "financial_inf_att": "Update Date",
     "financial_income": "Family Income (R\$ / MONTH)",
@@ -455,21 +411,17 @@ class StringsEnUS {
     "financial_expenses": "Costs (R\$)",
     "financial_utilities": "Utilities",
     "financial_another_expenses": "Other Expenses",
-
     "active": "Active",
     "pending": "Activation Pending",
     "available": "Available Credit",
     "inactive": "Inactive",
-
     "revenue_generation": "Revenue Generation",
     "health": "Health",
     "repairs": "Repairs",
     "emergency_money": "Emergency Money",
     "purchases": "Purchases",
-
     "group_accept": "Accept",
     "group_reject": "Reject",
-
     "available_char": "available characters",
     "button": "Buttons",
     "dialogErro": "Error",
@@ -485,19 +437,16 @@ class StringsEnUS {
     "proceed": "PROCEED",
     "register_button": "Register",
     "off": "of",
-
     "credit_credit": "Credit",
     "credit_dont": "You haven't requested any credit yet",
     "credit_enter": "Enter your active groups to request a credit",
     "credit_groups": "VIEW GROUPS",
-
     "credit_contribution": "Your contribution",
     "credit_max_loan": "Maximum loan",
     "credit_request_value": "What amount do you want to request?",
     "credit_request_over": "Amount exceeds the maximum available",
     "credit_installment": "Number of installments",
     "credit_installment_over": "Number of installments exceeds the maximum",
-
     "credit_request": "Request Credit",
     "credit_simulation": "Credit Simulation",
     "credit_you_receive": "You will receive",
@@ -508,7 +457,6 @@ class StringsEnUS {
     "credit_fees": "Interest Rate",
     "credit_services": "Services",
     "credit_monthly": "monthly",
-
     "credit_detail": "Credit Details",
     "credit_request_of": " wants a credit of",
     "credit_payment": "Payment",
@@ -517,134 +465,106 @@ class StringsEnUS {
     "credit_agree": "Do you agree to the credit?",
     "credit_reject": "Reject",
     "credit_accept": "Accept",
-
     "credit_vote": "Your vote for the credit \n has been recorded!",
-    "credit_voted_details": "In a few hours, you will receive the final result of the credit vote.",
-
+    "credit_voted_details":
+        "In a few hours, you will receive the final result of the credit vote.",
     "credit_requested": "Credit requested!",
-    "credit_request_wait": "Please wait for members to accept your credit. \nYou will receive a notification with the response to your credit.",
-
+    "credit_request_wait":
+        "Please wait for members to accept your credit. \nYou will receive a notification with the response to your credit.",
     "savings": "Savings",
-
     "facilitator": "Exclusive Facilitator Role",
-    "facilitator_explain": "Group creation is an exclusive function of the Facilitators within Miban4. Please contact your Facilitator to request group creation. \n\nVisit our website for further details.",
+    "facilitator_explain":
+        "Group creation is an exclusive function of the Facilitators within Miban4. Please contact your Facilitator to request group creation. \n\nVisit our website for further details.",
     "site": "VISIT SITE",
-
     "popScope": "WillPopScope Widget",
     "exit_page": "Do you really want to exit?",
-    "resume_register": "You can continue the registration from where you left off.",
-
+    "resume_register":
+        "You can continue the registration from where you left off.",
     "validators": "Validators",
     "validator_empty": "This field is required",
     "validator_valid_document": "The document must contain 11 characters",
     "validator_six_char": "The password contains 6 characters",
     "validator_valid_email": "Enter a valid email",
     "validator_password_confirm": "The passwords do not match",
-
-    "pep": "Individuals who have held, in the last 5 (five) years, relevant public positions, jobs, or functions in Brazil or in other countries, territories, and foreign dependencies, as well as their representatives, family members, and other individuals in their close relationships.",
-
+    "pep":
+        "Individuals who have held, in the last 5 (five) years, relevant public positions, jobs, or functions in Brazil or in other countries, territories, and foreign dependencies, as well as their representatives, family members, and other individuals in their close relationships.",
     "wait": "Please wait while we complete\n your transfer.",
-
     "notifications": "NOTIFICATIONS",
-
     "dateRanger": "Date Ranger Picker",
     "dateSave": "Save",
-
     "dialog_success": "Success",
     "dialog_error": "Message",
     "dialog_someError": "Something went wrong",
     "dialog_progress": "Wait",
     "dialog_password_incorrect": "Incorrect Password",
     "dialog_payment": "Payment successfully completed!",
-
     "group_no_group": "There are no groups added.",
-    "group_no_group_detail": "Add your first group and save together with the community.",
-
+    "group_no_group_detail":
+        "Add your first group and save together with the community.",
     "address_type_own": "Own",
     "address_type_rent": "Rent",
     "address_type_financed": "Financed",
     "address_type_company": "Company",
     "address_type_parents": "with parents",
-
     "gender_male": "Male",
     "gender_female": "Female",
     "gender_another": "Another",
     "gender_notDefined": "Not Defined",
-
     "marital_status_single": "Single",
     "marital_status_married": "Married",
     "marital_status_legally_separated": "Legally Separated",
     "marital_status_widowed": "Widowed",
     "marital_status_cohabitant": "Cohabitant",
     "marital_status_separated": "Separated",
-
     "nationality_brazilian": "Brazilian",
     "nationality_foreigner": "Foreigner",
-
     "pix_send": "Pix Sent",
     "pix_received": "Pix Received",
     "transfer_send": "Transfer Sent",
     "transfer_received": "Transfer Received",
-
     "continue_barcode": "Continue",
     "dont_have_contribution": "There are no contributions to be listed.",
     "dont_have_credit": "There are no credit installments to be listed.",
     "credit_paid_installment": "Paid Amount",
-
     "voucher_group_payment": "Payment",
     "voucher_group_code_payment": "Code:",
     "voucher_group_value_payment": "Value:",
-
     "voucher_origin": "Origin",
     "voucher_destination": "Destination",
-
     "savings_created_at": "Created at: ",
     "savings_savings": "Savings: \$",
     "savings_balance": "Savings Balance",
-
     "talk_to_us": "Talk to us",
-
     "credit_approved": "Your credit has been approved",
-
     "name": "Name",
     "document": "UserID",
-
     "some_error": "Something went wrong, please try again.",
-
     "logout": "Are you sure you want to log out?",
     "logout_exit": "Log Out",
-
     "message": "Message",
-
     "pep_yes": "Yes",
     "pep_no": "No",
-
-    "invite_content": "It's necessary to invite the maximum number of members to proceed",
-
+    "invite_content":
+        "It's necessary to invite the maximum number of members to proceed",
     "house_own": "Own",
     "house_rent": "Rent",
     "house_financed": "Funded",
-
     "transport_car_own": "Own Car",
     "transport_motor_own": "Own Motorcycle",
     "transport_financed_car": "Financed Car",
     "transport_financed_motor": "Financed Motorcycle",
     "transport_public": "Public",
-
     "group_details": "Group Details",
     "credit_details": "Credit Details",
-
     "credit_vote_title_dialog": "Vote Confirmation",
     "credit_vote_dialog": "Do you want to confirm your vote",
     "credit_vote_accept": "accepting the credit",
     "credit_vote_reject": "rejecting the credit",
-
     "payment_link_generated": "Payment link generated.",
     "payment_link_receive": "Total to receive",
     "payment_link_share": "Share to start receiving",
     "payment_link_share_link": "Share Link",
     "payment_link_copy_link": "Copy Link",
-
     "bank_choose": "Choose a bank",
     "bank_search": "Search",
     "bank_agency": "Agency number (without digit)",
@@ -653,48 +573,41 @@ class StringsEnUS {
     "bank_account_digit": "Account digit",
     "bank_add_account": "Add Account",
     "bank_agency_digit": "Agency digit",
-
     "transactional_statement": "Transactional",
     "savings_statement": "Savings",
     "account_waiting": "Your account is not active yet",
     "account_savings_waiting": "Your savings account is not active yet",
-
-    "onboarding_confirm_selfie": "Did the photo turn out well? Is the text clear? The image should not contain reflections.",
+    "onboarding_confirm_selfie":
+        "Did the photo turn out well? Is the text clear? The image should not contain reflections.",
     "onboarding_confirm_again": "Take another",
     "onboarding_confirm_cool": "Looks good",
-
     "transfer_add_person": "Add Person",
-
     "share": "Share",
-
     "unavailable": "Temporarily unavailable",
-
     "all_paid": "No transactions pending.",
-
-    "credit_installment_delayed": "Installment delayed. Additional tax and interests applied.",
+    "credit_installment_delayed":
+        "Installment delayed. Additional tax and interests applied.",
     "first_installment": "Warning! The oldest value must be paid firstly!",
     "credit_next_payment": "Next Payment",
     "credit_all_installments_paid": "All instalments paid",
-
     "qr_code_error": "Error reading QR Code, please try again.",
     "qr_code_try_again": "Try again",
-
     "pix_limits_p2p": "PIX to individual accounts",
     "pix_limits_p2b": "PIX to business accounts",
     "pix_limits_same_person": "PIX to accounts with the same ownership",
-
     "language_portuguese": "Portuguese",
     "language_english": "English",
     "language_spanish": "Spanish",
-
     "block_access": "Access blocked due to payment delay!",
-
+    "available_plan": "Available",
+    "plan_add": "Additional",
+    "plan_total": "Total in plan: ",
+    "plan_date": "Valid until ",
+    "plan_actual": "Current Plan",
+    "plan_monthly": "Per month",
     "success": "Success",
-
     "validator_isEmpty": "Fill in the field",
-
     "codeLang": "en",
-
     "version": "Versão 5.5.0 - Release (160)"
   };
 }

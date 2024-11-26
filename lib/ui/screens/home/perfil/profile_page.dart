@@ -11,6 +11,7 @@ import 'package:app_flutter_miban4/ui/components/perfil/itemMyAccount.dart';
 import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/perfil/change_password_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/perfil/financial_data_page.dart';
+import 'package:app_flutter_miban4/ui/screens/home/perfil/plans_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
 import 'package:app_flutter_miban4/ui/screens/login/splash_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
@@ -179,10 +180,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ],
                     ),
-                    /*CommonItem(
+                    CommonItem(
                         text: AppLocalizations.of(context)!.account_plans,
                         icon: Icons.diamond,
-                        onPressed: () {}),*/
+                        onPressed: () {
+                          Get.to(() => const PlansPage(), transition: Transition.rightToLeft);
+                        }),
                     CommonItem(
                         text: AppLocalizations.of(context)!.account_terms,
                         icon: Icons.paste_outlined,
