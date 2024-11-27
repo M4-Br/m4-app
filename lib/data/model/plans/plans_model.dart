@@ -26,11 +26,11 @@ class ServicePlan {
   final String id;
   final String name;
   final String description;
-  final int monthlyPayment;
+  final String monthlyPayment;
   final String contractDate;
   final String renewDate;
   final int remainingFree;
-  final List<Data> data;
+  final List<ServiceData> data;
   final List<Product> products;
   final bool renew;
   final bool isDefault;
@@ -58,10 +58,10 @@ class ServicePlan {
       contractDate: json['contract_date'],
       renewDate: json['renew_date'],
       remainingFree: json['remaining_free'],
-      data: (json['data'] as List<dynamic>)
-          .map((item) => Data.fromJson(item))
+      data: (json['data'] as List)
+          .map((item) => ServiceData.fromJson(item))
           .toList(),
-      products: (json['products'] as List<dynamic>)
+      products: (json['products'] as List)
           .map((item) => Product.fromJson(item))
           .toList(),
       renew: json['renew'],
@@ -86,14 +86,14 @@ class ServicePlan {
   }
 }
 
-class Data {
+class ServiceData {
   final String type;
   final String typeDescription;
   final int remainingFree;
   final int fee;
   final int free;
 
-  Data({
+  ServiceData({
     required this.type,
     required this.typeDescription,
     required this.remainingFree,
@@ -101,8 +101,8 @@ class Data {
     required this.free,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
+  factory ServiceData.fromJson(Map<String, dynamic> json) {
+    return ServiceData(
       type: json['type'],
       typeDescription: json['type_description'],
       remainingFree: json['remaining_free'],
@@ -124,13 +124,13 @@ class Data {
 
 class Product {
   final String type;
-  final String typeDescription;
+  final String description;
   final int fee;
   final int free;
 
   Product({
     required this.type,
-    required this.typeDescription,
+    required this.description,
     required this.fee,
     required this.free,
   });
@@ -138,7 +138,7 @@ class Product {
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       type: json['type'],
-      typeDescription: json['type_description'],
+      description: json['description'],
       fee: json['fee'],
       free: json['free'],
     );
@@ -147,7 +147,7 @@ class Product {
   Map<String, dynamic> toJson() {
     return {
       'type': type,
-      'type_description': typeDescription,
+      'description': description,
       'fee': fee,
       'free': free,
     };

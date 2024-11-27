@@ -5,14 +5,11 @@ import 'package:app_flutter_miban4/data/model/params/params.dart';
 import 'package:http/http.dart' as http;
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 
-// Variável global para armazenar os parâmetros
 Params? globalParams;
 
-// Função para fazer a chamada à API e armazenar os dados globalmente
 Future<void> fetchAndStoreParams() async {
   try {
     String token = await SharedPreferencesFunctions.getString(key: 'token');
-    String code = await SharedPreferencesFunctions.getString(key: 'codeLang');
 
     final headers = {
       'Authorization': 'Bearer $token',
@@ -39,7 +36,6 @@ Future<void> fetchAndStoreParams() async {
   }
 }
 
-// Função para obter os parâmetros globalmente
 Params? getGlobalParams() {
   return globalParams;
 }

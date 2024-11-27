@@ -52,7 +52,10 @@ class _PlansPageState extends State<PlansPage> {
                   children: [
                     Text('dialog_someError'.tr),
                     ElevatedButton(
-                      onPressed: () => Get.back(),
+                      onPressed: () {
+                        Get.back();
+                        Get.back();
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: secondaryColor,
                       ),
@@ -136,7 +139,7 @@ class _PlansPageState extends State<PlansPage> {
             ),
             ListTile(
               title: Text(
-                plan.typeDescription,
+                plan.type,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: Row(
@@ -165,7 +168,6 @@ class _PlansPageState extends State<PlansPage> {
                 ],
               ),
               onTap: () {
-                // Adicione ações aqui, se necessário
               },
             ),
             Divider(
