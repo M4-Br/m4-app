@@ -20,4 +20,17 @@ class LanguageController extends GetxController {
     String? savedLanguage = box.read('language');
     lang.value = savedLanguage ?? Get.deviceLocale?.languageCode;
   }
+
+  String getLanguageFlag(String languageCode) {
+    switch (languageCode) {
+      case 'pt':
+        return 'assets/icons/ic_flag_pt.png';
+      case 'en':
+        return 'assets/icons/ic_flag_en.png';
+      case 'es':
+        return 'assets/icons/ic_flag_es.png';
+      default:
+        return 'assets/icons/ic_flag_pt.png';
+    }
+  }
 }

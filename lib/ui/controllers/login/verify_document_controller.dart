@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/data/api/login/documentVerify.dart';
+import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/controllers/login/cnpj/validate_code_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/login/code_validate/code_validate_page.dart';
@@ -13,11 +14,15 @@ import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_one_pag
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_seven_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_three_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_two_page.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class VerifyController extends GetxController {
   var isLoading = false.obs;
+  final documentController = TextEditingController();
+  String document = '';
+  final formKey = GlobalKey<FormState>();
   final ValidateCodeController _validateCodeController =
       Get.put(ValidateCodeController());
   final box = GetStorage();
@@ -92,6 +97,35 @@ class VerifyController extends GetxController {
       isLoading(false);
     } finally {
       isLoading(false);
+    }
+  }
+
+  documentInitialVerify() async {
+    if (formKey.currentState!.validate()) {
+      String cpf = documentController.text
+          .replaceAll(".", "")
+          .replaceAll("-", "")
+          .replaceAll("/", "")
+          .toString();
+
+      await SharedPreferencesFunctions.saveString(
+          key: 'codeLang', value: 'codeLang'.tr);
+
+      try {
+        await verifyDocument(cpf, 0);
+      } catch (error) {
+        throw Exception(error);
+      }
+    }
+  }
+
+  lastLogin() async {
+    document = await SharedPreferencesFunctions.getString(key: 'document');
+
+    if (document.length == 11) {
+      documentController.text = cpfMaskFormatter.maskText(document) ?? '';
+    } else if (document.length > 11) {
+      documentController.text = cnpjMaskFormatter.maskText(document) ?? '';
     }
   }
 }

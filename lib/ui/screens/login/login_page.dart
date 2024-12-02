@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
+
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/data/util/helpers/validators.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
@@ -21,25 +21,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> with ValidationsMixin {
   final TextEditingController _documentController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  String document = '';
   final VerifyController _verifyController = Get.put(VerifyController());
   final LanguageController _languageController = Get.put(LanguageController());
 
-  void _updateMaskFormatter() {
-    final text = _documentController.text;
-
-    if (text.length > 13) {
-      setState(() {});
-    } else {
-      setState(() {});
-    }
-  }
-
   @override
   void initState() {
-    _lastLogin();
-    _documentController.addListener(_updateMaskFormatter);
+    _verifyController.lastLogin();
     super.initState();
   }
 
@@ -136,7 +123,8 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
                           top: 0,
                           right: 0,
                           child: Image.asset(
-                            _getLanguageFlag(_languageController.lang.value!),
+                            _languageController.getLanguageFlag(
+                                _languageController.lang.value!),
                             width: 25,
                           ),
                         ),
@@ -157,10 +145,10 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
           Padding(
             padding: const EdgeInsets.fromLTRB(32, 50, 32, 50),
             child: Form(
-              key: _formKey,
+              key: _verifyController.formKey,
               child: TextFormField(
                 cursorColor: Colors.white,
-                controller: _documentController,
+                controller: _verifyController.documentController,
                 keyboardType: TextInputType.number,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
                 inputFormatters: [
@@ -194,7 +182,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
               () => _verifyController.isLoading.value == false
                   ? ElevatedButton(
                       onPressed: () async {
-                        _documentInitialVerify();
+                        _verifyController.documentInitialVerify();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primaryColor,
@@ -225,8 +213,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
             child: InkWell(
               onTap: () async {
                 await SharedPreferencesFunctions.saveString(
-                    key: 'codeLang',
-                    value: 'codeLang'.tr);
+                    key: 'codeLang', value: 'codeLang'.tr);
                 Get.to(() => const PrivacyPolicyPage(),
                     transition: Transition.rightToLeft);
               },
@@ -240,8 +227,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
           InkWell(
             onTap: () async {
               await SharedPreferencesFunctions.saveString(
-                  key: 'codeLang',
-                  value: 'codeLang'.tr);
+                  key: 'codeLang', value: 'codeLang'.tr);
               Get.to(() => const OnboardingPage(),
                   transition: Transition.rightToLeft);
             },
@@ -261,47 +247,5 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
         ],
       ),
     );
-  }
-
-  _documentInitialVerify() async {
-    if (_formKey.currentState!.validate()) {
-      String cpf = _documentController.text
-          .replaceAll(".", "")
-          .replaceAll("-", "")
-          .replaceAll("/", "")
-          .toString();
-
-      await SharedPreferencesFunctions.saveString(
-          key: 'codeLang', value: 'codeLang'.tr);
-
-      try {
-        await _verifyController.verifyDocument(cpf, 0);
-      } catch (error) {
-        throw Exception(error);
-      }
-    }
-  }
-
-  _lastLogin() async {
-    document = await SharedPreferencesFunctions.getString(key: 'document');
-
-    if (document.length == 11) {
-      _documentController.text = cpfMaskFormatter.maskText(document) ?? '';
-    } else if (document.length > 11) {
-      _documentController.text = cnpjMaskFormatter.maskText(document) ?? '';
-    }
-  }
-
-  String _getLanguageFlag(String languageCode) {
-    switch (languageCode) {
-      case 'pt':
-        return 'assets/icons/ic_flag_pt.png';
-      case 'en':
-        return 'assets/icons/ic_flag_en.png';
-      case 'es':
-        return 'assets/icons/ic_flag_es.png';
-      default:
-        return 'assets/icons/ic_flag_pt.png';
-    }
   }
 }
