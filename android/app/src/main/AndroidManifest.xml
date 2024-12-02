@@ -6,7 +6,7 @@
 
 
    <application
-        android:label="Miban4 PJ"
+        android:label="Miban4"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="false"
