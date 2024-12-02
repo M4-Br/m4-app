@@ -20,7 +20,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with ValidationsMixin {
-  final TextEditingController _documentController = TextEditingController();
   final VerifyController _verifyController = Get.put(VerifyController());
   final LanguageController _languageController = Get.put(LanguageController());
 
@@ -28,12 +27,6 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
   void initState() {
     _verifyController.lastLogin();
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _documentController.dispose();
-    super.dispose();
   }
 
   @override

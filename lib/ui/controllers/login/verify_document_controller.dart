@@ -1,7 +1,6 @@
 import 'package:app_flutter_miban4/data/api/login/documentVerify.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/cnpj/validate_code_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/login/code_validate/code_validate_page.dart';
 import 'package:app_flutter_miban4/ui/screens/login/password_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_approved_page.dart';
@@ -23,8 +22,6 @@ class VerifyController extends GetxController {
   final documentController = TextEditingController();
   String document = '';
   final formKey = GlobalKey<FormState>();
-  final ValidateCodeController _validateCodeController =
-      Get.put(ValidateCodeController());
   final box = GetStorage();
 
   Future<void> verifyDocument(String document, int page) async {

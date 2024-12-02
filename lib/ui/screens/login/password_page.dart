@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
+
 import 'package:app_flutter_miban4/data/util/helpers/validators.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/login/login_controller.dart';
@@ -16,23 +16,7 @@ class PasswordPage extends StatefulWidget {
 }
 
 class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
-  final _formKey = GlobalKey<FormState>();
-  bool _obscureText = true;
-  String document = '';
-  final TextEditingController _passwordController = TextEditingController();
   final LoginController _loginController = Get.put(LoginController());
-
-  @override
-  void initState() {
-    super.initState();
-    _codeLang();
-  }
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +24,7 @@ class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
       backgroundColor: primaryColor,
       resizeToAvoidBottomInset: false,
       body: Form(
-        key: _formKey,
+        key: _loginController.formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,10 +58,10 @@ class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
                 cursorColor: Colors.white,
                 validator: (value) => combineValidators(
                     [() => isNotEmpty(value), () => hasSixChars(value)]),
-                controller: _passwordController,
+                controller: _loginController.passwordController,
                 keyboardType: TextInputType.number,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
-                obscureText: _obscureText,
+                obscureText: _loginController.obscureText.value,
                 maxLength: 6,
                 decoration: InputDecoration(
                   counterText: "",
@@ -99,12 +83,17 @@ class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
-                        _obscureText = !_obscureText;
+                        _loginController.obscureText.value =
+                            !_loginController.obscureText.value;
                       });
                     },
-                    icon: Icon(
-                      _obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: Colors.white,
+                    icon: Obx(
+                      () => Icon(
+                        _loginController.obscureText.value
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -115,7 +104,7 @@ class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
               child: Obx(
                 () => _loginController.isLoading.value == false
                     ? ElevatedButton(
-                        onPressed: _login,
+                        onPressed: () => _loginController.login(widget.document!),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primaryColor,
                           shape: RoundedRectangleBorder(
@@ -158,22 +147,5 @@ class _PasswordPageState extends State<PasswordPage> with ValidationsMixin {
         ),
       ),
     );
-  }
-
-  _login() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      String password = _passwordController.text;
-
-      try {
-        await _loginController.login(widget.document!, password);
-      } catch (error) {
-        throw Exception(error);
-      }
-    }
-  }
-
-  _codeLang() async {
-    await SharedPreferencesFunctions.saveString(
-        key: 'codeLang', value: 'codeLang'.tr);
   }
 }
