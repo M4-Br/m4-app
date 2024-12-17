@@ -613,6 +613,7 @@ class StringsPtBR {
       "success": "Sucesso",
       "validator_isEmpty": "Preencha o campo",
       "codeLang": "pt",
-      "version": "Versão 6.0.2 - Release (223)"
+      "version": "Versão 6.0.2 - Release (223)",
+      "version_app": "6.0.2"
     };
 }

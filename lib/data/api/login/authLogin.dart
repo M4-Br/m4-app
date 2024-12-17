@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
@@ -14,6 +15,15 @@ Future<UserData> verifyLogin(String? document, String password) async {
 
   final headers = {'Content-Type': 'application/json', 'Accept-Language': code};
 
+  String device() {
+    if (Platform.isAndroid) {
+      return '${'version_app'.tr}A';
+    } else if (Platform.isIOS) {
+      return '${'version_app'.tr}I';
+    }
+    return 'version_app'.tr;
+  }
+
   final url = Uri.parse('${ApiUrls.baseUrl}/v3/auth');
   final response = await http.post(
     url,
@@ -22,6 +32,7 @@ Future<UserData> verifyLogin(String? document, String password) async {
       'document': document,
       'password': password,
       'is_android': true.toString(),
+      'version': device()
     }),
   );
 

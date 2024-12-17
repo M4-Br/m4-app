@@ -619,6 +619,7 @@ class StringsEsES {
     "success": "Éxito",
     "validator_isEmpty": "Completa el campo",
     "codeLang": "es-ES",
-    "version": "Versión 6.0.2 - Lanzamiento (223)"
+    "version": "Versión 6.0.2 - Lanzamiento (223)",
+    "version_app": "6.0.2"
   };
 }
