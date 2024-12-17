@@ -608,6 +608,6 @@ class StringsEnUS {
     "success": "Success",
     "validator_isEmpty": "Fill in the field",
     "codeLang": "en",
-    "version": "Versão 5.5.0 - Release (160)"
+    "version": "Version 6.0.2 - Release (223)"
   };
 }
