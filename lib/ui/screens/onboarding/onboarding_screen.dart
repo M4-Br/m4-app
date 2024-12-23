@@ -12,23 +12,23 @@ class OnboardingPage extends StatefulWidget {
   final bool? pageRead;
   final String? cpf;
 
-  const OnboardingPage({super.key, this.pageRead = false, this.cpf,});
+  const OnboardingPage({
+    super.key,
+    this.pageRead = false,
+    this.cpf,
+  });
 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
 class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _cpfController = TextEditingController();
-  bool check = false;
   final StepOneController _stepOneController = Get.put(StepOneController());
-  late String lang;
 
   void _navigateToPrivacyPolicy() {
     Get.to(
         () => OnboardingPrivacyPolicyPage(
-              cpf: _cpfController.text.toString(),
+              cpf: _stepOneController.cpfController.text.toString(),
             ),
         transition: Transition.rightToLeft);
   }
@@ -36,20 +36,12 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
   @override
   void initState() {
     super.initState();
-    _cpfController.text = widget.cpf ?? '';
-    check = widget.pageRead ?? false;
-  }
-
-  @override
-  void dispose() {
-    _cpfController.dispose();
-    _stepOneController.dispose();
-    super.dispose();
+    _stepOneController.cpfController.text = widget.cpf ?? '';
+    _stepOneController.check.value = widget.pageRead ?? false;
   }
 
   @override
   Widget build(BuildContext context) {
-    lang = 'codeLang'.tr;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -58,7 +50,8 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
         leading: SafeArea(
           child: IconButton(
             onPressed: () {
-              Get.to(() => const LoginPage(), transition: Transition.leftToRight);
+              Get.to(() => const LoginPage(),
+                  transition: Transition.leftToRight);
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined),
             color: Colors.black,
@@ -88,13 +81,13 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
             const Spacer(),
             Center(
               child: Form(
-                key: _formKey,
+                key: _stepOneController.formKey,
                 child: TextFormField(
                   cursorColor: secondaryColor,
                   validator: (value) => combineValidators([
                     () => isNotEmpty(value),
                   ]),
-                  controller: _cpfController,
+                  controller: _stepOneController.cpfController,
                   keyboardType: TextInputType.number,
                   style: const TextStyle(color: Colors.black, fontSize: 20),
                   inputFormatters: [cpfMaskFormatter],
@@ -143,17 +136,18 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
                   children: [
                     Checkbox(
                       activeColor: secondaryColor,
-                      value: check,
+                      value: _stepOneController.check.value,
                       onChanged: (newValue) {
                         if (widget.pageRead == false) {
                           Get.to(
                               () => OnboardingPrivacyPolicyPage(
-                                    cpf: _cpfController.text.toString(),
+                                    cpf: _stepOneController.cpfController.text
+                                        .toString(),
                                   ),
                               transition: Transition.rightToLeft);
                         } else {
                           setState(() {
-                            check = newValue!;
+                            _stepOneController.check.value = newValue!;
                           });
                         }
                       },
@@ -180,9 +174,11 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
             Obx(
               () => _stepOneController.isLoading.value == false
                   ? ElevatedButton(
-                      onPressed: () => _stepOne(check),
+                      onPressed: () => _stepOneController.validate(),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: check ? secondaryColor : Colors.grey,
+                        backgroundColor: _stepOneController.check.value
+                            ? secondaryColor
+                            : Colors.grey,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -205,19 +201,5 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
         ),
       ),
     );
-  }
-
-  Future<void> _stepOne(bool check) async {
-    if (_formKey.currentState!.validate()) {
-      if (check) {
-        await SharedPreferencesFunctions.saveString(key: 'codeLang', value: lang);
-        String document = _cpfController.text.replaceAll(".", "").replaceAll("-", "");
-        try {
-          await _stepOneController.verifyDocument(document, 1);
-        } catch (error) {
-          throw Exception(error);
-        }
-      }
-    }
   }
 }

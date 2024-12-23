@@ -14,10 +14,14 @@ import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_eight_p
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_five_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_two_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_step_one_page.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class StepOneController extends GetxController {
   var isLoading = false.obs;
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController cpfController = TextEditingController();
+  var check = false.obs;
 
   Future<void> stepOne(String document) async {
     isLoading(true);
@@ -25,11 +29,8 @@ class StepOneController extends GetxController {
     try {
       final GetStep response = await createStepOne(document);
 
-      if (response.id
-          .toString()
-          .isNotEmpty) {
-        Get.to(() =>
-            OnboardingStepOnePage(
+      if (response.id.toString().isNotEmpty) {
+        Get.to(() => OnboardingStepOnePage(
               id: response.id.toString(),
             ));
       } else {
@@ -46,8 +47,8 @@ class StepOneController extends GetxController {
     isLoading(true);
 
     try {
-      final Map<String, dynamic> response = await getDocumentVerify(
-          document, page);
+      final Map<String, dynamic> response =
+          await getDocumentVerify(document, page);
 
       if (response.containsKey('id')) {
         await SharedPreferencesFunctions.saveString(
@@ -59,50 +60,57 @@ class StepOneController extends GetxController {
             response['steps']![8]['done'] == true) {
           isLoading(false);
           Get.to(
-                  () =>
-                  PasswordPage(
+              () => PasswordPage(
                     document: response['document'],
                   ),
               transition: Transition.rightToLeft);
-        } else if (response['document'].toString().isNotEmpty && response['steps']![0]['done'] == false){
+        } else if (response['document'].toString().isNotEmpty &&
+            response['steps']![0]['done'] == false) {
           isLoading(false);
-          Get.to(() =>
-              OnboardingStepOnePage(
+          Get.to(() => OnboardingStepOnePage(
                 id: response['id'].toString(),
               ));
-        }else if (response['steps']![0]['done'] == false) {
+        } else if (response['steps']![0]['done'] == false) {
           isLoading(false);
           stepOne(document);
         } else if (response['steps']![1]['done'] == false) {
           isLoading(false);
-          Get.to(() => const OnboardingStepTwoPage(), transition: Transition.rightToLeft);
+          Get.to(() => const OnboardingStepTwoPage(),
+              transition: Transition.rightToLeft);
         } else if (response['steps']![2]['done'] == false) {
           isLoading(false);
-          Get.to(() => const OnboardingStepThreePage(), transition: Transition.rightToLeft);
+          Get.to(() => const OnboardingStepThreePage(),
+              transition: Transition.rightToLeft);
         } else if (response['steps']![3]['done'] == false) {
           isLoading(false);
-          Get.to(() => const OnboardingStepFourPage(), transition: Transition.rightToLeft);
+          Get.to(() => const OnboardingStepFourPage(),
+              transition: Transition.rightToLeft);
         } else if (response['steps']![4]['done'] == false) {
           isLoading(false);
-          Get.to(() => const OnboardingStepFivePage(), transition: Transition.rightToLeft);
+          Get.to(() => const OnboardingStepFivePage(),
+              transition: Transition.rightToLeft);
         } else if (response['steps']![5]['done'] == false) {
           isLoading(false);
           Get.to(() => const OnboardingDocumentChoosePage(),
               transition: Transition.rightToLeft);
         } else if (response['steps']![6]['done'] == false) {
           isLoading(false);
-          Get.to(() => const OnboardingStepSevenPage(), transition: Transition.rightToLeft);
+          Get.to(() => const OnboardingStepSevenPage(),
+              transition: Transition.rightToLeft);
         } else if (response['steps']![7]['done'] == false) {
           isLoading(false);
-          Get.to(() => const OnboardingStepEightPage(), transition: Transition.rightToLeft);
+          Get.to(() => const OnboardingStepEightPage(),
+              transition: Transition.rightToLeft);
         } else if (response['status'] == 'pending' &&
             response['steps']![8]['done'] == false) {
           isLoading(false);
-          Get.to(() => const OnboardingInReviewPage(), transition: Transition.rightToLeft);
+          Get.to(() => const OnboardingInReviewPage(),
+              transition: Transition.rightToLeft);
         } else if (response['status'] == 'approved' &&
             response['steps']![8]['done'] == false) {
           isLoading(false);
-          Get.to(() => const OnboardingApprovedPage(), transition: Transition.rightToLeft);
+          Get.to(() => const OnboardingApprovedPage(),
+              transition: Transition.rightToLeft);
         }
       } else {
         stepOne(document);
@@ -110,6 +118,20 @@ class StepOneController extends GetxController {
     } catch (error) {
       stepOne(document);
       isLoading(false);
+    }
+  }
+
+  Future<void> _stepOne() async {
+    if (formKey.currentState!.validate()) {
+      if (check.value) {
+        String document =
+            cpfController.text.replaceAll(".", "").replaceAll("-", "");
+        try {
+          await verifyDocument(document, 1);
+        } catch (error) {
+          throw Exception(error);
+        }
+      }
     }
   }
 }
