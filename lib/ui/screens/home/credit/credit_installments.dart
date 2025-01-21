@@ -140,7 +140,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                     Text(
                       dateFormat.format(
                         DateTime.parse(
-                          widget.creditInstallment!['dueDate'].toString(),
+                          DateTime.now() as String,
                         ),
                       ),
                       style: const TextStyle(

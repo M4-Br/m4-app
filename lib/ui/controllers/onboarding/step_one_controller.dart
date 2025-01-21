@@ -121,7 +121,7 @@ class StepOneController extends GetxController {
     }
   }
 
-  Future<void> _stepOne() async {
+  Future<void> validate() async {
     if (formKey.currentState!.validate()) {
       if (check.value) {
         String document =

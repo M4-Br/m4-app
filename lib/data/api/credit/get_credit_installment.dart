@@ -4,13 +4,13 @@ import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/model/groups/contributionID.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-Future<ContributionID> getCreditInstallment(String id, BuildContext context) async {
+Future<ContributionID> getCreditInstallment(
+    String id, BuildContext context) async {
   String token = await SharedPreferencesFunctions.getString(key: 'token');
   String code = await SharedPreferencesFunctions.getString(key: 'codeLang');
 
@@ -21,9 +21,34 @@ Future<ContributionID> getCreditInstallment(String id, BuildContext context) asy
   };
 
   final url = Uri.parse('${ApiUrls.baseUrl}/transactions/$id/mutual_payment');
-  final response = await http.put(url, headers: headers);
 
   try {
+    final response = await http.put(url, headers: headers).timeout(
+      const Duration(seconds: 18),
+      onTimeout: () {
+        Get.defaultDialog(
+            title: "Servidor indisponível",
+            content: Column(
+              children: [
+                const Text(
+                  'Tente novamente mais tarde.',
+                  style: TextStyle(color: Colors.black),
+                ),
+                ElevatedButton(
+                  onPressed: () => Get.back(),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: secondaryColor),
+                  child: const Text(
+                    'OK',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ],
+            ));
+        return http.Response('{"message": "Request timed out"}', 408);
+      },
+    );
+
     if (response.statusCode == 200) {
       final jsonMap = json.decode(response.body);
       final contribution = ContributionID.fromJson(jsonMap);
@@ -33,9 +58,11 @@ Future<ContributionID> getCreditInstallment(String id, BuildContext context) asy
       final message = jsonMap['message'];
       Get.dialog(
         AlertDialog(
-          title: Text(AppLocalizations.of(context)!.dialog_error, textAlign: TextAlign.center,),
-          content: Text(
-              message),
+          title: Text(
+            AppLocalizations.of(context)!.dialog_error,
+            textAlign: TextAlign.center,
+          ),
+          content: Text(message),
           actions: [
             SizedBox(
               height: 45,
@@ -51,11 +78,8 @@ Future<ContributionID> getCreditInstallment(String id, BuildContext context) asy
                   Get.back();
                 },
                 child: Text(
-                  AppLocalizations.of(context)!
-                      .buttonDialogClose
-                      .toUpperCase(),
-                  style: const TextStyle(
-                      color: Colors.white, fontSize: 16),
+                  AppLocalizations.of(context)!.buttonDialogClose.toUpperCase(),
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
             ),
@@ -66,6 +90,7 @@ Future<ContributionID> getCreditInstallment(String id, BuildContext context) asy
           'Erro ao obter dados da contribuição: ${response.statusCode}');
     }
   } catch (e) {
-    throw Exception(e.toString());
+    // Tratar erro genérico
+    throw Exception('Erro na requisição: $e');
   }
 }

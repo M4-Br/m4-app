@@ -16,7 +16,8 @@ class OnboardingStepOnePage extends StatefulWidget {
   State<OnboardingStepOnePage> createState() => _OnboardingStepOnePageState();
 }
 
-class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with ValidationsMixin {
+class _OnboardingStepOnePageState extends State<OnboardingStepOnePage>
+    with ValidationsMixin {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _nick = TextEditingController();
@@ -50,7 +51,8 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
         leading: SafeArea(
           child: IconButton(
             onPressed: () {
-              Get.to(() => const OnboardingPage(), transition: Transition.leftToRight);
+              Get.to(() => const OnboardingPage(),
+                  transition: Transition.leftToRight);
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined),
             color: Colors.black,
@@ -89,8 +91,8 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
                       controller: _name,
                       keyboardType: TextInputType.text,
                       validator: (value) => combineValidators([
-                            () => isNotEmpty(value),
-                            () => validateChar(value),
+                        () => isNotEmpty(value),
+                        () => validateChar(value),
                       ]),
                       style: const TextStyle(color: Colors.black, fontSize: 20),
                       decoration: InputDecoration(
@@ -158,10 +160,8 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
                       controller: _email,
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) => combineValidators([
-                        () => isNotEmpty(value,
-                            'validator_empty'.tr),
-                        () => isValidEmail(value,
-                            'validator_valid_email'.tr)
+                        () => isNotEmpty(value, 'validator_empty'.tr),
+                        () => isValidEmail(value, 'validator_valid_email'.tr)
                       ]),
                       style: const TextStyle(color: Colors.black, fontSize: 20),
                       decoration: const InputDecoration(
@@ -210,8 +210,7 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> with Vali
                           borderSide: BorderSide(color: Colors.red),
                         ),
                         contentPadding: EdgeInsets.zero,
-                        labelText:
-                            'promotional_code'.tr,
+                        labelText: 'promotional_code'.tr,
                         labelStyle: const TextStyle(
                           color: Colors.black54,
                           fontSize: 15,
