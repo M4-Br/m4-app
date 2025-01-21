@@ -12,7 +12,7 @@ class CreditRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarDefault(title: 'credit_credit'.toUpperCase().tr, backPage: () => Get.offAll(() => const HomeViewPage(), transition: Transition.leftToRight),),
+      appBar: AppBarDefault(title: 'credit_credit'.tr.toUpperCase(), backPage: () => Get.offAll(() => const HomeViewPage(), transition: Transition.leftToRight),),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +57,7 @@ class CreditRequest extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50))),
               child: Text(
-                'credit_groups'.toUpperCase().tr,
+                'credit_groups'.tr.toUpperCase(),
                 style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

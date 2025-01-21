@@ -56,7 +56,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: 'credit_request'.toUpperCase().tr,
+        title: 'credit_request'.tr.toUpperCase(),
         backPage: () => Get.off(() => CreditMutualAvailable(id: widget.id),
             transition: Transition.leftToRight),
       ),
@@ -366,7 +366,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                                   BorderRadius.circular(50))),
                                       child: Text(
                                         'credit_request'
-                                            .toUpperCase().tr,
+                                            .tr.toUpperCase(),
                                         style: const TextStyle(
                                             color: Colors.white, fontSize: 16),
                                       ))

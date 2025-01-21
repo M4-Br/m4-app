@@ -29,7 +29,7 @@ class _CreditScreenState extends State<CreditScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: 'credit_credit'.toUpperCase().tr,
+        title: 'credit_credit'.tr.toUpperCase(),
         backPage: () =>
             Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),
@@ -123,7 +123,7 @@ class _CreditScreenState extends State<CreditScreen> {
                             ),
                             child: Text(
                               'credit_groups'
-                                  .toUpperCase().tr,
+                                  .tr.toUpperCase(),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -187,7 +187,7 @@ class _CreditScreenState extends State<CreditScreen> {
                             ),
                             child: Text(
                              'credit_groups'
-                                  .toUpperCase().tr,
+                                  .tr.toUpperCase(),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

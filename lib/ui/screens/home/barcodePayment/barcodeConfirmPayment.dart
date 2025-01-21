@@ -305,7 +305,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
                             ),
                           ),
                           child: Text(
-                            'confirm'.toUpperCase().tr,
+                            'confirm'.tr.toUpperCase(),
                             style: const TextStyle(color: Colors.white),
                           ),
                         ),
@@ -327,7 +327,7 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
                             ),
                           ),
                           child: Text(
-                            'cancel'.toUpperCase().tr,
+                            'cancel'.tr.toUpperCase(),
                             style: const TextStyle(color: Colors.red),
                           ),
                         ),

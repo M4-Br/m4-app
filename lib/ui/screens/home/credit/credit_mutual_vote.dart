@@ -37,7 +37,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: 'credit_credit'.toUpperCase().tr,
+        title: 'credit_credit'.tr.toUpperCase(),
         backPage: () => Get.back(),
       ),
       backgroundColor: primaryColor,
@@ -58,7 +58,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                         padding: const EdgeInsets.symmetric(vertical: 32),
                         child: Text(
                           'credit_detail'
-                              .toUpperCase().tr,
+                              .tr.toUpperCase(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -107,7 +107,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                                 padding: const EdgeInsets.symmetric(vertical: 32),
                                 child: Text(
                                   'credit_detail'
-                                      .toUpperCase().tr,
+                                      .tr.toUpperCase(),
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -149,7 +149,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                                   padding: const EdgeInsets.symmetric(vertical: 16),
                                   child: Text(
                                     'credit_detail'
-                                        .toUpperCase().tr,
+                                        .tr.toUpperCase(),
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,
@@ -329,7 +329,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'credit_reject'
-                      .toUpperCase().tr,
+                      .tr.toUpperCase(),
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
@@ -348,7 +348,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'credit_accept'
-                      .toUpperCase().tr,
+                      .tr.toUpperCase(),
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),

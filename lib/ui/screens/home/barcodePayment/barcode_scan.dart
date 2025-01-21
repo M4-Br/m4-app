@@ -90,7 +90,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
                         backgroundColor: secondaryColor),
                     child: Text(
                       'continue_barcode'
-                          .toUpperCase().tr,
+                          .tr.toUpperCase(),
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -114,7 +114,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: secondaryColor),
                     child: Text(
-                      'barcode_auto'.toUpperCase().tr,
+                      'barcode_auto'.tr.toUpperCase(),
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,

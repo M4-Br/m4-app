@@ -12,7 +12,7 @@ class CreditVoted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: 'credit_credit'.toUpperCase().tr,
+        title: 'credit_credit'.tr.toUpperCase(),
         backPage: () =>
             Get.offAll(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),

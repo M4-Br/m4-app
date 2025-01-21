@@ -41,7 +41,7 @@ class _CreditMutualAvailableState extends State<CreditMutualAvailable> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: 'credit_credit'.toUpperCase().tr,
+        title: 'credit_credit'.tr.toUpperCase(),
         backPage: () => widget.page == 0
             ? Get.off(() => const CreditScreen(),
                 transition: Transition.leftToRight)

@@ -91,7 +91,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
         backgroundColor: primaryColor,
         centerTitle: true,
         title: Text(
-          'credit_credit'.toUpperCase().tr,
+          'credit_credit'.tr.toUpperCase(),
           style:
               const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
@@ -139,9 +139,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                     ),
                     Text(
                       dateFormat.format(
-                        DateTime.parse(
-                          DateTime.now() as String,
-                        ),
+                        DateTime.now()
                       ),
                       style: const TextStyle(
                           color: secondaryColor,
@@ -341,7 +339,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                             Colors.red),
                                                     child: Text(
                                                       'cancel'
-                                                          .toUpperCase().tr,
+                                                          .tr.toUpperCase(),
                                                       style: const TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 14,
@@ -460,7 +458,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                                     secondaryColor),
                                                             child: Text(
                                                               'group_pay'
-                                                                  .toUpperCase().tr,
+                                                                  .tr.toUpperCase(),
                                                               style: const TextStyle(
                                                                   color: Colors
                                                                       .white,
@@ -491,7 +489,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                             ),
                             backgroundColor: secondaryColor),
                         child: Text(
-                          'group_pay'.toUpperCase().tr,
+                          'group_pay'.tr.toUpperCase(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

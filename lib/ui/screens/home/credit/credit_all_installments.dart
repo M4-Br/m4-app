@@ -48,7 +48,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
     return Scaffold(
       backgroundColor: primaryColor,
       appBar: AppBarDefault(
-        title: 'credit_credit'.toUpperCase().tr,
+        title: 'credit_credit'.tr.toUpperCase(),
         backPage: () =>
             Get.offAll(
               const HomeViewPage(),
