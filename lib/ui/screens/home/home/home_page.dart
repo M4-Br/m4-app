@@ -461,7 +461,7 @@ class _HomePageState extends State<HomePage> {
                                     }
                                     break;
                                   case "22":
-                                    if (defaulter == 'false') {
+                                    if (defaulter == 'true') {
                                       Get.defaultDialog(
                                         backgroundColor: Colors.white,
                                         title: AppLocalizations.of(context)!

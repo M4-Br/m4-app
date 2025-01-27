@@ -7,12 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<ContributionID> getCreditInstallment(
     String id, BuildContext context) async {
   String token = await SharedPreferencesFunctions.getString(key: 'token');
-  String code = await SharedPreferencesFunctions.getString(key: 'codeLang');
 
   final headers = {
     'Authorization': 'Bearer $token',
@@ -55,42 +53,25 @@ Future<ContributionID> getCreditInstallment(
       return contribution;
     } else {
       final jsonMap = json.decode(response.body);
-      final message = jsonMap['message'];
-      Get.dialog(
-        AlertDialog(
-          title: Text(
-            AppLocalizations.of(context)!.dialog_error,
-            textAlign: TextAlign.center,
-          ),
-          content: Text(message),
-          actions: [
-            SizedBox(
-              height: 45,
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(45)),
-                    backgroundColor: secondaryColor),
-                onPressed: () {
-                  Get.back(); // Fechar o diálogo
-                  Get.back();
-                  Get.back();
-                },
-                child: Text(
-                  AppLocalizations.of(context)!.buttonDialogClose.toUpperCase(),
-                  style: const TextStyle(color: Colors.white, fontSize: 16),
+      Get.defaultDialog(
+          title: 'dialogErro'.tr.toUpperCase(),
+          content: Column(
+            children: [
+              Text(jsonMap['message'], textAlign: TextAlign.center,),
+              ElevatedButton(
+                onPressed: () => Get.back(),
+                style:
+                ElevatedButton.styleFrom(backgroundColor: secondaryColor),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(color: Colors.white),
                 ),
-              ),
-            ),
-          ],
-        ),
-      );
-      throw Exception(
-          'Erro ao obter dados da contribuição: ${response.statusCode}');
+              )
+            ],
+          ));
+    return jsonMap;
     }
   } catch (e) {
-    // Tratar erro genérico
     throw Exception('Erro na requisição: $e');
   }
 }

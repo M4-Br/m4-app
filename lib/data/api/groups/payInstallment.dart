@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/model/groups/paymentInstallment.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
+import 'package:app_flutter_miban4/ui/config/theme_app.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 Future<PayInstallment> payInstallment(String id) async {
@@ -25,6 +28,22 @@ Future<PayInstallment> payInstallment(String id) async {
       return payment;
     } else {
       final jsonMap = json.decode(response.body);
+      Get.defaultDialog(
+          title: 'dialogErro'.tr.toUpperCase(),
+          content: Column(
+            children: [
+              Text(jsonMap['message'], textAlign: TextAlign.center,),
+              ElevatedButton(
+                onPressed: () => Get.back(),
+                style:
+                    ElevatedButton.styleFrom(backgroundColor: secondaryColor),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ],
+          ));
       return jsonMap;
     }
   } catch (e) {

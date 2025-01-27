@@ -413,7 +413,7 @@ class _CreditMutualVoteState extends State<CreditMutualVote> {
                           backgroundColor: secondaryColor),
                       onPressed: () {
                         _vote(id: id, vote: vote);
-                        Get.back();
+                        Get.offAll(() => const CreditVoted(), transition: Transition.rightToLeft);
                       },
                       child: Text(
                         'confirm'.tr,

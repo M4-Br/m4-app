@@ -162,9 +162,7 @@ class _ContributionState extends State<Contribution> {
                             ),
                             Text(
                               dateFormat.format(
-                                DateTime.parse(
-                                  snapshot.data!.dueDate.toString(),
-                                ),
+                                DateTime.now(),
                               ),
                               style: const TextStyle(
                                   color: secondaryColor,
@@ -388,8 +386,9 @@ class _ContributionState extends State<Contribution> {
                                                           style: ElevatedButton.styleFrom(
                                                               shape: RoundedRectangleBorder(
                                                                   borderRadius:
-                                                                      BorderRadius.circular(
-                                                                          20)),
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20)),
                                                               backgroundColor:
                                                                   Colors.red),
                                                           child: Text(
@@ -416,7 +415,8 @@ class _ContributionState extends State<Contribution> {
                                                                 false
                                                             ? SizedBox(
                                                                 height: 45,
-                                                                width: double.infinity,
+                                                                width: double
+                                                                    .infinity,
                                                                 child:
                                                                     ElevatedButton(
                                                                   onPressed:
@@ -429,14 +429,19 @@ class _ContributionState extends State<Contribution> {
                                                                     String
                                                                         pass =
                                                                         await SharedPreferencesFunctions.getString(
-                                                                            key: 'pass');
+                                                                            key:
+                                                                                'pass');
 
                                                                     if (pass ==
                                                                         _passwordController
                                                                             .text
                                                                             .toString()) {
-                                                                      if (int.parse(_balance.balanceCents) >=
-                                                                          int.parse(snapshot.data!.amount.toString())) {
+                                                                      if (int.parse(_balance
+                                                                              .balanceCents) >=
+                                                                          int.parse(snapshot
+                                                                              .data!
+                                                                              .amount
+                                                                              .toString())) {
                                                                         await payInstallment(snapshot.data!.id.toString())
                                                                             .then((response) {
                                                                           if (response.status ==
@@ -445,7 +450,8 @@ class _ContributionState extends State<Contribution> {
                                                                               _isLoading(false);
                                                                             });
                                                                             Get.back();
-                                                                            Get.off(() => GroupVoucher(
+                                                                            Get.off(() =>
+                                                                                GroupVoucher(
                                                                                   status: response.status,
                                                                                   amount: response.amount.toString(),
                                                                                   id: response.id,
@@ -457,7 +463,16 @@ class _ContributionState extends State<Contribution> {
                                                                                   typePayment: widget.type,
                                                                                   group: widget.group,
                                                                                 ));
-                                                                            Get.snackbar(AppLocalizations.of(context)!.dialog_success, AppLocalizations.of(context)!.dialog_payment, snackPosition: SnackPosition.BOTTOM, duration: const Duration(seconds: 5), icon: SvgPicture.asset('assets/images/miban4_colored_logo.svg'), backgroundColor: Colors.white, padding: const EdgeInsets.all(8));
+                                                                            setState(() {
+                                                                              _isLoading(false);
+                                                                            });
+                                                                            Get.snackbar(AppLocalizations.of(context)!.dialog_success,
+                                                                                AppLocalizations.of(context)!.dialog_payment,
+                                                                                snackPosition: SnackPosition.BOTTOM,
+                                                                                duration: const Duration(seconds: 5),
+                                                                                icon: SvgPicture.asset('assets/images/miban4_colored_logo.svg'),
+                                                                                backgroundColor: Colors.white,
+                                                                                padding: const EdgeInsets.all(8));
                                                                           } else {
                                                                             setState(() {
                                                                               _isLoading(false);
@@ -467,7 +482,8 @@ class _ContributionState extends State<Contribution> {
                                                                       } else {
                                                                         setState(
                                                                             () {
-                                                                          _isLoading(false);
+                                                                          _isLoading(
+                                                                              false);
                                                                         });
                                                                         Get.back();
                                                                         Get.back();
@@ -501,12 +517,18 @@ class _ContributionState extends State<Contribution> {
                                                                               .dialog_error,
                                                                           AppLocalizations.of(context)!
                                                                               .dialog_password_incorrect,
-                                                                          snackPosition:
-                                                                              SnackPosition.BOTTOM,
-                                                                          duration: const Duration(seconds: 5),
-                                                                          icon: SvgPicture.asset('assets/images/miban4_colored_logo.svg'),
-                                                                          backgroundColor: Colors.white,
-                                                                          padding: const EdgeInsets.all(8));
+                                                                          snackPosition: SnackPosition
+                                                                              .BOTTOM,
+                                                                          duration: const Duration(
+                                                                              seconds:
+                                                                                  5),
+                                                                          icon: SvgPicture.asset(
+                                                                              'assets/images/miban4_colored_logo.svg'),
+                                                                          backgroundColor: Colors
+                                                                              .white,
+                                                                          padding: const EdgeInsets
+                                                                              .all(
+                                                                              8));
                                                                     }
                                                                   },
                                                                   style: ElevatedButton.styleFrom(
