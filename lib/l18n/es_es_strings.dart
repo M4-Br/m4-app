@@ -581,6 +581,7 @@ class StringsEsES {
     "bank_account_type": "Tipo de cuenta",
     "bank_account_number": "Número de cuenta",
     "bank_account_digit": "Dígito de cuenta",
+  "statement_no_data": "Ninguna transacción encontrada",
     "bank_add_account": "Agregar Cuenta",
     "bank_agency_digit": "Dígito de agencia",
     "transactional_statement": "Transacciones",

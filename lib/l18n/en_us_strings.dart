@@ -581,6 +581,7 @@ class StringsEnUS {
         "Did the photo turn out well? Is the text clear? The image should not contain reflections.",
     "onboarding_confirm_again": "Take another",
     "onboarding_confirm_cool": "Looks good",
+    "statement_no_data": "No transaction found",
     "transfer_add_person": "Add Person",
     "share": "Share",
     "unavailable": "Temporarily unavailable",

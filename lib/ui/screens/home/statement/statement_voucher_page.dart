@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:app_flutter_miban4/data/api/statement/statment_voucher.dart';
@@ -92,9 +93,50 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
                 ),
               );
             } else if (snapshot.hasError) {
-              return Center(
-                child: Text('Error: ${snapshot.error}'),
-              );
+              String errorMessage = 'unavailable'.tr;
+
+              if (snapshot.error is Exception) {
+                errorMessage = snapshot.error.toString().replaceFirst('Exception: ', '');
+              } else {
+                errorMessage = snapshot.error.toString();
+              }
+
+              WidgetsBinding.instance!.addPostFrameCallback((_) {
+                Get.defaultDialog(
+                    title: 'dialogErro'.tr,
+                    titleStyle: const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                    content: Column(
+                      children: [
+                        Text(
+                          errorMessage,
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 16),
+                          textAlign: TextAlign.center,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Get.back();
+                              Get.back();
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: secondaryColor),
+                            child: const Text(
+                              'Ok',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ));
+              });
+              return Container();
             } else if (snapshot.data.toString().isEmpty) {
               return const Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -273,7 +315,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
               Flexible(
                 child: Text(
                   splitNameAndNumber(
-                      statementData.payer!.name.toString())['name']
+                          statementData.payer!.name.toString())['name']
                       .toString(),
                   style: const TextStyle(color: Colors.black, fontSize: 16),
                   overflow: TextOverflow.visible,
@@ -397,7 +439,9 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Text(
-                statementData.receiver!.agency.toString().isNotEmpty ? statementData.receiver!.agency.toString() : "",
+                statementData.receiver!.agency.toString().isNotEmpty
+                    ? statementData.receiver!.agency.toString()
+                    : "",
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               )
             ],
@@ -413,7 +457,9 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Text(
-              statementData.receiver!.accountNumber.toString().isNotEmpty ? statementData.receiver!.accountNumber.toString() : "",
+                statementData.receiver!.accountNumber.toString().isNotEmpty
+                    ? statementData.receiver!.accountNumber.toString()
+                    : "",
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               )
             ],

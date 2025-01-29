@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
-    <cache-path name="share_plus" path="share_plus/"/>
+    <!-- Permite arquivos no cache -->
+    <cache-path name="cache" path="." />
+    <!-- Permite arquivos no subdiretório "share_plus" dentro do cache -->
+    <cache-path name="share_plus" path="share_plus/" />
 </paths>

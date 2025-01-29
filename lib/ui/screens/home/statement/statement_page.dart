@@ -221,7 +221,7 @@ class _StatementPageState extends State<StatementPage> {
           ),
           Flexible(
             child: FutureBuilder<StatementModel>(
-              key: _futureKey, // Chave para forçar a reconstrução
+              key: _futureKey,
               future: fetchStatement(
                   startDate.toString(),
                   endDate.toString(),
@@ -240,14 +240,14 @@ class _StatementPageState extends State<StatementPage> {
                     child: Text(_screenActivy == 0
                         ? userData.payload.aliasAccount.id.isNotEmpty &&
                                 userData.payload.aliasAccount.id != ''
-                            ? snapshot.error.toString()
+                            ? 'statement_no_data'.tr
                             : AppLocalizations.of(context)!.account_waiting
                         : userData.payload.aliasAccount.economyAccountId
                                     .isNotEmpty &&
                                 userData.payload.aliasAccount
                                         .economyAccountId !=
                                     ''
-                            ? snapshot.error.toString()
+                            ? 'statement_no_data'.tr
                             : AppLocalizations.of(context)!
                                 .account_savings_waiting),
                   );

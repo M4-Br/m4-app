@@ -7,6 +7,7 @@ class StatementVoucher {
   final String? type;
   final Payer? payer;
   final Receiver? receiver;
+  final String? message;
 
   StatementVoucher({
     this.success,
@@ -17,6 +18,7 @@ class StatementVoucher {
     this.type,
     this.payer,
     this.receiver,
+    this.message
   });
 
   factory StatementVoucher.fromJson(Map<String, dynamic> json) => StatementVoucher(
@@ -28,6 +30,7 @@ class StatementVoucher {
     type: json['type'] as String,
     payer: Payer.fromJson(json['payer'] as Map<String, dynamic>),
     receiver: Receiver.fromJson(json['receiver'] as Map<String, dynamic>),
+    message: json['message']
   );
 }
 

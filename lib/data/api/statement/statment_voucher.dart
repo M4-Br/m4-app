@@ -27,6 +27,8 @@ Future<StatementVoucher> getStatementVoucher(String id) async {
     final statementVoucher = StatementVoucher.fromJson(jsonMap);
     return statementVoucher;
   } else {
-    throw "Erro";
+    final jsonMap = json.decode(response.body);
+    final errorMessage = jsonMap['message'] ?? 'Erro desconhecido.';
+    throw Exception(errorMessage);
   }
 }

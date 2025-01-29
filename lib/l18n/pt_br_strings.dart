@@ -581,6 +581,7 @@ class StringsPtBR {
       "savings_statement": "Economias",
       "account_waiting": "Sua conta ainda não está ativa",
       "account_savings_waiting": "Sua conta economia ainda não está ativa",
+      "statement_no_data": "Nenhuma transação encontrada",
       "onboarding_confirm_selfie":
           "A foto ficou boa? O texto ficou nítido? A imagem não pode conter reflexos.",
       "onboarding_confirm_again": "Tirar outra",
