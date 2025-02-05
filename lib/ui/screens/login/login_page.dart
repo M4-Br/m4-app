@@ -1,4 +1,3 @@
-
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/data/util/helpers/validators.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
@@ -174,6 +173,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
             child: Obx(
               () => _verifyController.isLoading.value == false
                   ? ElevatedButton(
+                      key: const ValueKey('button'),
                       onPressed: () async {
                         _verifyController.documentInitialVerify();
                       },
@@ -181,18 +181,20 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
                         backgroundColor: primaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
-                          side: const BorderSide(color: Colors.white, width: 2),
+                          side:
+                              const BorderSide(color: Colors.white, width: 2),
                         ),
                         alignment: Alignment.center,
                         minimumSize: const Size(double.infinity, 50),
                       ),
                       child: Text(
                         'access'.tr,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(
+                            color: Colors.white, fontSize: 16),
                       ),
                     )
                   : const CircularProgressIndicator(
+                      key: ValueKey('loading'),
                       color: Colors.white,
                     ),
             ),

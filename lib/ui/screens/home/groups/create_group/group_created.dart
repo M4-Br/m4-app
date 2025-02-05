@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroupCreated extends StatelessWidget {
   const GroupCreated({super.key});
@@ -13,8 +12,8 @@ class GroupCreated extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.group_created,
-        backPage: () => Get.offAll(() => HomeViewPage(),
+        title: 'group_created'.tr,
+        backPage: () => Get.offAll(() => const HomeViewPage(),
             transition: Transition.leftToRight),
       ),
       body: Column(
@@ -28,7 +27,7 @@ class GroupCreated extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: Text(
-              AppLocalizations.of(context)!.group_created_success,
+              'group_created_success'.tr,
               style: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -37,7 +36,7 @@ class GroupCreated extends StatelessWidget {
             ),
           ),
           Text(
-            AppLocalizations.of(context)!.group_wait,
+            'group_wait'.tr,
             style: const TextStyle(color: Colors.black, fontSize: 16),
             textAlign: TextAlign.center,
           )
@@ -58,7 +57,7 @@ class GroupCreated extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50))),
               child: Text(
-                AppLocalizations.of(context)!.group_see,
+                'group_see'.tr,
                 style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

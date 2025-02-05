@@ -8,7 +8,6 @@ import 'package:app_flutter_miban4/ui/screens/home/groups/create_group/create_gr
 import 'package:app_flutter_miban4/ui/screens/home/groups/create_group/group_add_members.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
 class GroupFees extends StatefulWidget {
@@ -71,12 +70,12 @@ class _GroupFeesState extends State<GroupFees> {
     List<DropdownMenuItem<String>> priorities =
         params!.mutualPriorities.map((priority) {
       return DropdownMenuItem<String>(
-          value: priority.value, child: Text(AppLocalizations.of(context)!.codeLang == 'pt' ? priority.label : priority.value));
+          value: priority.value, child: Text('codeLang'.tr == 'pt' ? priority.label : priority.value));
     }).toList();
 
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.group_new,
+        title: 'group_new'.tr,
         backPage: () => Get.off(
           () => GroupParams(membership: widget.membership),
         ),
@@ -87,7 +86,7 @@ class _GroupFeesState extends State<GroupFees> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              AppLocalizations.of(context)!.group_credit_data,
+              'group_credit_data'.tr,
               style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -103,7 +102,7 @@ class _GroupFeesState extends State<GroupFees> {
                 isExpanded: true,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.group_interest,
+                  labelText: 'group_interest'.tr,
                   // Add label text here
                   labelStyle:
                       const TextStyle(color: Colors.black, fontSize: 16),
@@ -138,7 +137,7 @@ class _GroupFeesState extends State<GroupFees> {
                 isExpanded: true,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.group_installments,
+                  labelText: 'group_installments'.tr,
                   // Add label text here
                   labelStyle:
                       const TextStyle(color: Colors.black, fontSize: 16),
@@ -173,7 +172,7 @@ class _GroupFeesState extends State<GroupFees> {
                 isExpanded: true,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.group_priority,
+                  labelText: 'group_priority'.tr,
                   // Add label text here
                   labelStyle:
                       const TextStyle(color: Colors.black, fontSize: 16),
@@ -211,7 +210,7 @@ class _GroupFeesState extends State<GroupFees> {
                 isExpanded: true,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.group_late_fees,
+                  labelText: 'group_late_fees'.tr,
                   // Add label text here
                   labelStyle:
                       const TextStyle(color: Colors.black, fontSize: 16),
@@ -249,7 +248,7 @@ class _GroupFeesState extends State<GroupFees> {
                 isExpanded: true,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.group_billing,
+                  labelText: 'group_billing'.tr,
                   // Add label text here
                   labelStyle:
                       const TextStyle(color: Colors.black, fontSize: 16),
@@ -268,7 +267,7 @@ class _GroupFeesState extends State<GroupFees> {
                   ),
                 ),
                 onChanged: (String? newValue) {
-                  _selectedCharge == AppLocalizations.of(context)!.yes
+                  _selectedCharge == 'yes'.tr
                       ? _chargeSelected = true
                       : _chargeSelected = false;
                   setState(() {
@@ -276,8 +275,8 @@ class _GroupFeesState extends State<GroupFees> {
                   });
                 },
                 items: <String>[
-                  AppLocalizations.of(context)!.yes,
-                  AppLocalizations.of(context)!.no,
+                  'yes'.tr,
+                  'no'.tr,
                 ].map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -315,7 +314,7 @@ class _GroupFeesState extends State<GroupFees> {
                         ),
                       ),
                       child: Text(
-                        AppLocalizations.of(context)!.proceed.toUpperCase(),
+                        'proceed'.tr.toUpperCase(),
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,

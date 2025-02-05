@@ -4,13 +4,11 @@ import 'package:app_flutter_miban4/data/model/params/params.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/controllers/params/params_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/create_group/create_group_fees.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/create_group/create_group_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroupParams extends StatefulWidget {
   final String membership;
@@ -51,11 +49,12 @@ class _GroupParamsState extends State<GroupParams> {
   @override
   Widget build(BuildContext context) {
     final currencyFormat = NumberFormat.currency(locale: 'pt_BR', symbol: '\$');
-    final String language = AppLocalizations.of(context)!.codeLang;
+    final String language = 'codeLang'.tr;
 
     List<DropdownMenuItem<String>> periodsItems = params!.periods.map((period) {
       return DropdownMenuItem<String>(
-          value: period.value, child: Text(language == 'pt' ? period.label : period.value));
+          value: period.value,
+          child: Text(language == 'pt' ? period.label : period.value));
     }).toList();
 
     List<DropdownMenuItem<String>> periodValueItems =
@@ -81,7 +80,7 @@ class _GroupParamsState extends State<GroupParams> {
 
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.group_new,
+        title: 'group_new'.tr,
         backPage: () => Get.off(() => const CreateGroupName(),
             transition: Transition.leftToRight),
       ),
@@ -97,7 +96,7 @@ class _GroupParamsState extends State<GroupParams> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.group_economy_data,
+                        'group_economy_data'.tr,
                         style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -115,8 +114,7 @@ class _GroupParamsState extends State<GroupParams> {
                           style: const TextStyle(
                               color: Colors.black, fontSize: 16),
                           decoration: InputDecoration(
-                            labelText:
-                                AppLocalizations.of(context)!.group_period,
+                            labelText: 'group_period'.tr,
                             // Add label text here
                             labelStyle: const TextStyle(
                                 color: Colors.black, fontSize: 16),
@@ -158,8 +156,7 @@ class _GroupParamsState extends State<GroupParams> {
                           style: const TextStyle(
                               color: Colors.black, fontSize: 16),
                           decoration: InputDecoration(
-                            labelText: AppLocalizations.of(context)!
-                                .group_period_value,
+                            labelText: 'group_period_value'.tr,
                             // Add label text here
                             labelStyle: const TextStyle(
                                 color: Colors.black, fontSize: 16),
@@ -202,8 +199,7 @@ class _GroupParamsState extends State<GroupParams> {
                           style: const TextStyle(
                               color: Colors.black, fontSize: 16),
                           decoration: InputDecoration(
-                            labelText: AppLocalizations.of(context)!
-                                .group_contributions_quantity,
+                            labelText: 'group_contributions_quantity'.tr,
                             // Add label text here
                             labelStyle: const TextStyle(
                                 color: Colors.black, fontSize: 16),
@@ -240,8 +236,7 @@ class _GroupParamsState extends State<GroupParams> {
                           style: const TextStyle(
                               color: Colors.black, fontSize: 16),
                           decoration: InputDecoration(
-                            labelText: AppLocalizations.of(context)!
-                                .group_members_quantity,
+                            labelText: 'group_members_quantity'.tr,
                             // Add label text here
                             labelStyle: const TextStyle(
                                 color: Colors.black, fontSize: 16),
@@ -302,7 +297,7 @@ class _GroupParamsState extends State<GroupParams> {
                                 ),
                                 Text(
                                   _selectedContrib.isNotEmpty
-                                      ? '$_selectedContrib x ${AppLocalizations.of(context)!.off}'
+                                      ? '$_selectedContrib x ${'off'.tr}'
                                       : '0x of',
                                   style: const TextStyle(
                                       color: Colors.black54, fontSize: 16),
@@ -328,9 +323,7 @@ class _GroupParamsState extends State<GroupParams> {
                       Text.rich(
                         TextSpan(
                           children: [
-                            TextSpan(
-                                text:
-                                    '${AppLocalizations.of(context)!.group_value_per_member}: '),
+                            TextSpan(text: '${'group_value_per_member'.tr}: '),
                             TextSpan(
                               text: _selectValuePeriod.isNotEmpty &&
                                       _selectedContrib.isNotEmpty
@@ -381,9 +374,7 @@ class _GroupParamsState extends State<GroupParams> {
                                           ? secondaryColor
                                           : Colors.grey),
                                   child: Text(
-                                    AppLocalizations.of(context)!
-                                        .proceed
-                                        .toUpperCase(),
+                                    'proceed'.tr.toUpperCase(),
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,

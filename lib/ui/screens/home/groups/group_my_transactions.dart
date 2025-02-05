@@ -1,17 +1,13 @@
-import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/api/groups/getMyContributions.dart';
 import 'package:app_flutter_miban4/data/model/groups/contributionsModel.dart';
-import 'package:app_flutter_miban4/data/model/userData/balance.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/home/credit/credit_installments.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_contribution_id.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_data.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroupMyTransactions extends StatefulWidget {
   final Map<String, dynamic>? group;
@@ -58,8 +54,8 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
       backgroundColor: primaryColor,
       appBar: AppBarDefault(
         title: widget.page == 0 || widget.page == 1
-            ? AppLocalizations.of(context)!.group_my_contributions.toUpperCase()
-            : AppLocalizations.of(context)!.credit_credit.toUpperCase(),
+            ? 'group_my_contributions'.tr.toUpperCase()
+            : 'credit_credit'.tr.toUpperCase(),
         backPage: () =>
             Get.off(
                   () =>
@@ -113,8 +109,8 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
               child: Center(
                 child: Text(
                   widget.page == 0
-                      ? AppLocalizations.of(context)!.dont_have_contribution
-                      : AppLocalizations.of(context)!.dont_have_credit,
+                      ? 'dont_have_contribution'.tr
+                      : 'dont_have_credit'.tr,
                   style: const TextStyle(color: Colors.black, fontSize: 18),
                 ),
               ),
@@ -148,10 +144,8 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                         children: [
                           Text(
                             widget.page == 0
-                                ? AppLocalizations.of(context)!
-                                .group_contribution_individual
-                                : AppLocalizations.of(context)!
-                                .credit_paid_installment,
+                                ? 'group_contribution_individual'.tr
+                                : 'credit_paid_installment'.tr,
                             style: const TextStyle(
                                 color: Colors.white, fontSize: 16),
                           ),
@@ -166,8 +160,7 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                         ],
                       ),
                       Text(
-                        '${AppLocalizations.of(context)!
-                            .group_pending} R\$ ${currencyFormat.format(
+                        '${'group_pending'.tr} R\$ ${currencyFormat.format(
                             totalOpen / 100)}',
                         style: const TextStyle(
                           color: Colors.white,
@@ -198,7 +191,7 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.group_open,
+                              'group_open'.tr,
                               style: TextStyle(
                                   color: _isActive
                                       ? Colors.white
@@ -229,7 +222,7 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.group_paid,
+                              'group_paid'.tr,
                               style: TextStyle(
                                   color: !_isActive
                                       ? Colors.white
@@ -285,7 +278,7 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
     if (allInstalments) {
       return Center(
         child: Text(
-          AppLocalizations.of(context)!.all_paid,
+          'all_paid'.tr,
           textAlign: TextAlign.center,
           style: const TextStyle(color: Colors.black, fontSize: 18),
         ),
@@ -320,11 +313,11 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
         if (transaction.status == 'pending' && index != firstPendingIndex) {
           Get.dialog(AlertDialog(
             title: Text(
-              AppLocalizations.of(context)!.message,
+              'message'.tr,
               textAlign: TextAlign.center,
             ),
             content: Text(
-              AppLocalizations.of(context)!.first_installment,
+              'first_installment'.tr,
               textAlign: TextAlign.center,
             ),
             actions: [
@@ -382,8 +375,8 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                 children: [
                   Text(
                     transaction.status == 'pending'
-                        ? AppLocalizations.of(context)!.group_payment
-                        : AppLocalizations.of(context)!.group_paid_date,
+                        ? 'group_payment'.tr
+                        : 'group_paid_date'.tr,
                     style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                   Text(
@@ -411,8 +404,7 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                     ),
                   ),
                   Text(
-                    '${transaction.installment ?? ''} ${AppLocalizations.of(
-                        context)!.off} ${totalInstallment.toString()}',
+                    '${transaction.installment ?? ''} ${'off'.tr} ${totalInstallment.toString()}',
                     style: const TextStyle(color: Colors.black, fontSize: 15),
                   ),
                 ],

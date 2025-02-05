@@ -2,12 +2,10 @@ import 'package:app_flutter_miban4/data/api/groups/getMembers.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/controllers/groups/invite_group_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroupInvite extends StatefulWidget {
   final String id;
@@ -89,7 +87,7 @@ class _GroupInviteState extends State<GroupInvite> {
                       ),
                       child: Center(
                         child: Text(
-                          AppLocalizations.of(context)!.group_information,
+                         'group_information'.tr,
                           style: TextStyle(
                               color: _isActive ? Colors.white : Colors.white54),
                         ),
@@ -118,7 +116,7 @@ class _GroupInviteState extends State<GroupInvite> {
                       ),
                       child: Center(
                         child: Text(
-                          AppLocalizations.of(context)!.group_members,
+                         'group_members'.tr,
                           style: TextStyle(
                               color:
                                   !_isActive ? Colors.white : Colors.white54),
@@ -159,7 +157,7 @@ class _GroupInviteState extends State<GroupInvite> {
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         child: Text(
-                          AppLocalizations.of(context)!.group_reject.toUpperCase(),
+                          'group_reject'.tr.toUpperCase(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -179,7 +177,7 @@ class _GroupInviteState extends State<GroupInvite> {
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         child: Text(
-                          AppLocalizations.of(context)!.group_accept.toUpperCase(),
+                          'group_accept'.tr.toUpperCase(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -205,7 +203,7 @@ class _GroupInviteState extends State<GroupInvite> {
       child: Column(
         children: [
           Text(
-            AppLocalizations.of(context)!.group_contribution,
+            'group_contribution'.tr,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           Text.rich(
@@ -234,7 +232,7 @@ class _GroupInviteState extends State<GroupInvite> {
             TextSpan(
               children: [
                 TextSpan(
-                  text: AppLocalizations.of(context)!.group_att,
+                  text: 'group_att'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 TextSpan(
@@ -259,7 +257,7 @@ class _GroupInviteState extends State<GroupInvite> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Text(
-                    AppLocalizations.of(context)!.group_detail,
+                    'group_detail'.tr,
                     style: const TextStyle(fontSize: 18, color: Colors.black87),
                   ),
                 ),
@@ -283,8 +281,8 @@ class _GroupInviteState extends State<GroupInvite> {
                 ),
                 Text(
                   data['data'][0]['group_account']['status'] == 'active'
-                      ? AppLocalizations.of(context)!.active
-                      : AppLocalizations.of(context)!.inactive,
+                      ? 'active'.tr
+                      : 'inactive'.tr,
                   style: const TextStyle(fontSize: 16),
                 )
               ],
@@ -296,15 +294,15 @@ class _GroupInviteState extends State<GroupInvite> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.group_periodicity,
+                  'group_periodicity'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
                   data['data'][0]['group_account']['period'] == 'monthly'
-                      ? AppLocalizations.of(context)!.group_monthly
+                      ? 'group_monthly'.tr
                       : data['data'][0]['group_account']['period'] == 'biweekly'
-                          ? AppLocalizations.of(context)!.group_biweekly
-                          : AppLocalizations.of(context)!.group_bimonthly,
+                          ? 'group_biweekly'.tr
+                          : 'group_bimonthly'.tr,
                   style: const TextStyle(fontSize: 16),
                 )
               ],
@@ -316,12 +314,12 @@ class _GroupInviteState extends State<GroupInvite> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.group_value_per_member,
+                  'group_value_per_member'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 const Spacer(),
                 Text(
-                  "${data['data'][0]['group_account']['installment'].toString()} x ${AppLocalizations.of(context)!.off} ${currencyFormat.format(data['data'][0]['group_account']['amount_by_period'] / 100)}",
+                  "${data['data'][0]['group_account']['installment'].toString()} x ${'off'.tr} ${currencyFormat.format(data['data'][0]['group_account']['amount_by_period'] / 100)}",
                   style: const TextStyle(fontSize: 16),
                 ),
               ],
@@ -333,7 +331,7 @@ class _GroupInviteState extends State<GroupInvite> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.group_crated_for,
+                  'group_crated_for'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
@@ -349,7 +347,7 @@ class _GroupInviteState extends State<GroupInvite> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.group_initial_date,
+                  'group_initial_date'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
@@ -367,7 +365,7 @@ class _GroupInviteState extends State<GroupInvite> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.group_final_date,
+                'group_final_date'.tr,
                 style: const TextStyle(fontSize: 16),
               ),
               Text(

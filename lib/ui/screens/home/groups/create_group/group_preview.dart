@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/controllers/groups/start_group_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -46,7 +45,7 @@ class _GroupPreviewState extends State<GroupPreview> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-          title: AppLocalizations.of(context)!.group_g.toUpperCase(),
+          title: 'group_g'.tr.toUpperCase(),
           backPage: () => Get.off(() => const GroupsScreen(),
               transition: Transition.leftToRight)),
       backgroundColor: primaryColor,
@@ -87,7 +86,7 @@ class _GroupPreviewState extends State<GroupPreview> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.group_information,
+                              'group_information'.tr,
                               style: TextStyle(
                                 color:
                                     _isActive ? Colors.white : Colors.white54,
@@ -118,7 +117,7 @@ class _GroupPreviewState extends State<GroupPreview> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.group_members,
+                              'group_members'.tr,
                               style: TextStyle(
                                 color:
                                     !_isActive ? Colors.white : Colors.white54,
@@ -188,7 +187,7 @@ class _GroupPreviewState extends State<GroupPreview> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '${groupResponse['data'][0]['group_account']['installment']} x ${AppLocalizations.of(context)!.off}',
+                      '${groupResponse['data'][0]['group_account']['installment']} x ${'off'.tr}',
                       style: const TextStyle(
                           color: secondaryColor,
                           fontSize: 16,
@@ -212,7 +211,7 @@ class _GroupPreviewState extends State<GroupPreview> {
               children: [
                 TextSpan(
                   text:
-                      '${AppLocalizations.of(context)!.group_value_per_member}: R\$',
+                      '${'group_value_per_member'.tr}: R\$',
                   style: const TextStyle(
                     fontSize: 16,
                   ),
@@ -233,15 +232,15 @@ class _GroupPreviewState extends State<GroupPreview> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.group_periodicity,
+                  'group_periodicity'.tr,
                   style: const TextStyle(color: Colors.black, fontSize: 18),
                 ),
                 Text(
                   groupResponse['data'][0]['group_account']['period'] == 'monthly'
-                      ? AppLocalizations.of(context)!.group_monthly
+                      ? 'group_monthly'.tr
                       : groupResponse['data'][0]['group_account']['period'] == 'biweekly'
-                          ? AppLocalizations.of(context)!.group_biweekly
-                          : AppLocalizations.of(context)!.group_bimonthly,
+                          ? 'group_biweekly'.tr
+                          : 'group_bimonthly'.tr,
                   style: const TextStyle(color: Colors.black, fontSize: 18),
                 ),
               ],
@@ -253,7 +252,7 @@ class _GroupPreviewState extends State<GroupPreview> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.group_crated_for,
+                  'group_crated_for'.tr,
                   style: const TextStyle(color: Colors.black, fontSize: 18),
                 ),
                 Text(
@@ -267,7 +266,7 @@ class _GroupPreviewState extends State<GroupPreview> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.group_initial_date,
+                'group_initial_date'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 18),
               ),
               Text(
@@ -282,7 +281,7 @@ class _GroupPreviewState extends State<GroupPreview> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.group_final_date,
+                  'group_final_date'.tr,
                   style: const TextStyle(color: Colors.black, fontSize: 18),
                 ),
                 Text(
@@ -304,7 +303,7 @@ class _GroupPreviewState extends State<GroupPreview> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50))),
                       child: Text(
-                        AppLocalizations.of(context)!.proceed.toUpperCase(),
+                        'proceed'.tr.toUpperCase(),
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -324,7 +323,6 @@ class _GroupPreviewState extends State<GroupPreview> {
   Widget _buildMembersScreen() {
     return Container(
       color: Colors.white,
-      // Seus widgets para a tela de membros aqui
     );
   }
 

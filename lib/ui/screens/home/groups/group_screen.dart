@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/controllers/groups/verify_agent.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_data.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -35,7 +34,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.groups_screen,
+        title: 'groups_screen'.tr,
         backPage: () =>
             Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),
@@ -70,7 +69,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     child: Text(
-                      AppLocalizations.of(context)!.group_no_group,
+                      'group_no_group'.tr,
                       style: const TextStyle(
                         color: Colors.black87,
                         fontSize: 18,
@@ -80,7 +79,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
                     ),
                   ),
                   Text(
-                    AppLocalizations.of(context)!.group_no_group_detail,
+                    'group_no_group_detail'.tr,
                     style:
                     const TextStyle(color: Colors.grey, fontSize: 18),
                     textAlign: TextAlign.center,
@@ -157,7 +156,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   subtitle: Text(
-                                    "${AppLocalizations.of(context)!.group_created_in} ${DateFormat('dd/MM/yyyy').format(group.createdAt)}",
+                                    "${'group_created_in'.tr} ${DateFormat('dd/MM/yyyy').format(group.createdAt)}",
                                   ),
                                 ),
                               ),
@@ -184,17 +183,17 @@ class _GroupsScreenState extends State<GroupsScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     _verifyAgent(
-                        title: AppLocalizations.of(context)!.facilitator,
+                        title: 'facilitator'.tr,
                         explain:
-                            AppLocalizations.of(context)!.facilitator_explain,
-                        buttonName: AppLocalizations.of(context)!.site);
+                            'facilitator_explain'.tr,
+                        buttonName: 'site'.tr);
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: secondaryColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24))),
                   child: Text(
-                    AppLocalizations.of(context)!.group_add_new.toUpperCase(),
+                    'group_add_new'.tr.toUpperCase(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -214,15 +213,15 @@ class _GroupsScreenState extends State<GroupsScreen> {
   String getStatusText(String status) {
     switch (status) {
       case 'active':
-        return AppLocalizations.of(context)!.group_active;
+        return 'group_active'.tr;
       case 'canceled':
-        return AppLocalizations.of(context)!.group_cancelled;
+        return 'group_cancelled'.tr;
       case 'pendent_of_invites':
         return 'Pendente de Convite';
       case 'mutual_available':
-        return AppLocalizations.of(context)!.group_mutual_available;
+        return 'group_mutual_available'.tr;
       case 'pendent_of_activation':
-        return AppLocalizations.of(context)!.group_activation_pending;
+        return 'group_activation_pending'.tr;
       default:
         return 'Inativo';
     }

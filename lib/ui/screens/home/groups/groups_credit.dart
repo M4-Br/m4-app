@@ -6,9 +6,7 @@ import 'package:app_flutter_miban4/ui/controllers/groups/verify_agent.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_mutual_available.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -35,7 +33,7 @@ class _GroupsScreenCreditState extends State<GroupsScreenCredit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.credit_credit.toUpperCase(),
+        title: 'credit_credit'.tr.toUpperCase(),
         backPage: () => Get.off(() => const CreditScreen(),
             transition: Transition.leftToRight),
       ),
@@ -95,7 +93,7 @@ class _GroupsScreenCreditState extends State<GroupsScreenCredit> {
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          "${AppLocalizations.of(context)!.group_created_in} ${DateFormat('dd/MM/yyyy').format(group.createdAt)}",
+                          "${'group_created_in'.tr} ${DateFormat('dd/MM/yyyy').format(group.createdAt)}",
                         ),
                       ),
                     ),
@@ -117,7 +115,7 @@ class _GroupsScreenCreditState extends State<GroupsScreenCredit> {
           height: MediaQuery.of(context).size.height * 0.2,
         ),
         Text(
-          AppLocalizations.of(context)!.no_groups,
+          'no_groups'.tr,
           style: const TextStyle(color: Colors.black, fontSize: 20),
           textAlign: TextAlign.center,
         ),
@@ -136,7 +134,7 @@ class _GroupsScreenCreditState extends State<GroupsScreenCredit> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18))),
               child: Text(
-                AppLocalizations.of(context)!.group_add_new.toUpperCase(),
+                'group_add_new'.tr.toUpperCase(),
                 style: const TextStyle(color: Colors.white),
               ),
             ),

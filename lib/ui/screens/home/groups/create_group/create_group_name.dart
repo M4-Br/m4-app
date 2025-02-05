@@ -1,5 +1,4 @@
 import 'package:app_flutter_miban4/data/api/groups/createGroup.dart';
-import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/create_group/create_group_params.dart';
@@ -7,7 +6,6 @@ import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreateGroupName extends StatefulWidget {
   const CreateGroupName({super.key});
@@ -30,7 +28,7 @@ class _CreateGroupNameState extends State<CreateGroupName> {
 
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.group_new,
+        title: 'group_new'.tr,
         backPage: () => Get.off(() => const GroupsScreen(),
             transition: Transition.leftToRight),
       ),
@@ -40,7 +38,7 @@ class _CreateGroupNameState extends State<CreateGroupName> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              AppLocalizations.of(context)!.group_data,
+             'group_data'.tr,
               style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -70,7 +68,7 @@ class _CreateGroupNameState extends State<CreateGroupName> {
                     borderSide: BorderSide(color: Colors.red),
                   ),
                   contentPadding: EdgeInsets.zero,
-                  labelText: AppLocalizations.of(context)!.group_new_name,
+                  labelText: 'group_new_name'.tr,
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -80,7 +78,7 @@ class _CreateGroupNameState extends State<CreateGroupName> {
                     padding: const EdgeInsets.only(top: 10),
                     alignment: Alignment.centerRight,
                     child: Text(
-                      '${20 - _groupName.text.length} ${AppLocalizations.of(context)!.available_char}',
+                      '${20 - _groupName.text.length} ${'available_char'.tr}',
                       style: const TextStyle(fontSize: 12),
                     ),
                   ),
@@ -110,7 +108,7 @@ class _CreateGroupNameState extends State<CreateGroupName> {
                     borderSide: BorderSide(color: Colors.red),
                   ),
                   contentPadding: EdgeInsets.zero,
-                  labelText: AppLocalizations.of(context)!.group_initial_date,
+                  labelText: 'group_initial_date'.tr,
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -128,7 +126,7 @@ class _CreateGroupNameState extends State<CreateGroupName> {
                 isExpanded: true,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.group_member,
+                  labelText: 'group_member'.tr,
                   // Add label text here
                   labelStyle:
                       const TextStyle(color: Colors.black, fontSize: 16),
@@ -153,8 +151,8 @@ class _CreateGroupNameState extends State<CreateGroupName> {
                 },
                 items: <String>[
                   "",
-                  AppLocalizations.of(context)!.yes,
-                  AppLocalizations.of(context)!.no
+                  'yes'.tr,
+                  'no'.tr
                 ].map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -172,14 +170,14 @@ class _CreateGroupNameState extends State<CreateGroupName> {
                       onPressed: () async {
                         _groupName.text.isNotEmpty &&
                                     _selectedValue ==
-                                        AppLocalizations.of(context)!.yes ||
+                                       'yes'.tr ||
                                 _groupName.text.isNotEmpty &&
                                     _selectedValue ==
-                                        AppLocalizations.of(context)!.no
+                                        'no'.tr
                             ? _verifyGroup(
                                 _groupName.text.toString(),
                                 _selectedValue ==
-                                        AppLocalizations.of(context)!.yes
+                                        'yes'.tr
                                     ? true
                                     : false)
                             : null;
@@ -189,14 +187,14 @@ class _CreateGroupNameState extends State<CreateGroupName> {
                               borderRadius: BorderRadius.circular(50)),
                           backgroundColor: _groupName.text.isNotEmpty &&
                                       _selectedValue ==
-                                          AppLocalizations.of(context)!.yes ||
+                                          'yes'.tr ||
                                   _groupName.text.isNotEmpty &&
                                       _selectedValue ==
-                                          AppLocalizations.of(context)!.no
+                                          'no'.tr
                               ? secondaryColor
                               : Colors.grey),
                       child: Text(
-                        AppLocalizations.of(context)!.proceed,
+                        'proceed'.tr,
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,

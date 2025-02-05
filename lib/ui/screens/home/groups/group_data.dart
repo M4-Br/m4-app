@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/screens/home/savings/savings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroupData extends StatefulWidget {
   final Map<String, dynamic>? group;
@@ -72,7 +71,7 @@ class _GroupDataState extends State<GroupData> {
                       ),
                       child: Center(
                         child: Text(
-                          AppLocalizations.of(context)!.group_information,
+                          'group_information'.tr,
                           style: TextStyle(
                               color: _isActive ? Colors.white : Colors.white54),
                         ),
@@ -101,7 +100,7 @@ class _GroupDataState extends State<GroupData> {
                       ),
                       child: Center(
                         child: Text(
-                          AppLocalizations.of(context)!.group_members,
+                          'group_members'.tr,
                           style: TextStyle(
                               color:
                               !_isActive ? Colors.white : Colors.white54),
@@ -147,8 +146,7 @@ class _GroupDataState extends State<GroupData> {
               ),
             ),
             child: Text(
-              AppLocalizations.of(context)!
-                  .group_my_contributions
+              'group_my_contributions'.tr
                   .toUpperCase(),
               style: const TextStyle(
                   color: Colors.white,
@@ -171,7 +169,7 @@ class _GroupDataState extends State<GroupData> {
         child: Column(
           children: [
             Text(
-              AppLocalizations.of(context)!.group_contribution,
+              'group_contribution'.tr,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Text.rich(
@@ -201,7 +199,7 @@ class _GroupDataState extends State<GroupData> {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '${AppLocalizations.of(context)!.group_att}  ',
+                    text: '${'group_att'.tr}  ',
                     style: const TextStyle(fontSize: 16),
                   ),
                   TextSpan(
@@ -227,7 +225,7 @@ class _GroupDataState extends State<GroupData> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Text(
-                      AppLocalizations.of(context)!.group_details,
+                      'group_details'.tr,
                       style:
                       const TextStyle(fontSize: 18, color: Colors.black87),
                     ),
@@ -253,15 +251,15 @@ class _GroupDataState extends State<GroupData> {
                   Text(
                     widget.group!['data'][0]['group_account']['status'] ==
                         'active'
-                        ? AppLocalizations.of(context)!.active
+                        ? 'active'.tr
                         : widget.group!['data'][0]['group_account']['status'] ==
                         'pendent_of_activation'
-                        ? AppLocalizations.of(context)!.pending
+                        ? 'pending'.tr
                         : widget.group!['data'][0]['group_account']
                     ['status'] ==
                         'mutual_available'
-                        ? AppLocalizations.of(context)!.active
-                        : AppLocalizations.of(context)!.inactive,
+                        ? 'active'.tr
+                        : 'inactive'.tr,
                     style: const TextStyle(fontSize: 16),
                   )
                 ],
@@ -273,17 +271,17 @@ class _GroupDataState extends State<GroupData> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.group_periodicity,
+                    'group_periodicity'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   Text(
                     widget.group!['data'][0]['group_account']['period'] ==
                         'monthly'
-                        ? AppLocalizations.of(context)!.group_monthly
+                        ? 'group_monthly'.tr
                         : widget.group!['data'][0]['group_account']['period'] ==
                         'weekly'
-                        ? AppLocalizations.of(context)!.group_weekly
-                        : AppLocalizations.of(context)!.group_bimonthly,
+                        ? 'group_weekly'.tr
+                        : 'group_bimonthly'.tr,
                     style: const TextStyle(fontSize: 16),
                   )
                 ],
@@ -295,16 +293,16 @@ class _GroupDataState extends State<GroupData> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.group_member_value,
+                    'group_member_value'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   const Spacer(),
                   Text(
                     "${widget.group!['data'][0]['group_account']['installment']
-                        .toString()} x ${AppLocalizations.of(context)!
-                        .off} ${currencyFormat.format(widget
-                        .group!['data'][0]['group_account']['amount_by_period'] /
-                        100)}",
+                        .toString()} x ${'off'.tr} ${currencyFormat.format(
+                        widget
+                            .group!['data'][0]['group_account']['amount_by_period'] /
+                            100)}",
                     style: const TextStyle(fontSize: 16),
                   ),
                 ],
@@ -316,7 +314,7 @@ class _GroupDataState extends State<GroupData> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.group_crated_for,
+                    'group_crated_for'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   Text(
@@ -338,7 +336,7 @@ class _GroupDataState extends State<GroupData> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.group_initial_date,
+                    'group_initial_date'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   Text(
@@ -356,7 +354,7 @@ class _GroupDataState extends State<GroupData> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.group_final_date,
+                  'group_final_date'.tr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(
@@ -381,7 +379,7 @@ class _GroupDataState extends State<GroupData> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Text(
-                      AppLocalizations.of(context)!.credit_details,
+                      'credit_details'.tr,
                       style:
                       const TextStyle(fontSize: 18, color: Colors.black87),
                     ),
@@ -401,7 +399,7 @@ class _GroupDataState extends State<GroupData> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.group_installments,
+                    'group_installments'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   Text(
@@ -432,7 +430,7 @@ class _GroupDataState extends State<GroupData> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.group_priority,
+                    'group_priority'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   Text(
@@ -451,23 +449,23 @@ class _GroupDataState extends State<GroupData> {
                         ? (widget
                         .group!['data'][0]['group_account']['mutual']['priority'] ==
                         'repairs'
-                        ? AppLocalizations.of(context)!.repairs
+                        ? 'repairs'.tr
                         : widget
                         .group!['data'][0]['group_account']['mutual']['priority'] ==
                         'revenue_generation'
-                        ? AppLocalizations.of(context)!.revenue_generation
+                        ? 'revenue_generation'.tr
                         : widget
                         .group!['data'][0]['group_account']['mutual']['priority'] ==
                         'health'
-                        ? AppLocalizations.of(context)!.health
+                        ? 'health'.tr
                         : widget
                         .group!['data'][0]['group_account']['mutual']['priority'] ==
                         'emergency_money'
-                        ? AppLocalizations.of(context)!.emergency_money
+                        ? 'emergency_money'.tr
                         : widget
                         .group!['data'][0]['group_account']['mutual']['priority'] ==
                         'purchases'
-                        ? AppLocalizations.of(context)!.purchases
+                        ? 'purchases'.tr
                         : widget
                         .group!['data'][0]['group_account']['mutual']['priority']
                         .toString())
@@ -483,7 +481,7 @@ class _GroupDataState extends State<GroupData> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.credit_fee_value,
+                    'credit_fee_value'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   Text(
@@ -514,7 +512,7 @@ class _GroupDataState extends State<GroupData> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.group_billing,
+                    'group_billing'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   Text(
@@ -533,8 +531,8 @@ class _GroupDataState extends State<GroupData> {
                         ? (widget
                         .group!['data'][0]['group_account']['mutual']['charge'] ==
                         true
-                        ? AppLocalizations.of(context)!.yes
-                        : AppLocalizations.of(context)!.no)
+                        ? 'yes'.tr
+                        : 'no'.tr)
                         : '',
                     style: const TextStyle(fontSize: 16),
                   )

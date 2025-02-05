@@ -3,7 +3,6 @@ import 'package:app_flutter_miban4/data/api/credit/get_credit_installment.dart';
 import 'package:app_flutter_miban4/data/api/groups/getContributionId.dart';
 import 'package:app_flutter_miban4/data/api/groups/payInstallment.dart';
 import 'package:app_flutter_miban4/data/model/groups/contributionID.dart';
-import 'package:app_flutter_miban4/data/model/groups/paymentInstallment.dart';
 import 'package:app_flutter_miban4/data/model/userData/balance.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
@@ -16,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Contribution extends StatefulWidget {
   final Map<String, dynamic>? group;
@@ -81,9 +79,7 @@ class _ContributionState extends State<Contribution> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!
-            .group_contribution_individual
-            .toUpperCase(),
+        title: 'group_contribution_individual'.tr.toUpperCase(),
         backPage: () => widget.type == 'notifications_pay'
             ? Get.off(() => const Notifications(),
                 transition: Transition.rightToLeft)
@@ -118,13 +114,13 @@ class _ContributionState extends State<Contribution> {
                     children: [
                       widget.pay == 0
                           ? Text(
-                              AppLocalizations.of(context)!.group_will_pay,
+                              'group_will_pay'.tr,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                               textAlign: TextAlign.center,
                             )
                           : Text(
-                              AppLocalizations.of(context)!.group_you_paid,
+                              'group_you_paid'.tr,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                               textAlign: TextAlign.center,
@@ -139,9 +135,7 @@ class _ContributionState extends State<Contribution> {
                       ),
                       Text.rich(
                         TextSpan(children: [
-                          TextSpan(
-                              text:
-                                  '${AppLocalizations.of(context)!.savings_balance}: '),
+                          TextSpan(text: '${'savings_balance'.tr}: '),
                           TextSpan(
                               text:
                                   'R\$ ${currencyFormat.format(snapshot.data!.groupAccount.amountByPeriod / 100).toString()}')
@@ -156,7 +150,7 @@ class _ContributionState extends State<Contribution> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!.group_day,
+                              'group_day'.tr,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                             ),
@@ -178,12 +172,12 @@ class _ContributionState extends State<Contribution> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!.group_installment,
+                              'group_installment'.tr,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                             ),
                             Text(
-                              '${snapshot.data!.installment} ${AppLocalizations.of(context)!.off} ${snapshot.data!.groupAccount.installment}',
+                              '${snapshot.data!.installment} ${'off'.tr} ${snapshot.data!.groupAccount.installment}',
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                             ),
@@ -196,7 +190,7 @@ class _ContributionState extends State<Contribution> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!.group_group,
+                              'group_group'.tr,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                             ),
@@ -232,7 +226,7 @@ class _ContributionState extends State<Contribution> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!.group_name,
+                              'group_name'.tr,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                             ),
@@ -250,7 +244,7 @@ class _ContributionState extends State<Contribution> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!.group_account,
+                              'group_account'.tr,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                             ),
@@ -269,7 +263,7 @@ class _ContributionState extends State<Contribution> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!.group_fees,
+                              'group_fees'.tr,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                             ),
@@ -296,8 +290,7 @@ class _ContributionState extends State<Contribution> {
                                         return AlertDialog.adaptive(
                                           backgroundColor: Colors.white,
                                           title: Text(
-                                            AppLocalizations.of(context)!
-                                                .password,
+                                            'password'.tr,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
@@ -392,9 +385,8 @@ class _ContributionState extends State<Contribution> {
                                                               backgroundColor:
                                                                   Colors.red),
                                                           child: Text(
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .cancel
+                                                            'cancel'
+                                                                .tr
                                                                 .toUpperCase(),
                                                             style: const TextStyle(
                                                                 color: Colors
@@ -466,8 +458,8 @@ class _ContributionState extends State<Contribution> {
                                                                             setState(() {
                                                                               _isLoading(false);
                                                                             });
-                                                                            Get.snackbar(AppLocalizations.of(context)!.dialog_success,
-                                                                                AppLocalizations.of(context)!.dialog_payment,
+                                                                            Get.snackbar('dialog_success'.tr,
+                                                                                'dialog_payment'.tr,
                                                                                 snackPosition: SnackPosition.BOTTOM,
                                                                                 duration: const Duration(seconds: 5),
                                                                                 icon: SvgPicture.asset('assets/images/miban4_colored_logo.svg'),
@@ -488,10 +480,10 @@ class _ContributionState extends State<Contribution> {
                                                                         Get.back();
                                                                         Get.back();
                                                                         Get.defaultDialog(
-                                                                            title: AppLocalizations.of(context)!.dialog_error,
+                                                                            title: 'dialog_error'.tr,
                                                                             content: Column(
                                                                               children: [
-                                                                                Text(AppLocalizations.of(context)!.balance_insufficient),
+                                                                                Text('balance_insufficient'.tr),
                                                                                 Padding(
                                                                                   padding: const EdgeInsets.all(8.0),
                                                                                   child: ElevatedButton(
@@ -513,10 +505,10 @@ class _ContributionState extends State<Contribution> {
                                                                             false);
                                                                       });
                                                                       Get.snackbar(
-                                                                          AppLocalizations.of(context)!
-                                                                              .dialog_error,
-                                                                          AppLocalizations.of(context)!
-                                                                              .dialog_password_incorrect,
+                                                                          'dialog_error'
+                                                                              .tr,
+                                                                          'dialog_password_incorrect'
+                                                                              .tr,
                                                                           snackPosition: SnackPosition
                                                                               .BOTTOM,
                                                                           duration: const Duration(
@@ -538,9 +530,8 @@ class _ContributionState extends State<Contribution> {
                                                                       backgroundColor:
                                                                           secondaryColor),
                                                                   child: Text(
-                                                                    AppLocalizations.of(
-                                                                            context)!
-                                                                        .group_pay
+                                                                    'group_pay'
+                                                                        .tr
                                                                         .toUpperCase(),
                                                                     style: const TextStyle(
                                                                         color: Colors
@@ -572,9 +563,7 @@ class _ContributionState extends State<Contribution> {
                                     ),
                                     backgroundColor: secondaryColor),
                                 child: Text(
-                                  AppLocalizations.of(context)!
-                                      .group_pay
-                                      .toUpperCase(),
+                                  'group_pay'.tr.toUpperCase(),
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,

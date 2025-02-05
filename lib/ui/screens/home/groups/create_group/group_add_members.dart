@@ -9,9 +9,7 @@ import 'package:app_flutter_miban4/ui/screens/home/groups/create_group/create_gr
 import 'package:app_flutter_miban4/ui/screens/home/groups/create_group/group_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mask_shifter_v2/mask_shifter.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class AddGroupMembers extends StatefulWidget {
   final String membership;
@@ -71,7 +69,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.group_add_members,
+        title: 'group_add_members'.tr,
         backPage: () => Get.off(
           () => GroupFees(
             membership: widget.membership,
@@ -85,7 +83,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              AppLocalizations.of(context)!.group_search_details,
+             'group_search_details'.tr,
               style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -105,7 +103,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
                           maskTWO: "XX.XXX.XXX/XXXX-XX")
                     ],
                     decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.group_search,
+                      hintText: 'group_search'.tr,
                       hintStyle: const TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -141,7 +139,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
                             title: Text.rich(TextSpan(children: [
                               TextSpan(
                                   text:
-                                      "${AppLocalizations.of(context)!.name}: ",
+                                      "${'name'.tr}: ",
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold)),
@@ -152,7 +150,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
                             subtitle: Text.rich(TextSpan(children: [
                               TextSpan(
                                   text:
-                                      "${AppLocalizations.of(context)!.document}: ",
+                                      "${'document'.tr}: ",
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold)),
@@ -181,14 +179,14 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.group_invited,
+                  'group_invited'.tr,
                   style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 ),
                 Text(
-                    '$memberCounter ${AppLocalizations.of(context)!.off} ${widget.members}'),
+                    '$memberCounter ${'off'.tr} ${widget.members}'),
               ],
             ),
             Expanded(
@@ -244,7 +242,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
                         borderRadius: BorderRadius.circular(50),
                       )),
                   child: Text(
-                    AppLocalizations.of(context)!.proceed.toUpperCase(),
+                    'proceed'.tr.toUpperCase(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -314,7 +312,6 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
       String id = await SharedPreferencesFunctions.getString(key: 'groupId');
       String code = await SharedPreferencesFunctions.getString(key: 'codeLang');
 
-      // Verificar se o membership é 'Yes' ou 'Sim' antes de criar a nova lista de IDs
       if (widget.membership == 'Yes' || widget.membership == 'Sim') {
         List<String> idsToSend = [];
         for (int i = 1; i < users.length; i++) {
@@ -331,9 +328,9 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
               });
         } else {
           Get.defaultDialog(
-              title: AppLocalizations.of(context)!.message,
+              title: 'message'.tr,
               content: Text(
-                AppLocalizations.of(context)!.invite_content,
+                'invite_content'.tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),

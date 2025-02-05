@@ -5,15 +5,11 @@ import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_my_transactions.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:share_plus/share_plus.dart';
+
 
 class GroupVoucher extends StatefulWidget {
   final Map<String, dynamic>? group;
@@ -62,7 +58,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context)!.transfer_receipt,
+          'transfer_receipt'.tr,
           style: const TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
         ),
@@ -94,7 +90,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Text(
-                    AppLocalizations.of(context)!.voucher_group_payment,
+                    'voucher_group_payment'.tr,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 22),
@@ -114,7 +110,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                       style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.success,
+                      'success'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     )
                   ],
@@ -125,8 +121,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!
-                            .voucher_group_code_payment,
+                        'voucher_group_code_payment'.tr,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16),
                       ),
@@ -140,8 +135,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                        AppLocalizations.of(context)!
-                            .voucher_group_value_payment,
+                        'voucher_group_value_payment'.tr,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16)),
                     Text(currencyFormat.format(int.parse(widget.amount) / 100),
@@ -158,7 +152,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    AppLocalizations.of(context)!.voucher_origin.toUpperCase(),
+                    'voucher_origin'.tr.toUpperCase(),
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 18),
                   ),
@@ -167,7 +161,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.account,
+                      'account'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -182,7 +176,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.transfer_name,
+                        'transfer_name'.tr,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16),
                       ),
@@ -198,7 +192,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.transfer_bank,
+                      'transfer_bank'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     const Text(
@@ -216,8 +210,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    AppLocalizations.of(context)!
-                        .voucher_destination
+                    'voucher_destination'.tr
                         .toUpperCase(),
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 18),
@@ -227,7 +220,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.voucher_destination,
+                      'voucher_destination'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -242,7 +235,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.transfer_name,
+                        'transfer_name'.tr,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16),
                       ),
@@ -258,7 +251,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.account,
+                      'account'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -273,7 +266,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.transfer_bank,
+                        'transfer_bank'.tr,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16),
                       ),
