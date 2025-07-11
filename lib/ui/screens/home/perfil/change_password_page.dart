@@ -1,7 +1,6 @@
 import 'package:app_flutter_miban4/data/api/password/change_password.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class ChangePasswordPage extends StatefulWidget {
@@ -31,7 +30,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
         title: Text(
-          AppLocalizations.of(context)!.change_app_password.toUpperCase(),
+          'change_app_password'.tr.toUpperCase(),
           style: const TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -50,13 +49,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 cursorColor: secondaryColor,
                 validator: (value) {
                   if (value!.length < 6) {
-                    return AppLocalizations.of(context)!
-                        .change_password_validate;
+                    return 'change_password_validate'.tr;
                   }
                 },
                 decoration: InputDecoration(
                   label: Text(
-                      AppLocalizations.of(context)!.change_password_password),
+                      'change_password_password'.tr),
                   labelStyle:
                       const TextStyle(color: Colors.black, fontSize: 15),
                   floatingLabelStyle:
@@ -87,13 +85,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   cursorColor: secondaryColor,
                   validator: (value) {
                     if (value!.length < 6) {
-                      return AppLocalizations.of(context)!
-                          .change_password_validate;
+                      return 'change_password_validate'.tr;
                     }
                   },
                   decoration: InputDecoration(
                     label:
-                        Text(AppLocalizations.of(context)!.change_password_new),
+                        Text('change_password_new'.tr),
                     labelStyle:
                         const TextStyle(color: Colors.black, fontSize: 15),
                     floatingLabelStyle:
@@ -124,16 +121,13 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 cursorColor: secondaryColor,
                 validator: (value) {
                   if (value!.length < 6) {
-                    return AppLocalizations.of(context)!
-                        .change_password_validate;
+                    return 'change_password_validate'.tr;
                   } else if (value != _newPasswordController.text) {
-                    return AppLocalizations.of(context)!
-                        .change_password_not_equal;
+                    return 'change_password_not_equal'.tr;
                   }
                 },
                 decoration: InputDecoration(
-                  label: Text(AppLocalizations.of(context)!
-                      .change_password_new_confirm),
+                  label: Text('change_password_new_confirm'.tr),
                   labelStyle:
                       const TextStyle(color: Colors.black, fontSize: 15),
                   floatingLabelStyle:
@@ -175,7 +169,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     ),
                   ),
                   child: Text(
-                    AppLocalizations.of(context)!.confirm.toUpperCase(),
+                    'confirm'.tr.toUpperCase(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -201,8 +195,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         _isLoading(true);
         await changePassword(password, confirm).then((value) {
           if (value['success'] == true) {
-            Get.snackbar(AppLocalizations.of(context)!.message,
-                AppLocalizations.of(context)!.change_password_changed);
+            Get.snackbar('message'.tr,
+                'change_password_changed'.tr);
 
             Get.back();
           }

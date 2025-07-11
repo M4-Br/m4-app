@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/controllers/account/financial_data_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -140,7 +139,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.account_data,
+        title: 'account_data'.tr,
         backPage: () => Get.back(),
       ),
       body: FutureBuilder<Map<String, dynamic>>(
@@ -204,8 +203,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         child: Text(
-                          AppLocalizations.of(context)!
-                              .financial_info
+                          'financial_info'.tr
                               .toUpperCase(),
                           style: const TextStyle(
                               fontSize: 20, color: Colors.black),
@@ -216,8 +214,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .financial_inf_att
+                            'financial_inf_att'.tr
                                 .toUpperCase(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.black),
@@ -236,8 +233,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .financial_house
+                            'financial_house'.tr
                                 .toUpperCase(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.black),
@@ -262,8 +258,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .financial_transport
+                            'financial_transport'.tr
                                 .toUpperCase(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.black),
@@ -288,8 +283,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .financial_income
+                            'financial_income'.tr
                                 .toUpperCase(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.black),
@@ -322,8 +316,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .financial_family
+                            'financial_family'.tr
                                 .toUpperCase(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.black),
@@ -370,7 +363,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Text(
-                          AppLocalizations.of(context)!.financial_expenses,
+                          'financial_expenses'.tr,
                           style: const TextStyle(
                               color: Colors.black, fontSize: 20),
                           textAlign: TextAlign.center,
@@ -380,8 +373,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .financial_house
+                            'financial_house'.tr
                                 .toUpperCase(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.black),
@@ -414,8 +406,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .financial_transport
+                            'financial_transport'.tr
                                 .toUpperCase(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.black),
@@ -448,8 +439,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .financial_utilities
+                            'financial_utilities'.tr
                                 .toUpperCase(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.black),
@@ -482,8 +472,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .financial_another_expenses
+                            'financial_another_expenses'.tr
                                 .toUpperCase(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.black),
@@ -531,7 +520,7 @@ class _FinancialDataPageState extends State<FinancialDataPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50))),
                     child: Text(
-                      AppLocalizations.of(context)!.confirm.toUpperCase(),
+                      'confirm'.tr.toUpperCase(),
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,

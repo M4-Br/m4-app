@@ -1,7 +1,7 @@
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/screens/home/perfil/profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 
 import 'home/home_page.dart';
 import 'statement/statement_page.dart';
@@ -60,15 +60,15 @@ class _HomeViewPageState extends State<HomeViewPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: getIcon(0),
-            label: AppLocalizations.of(context)!.home_icon,
+            label: 'home_icon'.tr,
           ),
           BottomNavigationBarItem(
             icon: getIcon(1),
-            label: AppLocalizations.of(context)!.statement_icon,
+            label: 'statement_icon'.tr,
           ),
           BottomNavigationBarItem(
             icon: getIcon(2),
-            label: AppLocalizations.of(context)!.perfil_icon,
+            label: 'perfil_icon'.tr,
           ),
         ],
         currentIndex: _selectedIndex,

@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_success_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -48,7 +47,7 @@ class _QRCodeConfirmPaymentState extends State<QRCodeConfirmPayment> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.transfer,
+        title: 'transfer'.tr,
         backPage: () =>
             Get.off(() => HomeViewPage(), transition: Transition.leftToRight),
       ),

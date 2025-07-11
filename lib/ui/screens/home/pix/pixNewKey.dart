@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixKeyManager.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixMyKeys.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class PixNewKey extends StatefulWidget {
@@ -36,7 +35,7 @@ class _PixNewKeyState extends State<PixNewKey> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-          title: AppLocalizations.of(context)!.pix_registerKey,
+          title: 'pix_registerKey'.tr,
           backPage: () => Get.off(() => const PixMyKeys(),
               transition: Transition.leftToRight)),
       body: Padding(
@@ -56,7 +55,7 @@ class _PixNewKeyState extends State<PixNewKey> {
                   borderSide: BorderSide(color: Colors.black),
                 ),
                 contentPadding: EdgeInsets.zero,
-                labelText: AppLocalizations.of(context)!.pix_newKey,
+                labelText: 'pix_newKey'.tr,
                 labelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -94,13 +93,13 @@ class _PixNewKeyState extends State<PixNewKey> {
                     });
                     return AlertDialog.adaptive(
                       title:
-                      Text(AppLocalizations.of(context)!.pix_waitNewKey),
+                      Text('pix_waitNewKey'.tr),
                       content: const CircularProgressIndicator(),
                     );
                   });
             },
             child: Text(
-              AppLocalizations.of(context)!.pix_createNewKey,
+              'pix_createNewKey'.tr,
               style: const TextStyle(color: Colors.white),
             ),
           ),

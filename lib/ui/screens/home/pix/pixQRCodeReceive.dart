@@ -4,13 +4,11 @@ import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+
 import 'package:app_flutter_miban4/data/model/pix/pixReceiveQRCode.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:share/share.dart';
 
 class PixQRCodeReceive extends StatefulWidget {
   final CreatePIXQrCode? qrCode;
@@ -30,61 +28,66 @@ class _PixQRCodeReceiveState extends State<PixQRCodeReceive> {
     ));
   }
 
-  Future<void> _shareImage() async {
-    try {
-      // Generate QR Code image data
-      final imageByteData = await QrPainter(
-        data: widget.qrCode!.emv!,
-        version: QrVersions.auto,
-      ).toImageData(150.0);
-      final imageBytes = imageByteData!.buffer.asUint8List();
+  // Future<void> _shareImage() async {
+  //   try {
+  //     // Generate QR Code image data
+  //     final imageByteData = await QrPainter(
+  //       data: widget.qrCode!.emv!,
+  //       version: QrVersions.auto,
+  //     ).toImageData(150.0);
+  //     final imageBytes = imageByteData!.buffer.asUint8List();
 
-      // Share image directly without saving
-      final encodedBytes = base64Encode(imageBytes);
-      Share.share(
-        'data:image/png;base64,$encodedBytes',
-        subject: 'Compartilhar imagem do QR Code',
-      );
-    } catch (e) {
-      print('Erro ao compartilhar imagem: $e');
-    }
-  }
+  //     // Share image directly without saving
+  //     final encodedBytes = base64Encode(imageBytes);
+  //     Share.share(
+  //       'data:image/png;base64,$encodedBytes',
+  //       subject: 'Compartilhar imagem do QR Code',
+  //     );
+  //   } catch (e) {
+  //     print('Erro ao compartilhar imagem: $e');
+  //   }
+  // }
 
-  Future<void> _saveImageToGallery() async {
-    try {
-      final imageByteData = await QrPainter(
-        data: widget.qrCode!.emv!,
-        version: QrVersions.auto,
-      ).toImageData(150.0);
-      final imageBytes = imageByteData!.buffer.asUint8List();
+  // Future<void> _saveImageToGallery() async {
+  //   try {
+  //     final imageByteData = await QrPainter(
+  //       data: widget.qrCode!.emv!,
+  //       version: QrVersions.auto,
+  //     ).toImageData(150.0);
+  //     final imageBytes = imageByteData!.buffer.asUint8List();
 
-      final result = await ImageGallerySaver.saveImage(imageBytes);
-      if (result != null && result.isNotEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Imagem do QR Code salva na galeria'),
-        ));
-      } else {
-        // Handle saving failure gracefully
-        print('Erro ao salvar imagem na galeria');
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Erro ao salvar imagem na galeria'),
-        ));
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Erro ao salvar imagem na galeria'),
-      ));
-    }
-  }
+  //     final result = await ImageGallerySaver.saveImage(imageBytes);
+  //     if (result != null && result.isNotEmpty) {
+  //       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //         content: Text('Imagem do QR Code salva na galeria'),
+  //       ));
+  //     } else {
+  //       // Handle saving failure gracefully
+  //       print('Erro ao salvar imagem na galeria');
+  //       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //         content: Text('Erro ao salvar imagem na galeria'),
+  //       ));
+  //     }
+  //   } catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //       content: Text('Erro ao salvar imagem na galeria'),
+  //     ));
+  //   }
+  // }
+
+  //TODO:SOLVE
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_receiver,
-        backPage: () =>
-            Get.off(() => PixReceive(type: widget.type,), transition: Transition.leftToRight),
+        title: 'pix_receiver'.tr,
+        backPage: () => Get.off(
+            () => PixReceive(
+                  type: widget.type,
+                ),
+            transition: Transition.leftToRight),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,13 +112,13 @@ class _PixQRCodeReceiveState extends State<PixQRCodeReceive> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    AppLocalizations.of(context)!.pix_codeGenerated,
+                    'pix_codeGenerated'.tr,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                 ),
                 Text(
-                  AppLocalizations.of(context)!.pix_dataVisible,
+                  'pix_dataVisible'.tr,
                   style: const TextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
@@ -135,7 +138,7 @@ class _PixQRCodeReceiveState extends State<PixQRCodeReceive> {
                             ),
                           ),
                           child: Text(
-                            AppLocalizations.of(context)!.pix_copyLink,
+                            'pix_copyLink'.tr,
                             style: const TextStyle(color: Colors.black),
                           ),
                         ),
@@ -145,7 +148,7 @@ class _PixQRCodeReceiveState extends State<PixQRCodeReceive> {
                       ),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: _shareImage,
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             backgroundColor: grey120,
                             shape: RoundedRectangleBorder(
@@ -153,7 +156,7 @@ class _PixQRCodeReceiveState extends State<PixQRCodeReceive> {
                             ),
                           ),
                           child: Text(
-                            AppLocalizations.of(context)!.pix_shareCode,
+                            'pix_shareCode'.tr,
                             style: const TextStyle(color: Colors.black),
                           ),
                         ),
@@ -193,7 +196,7 @@ class _PixQRCodeReceiveState extends State<PixQRCodeReceive> {
                           ),
                         ),
                         child: Text(
-                          AppLocalizations.of(context)!.pix_receiveAnother,
+                          'pix_receiveAnother'.tr,
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -201,9 +204,9 @@ class _PixQRCodeReceiveState extends State<PixQRCodeReceive> {
                     SizedBox(
                       width: double.infinity,
                       child: TextButton(
-                          onPressed: _saveImageToGallery,
+                          onPressed: () {},
                           child: Text(
-                            AppLocalizations.of(context)!.pix_saveDevice,
+                            'pix_saveDevice'.tr,
                             style: const TextStyle(color: Colors.black),
                           )),
                     ),

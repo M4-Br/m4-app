@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_bank_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:mask_shifter_v2/mask_shifter.dart';
 
@@ -30,7 +29,7 @@ class _TransferNewContactPageState extends State<TransferNewContactPage> {
 
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.transfer,
+        title: 'transfer'.tr,
         backPage: () => Get.off(() => const TransferContactPage(),
             transition: Transition.leftToRight),
       ),
@@ -42,7 +41,7 @@ class _TransferNewContactPageState extends State<TransferNewContactPage> {
             Padding(
               padding: const EdgeInsets.all(32),
               child: Text(
-                AppLocalizations.of(context)!.transfer_to,
+                'transfer_to'.tr,
                 style: const TextStyle(
                   fontSize: 24,
                 ),
@@ -53,7 +52,7 @@ class _TransferNewContactPageState extends State<TransferNewContactPage> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 24),
                 child: Text(
-                  AppLocalizations.of(context)!.transfer_cpf,
+                  'transfer_cpf'.tr,
                   textAlign: TextAlign.start,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
@@ -70,7 +69,7 @@ class _TransferNewContactPageState extends State<TransferNewContactPage> {
                       maskONE: "XXX.XXX.XXX-XX", maskTWO: "XX.XXX.XXX/XXXX-XX")
                 ],
                 decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.transfer_document,
+                  labelText: 'transfer_document'.tr,
                   focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xFF002A4D),
@@ -161,7 +160,7 @@ class _TransferNewContactPageState extends State<TransferNewContactPage> {
                     setState(() {
                       _isLoading = false;
                     });
-                    Get.snackbar(AppLocalizations.of(context)!.message,
+                    Get.snackbar('message'.tr,
                         'Documento Inválido',
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: Colors.white);
@@ -176,7 +175,7 @@ class _TransferNewContactPageState extends State<TransferNewContactPage> {
                   minimumSize: const Size(double.infinity, 50),
                 ),
                 child: Text(
-                  AppLocalizations.of(context)!.next,
+                  'next'.tr,
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),

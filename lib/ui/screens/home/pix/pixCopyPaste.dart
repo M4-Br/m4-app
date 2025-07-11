@@ -8,7 +8,6 @@ import 'package:app_flutter_miban4/ui/screens/home/transfer/qrcode_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PixCopyPaste extends StatefulWidget {
   late Balance? balance;
@@ -35,7 +34,7 @@ class _PixCopyPasteState extends State<PixCopyPaste> {
         NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_copyAndPaste,
+        title: 'pix_copyAndPaste'.tr,
         backPage: () =>
             Get.off(() => PixHome(), transition: Transition.leftToRight),
         rightIcon: IconButton(
@@ -52,13 +51,13 @@ class _PixCopyPasteState extends State<PixCopyPaste> {
         child: Column(
           children: [
             Text(
-              AppLocalizations.of(context)!.pix_pasteCode,
+              'pix_pasteCode'.tr,
               style: const TextStyle(color: Colors.black, fontSize: 16),
             ),
             TextField(
               controller: _controller,
               decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.pix_code,
+                labelText: 'pix_code'.tr,
                 labelStyle: const TextStyle(color: Colors.grey),
                 border: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey),
@@ -71,7 +70,7 @@ class _PixCopyPasteState extends State<PixCopyPaste> {
             ),
             const Spacer(),
             Text(
-              '${AppLocalizations.of(context)!.balance_available} R\$ ${currencyFormat.format((int.parse(widget.balance!.balanceCents!) / 100))}',
+              '${'balance_available'.tr} R\$ ${currencyFormat.format((int.parse(widget.balance!.balanceCents!) / 100))}',
               style: const TextStyle(color: Colors.black, fontSize: 16),
               textAlign: TextAlign.center,
             ),
@@ -92,7 +91,7 @@ class _PixCopyPasteState extends State<PixCopyPaste> {
                       ),
                     ),
                     child: Text(
-                      AppLocalizations.of(context)!.cancel.toUpperCase(),
+                      'cancel'.tr.toUpperCase(),
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
@@ -116,7 +115,7 @@ class _PixCopyPasteState extends State<PixCopyPaste> {
                               ),
                             ),
                             child: Text(
-                              AppLocalizations.of(context)!.proceed,
+                              'proceed'.tr,
                               style: TextStyle(
                                   color: _controller.text.length >= 10
                                       ? Colors.white

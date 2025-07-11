@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransferValuePage extends StatefulWidget {
   final Balance? balance;
@@ -67,7 +66,7 @@ class _TransferValuePageState extends State<TransferValuePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.transfer,
+        title: 'transfer'.tr,
         backPage: () => Get.off(
             () => widget.from == 0
                 ? const TransferContactPage()
@@ -88,7 +87,7 @@ class _TransferValuePageState extends State<TransferValuePage> {
               height: MediaQuery.of(context).size.height / 4,
             ),
             Text(
-              AppLocalizations.of(context)!.transfer_value,
+              'transfer_value'.tr,
               style: const TextStyle(fontSize: 20),
               textAlign: TextAlign.center,
             ),
@@ -131,9 +130,9 @@ class _TransferValuePageState extends State<TransferValuePage> {
               ),
             ),
             Text(
-                '${AppLocalizations.of(context)!.transfer_balance} R\$ ${currencyFormat.format(double.parse(widget.balance!.balanceCents) / 100)}'),
+                '${'transfer_balance'.tr} R\$ ${currencyFormat.format(double.parse(widget.balance!.balanceCents) / 100)}'),
             const Spacer(),
-            Text('${AppLocalizations.of(context)!.transfer_minimum} R\$ 10,00'),
+            Text('${'transfer_minimum'.tr} R\$ 10,00'),
             Padding(
               padding: const EdgeInsets.all(16),
               child: ElevatedButton(
@@ -173,7 +172,7 @@ class _TransferValuePageState extends State<TransferValuePage> {
                   minimumSize: const Size(double.infinity, 50),
                 ),
                 child: Text(
-                  AppLocalizations.of(context)!.next,
+                  'next'.tr,
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),

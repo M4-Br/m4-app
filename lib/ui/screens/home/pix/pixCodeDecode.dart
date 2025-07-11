@@ -9,7 +9,6 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixTransactionSuccess.dar
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PixCodeDecode extends StatefulWidget {
   late Balance? balance;
@@ -67,8 +66,8 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                 child: Text(
                   //What will show
                   widget.page == 1
-                      ? AppLocalizations.of(context)!.pix_valueTo
-                      : AppLocalizations.of(context)!.pix_youReceived,
+                      ? 'pix_valueTo'.tr
+                      : 'pix_youReceived'.tr,
                   style: const TextStyle(
                       fontSize: 20,
                       color: Colors.black,
@@ -120,7 +119,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
               Row(
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.pix_day,
+                    'pix_day'.tr,
                     style: const TextStyle(fontSize: 16, color: Colors.black),
                   ),
                   const Spacer(),
@@ -158,7 +157,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.pix_to,
+                      'pix_to'.tr,
                       style: const TextStyle(
                           fontSize: 16,
                           overflow: TextOverflow.ellipsis,
@@ -204,7 +203,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.transfer_institution,
+                      'transfer_institution'.tr,
                       style: const TextStyle(fontSize: 16, color: Colors.black),
                     ),
                     Text(
@@ -220,7 +219,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.pix_city,
+                      'pix_city'.tr,
                       style: const TextStyle(fontSize: 16, color: Colors.black),
                     ),
                     Text(
@@ -243,7 +242,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.transfer_debtor,
+                      'transfer_debtor'.tr,
                       style: const TextStyle(fontSize: 16, color: Colors.black),
                     ),
                     Text(
@@ -282,7 +281,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.pix_due,
+                      'pix_due'.tr,
                       style: const TextStyle(fontSize: 16, color: Colors.black),
                     ),
                     Text(
@@ -300,7 +299,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.pix_originalAmount,
+                      'pix_originalAmount'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
@@ -319,11 +318,11 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                 child: int.parse(widget.balance!.balanceCents) <
                         int.parse(widget.qrCode!.finalAmount)
                     ? Text(
-                        "${AppLocalizations.of(context)!.balance_insufficient} R\$ ${NumberFormat.currency(locale: 'pt_BR', symbol: '').format((int.parse(widget.balance!.balanceCents) / 100))}",
+                        "${'balance_insufficient'.tr} R\$ ${NumberFormat.currency(locale: 'pt_BR', symbol: '').format((int.parse(widget.balance!.balanceCents) / 100))}",
                         style: const TextStyle(color: Colors.red, fontSize: 16),
                       )
                     : Text(
-                        "${AppLocalizations.of(context)!.balance_available} R\$ ${NumberFormat.currency(locale: 'pt_BR', symbol: '').format((int.parse(widget.balance!.balanceCents) / 100))}",
+                        "${'balance_available'.tr} R\$ ${NumberFormat.currency(locale: 'pt_BR', symbol: '').format((int.parse(widget.balance!.balanceCents) / 100))}",
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16),
                       ),
@@ -349,7 +348,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                           alignment: Alignment.center,
                         ),
                         child: Text(
-                          AppLocalizations.of(context)!.cancel.toUpperCase(),
+                          'cancel'.tr.toUpperCase(),
                           style: const TextStyle(
                               color: Colors.black, fontSize: 16),
                         ),
@@ -404,7 +403,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                           alignment: Alignment.center,
                         ),
                         child: Text(
-                          AppLocalizations.of(context)!.confirm.toUpperCase(),
+                          'confirm'.tr.toUpperCase(),
                           style: const TextStyle(
                               color: Colors.white, fontSize: 16),
                         ),
@@ -467,7 +466,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           title: Text(
-            AppLocalizations.of(context)!.wait,
+            'wait'.tr,
             textAlign: TextAlign.center,
             style: const TextStyle(color: Colors.black, fontSize: 16),
           ),

@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/ui/screens/login/password_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreatePasswordController extends GetxController {
   var isLoading = false.obs;
@@ -36,7 +35,7 @@ class CreatePasswordController extends GetxController {
       final Map<String, dynamic> response = await registerPassword(password, newPassword);
 
       if (response['id'].toString().isNotEmpty) {
-        Get.snackbar(AppLocalizations.of(context)!.password_success, AppLocalizations.of(context)!.password_content,
+        Get.snackbar('password_success'.tr, 'password_content'.tr,
             snackPosition: SnackPosition.BOTTOM,
             duration: const Duration(seconds: 5),
             backgroundColor: Colors.white,

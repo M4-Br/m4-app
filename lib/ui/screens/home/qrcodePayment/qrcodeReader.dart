@@ -9,7 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QRCodeReaderScreen extends StatefulWidget {
   late InternQRCode? qrCode;
@@ -46,7 +45,7 @@ class _QRCodeReaderScreenState extends State<QRCodeReaderScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.transfer,
+        title: 'transfer'.tr,
         backPage: () =>
             Get.off(() => HomeViewPage(), transition: Transition.leftToRight),
       ),

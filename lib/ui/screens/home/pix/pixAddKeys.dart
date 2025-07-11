@@ -10,7 +10,6 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixKeyManager.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixMyKeys.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixNewKey.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class PixAddKeys extends StatefulWidget {
@@ -45,14 +44,14 @@ class _PixAddKeysState extends State<PixAddKeys> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    dropdownValue = AppLocalizations.of(context)!.pix_choose_new;
+    dropdownValue = 'pix_choose_new'.tr;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_registerNewKey,
+        title: 'pix_registerNewKey'.tr,
         backPage: () => Get.off(() => const PixKeyManager(), transition: Transition.leftToRight),
       ),
       body: Obx(() {
@@ -73,7 +72,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: Text(
-                        AppLocalizations.of(context)!.pix_registerKey_inform,
+                        'pix_registerKey_inform'.tr,
                         style: const TextStyle(fontSize: 16),
                         textAlign: TextAlign.center,
                       ),
@@ -90,17 +89,17 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                   bottom: BorderSide(color: Colors.black54))),
                         ),
                         onChanged: (String? newValue) {
-                          if (newValue != null && newValue != AppLocalizations.of(context)!.pix_choose_new) {
+                          if (newValue != null && newValue != 'pix_choose_new'.tr) {
                             setState(() {
                               dropdownValue = newValue;
                             });
                           }
                         },
                         items: <String>[
-                          AppLocalizations.of(context)!.pix_choose_new,
-                          AppLocalizations.of(context)!.pix_randomKeyRegister,
+                          'pix_choose_new'.tr,
+                          'pix_randomKeyRegister'.tr,
                           'CPF / CNPJ',
-                          AppLocalizations.of(context)!.pix_phone,
+                          'pix_phone'.tr,
                           'Email',
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
@@ -155,7 +154,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                           ),
                         ),
                       ),
-                    if (dropdownValue == AppLocalizations.of(context)!.pix_phone)
+                    if (dropdownValue == 'pix_phone'.tr)
                       InkWell(
                         onTap: () {
                           Get.to(
@@ -183,8 +182,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16),
                                   child: Text(
-                                    AppLocalizations.of(context)!
-                                        .pix_anotherNumber,
+                                    'pix_anotherNumber'.tr,
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
@@ -226,8 +224,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 16),
                                       child: Text(
-                                        AppLocalizations.of(context)!
-                                            .pix_anotherEmail,
+                                        'pix_anotherEmail'.tr,
                                         style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
@@ -287,7 +284,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                           ),
                         ],
                       ),
-                    if (dropdownValue == AppLocalizations.of(context)!.pix_randomKeyRegister)
+                    if (dropdownValue == 'pix_randomKeyRegister'.tr)
                       InkWell(
                         onTap: () {
                           setState(() {
@@ -318,8 +315,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16),
                                   child: Text(
-                                    AppLocalizations.of(context)!
-                                        .pix_randomKeyRegister,
+                                    'pix_randomKeyRegister'.tr,
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
@@ -345,8 +341,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20))),
                               child: Text(
-                                AppLocalizations.of(context)!
-                                    .cancel
+                                'cancel'.tr
                                     .toUpperCase(),
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 16),
@@ -367,8 +362,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                       builder: (_) {
                                         return AlertDialog.adaptive(
                                           title: Text(
-                                            AppLocalizations.of(context)!
-                                                .password_insert,
+                                            'password_insert'.tr,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
@@ -479,9 +473,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                                                     ),
                                                                   ),
                                                                   child: Text(
-                                                                    AppLocalizations.of(
-                                                                            context)!
-                                                                        .confirm
+                                                                    'confirm'.tr
                                                                         .toUpperCase(),
                                                                     style: const TextStyle(
                                                                         fontSize:
@@ -523,9 +515,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                                         ),
                                                       ),
                                                       child: Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .cancel
+                                                        'cancel'.tr
                                                             .toUpperCase(),
                                                         style: const TextStyle(
                                                           fontSize: 16,
@@ -548,8 +538,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20))),
                               child: Text(
-                                AppLocalizations.of(context)!
-                                    .register_button
+                                'register_button'.tr
                                     .toUpperCase(),
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 16),

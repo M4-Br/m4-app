@@ -1,8 +1,10 @@
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/model/userData/balance.dart';
+import 'package:app_flutter_miban4/ui/colors/theme.dart';
+import 'package:app_flutter_miban4/ui/screens/login/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeCard extends StatefulWidget {
   const HomeCard({super.key});
@@ -76,7 +78,7 @@ class _HomeCardState extends State<HomeCard> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Text(
-                      AppLocalizations.of(context)!.balance_available,
+                      'balance_available'.tr,
                       style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),
@@ -125,7 +127,7 @@ class _HomeCardState extends State<HomeCard> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8, top: 8),
                     child: Text(
-                      AppLocalizations.of(context)!.balance_transational,
+                      'balance_transational'.tr,
                       style: const TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ),
@@ -160,15 +162,42 @@ class _HomeCardState extends State<HomeCard> {
               ),
             ),
           );
+        } else if (snapshot.hasError) {
+          WidgetsBinding.instance!.addPostFrameCallback((_) {
+            Get.defaultDialog(
+                title: 'message'.tr,
+                content: Column(
+                  children: [
+                    Text(snapshot.error.toString()),
+                    ElevatedButton(
+                      onPressed: () => Get.offAll(() => const SplashPage(),
+                          transition: Transition.fade),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: secondaryColor),
+                      child: const Text(
+                        'OK',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ));
+          });
+          return Container();
         } else {
           Balance balance = snapshot.data!;
-          _balanceValue = balance.balanceCents != "N/D" ? balance.balanceCents != null && balance.balanceCents != 0
-              ? currencyFormat.format(double.parse(balance.balanceCents) / 100)
-              : "0,00" : balance.balanceCents;
+          _balanceValue = balance.balanceCents != "N/D"
+              ? balance.balanceCents != null && balance.balanceCents != 0
+                  ? currencyFormat
+                      .format(double.parse(balance.balanceCents) / 100)
+                  : "0,00"
+              : balance.balanceCents;
           _transationalValue = balance.transactionalValue;
-          _transational = _transationalValue != "N/D" ? _transationalValue.isNotEmpty
-              ? currencyFormat.format(double.parse(_transationalValue.toString()) / 100)
-              : "0,00" : _transationalValue;
+          _transational = _transationalValue != "N/D"
+              ? _transationalValue.isNotEmpty
+                  ? currencyFormat
+                      .format(double.parse(_transationalValue.toString()) / 100)
+                  : "0,00"
+              : _transationalValue;
 
           return Container(
             height: 200,
@@ -205,7 +234,7 @@ class _HomeCardState extends State<HomeCard> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Text(
-                      AppLocalizations.of(context)!.balance_available,
+                      'balance_available'.tr,
                       style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),
@@ -256,7 +285,7 @@ class _HomeCardState extends State<HomeCard> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8, top: 8),
                     child: Text(
-                      AppLocalizations.of(context)!.balance_transational,
+                      'balance_transational'.tr,
                       style: const TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ),

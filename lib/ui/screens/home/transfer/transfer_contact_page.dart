@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_new_contact_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransferContactPage extends StatefulWidget {
   const TransferContactPage({super.key});
@@ -18,7 +17,7 @@ class _TransferContactPageState extends State<TransferContactPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.transfer,
+        title: 'transfer'.tr,
         backPage: () =>
             Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),
@@ -30,7 +29,7 @@ class _TransferContactPageState extends State<TransferContactPage> {
             Padding(
               padding: const EdgeInsets.all(32),
               child: Text(
-                AppLocalizations.of(context)!.transfer_to,
+                'transfer_to'.tr,
                 style: const TextStyle(
                   fontSize: 24,
                 ),
@@ -41,7 +40,7 @@ class _TransferContactPageState extends State<TransferContactPage> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 24),
                 child: Text(
-                  AppLocalizations.of(context)!.transfer_noOne,
+                  'transfer_noOne'.tr,
                   textAlign: TextAlign.start,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18),
@@ -67,7 +66,7 @@ class _TransferContactPageState extends State<TransferContactPage> {
                           transition: Transition.rightToLeft);
                     },
                     child: Text(
-                      AppLocalizations.of(context)!.transfer_new_contact,
+                      'transfer_new_contact'.tr,
                       style: const TextStyle(
                           color: Colors.black,
                           decoration: TextDecoration.underline,

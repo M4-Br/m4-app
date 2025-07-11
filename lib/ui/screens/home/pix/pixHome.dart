@@ -12,7 +12,6 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixWithKey.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/qrcode_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -52,9 +51,9 @@ class _PixHomeState extends State<PixHome> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 32, 16, 8),
                       child: PixHomeItens(
-                          name: AppLocalizations.of(context)!.pix_manager_keys,
+                          name: 'pix_manager_keys'.tr,
                           description:
-                              AppLocalizations.of(context)!.pix_manage_data,
+                              'pix_manage_data'.tr,
                           onPressed: () {
                             Get.to(() => const PixKeyManager(),
                                 transition: Transition.rightToLeft);
@@ -64,9 +63,9 @@ class _PixHomeState extends State<PixHome> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
-                          name: AppLocalizations.of(context)!.pix_myLimits,
+                          name: 'pix_myLimits'.tr,
                           description:
-                              AppLocalizations.of(context)!.pix_setLimit,
+                              'pix_setLimit'.tr,
                           onPressed: () {
                             Get.to(() => const PixMyLimits(),
                                 transition: Transition.rightToLeft);
@@ -76,9 +75,9 @@ class _PixHomeState extends State<PixHome> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
-                          name: AppLocalizations.of(context)!.pix_receive,
+                          name: 'pix_receive'.tr,
                           description:
-                              AppLocalizations.of(context)!.pix_receiveValue,
+                              'pix_receiveValue'.tr,
                           onPressed: () {
                             Get.to(() => const PixReceive(),
                                 transition: Transition.rightToLeft);
@@ -88,8 +87,8 @@ class _PixHomeState extends State<PixHome> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
-                          name: AppLocalizations.of(context)!.pix_key,
-                          description: AppLocalizations.of(context)!.pix_payKey,
+                          name: 'pix_key'.tr,
+                          description: 'pix_payKey'.tr,
                           onPressed: () {
                             Get.to(() => const PixWithKey(),
                                 transition: Transition.rightToLeft);
@@ -99,8 +98,8 @@ class _PixHomeState extends State<PixHome> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
-                          name: AppLocalizations.of(context)!.pix_manualKey,
-                          description: AppLocalizations.of(context)!.pix_bank,
+                          name: 'pix_manualKey'.tr,
+                          description: 'pix_bank'.tr,
                           onPressed: () {
                             Get.to(() => const PixManualKey(),
                                 transition: Transition.rightToLeft);
@@ -110,9 +109,9 @@ class _PixHomeState extends State<PixHome> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
-                          name: AppLocalizations.of(context)!.pix_qrCode,
+                          name: 'pix_qrCode'.tr,
                           description:
-                              AppLocalizations.of(context)!.pix_payQrCode,
+                              'pix_payQrCode'.tr,
                           onPressed: () {
                             Get.to(() => const QrcodeScreen(),
                                 transition: Transition.rightToLeft);
@@ -122,9 +121,9 @@ class _PixHomeState extends State<PixHome> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                       child: PixHomeItens(
-                          name: AppLocalizations.of(context)!.pix_copyPaste,
+                          name: 'pix_copyPaste'.tr,
                           description:
-                              AppLocalizations.of(context)!.pix_payCopy,
+                              'pix_payCopy'.tr,
                           onPressed: () async {
                             await getBalance().then((balance) => {
                                   Get.to(

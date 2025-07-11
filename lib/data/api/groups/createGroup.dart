@@ -28,8 +28,10 @@ Future<Map<String, dynamic>> createGroup(String name, bool membership) async {
 
     if (response.statusCode == 201) {
       final jsonMap = json.decode(response.body);
-      await SharedPreferencesFunctions.saveString(key: 'groupId', value: jsonMap['id'].toString());
-      await SharedPreferencesFunctions.saveString(key: 'userID', value: jsonMap['user_id'].toString());
+      await SharedPreferencesFunctions.saveString(
+          key: 'groupId', value: jsonMap['id'].toString());
+      await SharedPreferencesFunctions.saveString(
+          key: 'userID', value: jsonMap['user_id'].toString());
       return jsonMap;
     } else {
       final jsonMap = json.decode(response.body);

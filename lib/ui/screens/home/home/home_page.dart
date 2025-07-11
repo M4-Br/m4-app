@@ -20,7 +20,6 @@ import 'package:app_flutter_miban4/ui/screens/home/store/store_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/qrcode_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -68,15 +67,15 @@ class _HomePageState extends State<HomePage> {
       IconModel(
           id: "20",
           icon: "assets/icons/ic_group_blue.png",
-          title: AppLocalizations.of(context)!.home_groups),
+          title: 'home_groups'.tr),
       IconModel(
           id: "21",
           icon: "assets/icons/ic_economy_blue.png",
-          title: AppLocalizations.of(context)!.home_economy),
+          title: 'home_economy'.tr),
       IconModel(
           id: "22",
           icon: "assets/icons/ic_credit_blue.png",
-          title: AppLocalizations.of(context)!.home_credit),
+          title: 'home_credit'.tr),
     ];
 
     final Map<String, String> localIconPaths = {
@@ -292,12 +291,10 @@ class _HomePageState extends State<HomePage> {
                                       break;
                                     case "12":
                                       Get.defaultDialog(
-                                        title: AppLocalizations.of(context)!
-                                            .message,
+                                        title: 'message'.tr,
                                         content: Column(
                                           children: [
-                                            Text(AppLocalizations.of(context)!
-                                                .unavailable),
+                                            Text('unavailable'.tr),
                                             Padding(
                                               padding: const EdgeInsets.all(16),
                                               child: SizedBox(
@@ -376,8 +373,7 @@ class _HomePageState extends State<HomePage> {
                                     if (defaulter == 'true') {
                                       Get.defaultDialog(
                                         backgroundColor: Colors.white,
-                                        title: AppLocalizations.of(context)!
-                                            .message,
+                                        title: 'message'.tr,
                                         titleStyle: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
@@ -388,8 +384,7 @@ class _HomePageState extends State<HomePage> {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: Text(
-                                                AppLocalizations.of(context)!
-                                                    .block_access,
+                                                'block_access'.tr,
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -420,8 +415,7 @@ class _HomePageState extends State<HomePage> {
                                     if (defaulter == 'true') {
                                       Get.defaultDialog(
                                         backgroundColor: Colors.white,
-                                        title: AppLocalizations.of(context)!
-                                            .message,
+                                        title: 'message'.tr,
                                         titleStyle: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
@@ -432,8 +426,7 @@ class _HomePageState extends State<HomePage> {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: Text(
-                                                AppLocalizations.of(context)!
-                                                    .block_access,
+                                                'block_access'.tr,
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -464,8 +457,7 @@ class _HomePageState extends State<HomePage> {
                                     if (defaulter == 'true') {
                                       Get.defaultDialog(
                                         backgroundColor: Colors.white,
-                                        title: AppLocalizations.of(context)!
-                                            .message,
+                                        title: 'message'.tr,
                                         titleStyle: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
@@ -476,8 +468,7 @@ class _HomePageState extends State<HomePage> {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: Text(
-                                                AppLocalizations.of(context)!
-                                                    .block_access,
+                                                'block_access'.tr,
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),

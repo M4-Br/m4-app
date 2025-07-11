@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/controllers/qrcode/qrcode_controller.dart'
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QrcodeScreen extends StatefulWidget {
   const QrcodeScreen({super.key});
@@ -19,7 +18,7 @@ class _QrcodeScreenState extends State<QrcodeScreen> {
   @override
   void initState() {
     super.initState();
-    _scanCode();
+    // _scanCode();
   }
 
   @override
@@ -44,7 +43,7 @@ class _QrcodeScreenState extends State<QrcodeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.qr_code_error,
+                      'qr_code_error'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 18),
                     ),
                     const Spacer(),
@@ -52,7 +51,7 @@ class _QrcodeScreenState extends State<QrcodeScreen> {
                       height: 45,
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () => _scanCode(),
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: secondaryColor,
                           shape: RoundedRectangleBorder(
@@ -60,7 +59,7 @@ class _QrcodeScreenState extends State<QrcodeScreen> {
                           ),
                         ),
                         child: Text(
-                          AppLocalizations.of(context)!.qr_code_try_again,
+                          'qr_code_try_again'.tr,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 16),
                         ),
@@ -73,11 +72,13 @@ class _QrcodeScreenState extends State<QrcodeScreen> {
     );
   }
 
-  Future<void> _scanCode() async {
-    try {
-      await _qrcodeController.scanQrCode();
-    } catch (error) {
-      throw Exception(error);
-    }
-  }
+  // Future<void> _scanCode() async {
+  //   try {
+  //     await _qrcodeController.scanQrCode();
+  //   } catch (error) {
+  //     throw Exception(error);
+  //   }
+  // }
+
+  //TODO: SOLVE QR CODE SCANNER
 }

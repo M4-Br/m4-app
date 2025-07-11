@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/ui/controllers/bank/bank_list_controller.dart
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_bank_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_add_person_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class TransferAnotherBankScreen extends StatefulWidget {
@@ -66,7 +65,7 @@ class _TransferAnotherBankScreenState extends State<TransferAnotherBankScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.transfer,
+        title: 'transfer'.tr,
         backPage: () => Get.off(
           () => TransferBankPage(
             userTransfer: widget.userTransfer,
@@ -82,7 +81,7 @@ class _TransferAnotherBankScreenState extends State<TransferAnotherBankScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppLocalizations.of(context)!.bank_choose,
+              'bank_choose'.tr,
               style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -94,7 +93,7 @@ class _TransferAnotherBankScreenState extends State<TransferAnotherBankScreen> {
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.bank_search,
+                  labelText: 'bank_search'.tr,
                   prefixIcon: const Icon(Icons.search),
                   floatingLabelStyle:
                       const TextStyle(color: secondaryColor, fontSize: 18),

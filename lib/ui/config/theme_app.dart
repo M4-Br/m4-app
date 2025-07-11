@@ -24,12 +24,6 @@ ThemeData lightMode = ThemeData(
   progressIndicatorTheme:
   const ProgressIndicatorThemeData(color: secondaryColor),
   dividerTheme: DividerThemeData(color: Colors.grey.shade400),
-  cardTheme: CardTheme(
-    color: Colors.grey.shade100,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12),
-    ),
-  ),
   colorScheme: ColorScheme.light(
     surface: Colors.grey.shade400,
     primary: Colors.grey.shade300,
@@ -95,12 +89,6 @@ ThemeData darkMode = ThemeData(
   progressIndicatorTheme:
   const ProgressIndicatorThemeData(color: secondaryColor),
   dividerTheme: DividerThemeData(color: Colors.grey.shade800),
-  cardTheme: CardTheme(
-    color: Colors.grey.shade700,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12),
-    ),
-  ),
   colorScheme: ColorScheme.dark(
     surface: Colors.grey.shade800,
     primary: Colors.grey.shade700,

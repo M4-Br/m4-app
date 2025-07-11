@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyQRCode extends StatefulWidget {
   const MyQRCode({
@@ -29,7 +28,7 @@ class _MyQRCodeState extends State<MyQRCode> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.page36,
+        title: 'page36'.tr,
         backPage: () =>
             Get.off(() => HomeViewPage(), transition: Transition.leftToRight),
       ),
@@ -47,7 +46,7 @@ class _MyQRCodeState extends State<MyQRCode> {
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               Text(
-                AppLocalizations.of(context)!.myqr_description,
+                'myqr_description'.tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16),
               ),

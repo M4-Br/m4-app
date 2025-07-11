@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcodeConfirmPayment.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
 import 'package:mask_shifter_v2/mask_shifter.dart';
 
@@ -89,8 +88,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: secondaryColor),
                     child: Text(
-                      'continue_barcode'
-                          .tr.toUpperCase(),
+                      'continue_barcode'.tr.toUpperCase(),
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -109,7 +107,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () async {
-                      _scanBarcode();
+                      // _scanBarcode();
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: secondaryColor),
@@ -165,29 +163,31 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
     );
   }
 
-  Future<void> _scanBarcode() async {
-    isLoading(true);
-    barcode = await FlutterBarcodeScanner.scanBarcode(
-        '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+  // Future<void> _scanBarcode() async {
+  //   isLoading(true);
+  //   barcode = await FlutterBarcodeScanner.scanBarcode(
+  //       '#ff6666', 'Cancel', true, ScanMode.BARCODE);
 
-    try {
-      Balance balance = await getBalance();
-      PaymentData paymentData = await decodeBarcode(barcode);
+  //   try {
+  //     Balance balance = await getBalance();
+  //     PaymentData paymentData = await decodeBarcode(barcode);
 
-      if (paymentData.success == true) {
-        Get.off(
-            () => BarcodeConfirmPayment(
-                paymentData: paymentData, balance: balance),
-            transition: Transition.rightToLeft);
-      } else {
-        return;
-      }
-    } catch (e) {
-      throw Exception(e.toString());
-    } finally {
-      isLoading(false);
-    }
-  }
+  //     if (paymentData.success == true) {
+  //       Get.off(
+  //           () => BarcodeConfirmPayment(
+  //               paymentData: paymentData, balance: balance),
+  //           transition: Transition.rightToLeft);
+  //     } else {
+  //       return;
+  //     }
+  //   } catch (e) {
+  //     throw Exception(e.toString());
+  //   } finally {
+  //     isLoading(false);
+  //   }
+  // }
+
+  //TODO: SOLVE BARCODE SCANNER
 
   Future<void> _manualBarcode() async {
     isLoading(true);

@@ -1,19 +1,16 @@
 import 'package:app_flutter_miban4/data/api/transfer/transfe_other_bank.dart';
 import 'package:app_flutter_miban4/data/api/transfer/transferSend.dart';
-import 'package:app_flutter_miban4/data/model/transaction/ted.dart';
 import 'package:app_flutter_miban4/data/model/transaction/transaction.dart';
 import 'package:app_flutter_miban4/data/model/userData/balance.dart';
+import 'package:app_flutter_miban4/l10n/app_localizations.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_success_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_value_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_success_ted.dart';
+import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_value_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:page_transition/page_transition.dart';
 
 class TransferConfirmPage extends StatefulWidget {
   final Map<String, dynamic>? userTransfer;

@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/routes/app_pages.dart';
 import 'package:app_flutter_miban4/ui/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -32,8 +31,6 @@ class MiBan4 extends StatelessWidget {
       },
       child: GetMaterialApp(
         initialBinding: AppBindings(),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
         locale: initialLocale,
         translations: Messages(),
         debugShowCheckedModeBanner: false,

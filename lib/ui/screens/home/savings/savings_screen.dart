@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/screens/home/groups/group_data.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -34,7 +33,7 @@ class _SavingsScreenState extends State<SavingsScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.savings.toUpperCase(),
+        title: 'savings'.tr.toUpperCase(),
         backPage: () => Get.off(() => const HomeViewPage(),
             transition: Transition.leftToRight),
       ),
@@ -113,10 +112,10 @@ class _SavingsScreenState extends State<SavingsScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${AppLocalizations.of(context)!.savings_created_at} ${DateFormat('dd/MM/yyyy').format(group.createdAt)}",
+                              "${'savings_created_at'.tr} ${DateFormat('dd/MM/yyyy').format(group.createdAt)}",
                             ),
                             Text(
-                                '${AppLocalizations.of(context)!.savings_savings} ${currencyFormat.format((group.amountContributions)! / 100)}')
+                                '${'savings_savings'.tr} ${currencyFormat.format((group.amountContributions)! / 100)}')
                           ],
                         ),
                       ),
@@ -137,7 +136,7 @@ class _SavingsScreenState extends State<SavingsScreen> {
       children: [
         Center(
           child: Text(
-            AppLocalizations.of(context)!.no_groups,
+            'no_groups'.tr,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 18,
@@ -156,7 +155,7 @@ class _SavingsScreenState extends State<SavingsScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18))),
             child: Text(
-              AppLocalizations.of(context)!.groups_add,
+              'groups_add'.tr,
               style: const TextStyle(color: Colors.white),
             ),
           ),

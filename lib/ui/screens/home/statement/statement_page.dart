@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StatementPage extends StatefulWidget {
   const StatementPage({
@@ -62,7 +61,7 @@ class _StatementPageState extends State<StatementPage> {
 
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.statement,
+        title: 'statement'.tr,
         hasIcon: false,
       ),
       backgroundColor: Colors.white,
@@ -95,7 +94,7 @@ class _StatementPageState extends State<StatementPage> {
                       ),
                       child: Center(
                         child: Text(
-                          AppLocalizations.of(context)!.transactional_statement,
+                          'transactional_statement'.tr,
                           style: TextStyle(
                               color: _isActive ? Colors.white : Colors.white54,
                               fontSize: 18),
@@ -127,7 +126,7 @@ class _StatementPageState extends State<StatementPage> {
                       ),
                       child: Center(
                         child: Text(
-                          AppLocalizations.of(context)!.savings_statement,
+                          'savings_statement'.tr,
                           style: TextStyle(
                               color: !_isActive ? Colors.white : Colors.white54,
                               fontSize: 18),
@@ -241,15 +240,14 @@ class _StatementPageState extends State<StatementPage> {
                         ? userData.payload.aliasAccount.id.isNotEmpty &&
                                 userData.payload.aliasAccount.id != ''
                             ? 'statement_no_data'.tr
-                            : AppLocalizations.of(context)!.account_waiting
+                            : 'account_waiting'.tr
                         : userData.payload.aliasAccount.economyAccountId
                                     .isNotEmpty &&
                                 userData.payload.aliasAccount
                                         .economyAccountId !=
                                     ''
                             ? 'statement_no_data'.tr
-                            : AppLocalizations.of(context)!
-                                .account_savings_waiting),
+                            : 'account_savings_waiting'.tr),
                   );
                 } else {
                   StatementModel statement = snapshot.data!;
@@ -257,7 +255,7 @@ class _StatementPageState extends State<StatementPage> {
                   if (statement.statements!.isEmpty) {
                     return Center(
                       child:
-                          Text(AppLocalizations.of(context)!.statement_noData),
+                          Text('statement_noData'.tr),
                     );
                   }
 
@@ -307,25 +305,21 @@ class _StatementPageState extends State<StatementPage> {
                                     id: extrato.idStatement.toString(),
                                     type: extrato.type == "pix" &&
                                             extrato.creditFlag == 0
-                                        ? AppLocalizations.of(context)!.pix_send
+                                        ? 'pix_send'.tr
                                         : extrato.typeDescription.toString() ==
                                                 "Débito Transferência"
-                                            ? AppLocalizations.of(context)!
-                                                .transfer_send
+                                              ? 'transfer_send'.tr
                                             : extrato.typeDescription
                                                         .toString() ==
                                                     "Crédito Transferência"
-                                                ? AppLocalizations.of(context)!
-                                                    .transfer_received
+                                                ? 'transfer_received'.tr
                                                 : extrato.typeDescription
                                                             .toString() ==
                                                         'Tar. Cobr.'
                                                     ? "TED"
                                                     : extrato.type == "ted"
                                                         ? "TED"
-                                                        : AppLocalizations.of(
-                                                                context)!
-                                                            .pix_received,
+                                                        : 'pix_received'.tr,
                                     date: extrato.dateTransaction.toString(),
                                   ),
                               transition: Transition.rightToLeft);

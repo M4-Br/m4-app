@@ -12,7 +12,6 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixQRCodeReceive.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class PixReceive extends StatefulWidget {
@@ -55,11 +54,11 @@ class _PixReceiveState extends State<PixReceive> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_receiver,
+        title: 'pix_receiver'.tr,
         backPage: () => widget.type == 0
             ? Get.off(() => PixHome(), transition: Transition.leftToRight)
             : widget.type == 1
-                ? Get.off(() => HomeViewPage(), transition: Transition.leftToRight)
+                ? Get.off(() => const HomeViewPage(), transition: Transition.leftToRight)
                 : Get.back(),
       ),
       body: FutureBuilder<PixKeys>(
@@ -110,13 +109,13 @@ class _PixReceiveState extends State<PixReceive> {
                         children: [
                           TextSpan(
                               text:
-                                  AppLocalizations.of(context)!.pix_selectKey),
+                                  'pix_selectKey'.tr),
                           TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => Get.to(
                                   () => const PixKeyManager(),
                                   transition: Transition.rightToLeft),
-                            text: AppLocalizations.of(context)!.pix_nKey,
+                            text: 'pix_nKey'.tr,
                             style: const TextStyle(
                                 color: secondaryColor,
                                 fontWeight: FontWeight.bold),
@@ -138,7 +137,7 @@ class _PixReceiveState extends State<PixReceive> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: DropdownButton<String>(
                     value: _selectedKey,
-                    hint: Text(AppLocalizations.of(context)!.pix_keySelect),
+                    hint: Text('pix_keySelect'.tr),
                     onChanged: (String? newValue) {
                       setState(() {
                         _selectedKey = newValue;
@@ -157,7 +156,7 @@ class _PixReceiveState extends State<PixReceive> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.pix_optional,
+                      'pix_optional'.tr,
                       style: const TextStyle(fontSize: 14),
                     ),
                     IconButton(
@@ -184,7 +183,7 @@ class _PixReceiveState extends State<PixReceive> {
                         borderSide: BorderSide(color: Colors.black54),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText: AppLocalizations.of(context)!.pix_identifier,
+                      labelText: 'pix_identifier'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 16,
@@ -210,7 +209,7 @@ class _PixReceiveState extends State<PixReceive> {
                         borderSide: BorderSide(color: Colors.black54),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText: AppLocalizations.of(context)!.pix_description,
+                      labelText: 'pix_description'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 16,
@@ -248,7 +247,7 @@ class _PixReceiveState extends State<PixReceive> {
                         borderSide: BorderSide(color: Colors.black54),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText: AppLocalizations.of(context)!.pix_value,
+                      labelText: 'pix_value'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 16,
@@ -299,7 +298,7 @@ class _PixReceiveState extends State<PixReceive> {
                                 ),
                               ),
                               child: Text(
-                                AppLocalizations.of(context)!.next,
+                                'next'.tr,
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 16),
                               ),

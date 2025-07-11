@@ -4,9 +4,9 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixMyKeys.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixStatement.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PixBalance extends StatefulWidget {
 
@@ -117,7 +117,7 @@ class _PixBalanceState extends State<PixBalance> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.pix_statement,
+                              'pix_statement'.tr,
                               style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -146,7 +146,7 @@ class _PixBalanceState extends State<PixBalance> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.pix_myKeys,
+                              'pix_myKeys'.tr,
                               style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -239,7 +239,7 @@ class _PixBalanceState extends State<PixBalance> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.pix_statement,
+                              'pix_statement'.tr,
                               style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -268,7 +268,7 @@ class _PixBalanceState extends State<PixBalance> {
                           ),
                           child: Center(
                             child: Text(
-                              AppLocalizations.of(context)!.pix_myKeys,
+                              'pix_myKeys'.tr,
                               style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ),

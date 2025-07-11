@@ -17,7 +17,6 @@ import 'package:app_flutter_miban4/ui/screens/login/splash_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/terms_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -37,7 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.perfil_icon,
+        title: 'perfil_icon'.tr,
         hasIcon: false,
       ),
       body: Obx(() {
@@ -101,15 +100,15 @@ class _ProfilePageState extends State<ProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ExpansionItemMyAccount(
-                      text: AppLocalizations.of(context)!.account_myAccount,
+                      text: 'account_myAccount'.tr,
                       account: userData.payload.aliasAccount.accountNumber,
                       icon: Icons.person_pin_outlined,
                       agency:
                           userData.payload.aliasAccount.branchNumber.toString(),
-                      bank: '${userData.payload.aliasAccount.bankNumber}',
+                      bank: userData.payload.aliasAccount.bankNumber,
                     ),
                     CommonItem(
-                        text: AppLocalizations.of(context)!.account_myQr,
+                        text: 'account_myQr'.tr,
                         icon: Icons.qr_code_outlined,
                         onPressed: () {
                           Get.to(() => const PixReceive(),
@@ -118,32 +117,32 @@ class _ProfilePageState extends State<ProfilePage> {
                     ExpansionItem(
                         icon: Icons.person_2_outlined,
                         fieldName:
-                            AppLocalizations.of(context)!.account_personalData,
+                            'account_personalData'.tr,
                         firstFieldName:
-                            AppLocalizations.of(context)!.account_name,
+                            'account_name'.tr,
                         firstField: userData.payload.fullName.toString(),
                         secondFieldName:
-                            AppLocalizations.of(context)!.account_document,
+                            'account_document'.tr,
                         secondField: cpfMaskFormatter
                             .maskText(userData.payload.document.toString())),
                     CommonItem(
-                        text: AppLocalizations.of(context)!.account_data,
+                        text: 'account_data'.tr,
                         icon: Icons.monetization_on_outlined,
                         onPressed: () => Get.to(() => const FinancialDataPage(),
                             transition: Transition.rightToLeft)),
                     ExpansionItem(
                         icon: Icons.contact_mail_outlined,
                         fieldName:
-                            AppLocalizations.of(context)!.account_contact,
+                            'account_contact'.tr,
                         firstFieldName: 'EMAIL',
                         firstField: userData.payload.email.toString(),
                         secondFieldName:
-                            AppLocalizations.of(context)!.account_phone,
+                            'account_phone'.tr,
                         secondField:
                             '(${userData.payload.phone.phonePrefix.toString()}) ${userData.payload.phone.phoneNumber.toString()}'),
                     ExpansionTile(
                       title: Text(
-                        AppLocalizations.of(context)!.account_security,
+                        'account_security'.tr,
                         style: const TextStyle(color: Colors.black),
                       ),
                       leading: const Icon(
@@ -165,8 +164,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         transition: Transition.rightToLeft);
                                   },
                                   child: Text(
-                                    AppLocalizations.of(context)!
-                                        .change_app_password,
+                                    'change_app_password'.tr,
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
@@ -181,13 +179,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       ],
                     ),
                     CommonItem(
-                        text: AppLocalizations.of(context)!.account_plans,
+                        text: 'account_plans'.tr,
                         icon: Icons.diamond,
                         onPressed: () {
                           Get.to(() => const PlansPage(), transition: Transition.rightToLeft);
                         }),
                     CommonItem(
-                        text: AppLocalizations.of(context)!.account_terms,
+                        text: 'account_terms'.tr,
                         icon: Icons.paste_outlined,
                         onPressed: () {
                           Navigator.push(
@@ -197,7 +195,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   type: PageTransitionType.rightToLeft));
                         }),
                     CommonItem(
-                        text: AppLocalizations.of(context)!.account_privacy,
+                        text: 'account_privacy'.tr,
                         icon: Icons.table_view_outlined,
                         onPressed: () {
                           Navigator.push(
@@ -208,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         }),
                     ExpansionItem(
                         icon: Icons.help_outline,
-                        fieldName: AppLocalizations.of(context)!.account_helper,
+                        fieldName: 'account_helper'.tr,
                         firstFieldName: 'SAC',
                         firstField: params?.sacMibanka4.isNotEmpty ?? false
                             ? params!.sacMibanka4[0].value
@@ -216,7 +214,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         secondFieldName: 'EMAIL',
                         secondField: 'sac@mibanka4.com'),
                     CommonItem(
-                      text: AppLocalizations.of(context)!.account_logout,
+                      text: 'account_logout'.tr,
                       icon: Icons.exit_to_app_outlined,
                       onPressed: () {
                         _showLogoutConfirmation(context);
@@ -225,7 +223,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: Text(
-                        AppLocalizations.of(context)!.version,
+                        'version'.tr,
                         style: const TextStyle(color: Colors.black54),
                         textAlign: TextAlign.center,
                       ),
@@ -264,7 +262,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  AppLocalizations.of(context)!.logout,
+                  'logout'.tr,
                   style: const TextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
@@ -291,7 +289,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Center(
                     child: Text(
-                      AppLocalizations.of(context)!.logout_exit,
+                      'logout_exit'.tr,
                       style:
                           const TextStyle(fontSize: 16, color: secondaryColor),
                     ),
@@ -318,7 +316,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Center(
                     child: Text(
-                      AppLocalizations.of(context)!.cancel,
+                      'cancel'.tr,
                       style:
                           const TextStyle(fontSize: 16, color: Colors.black54),
                     ),

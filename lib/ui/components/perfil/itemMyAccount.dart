@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 
 class ExpansionItemMyAccount extends StatefulWidget {
   ExpansionItemMyAccount({
@@ -52,21 +52,21 @@ class _ExpansionItemMyAccountState extends State<ExpansionItemMyAccount> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 15),
-                        child: Text(AppLocalizations.of(context)!.account_bank,
+                        child: Text('account_bank'.tr,
                             style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold)),
                       ),
                       Text(widget.bank, style: const TextStyle(fontSize: 16)),
                       Padding(
                         padding: const EdgeInsets.only(top: 15),
-                        child: Text(AppLocalizations.of(context)!.account_agency,
+                        child: Text('account_agency'.tr,
                             style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold)),
                       ),
                       Text(widget.agency, style: const TextStyle(fontSize: 16)),
                       Padding(
                         padding: const EdgeInsets.only(top: 15),
-                        child: Text(AppLocalizations.of(context)!.account_account,
+                        child: Text('account_account'.tr,
                             style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold)),
                       ),

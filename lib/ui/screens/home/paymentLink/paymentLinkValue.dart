@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLink.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -42,9 +41,9 @@ class _PaymentLinkValueState extends State<PaymentLinkValue> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.demand_demand,
+        title: 'demand_demand'.tr,
         backPage: () =>
-            Get.off(() => HomeViewPage(), transition: Transition.leftToRight),
+            Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),
       body: Container(
         color: primaryColor,
@@ -55,7 +54,7 @@ class _PaymentLinkValueState extends State<PaymentLinkValue> {
               Padding(
                 padding: const EdgeInsets.only(top: 32),
                 child: Text(
-                  AppLocalizations.of(context)!.demand_value,
+                  'demand_value'.tr,
                   style: const TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
@@ -107,14 +106,14 @@ class _PaymentLinkValueState extends State<PaymentLinkValue> {
               ),
               const Spacer(),
               Text(
-                AppLocalizations.of(context)!.demand_minimum,
+                'demand_minimum'.tr,
                 style: const TextStyle(color: Colors.white),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.demand_fees,
+                    'demand_fees'.tr,
                     style: const TextStyle(color: Colors.white),
                   ),
                   IconButton(
@@ -161,7 +160,7 @@ class _PaymentLinkValueState extends State<PaymentLinkValue> {
                             minimumSize: const Size(double.infinity, 50),
                           ),
                           child: Text(
-                            AppLocalizations.of(context)!.proceed,
+                            'proceed'.tr,
                             style: const TextStyle(color: Colors.white),
                           ),
                         )

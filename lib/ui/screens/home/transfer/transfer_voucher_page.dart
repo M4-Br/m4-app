@@ -4,12 +4,11 @@ import 'package:app_flutter_miban4/data/model/transaction/ted.dart';
 import 'package:app_flutter_miban4/data/model/transaction/transaction.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:share/share.dart';
 
 class TransferVoucherPage extends StatefulWidget {
   final Transaction? transaction;
@@ -43,7 +42,7 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context)!.transfer_receipt,
+          'transfer_receipt'.tr,
           style:
               const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
@@ -59,7 +58,8 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
             Navigator.pushReplacement(
                 context,
                 PageTransition(
-                    child: HomeViewPage(), type: PageTransitionType.leftToRight));
+                    child: HomeViewPage(),
+                    type: PageTransitionType.leftToRight));
           },
         ),
       ),
@@ -71,7 +71,7 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
             Align(
               alignment: Alignment.center,
               child: Text(
-                AppLocalizations.of(context)!.transfer,
+                'transfer'.tr,
                 style:
                     const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
@@ -104,7 +104,7 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppLocalizations.of(context)!.transfer_code),
+                  Text('transfer_code'.tr),
                   Text(
                     widget.transaction?.transactionCode.toString() ??
                         widget.ted!.transactionId!,
@@ -117,7 +117,7 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppLocalizations.of(context)!.transfer_valueConfirm),
+                  Text('transfer_valueConfirm'.tr),
                   Text(
                     'R\$ ${NumberFormat.currency(locale: 'pt_BR', symbol: '').format(amount / 100)}',
                   ),
@@ -129,7 +129,7 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppLocalizations.of(context)!.transfer_identifier),
+                  Text('transfer_identifier'.tr),
                   Text(
                     widget.transaction?.transactionCode.toString() ??
                         widget.ted!.transactionId!,
@@ -146,14 +146,14 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
-                AppLocalizations.of(context)!.transfer_destiny,
+                'transfer_destiny'.tr,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(AppLocalizations.of(context)!.name),
+                Text('name'.tr),
                 Text(
                   widget.transaction?.receiver!.receiverFullName! ??
                       widget.ted!.receiver!.name!,
@@ -177,7 +177,7 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppLocalizations.of(context)!.transfer_institution),
+                  Text('transfer_institution'.tr),
                   Text(
                     widget.transaction?.receiver!.receiverBank! ??
                         widget.ted!.receiver!.bankName!,
@@ -194,14 +194,14 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
-                AppLocalizations.of(context)!.transfer_origin,
+                'transfer_origin'.tr,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(AppLocalizations.of(context)!.name),
+                Text('name'.tr),
                 Text(
                   widget.transaction?.payer!.payerFullName! ?? '',
                 ),
@@ -224,7 +224,7 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppLocalizations.of(context)!.transfer_institution),
+                  Text('transfer_institution'.tr),
                   const Text(
                     'Miban4',
                   ),
@@ -237,14 +237,14 @@ class _TransferVoucherPageState extends State<TransferVoucherPage> {
     );
   }
 
-  void createAndSharePDF(BuildContext context) async {
-    final pdf = pw.Document();
+  // void createAndSharePDF(BuildContext context) async {
+  //   final pdf = pw.Document();
 
-    final tempDir = await getTemporaryDirectory();
-    final tempPath = tempDir.path;
-    final pdfFile = File('$tempPath/transaction_voucher.pdf');
-    await pdfFile.writeAsBytes(await pdf.save());
+  //   final tempDir = await getTemporaryDirectory();
+  //   final tempPath = tempDir.path;
+  //   final pdfFile = File('$tempPath/transaction_voucher.pdf');
+  //   await pdfFile.writeAsBytes(await pdf.save());
 
-    Share.shareFiles([pdfFile.path], text: 'Comprovante de Transação');
-  }
+  //   Share.shareFiles([pdfFile.path], text: 'Comprovante de Transação');
+  // }
 }

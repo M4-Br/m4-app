@@ -10,7 +10,6 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixTransfer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PixWithKey extends StatefulWidget {
   const PixWithKey({Key? key}) : super(key: key);
@@ -38,7 +37,7 @@ class _PixWithKeyState extends State<PixWithKey> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_withKey,
+        title: 'pix_withKey'.tr,
         backPage: () =>
             Get.off(() => PixHome(), transition: Transition.leftToRight),
       ),
@@ -49,14 +48,14 @@ class _PixWithKeyState extends State<PixWithKey> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Text(
-                AppLocalizations.of(context)!.pix_addReceiverKey,
+                'pix_addReceiverKey'.tr,
                 style: const TextStyle(fontSize: 18),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Text(
-                AppLocalizations.of(context)!.pix_keyType,
+                'pix_keyType'.tr,
                 style: const TextStyle(fontSize: 18),
               ),
             ),
@@ -100,7 +99,7 @@ class _PixWithKeyState extends State<PixWithKey> {
                 });
               },
               decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.pix_labelKey,
+                labelText: 'pix_labelKey'.tr,
                 border: const UnderlineInputBorder(),
               ),
             ),
@@ -130,7 +129,7 @@ class _PixWithKeyState extends State<PixWithKey> {
                           ),
                         ),
                         child: Text(
-                          AppLocalizations.of(context)!.pix_search,
+                          'pix_search'.tr,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 16),
                         ),
@@ -158,7 +157,7 @@ class _PixWithKeyState extends State<PixWithKey> {
                   ),
                 ),
                 child: Text(
-                  AppLocalizations.of(context)!.pix_agencyAccount,
+                  'pix_agencyAccount'.tr,
                   style: const TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),

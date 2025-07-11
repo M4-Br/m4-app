@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/ui/controllers/pix/my_limits_controller.dart'
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -33,7 +32,7 @@ class _PixMyLimitsState extends State<PixMyLimits> {
 
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_myLimits,
+        title: 'pix_myLimits'.tr,
         backPage: () =>
             Get.off(() => PixHome(), transition: Transition.leftToRight),
       ),
@@ -51,7 +50,7 @@ class _PixMyLimitsState extends State<PixMyLimits> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                      AppLocalizations.of(context)!.pix_limits_p2p,
+                      'pix_limits_p2p'.tr,
                       style: const TextStyle(fontSize: 16),
                     ),
                   ),
@@ -78,7 +77,7 @@ class _PixMyLimitsState extends State<PixMyLimits> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                      AppLocalizations.of(context)!.pix_limits_p2b,
+                      'pix_limits_p2b'.tr,
                       style: const TextStyle(fontSize: 16),
                     ),
                   ),
@@ -105,7 +104,7 @@ class _PixMyLimitsState extends State<PixMyLimits> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                      AppLocalizations.of(context)!.pix_limits_same_person,
+                      'pix_limits_same_person'.tr,
                       style: const TextStyle(fontSize: 16),
                     ),
                   ),

@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PixVoucher extends StatelessWidget {
   final Map<String, dynamic>? transfer;
@@ -38,7 +37,7 @@ class PixVoucher extends StatelessWidget {
       appBar: AppBar(
         title: SafeArea(
           child: Text(
-            AppLocalizations.of(context)!.pix_withKey,
+            'pix_withKey'.tr,
             style: const TextStyle(
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
           ),
@@ -73,7 +72,7 @@ class PixVoucher extends StatelessWidget {
                 scale: 4,
               ),
               Text(
-                AppLocalizations.of(context)!.pix_success,
+                'pix_success'.tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     color: Colors.black,
@@ -90,7 +89,7 @@ class PixVoucher extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.statement_value,
+                      'statement_value'.tr,
                       style: const TextStyle(fontSize: 16),
                     ),
                     const Spacer(),
@@ -104,7 +103,7 @@ class PixVoucher extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.statement_destiny,
+                    'statement_destiny'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   const Spacer(),
@@ -119,7 +118,7 @@ class PixVoucher extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.statement_institute,
+                      'statement_institute'.tr,
                       style: const TextStyle(fontSize: 16),
                     ),
                     const Spacer(),
@@ -140,7 +139,7 @@ class PixVoucher extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.statement_origin,
+                    'statement_origin'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   const Spacer(),

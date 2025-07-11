@@ -9,7 +9,6 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixAddKeys.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -27,7 +26,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_keyManager,
+        title: 'pix_keyManager'.tr,
         backPage: () => Get.off(() => PixHome(), transition: Transition.leftToRight),
       ),
       body: Container(
@@ -59,7 +58,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
 
                     if (keys.success == false) {
                       return Center(
-                        child: Text(AppLocalizations.of(context)!.pix_noKeys),
+                        child: Text('pix_noKeys'.tr),
                       );
                     }
                     return ListView.builder(
@@ -70,27 +69,27 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                         int groupStartIndex = 0;
                         int groupEndIndex = keys.phones.length;
                         String groupTitle =
-                            AppLocalizations.of(context)!.pix_phoneKey;
+                            'pix_phoneKey'.tr;
 
                         if (index >= groupEndIndex) {
                           groupStartIndex = groupEndIndex;
                           groupEndIndex += keys.documents.length;
                           groupTitle =
-                              AppLocalizations.of(context)!.pix_documentKey;
+                              'pix_documentKey'.tr;
                         }
 
                         if (index >= groupEndIndex) {
                           groupStartIndex = groupEndIndex;
                           groupEndIndex += keys.emails.length;
                           groupTitle =
-                              AppLocalizations.of(context)!.pix_emailKey;
+                              'pix_emailKey'.tr;
                         }
 
                         if (index >= groupEndIndex) {
                           groupStartIndex = groupEndIndex;
                           groupEndIndex += keys.evps.length;
                           groupTitle =
-                              AppLocalizations.of(context)!.pix_randomKey;
+                              'pix_randomKey'.tr;
                         }
 
                         bool isFirstInGroup = index == groupStartIndex;
@@ -187,7 +186,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                           }
                         }
                         return Text(
-                          AppLocalizations.of(context)!.pix_haveNot,
+                          'pix_haveNot'.tr,
                           style: const TextStyle(
                               color: Colors.black, fontSize: 18),
                         );
@@ -199,7 +198,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
             ),
             Center(
               child: Text(
-                AppLocalizations.of(context)!.pix_fiveKeys,
+                'pix_fiveKeys'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
             ),
@@ -222,7 +221,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    AppLocalizations.of(context)!.pix_createNewKey,
+                    'pix_createNewKey'.tr,
                     style: const TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
@@ -274,7 +273,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content:
-                              Text(AppLocalizations.of(context)!.pix_keyCopied),
+                              Text('pix_keyCopied'.tr),
                         ),
                       );
                     },
@@ -290,7 +289,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                           title: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              AppLocalizations.of(context)!.pix_sureDelete,
+                              'pix_sureDelete'.tr,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
@@ -308,8 +307,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
-                                    AppLocalizations.of(context)!
-                                        .pix_keyExclude,
+                                    'pix_keyExclude'.tr,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                         color: Colors.black, fontSize: 16),
@@ -338,8 +336,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                                                   ),
                                                 ),
                                                 child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .pix_stayWithKey,
+                                                  'pix_stayWithKey'.tr,
                                                   style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 16,
@@ -363,18 +360,14 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                                                     Get.back();
                                                     _dialogResult(
                                                         context,
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .dialog_success,
+                                                        'dialog_success'.tr,
                                                         result.message);
                                                   } else {
                                                     _isLoading(false);
                                                     Get.back();
                                                     _dialogResult(
                                                         context,
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .dialog_error,
+                                                        'dialog_error'.tr,
                                                         result.message);
                                                   }
                                                 } catch (error) {
@@ -382,9 +375,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                                                   Get.back();
                                                   _dialogResult(
                                                       context,
-                                                      AppLocalizations.of(
-                                                              context)!
-                                                          .dialog_someError,
+                                                      'dialog_someError'.tr,
                                                       error.toString());
                                                 }
                                               },
@@ -397,8 +388,7 @@ class _PixKeyManagerState extends State<PixKeyManager> {
                                                 ),
                                               ),
                                               child: Text(
-                                                AppLocalizations.of(context)!
-                                                    .pix_deleteKey,
+                                                'pix_deleteKey'.tr,
                                                 style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 16),

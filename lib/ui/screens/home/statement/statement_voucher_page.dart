@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/data/model/statement/statementVoucherModel.da
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -65,7 +64,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
         centerTitle: true,
         title: SafeArea(
           child: Text(
-            AppLocalizations.of(context)!.statement_title,
+            'statement_title'.tr,
             style: const TextStyle(
                 color: Colors.black, fontWeight: FontWeight.bold),
           ),
@@ -191,7 +190,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
                                 borderRadius: BorderRadius.circular(50)),
                             backgroundColor: secondaryColor),
                         child: Text(
-                          AppLocalizations.of(context)!.share.toUpperCase(),
+                          'share'.tr.toUpperCase(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -256,7 +255,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
               children: [
                 Flexible(
                   child: Text(
-                    AppLocalizations.of(context)!.statement_code,
+                    'statement_code'.tr,
                     style: const TextStyle(color: Colors.black, fontSize: 16),
                     overflow: TextOverflow.visible,
                   ),
@@ -278,7 +277,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.statement_value,
+                'statement_value'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Text(
@@ -296,7 +295,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
           ),
         ),
         Text(
-          AppLocalizations.of(context)!.statement_origin,
+          'statement_origin'.tr,
           style: const TextStyle(
               color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -306,7 +305,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.name,
+                'name'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               const SizedBox(
@@ -332,7 +331,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.statement_document,
+                'statement_document'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Text(
@@ -350,7 +349,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.statement_institute,
+                'statement_institute'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Text(
@@ -368,7 +367,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
           ),
         ),
         Text(
-          AppLocalizations.of(context)!.statement_destiny,
+          'statement_destiny'.tr,
           style: const TextStyle(
               color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -378,7 +377,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.name,
+                'name'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Flexible(
@@ -401,7 +400,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.statement_document,
+                'statement_document'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Text(
@@ -419,7 +418,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.statement_institute,
+                'statement_institute'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Text(
@@ -435,7 +434,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.statement_agency,
+                'statement_agency'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Text(
@@ -453,7 +452,7 @@ class _StatementVoucherScreenState extends State<StatementVoucherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.statement_account,
+                'statement_account'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               Text(

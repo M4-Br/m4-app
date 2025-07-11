@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future displayBottomSheet(
     BuildContext context, http.Response response, String reason) {
@@ -22,7 +22,7 @@ Future displayBottomSheet(
                 SvgPicture.asset('assets/images/miban4_colored_logo.svg', width: 180,),
                 const SizedBox(height: 16,),
                 Text(
-                  "${AppLocalizations.of(context)!.dialogErro}: ${response.statusCode}",
+                  "${'dialogErro'.tr}: ${response.statusCode}",
                   style:
                   const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),

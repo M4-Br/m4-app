@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixAddKeys.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixKeyManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -23,7 +22,7 @@ class _PixMyKeysState extends State<PixMyKeys> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_myKeys,
+        title: 'pix_myKeys'.tr,
         backPage: () => Get.off(() => const PixKeyManager(), transition: Transition.leftToRight),
         rightIcon: IconButton(
           icon: const Icon(Icons.rule),
@@ -41,7 +40,7 @@ class _PixMyKeysState extends State<PixMyKeys> {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
               child: Text(
-                AppLocalizations.of(context)!.pix_keys,
+                'pix_keys'.tr,
                 style: const TextStyle(color: Colors.black, fontSize: 18),
               ),
             ),
@@ -65,7 +64,7 @@ class _PixMyKeysState extends State<PixMyKeys> {
 
                     if (keys.success == false) {
                       return Center(
-                        child: Text(AppLocalizations.of(context)!.pix_noKeys),
+                        child: Text('pix_noKeys'.tr),
                       );
                     }
                     return ListView.builder(
@@ -79,27 +78,27 @@ class _PixMyKeysState extends State<PixMyKeys> {
                         int groupStartIndex = 0;
                         int groupEndIndex = keys.phones.length;
                         String groupTitle =
-                            AppLocalizations.of(context)!.pix_phoneKey;
+                            'pix_phoneKey'.tr;
 
                         if (index >= groupEndIndex) {
                           groupStartIndex = groupEndIndex;
                           groupEndIndex += keys.documents.length;
                           groupTitle =
-                              AppLocalizations.of(context)!.pix_documentKey;
+                              'pix_documentKey'.tr;
                         }
 
                         if (index >= groupEndIndex) {
                           groupStartIndex = groupEndIndex;
                           groupEndIndex += keys.emails.length;
                           groupTitle =
-                              AppLocalizations.of(context)!.pix_emailKey;
+                              'pix_emailKey'.tr;
                         }
 
                         if (index >= groupEndIndex) {
                           groupStartIndex = groupEndIndex;
                           groupEndIndex += keys.evps.length;
                           groupTitle =
-                              AppLocalizations.of(context)!.pix_randomKey;
+                              'pix_randomKey'.tr;
                         }
 
                         bool isFirstInGroup = index == groupStartIndex;
@@ -196,7 +195,7 @@ class _PixMyKeysState extends State<PixMyKeys> {
                           }
                         }
                         return Text(
-                          AppLocalizations.of(context)!.pix_haveNot,
+                          'pix_haveNot'.tr,
                           style: const TextStyle(
                               color: Colors.black, fontSize: 18),
                         );
@@ -225,7 +224,7 @@ class _PixMyKeysState extends State<PixMyKeys> {
                       ),
                     ),
                     child: Text(
-                      AppLocalizations.of(context)!.pix_createKey,
+                      'pix_createKey'.tr,
                       style: const TextStyle(fontSize: 16, color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
@@ -261,7 +260,7 @@ class _PixMyKeysState extends State<PixMyKeys> {
           Clipboard.setData(ClipboardData(text: key.toString()));
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(AppLocalizations.of(context)!.pix_keyCopied),
+              content: Text('pix_keyCopied'.tr),
             ),
           );
         },

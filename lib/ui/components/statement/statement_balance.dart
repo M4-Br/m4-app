@@ -2,13 +2,13 @@ import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/model/userData/balance.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StatementBalance extends StatefulWidget {
   final int? balanceType;
 
-  const StatementBalance({Key? key, this.balanceType}) : super(key: key);
+  const StatementBalance({super.key, this.balanceType});
 
   @override
   State<StatementBalance> createState() => _StatementBalanceState();
@@ -83,8 +83,8 @@ class _StatementBalanceState extends State<StatementBalance> {
                 padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
                 child: Text(
                   widget.balanceType == 0
-                      ? AppLocalizations.of(context)!.transfer_balance
-                      : AppLocalizations.of(context)!.transfer_balance_savings,
+                      ? 'transfer_balance'.tr
+                      : 'transfer_balance_savings'.tr,
                   style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
@@ -157,8 +157,8 @@ class _StatementBalanceState extends State<StatementBalance> {
                 padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
                 child: Text(
                   widget.balanceType == 0
-                      ? AppLocalizations.of(context)!.transfer_balance
-                      : AppLocalizations.of(context)!.transfer_balance_savings,
+                      ? 'transfer_balance'.tr
+                      : 'transfer_balance_savings'.tr,
                   style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),

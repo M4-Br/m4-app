@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_pag
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_value_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_another_bank_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 class TransferBankPage extends StatefulWidget {
@@ -31,7 +30,7 @@ class _TransferBankPageState extends State<TransferBankPage> {
 
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.transfer,
+        title: 'transfer'.tr,
         backPage: () => Get.off(() => const TransferContactPage(),
             transition: Transition.leftToRight),
       ),
@@ -111,7 +110,7 @@ class _TransferBankPageState extends State<TransferBankPage> {
                 children: [
                   const Icon(Icons.account_balance_outlined, size: 40.0),
                   const SizedBox(width: 8.0),
-                  Text(AppLocalizations.of(context)!.transfer_miban,
+                  Text('transfer_miban'.tr,
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold)),
                 ],
@@ -150,7 +149,7 @@ class _TransferBankPageState extends State<TransferBankPage> {
                 children: [
                   const Icon(Icons.account_balance_rounded, size: 40.0),
                   const SizedBox(width: 8.0),
-                  Text(AppLocalizations.of(context)!.transfer_other,
+                  Text('transfer_other'.tr,
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold)),
                 ],
@@ -194,7 +193,7 @@ class _TransferBankPageState extends State<TransferBankPage> {
             children: [
               const Icon(Icons.account_balance_rounded, size: 40.0),
               const SizedBox(width: 8.0),
-              Text(AppLocalizations.of(context)!.transfer_other,
+              Text('transfer_other'.tr,
                   style: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
             ],

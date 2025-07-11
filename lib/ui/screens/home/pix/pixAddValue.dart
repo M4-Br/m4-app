@@ -9,7 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PixAddValue extends StatefulWidget {
   late Balance? balance;
@@ -61,7 +60,7 @@ class _PixAddValueState extends State<PixAddValue> {
               height: MediaQuery.of(context).size.height / 4,
             ),
             Text(
-              AppLocalizations.of(context)!.transfer_value,
+              'transfer_value'.tr,
               style: const TextStyle(fontSize: 20, color: Colors.black),
             ),
             const SizedBox(height: 16),
@@ -107,12 +106,12 @@ class _PixAddValueState extends State<PixAddValue> {
               ],
             ),
             Text(
-              '${AppLocalizations.of(context)!.balance_available} R\$ ${currencyFormat.format(availableBalance)}',
+              '${'balance_available'.tr} R\$ ${currencyFormat.format(availableBalance)}',
               style: const TextStyle(color: Colors.black, fontSize: 16),
             ),
             const Spacer(),
             Text(
-              '${AppLocalizations.of(context)!.transfer_minimum} R\$ 10,00',
+              '${'transfer_minimum'.tr} R\$ 10,00',
               style: const TextStyle(color: Colors.black, fontSize: 16),
             ),
             Padding(
@@ -146,7 +145,7 @@ class _PixAddValueState extends State<PixAddValue> {
                   minimumSize: const Size(double.infinity, 50),
                 ),
                 child: Text(
-                  AppLocalizations.of(context)!.next,
+                  'next'.tr,
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),

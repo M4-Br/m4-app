@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PixStatementPage extends StatefulWidget {
   const PixStatementPage({Key? key}) : super(key: key);
@@ -53,7 +52,7 @@ class _PixStatementPageState extends State<PixStatementPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_statement,
+        title: 'pix_statement'.tr,
         backPage: () =>
             Get.off(() => PixHome(), transition: Transition.leftToRight),
       ),
@@ -149,13 +148,13 @@ class _PixStatementPageState extends State<PixStatementPage> {
                   );
                 } else if (snapshot.hasError) {
                   return Center(
-                    child: Text(AppLocalizations.of(context)!.some_error),
+                    child: Text('some_error'.tr),
                   );
                 } else {
                   PixStatementModel statement = snapshot.data!;
                   if (statement.list.length == 0) {
                     return Center(
-                      child: Text(AppLocalizations.of(context)!.statement_noData),
+                      child: Text('statement_noData'.tr),
                     );
                   }
                   List<TransactionItem> filteredTransactions =
@@ -169,7 +168,7 @@ class _PixStatementPageState extends State<PixStatementPage> {
                   if (filteredTransactions.length == 0) {
                     return Center(
                       child: Text(
-                          AppLocalizations.of(context)!.statement_noData),
+                          'statement_noData'.tr),
                     );
                   }
                   return ListView.builder(
@@ -222,9 +221,8 @@ class _PixStatementPageState extends State<PixStatementPage> {
                               id: extrato.id,
                               type:
                                   extrato.details.transactionStatus == 'ENVIADO'
-                                      ? AppLocalizations.of(context)!.pix_send
-                                      : AppLocalizations.of(context)!
-                                          .pix_received,
+                                      ? 'pix_send'.tr
+                                      : 'pix_received'.tr,
                               date: extrato.details.transactionDate,
                             ),
                             transition: Transition.rightToLeft,

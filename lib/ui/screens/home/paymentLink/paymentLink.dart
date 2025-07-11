@@ -2,7 +2,6 @@ import 'package:app_flutter_miban4/data/model/payment/payment_link_entity.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLinkValue.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
@@ -22,13 +21,13 @@ class _PaymentLinkState extends State<PaymentLink> {
   @override
   Widget build(BuildContext context) {
     final DateFormat dateFormat = DateFormat(
-        'd \'${AppLocalizations.of(context)!.off}\' MMMM \'${AppLocalizations.of(context)!.off}\' yyyy | HH:mm',
+        'd \'${'off'.tr}\' MMMM \'${'off'.tr}\' yyyy | HH:mm',
         'pt_BR');
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.demand_demand,
+        title: 'demand_demand'.tr,
         backPage: () => Get.off(() => const PaymentLinkValue(),
             transition: Transition.leftToRight),
       ),
@@ -38,15 +37,14 @@ class _PaymentLinkState extends State<PaymentLink> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              AppLocalizations.of(context)!.payment_link_generated,
+              'payment_link_generated'.tr,
               style: const TextStyle(fontSize: 18),
               textAlign: TextAlign.center,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Text(
-                AppLocalizations.of(context)!
-                    .payment_link_receive
+                'payment_link_receive'.tr
                     .toUpperCase(),
                 style: const TextStyle(fontSize: 18),
                 textAlign: TextAlign.center,
@@ -67,7 +65,7 @@ class _PaymentLinkState extends State<PaymentLink> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Text(
-                AppLocalizations.of(context)!.payment_link_share,
+                "payment_link_share".tr,
                 style: const TextStyle(fontSize: 18),
                 textAlign: TextAlign.center,
               ),
@@ -79,8 +77,7 @@ class _PaymentLinkState extends State<PaymentLink> {
                   await Share.share('Pague com o Link de Pagamento. É rápido, é fácil, é seguro: ${widget.payment!.link}');
                 },
                 label: Text(
-                  AppLocalizations.of(context)!
-                      .payment_link_share_link
+                  'payment_link_share_link'.tr
                       .toUpperCase(),
                   style: const TextStyle(color: Colors.black, fontSize: 18),
                 ),

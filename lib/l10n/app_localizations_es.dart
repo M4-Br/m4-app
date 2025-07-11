@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -25,16 +27,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String get register => 'REGISTRARSE';
 
   @override
-  String get privacy_policy_read => 'Lee hasta el final para aceptar la Política de Privacidad.';
+  String get privacy_policy_read =>
+      'Lee hasta el final para aceptar la Política de Privacidad.';
 
   @override
-  String get terms_credit => 'Al continuar, aceptas los \n Términos y Condiciones de crédito';
+  String get terms_credit =>
+      'Al continuar, aceptas los \n Términos y Condiciones de crédito';
 
   @override
-  String get terms_credit_read => 'Lee hasta el final para aceptar los Términos y Condiciones';
+  String get terms_credit_read =>
+      'Lee hasta el final para aceptar los Términos y Condiciones';
 
   @override
-  String get terms_read => 'He leído, comprendido y acepto \n los Términos y Condiciones de crédito';
+  String get terms_read =>
+      'He leído, comprendido y acepto \n los Términos y Condiciones de crédito';
 
   @override
   String get page2 => 'Página de Contraseña';
@@ -70,7 +76,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get insert_cpf => 'Introduce tu documento para continuar';
 
   @override
-  String get read_policy => 'He leído, aceptado y aprobado la Política de Privacidad';
+  String get read_policy =>
+      'He leído, aceptado y aprobado la Política de Privacidad';
 
   @override
   String get page5 => 'Página de Registro Paso 2';
@@ -79,7 +86,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get register_init => '¡Comencemos tu registro!';
 
   @override
-  String get informations_continue => 'Ingresa alguna información para continuar:';
+  String get informations_continue =>
+      'Ingresa alguna información para continuar:';
 
   @override
   String get full_name => 'Nombre Completo';
@@ -100,7 +108,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get phone_register => 'Registro de Teléfono Móvil';
 
   @override
-  String get for_secure_phone => 'Para tu seguridad, registraremos tu telefono móvil para asegurar que solo tú puedas acceder a tu cuenta.';
+  String get for_secure_phone =>
+      'Para tu seguridad, registraremos tu telefono móvil para asegurar que solo tú puedas acceder a tu cuenta.';
 
   @override
   String get phone => 'Teléfono Móvil';
@@ -109,7 +118,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get page7 => 'Página de Registro Paso 4';
 
   @override
-  String get full_address_information => 'Proporciona tu dirección residencial completa:';
+  String get full_address_information =>
+      'Proporciona tu dirección residencial completa:';
 
   @override
   String get address_cep => 'Código Postal';
@@ -160,7 +170,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get personal_data => 'Información Personal';
 
   @override
-  String get pay_attention => 'Llena tu información según tu documento. Presta mucha atención, ya que estos detalles son importantes para nuestro análisis.';
+  String get pay_attention =>
+      'Llena tu información según tu documento. Presta mucha atención, ya que estos detalles son importantes para nuestro análisis.';
 
   @override
   String get document_name => 'Tu Nombre en el Documento';
@@ -202,7 +213,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get page10 => 'Página de Registro Paso 7';
 
   @override
-  String get choose_document => '¿Qué tipo de documento de identificación deseas agregar?';
+  String get choose_document =>
+      '¿Qué tipo de documento de identificación deseas agregar?';
 
   @override
   String get page101 => 'Página de Registro Paso 8';
@@ -211,13 +223,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get take_document_selfie => 'Selfie con Documento (ID)';
 
   @override
-  String get selfie_one => 'Toma tu documento de identidad y sosténlo frente a ti.';
+  String get selfie_one =>
+      'Toma tu documento de identidad y sosténlo frente a ti.';
 
   @override
-  String get selfie_two => 'Asegúrate de que la foto del documento de identidad también esté hacia adelante.';
+  String get selfie_two =>
+      'Asegúrate de que la foto del documento de identidad también esté hacia adelante.';
 
   @override
-  String get selfie_three => 'Tómate una selfie con tu documento de identificación visible.';
+  String get selfie_three =>
+      'Tómate una selfie con tu documento de identificación visible.';
 
   @override
   String get page11 => 'Página de Registro Paso 9';
@@ -226,7 +241,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get every_ok => '¿Todo Listo?';
 
   @override
-  String get plastic => 'Retira el plástico del documento y desdóblalo completamente';
+  String get plastic =>
+      'Retira el plástico del documento y desdóblalo completamente';
 
   @override
   String get front_photo => 'FOTO FRONTAL';
@@ -241,7 +257,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get selfie => '¡Hora de la Selfie!';
 
   @override
-  String get dont_perfect => 'No necesita ser una foto perfecta, pero tenemos algunas pautas que te ayudarán en el proceso.';
+  String get dont_perfect =>
+      'No necesita ser una foto perfecta, pero tenemos algunas pautas que te ayudarán en el proceso.';
 
   @override
   String get dont_gadgets => 'No se permiten accesorios.';
@@ -259,7 +276,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get analysis_progress => 'Análisis en progreso';
 
   @override
-  String get request_sent => 'Tu solicitud ha sido enviada.\n Estamos revisando tu registro.\n Recibirás más información en breve.';
+  String get request_sent =>
+      'Tu solicitud ha sido enviada.\n Estamos revisando tu registro.\n Recibirás más información en breve.';
 
   @override
   String get know_more => '¿Quieres saber más sobre nosotros?';
@@ -277,7 +295,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get approved => '¡Tu registro ha sido aprobado!';
 
   @override
-  String get need_create_password => 'Solo necesitas crear una \n contraseña para empezar a usar la App.';
+  String get need_create_password =>
+      'Solo necesitas crear una \n contraseña para empezar a usar la App.';
 
   @override
   String get create_password => 'CREAR UNA CONTRASEÑA';
@@ -289,7 +308,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get create_new_password => 'Crea tu contraseña';
 
   @override
-  String get password_justify => 'La necesitarás cada vez que realices un pago,\n así que mantenla segura y recuérdala.\n Tu contraseña será una secuencia de 6 números.';
+  String get password_justify =>
+      'La necesitarás cada vez que realices un pago,\n así que mantenla segura y recuérdala.\n Tu contraseña será una secuencia de 6 números.';
 
   @override
   String get confirm_password => 'Confirmar contraseña';
@@ -298,13 +318,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get change_app_password => 'Cambiar la contraseña de la aplicación';
 
   @override
-  String get change_password_password => 'Contraseña actual de la aplicación (6 Dígitos)';
+  String get change_password_password =>
+      'Contraseña actual de la aplicación (6 Dígitos)';
 
   @override
-  String get change_password_new => 'Nueva contraseña de la aplicación (6 Dígitos)';
+  String get change_password_new =>
+      'Nueva contraseña de la aplicación (6 Dígitos)';
 
   @override
-  String get change_password_new_confirm => 'Repetir nueva contraseña de la aplicación (6 Dígitos)';
+  String get change_password_new_confirm =>
+      'Repetir nueva contraseña de la aplicación (6 Dígitos)';
 
   @override
   String get change_password_validate => 'La contraseña debe tener 6 dígitos.';
@@ -355,10 +378,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get barcode_auto => 'Escanear Código de Barras';
 
   @override
-  String get barcode_info => 'Las facturas se pueden pagar en días hábiles de 7 AM a 5 PM.';
+  String get barcode_info =>
+      'Las facturas se pueden pagar en días hábiles de 7 AM a 5 PM.';
 
   @override
-  String get barcode_info_after => 'Después de esta hora, solo será posible realizar el pago el próximo día hábil.';
+  String get barcode_info_after =>
+      'Después de esta hora, solo será posible realizar el pago el próximo día hábil.';
 
   @override
   String get page18 => 'Comprobante de Factura';
@@ -448,7 +473,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pix_newKey => 'Nueva Clave';
 
   @override
-  String get pix_waitNewKey => 'Por favor, espera mientras creamos \n tu nueva clave';
+  String get pix_waitNewKey =>
+      'Por favor, espera mientras creamos \n tu nueva clave';
 
   @override
   String get pix_createNewKey => 'REGISTRAR CLAVE';
@@ -523,7 +549,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pix_withKey => 'PIX CON CLAVE';
 
   @override
-  String get pix_addReceiverKey => 'Agrega la clave del destinatario y realiza la búsqueda:';
+  String get pix_addReceiverKey =>
+      'Agrega la clave del destinatario y realiza la búsqueda:';
 
   @override
   String get pix_keyType => 'TIPO DE CLAVE';
@@ -679,7 +706,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get page31 => 'Confirmar Transpasso';
 
   @override
-  String get transfer_confirm => '¿Quieres realizar una \n transpasso por el monto de:';
+  String get transfer_confirm =>
+      '¿Quieres realizar una \n transpasso por el monto de:';
 
   @override
   String get transfer_valueConfirm => 'Valor';
@@ -760,7 +788,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get password_create => 'Crea tu contraseña';
 
   @override
-  String get password_need => 'La necesitarás cada vez que realices un pago,\n así que mantenla segura y recuérdala.\n Tu contraseña será una secuencia de 6 números.';
+  String get password_need =>
+      'La necesitarás cada vez que realices un pago,\n así que mantenla segura y recuérdala.\n Tu contraseña será una secuencia de 6 números.';
 
   @override
   String get password_six => 'La contraseña debe contener 6 dígitos';
@@ -778,13 +807,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get page36 => 'Mi Código QR';
 
   @override
-  String get myqr_description => 'Usa tu código QR o comparte \n el enlace para recibir pagos';
+  String get myqr_description =>
+      'Usa tu código QR o comparte \n el enlace para recibir pagos';
 
   @override
   String get pix_codeGenerated => '¡Código generado con éxito!';
 
   @override
-  String get pix_dataVisible => 'Los datos serán visibles para su lectura \n por parte del pagador.';
+  String get pix_dataVisible =>
+      'Los datos serán visibles para su lectura \n por parte del pagador.';
 
   @override
   String get pix_copyLink => 'COPIAR ENLACE';
@@ -805,7 +836,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pix_choose_new => 'Elige una opción';
 
   @override
-  String get pix_registerKey_inform => 'Elige una clave para comenzar \n a usar tu Pix:';
+  String get pix_registerKey_inform =>
+      'Elige una clave para comenzar \n a usar tu Pix:';
 
   @override
   String get pix_randomKeyRegister => 'Generar Clave Aleatoria';
@@ -874,7 +906,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statement_document => 'ID de Usuario';
 
   @override
-  String get statement_noData => 'No hay transacciones en la fecha seleccionada';
+  String get statement_noData =>
+      'No hay transacciones en la fecha seleccionada';
 
   @override
   String get statement_agency => 'Agencia';
@@ -907,7 +940,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get email_send_code => 'Hemos enviado un código al correo registrado';
 
   @override
-  String get email_perhaps => 'Si no has recibido el correo, por favor revisa \n tu carpeta de correo no deseado o spam';
+  String get email_perhaps =>
+      'Si no has recibido el correo, por favor revisa \n tu carpeta de correo no deseado o spam';
 
   @override
   String get email_insert_code => 'INSERTA EL CÓDIGO AQUÍ';
@@ -925,7 +959,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get password_success => '¡Contraseña Registrada!';
 
   @override
-  String get password_content => 'Tu contraseña de 6 dígitos para la aplicación ha sido registrada con éxito.';
+  String get password_content =>
+      'Tu contraseña de 6 dígitos para la aplicación ha sido registrada con éxito.';
 
   @override
   String get display2 => 'Pantalla de Confirmación de Teléfono';
@@ -1144,7 +1179,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get group_add_members => 'Agregar miembros';
 
   @override
-  String get group_search_details => 'Buscar por documento (ID de usuario) para \n agregar miembros y enviar invitaciones.';
+  String get group_search_details =>
+      'Buscar por documento (ID de usuario) para \n agregar miembros y enviar invitaciones.';
 
   @override
   String get group_search => 'Buscar por documento';
@@ -1162,7 +1198,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get group_created_success => '¡Grupo creado con éxito!';
 
   @override
-  String get group_wait => 'Por favor espera a que los miembros acepten tu invitación.\n Puedes seguir el estado de tu grupo \n en el menú Grupos.';
+  String get group_wait =>
+      'Por favor espera a que los miembros acepten tu invitación.\n Puedes seguir el estado de tu grupo \n en el menú Grupos.';
 
   @override
   String get group_see => 'VER GRUPOS';
@@ -1279,7 +1316,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get credit_dont => 'Aún no has solicitado ningún crédito';
 
   @override
-  String get credit_enter => 'Ingresa a tus grupos activos para solicitar un crédito';
+  String get credit_enter =>
+      'Ingresa a tus grupos activos para solicitar un crédito';
 
   @override
   String get credit_groups => 'VER GRUPOS';
@@ -1360,13 +1398,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get credit_vote => '¡Tu voto para el crédito \n ha sido registrado!';
 
   @override
-  String get credit_voted_details => 'En unas horas, recibirás el resultado final de la votación del crédito.';
+  String get credit_voted_details =>
+      'En unas horas, recibirás el resultado final de la votación del crédito.';
 
   @override
   String get credit_requested => '¡Crédito solicitado!';
 
   @override
-  String get credit_request_wait => 'Por favor, espera a que los miembros acepten tu crédito. \nRecibirás una notificación con la respuesta a tu crédito.';
+  String get credit_request_wait =>
+      'Por favor, espera a que los miembros acepten tu crédito. \nRecibirás una notificación con la respuesta a tu crédito.';
 
   @override
   String get savings => 'Ahorros';
@@ -1375,7 +1415,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get facilitator => 'Rol Exclusivo de Facilitador';
 
   @override
-  String get facilitator_explain => 'La creación de grupos es una función exclusiva de los Facilitadores dentro de Miban4. Por favor, contacta a tu Facilitador para solicitar la creación de grupos. \n\nVisita nuestro sitio web para más detalles.';
+  String get facilitator_explain =>
+      'La creación de grupos es una función exclusiva de los Facilitadores dentro de Miban4. Por favor, contacta a tu Facilitador para solicitar la creación de grupos. \n\nVisita nuestro sitio web para más detalles.';
 
   @override
   String get site => 'VISITAR SITIO';
@@ -1387,7 +1428,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get exit_page => '¿Realmente deseas salir?';
 
   @override
-  String get resume_register => 'Puedes continuar el registro desde donde lo dejaste.';
+  String get resume_register =>
+      'Puedes continuar el registro desde donde lo dejaste.';
 
   @override
   String get validators => 'Validadores';
@@ -1396,7 +1438,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get validator_empty => 'Este campo es obligatorio';
 
   @override
-  String get validator_valid_document => 'El documento debe contener 11 caracteres';
+  String get validator_valid_document =>
+      'El documento debe contener 11 caracteres';
 
   @override
   String get validator_six_char => 'La contraseña contiene 6 caracteres';
@@ -1408,10 +1451,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get validator_password_confirm => 'Las contraseñas no coinciden';
 
   @override
-  String get pep => 'Personas que hayan ocupado, en los últimos 5 (cinco) años, cargos, empleos o funciones relevantes en Brasil o en otros países, territorios y dependencias extranjeras, así como sus representantes, familiares y otras personas en sus relaciones cercanas.';
+  String get pep =>
+      'Personas que hayan ocupado, en los últimos 5 (cinco) años, cargos, empleos o funciones relevantes en Brasil o en otros países, territorios y dependencias extranjeras, así como sus representantes, familiares y otras personas en sus relaciones cercanas.';
 
   @override
-  String get wait => 'Por favor, espera mientras completamos \n tu transferencia.';
+  String get wait =>
+      'Por favor, espera mientras completamos \n tu transferencia.';
 
   @override
   String get notifications => 'NOTIFICACIONES';
@@ -1444,7 +1489,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get group_no_group => 'No hay grupos añadidos.';
 
   @override
-  String get group_no_group_detail => 'Agrega tu primer grupo y guarda junto con la comunidad.';
+  String get group_no_group_detail =>
+      'Agrega tu primer grupo y guarda junto con la comunidad.';
 
   @override
   String get address_type_own => 'Propio';
@@ -1576,7 +1622,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pep_no => 'No';
 
   @override
-  String get invite_content => 'Es necesario invitar al máximo número de miembros para proceder';
+  String get invite_content =>
+      'Es necesario invitar al máximo número de miembros para proceder';
 
   @override
   String get house_own => 'Propio';
@@ -1669,10 +1716,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get account_waiting => 'Tu cuenta aún no está activa';
 
   @override
-  String get account_savings_waiting => 'Tu cuenta de ahorros aún no está activa';
+  String get account_savings_waiting =>
+      'Tu cuenta de ahorros aún no está activa';
 
   @override
-  String get onboarding_confirm_selfie => '¿La foto salió bien? ¿El texto es claro? La imagen no debe contener reflejos.';
+  String get onboarding_confirm_selfie =>
+      '¿La foto salió bien? ¿El texto es claro? La imagen no debe contener reflejos.';
 
   @override
   String get onboarding_confirm_again => 'Tomar otra';
@@ -1693,10 +1742,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get all_paid => 'No hay transacciones pendientes.';
 
   @override
-  String get credit_installment_delayed => 'Cuota retrasada. Se aplican impuestos e intereses adicionales.';
+  String get credit_installment_delayed =>
+      'Cuota retrasada. Se aplican impuestos e intereses adicionales.';
 
   @override
-  String get first_installment => '¡Advertencia! ¡El valor más antiguo debe ser pagado primero!';
+  String get first_installment =>
+      '¡Advertencia! ¡El valor más antiguo debe ser pagado primero!';
 
   @override
   String get credit_next_payment => 'Próximo Pago';

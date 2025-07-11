@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/ui/controllers/pix/send_pix_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixWithKey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -56,7 +55,7 @@ class _PixTransferState extends State<PixTransfer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.pix_withKey,
+        title: 'pix_withKey'.tr,
         backPage: () => Get.off(() => const PixWithKey(),
             transition: Transition.leftToRight),
       ),
@@ -67,7 +66,7 @@ class _PixTransferState extends State<PixTransfer> {
           child: Column(
             children: [
               Text(
-                AppLocalizations.of(context)!.pix_payValue,
+                'pix_payValue'.tr,
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
@@ -111,7 +110,7 @@ class _PixTransferState extends State<PixTransfer> {
                   ),
                   counterStyle: const TextStyle(color: secondaryColor),
                   hintText:
-                      AppLocalizations.of(context)!.pix_descriptionTransfer,
+                      'pix_descriptionTransfer'.tr,
                   hintStyle: const TextStyle(color: Colors.black),
                   border: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black),
@@ -124,7 +123,7 @@ class _PixTransferState extends State<PixTransfer> {
                 child: Row(
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.pix_transferDate,
+                      'pix_transferDate'.tr,
                       style: const TextStyle(fontSize: 16),
                     ),
                     const Spacer(),
@@ -153,7 +152,7 @@ class _PixTransferState extends State<PixTransfer> {
                 child: Row(
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.pix_keyKey,
+                      'pix_keyKey'.tr,
                       style: const TextStyle(fontSize: 16),
                     ),
                     const Spacer(),
@@ -167,7 +166,7 @@ class _PixTransferState extends State<PixTransfer> {
               Row(
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.pix_receiverTransfer,
+                    'pix_receiverTransfer'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   const Spacer(),
@@ -198,7 +197,7 @@ class _PixTransferState extends State<PixTransfer> {
               Row(
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.pix_institution,
+                    'pix_institution'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                   const Spacer(),
@@ -223,7 +222,7 @@ class _PixTransferState extends State<PixTransfer> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "${AppLocalizations.of(context)!.balance_available}: ",
+                        "${'balance_available'.tr}: ",
                         style: const TextStyle(fontSize: 16),
                       ),
                       Text(
@@ -249,7 +248,7 @@ class _PixTransferState extends State<PixTransfer> {
                           onPressed: () => Get.off(() => const PixWithKey(),
                               transition: Transition.leftToRight),
                           child: Text(
-                            AppLocalizations.of(context)!.cancel.toUpperCase(),
+                            'cancel'.tr.toUpperCase(),
                             style: const TextStyle(
                                 color: Colors.white, fontSize: 16),
                           )),
@@ -268,7 +267,7 @@ class _PixTransferState extends State<PixTransfer> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20))),
                         child: Text(
-                          AppLocalizations.of(context)!.pay,
+                          'pay'.tr,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 16),
                         ),
@@ -304,7 +303,7 @@ class _PixTransferState extends State<PixTransfer> {
       builder: (BuildContext context) {
         return AlertDialog.adaptive(
           title: Text(
-            AppLocalizations.of(context)!.password_insert,
+            'password_insert'.tr,
             textAlign: TextAlign.center,
           ),
           content: Obx(
@@ -350,7 +349,7 @@ class _PixTransferState extends State<PixTransfer> {
                       Navigator.of(context).pop();
                     },
                     child: Text(
-                      AppLocalizations.of(context)!.cancel,
+                      'cancel'.tr,
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
@@ -410,7 +409,7 @@ class _PixTransferState extends State<PixTransfer> {
 
                           return AlertDialog.adaptive(
                             title: Text(
-                              AppLocalizations.of(context)!.wait,
+                              'wait'.tr,
                               style: const TextStyle(
                                   fontSize: 18, color: Colors.black),
                               textAlign: TextAlign.center,
@@ -427,7 +426,7 @@ class _PixTransferState extends State<PixTransfer> {
                       );
                     },
                     child: Text(
-                      AppLocalizations.of(context)!.confirm,
+                      'confirm'.tr,
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),

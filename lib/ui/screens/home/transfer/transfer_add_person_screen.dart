@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_value_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_another_bank_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:mask_shifter_v2/mask_shifter.dart';
 
@@ -84,7 +83,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.transfer_add_person.toUpperCase(),
+        title: 'transfer_add_person'.tr.toUpperCase(),
         backPage: () => Get.off(
             () => TransferAnotherBankScreen(
                   userTransfer: widget.userTransfer,
@@ -104,7 +103,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                   child: TextFormField(
                     cursorColor: secondaryColor,
                     validator: (value) => value!.isEmpty
-                        ? AppLocalizations.of(context)!.validator_empty
+                        ? 'validator_empty'.tr
                         : null,
                     controller: _nameController,
                     keyboardType: TextInputType.name,
@@ -125,7 +124,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                         borderSide: BorderSide(color: Colors.red),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText: AppLocalizations.of(context)!.name,
+                      labelText: 'name'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
@@ -161,7 +160,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                       borderSide: BorderSide(color: Colors.red),
                     ),
                     contentPadding: EdgeInsets.zero,
-                    labelText: AppLocalizations.of(context)!.document,
+                    labelText: 'document'.tr,
                     labelStyle: const TextStyle(
                       color: Colors.grey,
                       fontSize: 16,
@@ -193,7 +192,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                         borderSide: BorderSide(color: Colors.red),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText: AppLocalizations.of(context)!.account_bank,
+                      labelText: 'account_bank'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
@@ -228,7 +227,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText: AppLocalizations.of(context)!.bank_agency,
+                          labelText: 'bank_agency'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -265,7 +264,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                           ),
                           contentPadding: EdgeInsets.zero,
                           labelText:
-                              AppLocalizations.of(context)!.bank_agency_digit,
+                              'bank_agency_digit'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -286,7 +285,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                     style: const TextStyle(color: Colors.black, fontSize: 16),
                     decoration: InputDecoration(
                       labelText:
-                          AppLocalizations.of(context)!.bank_account_type,
+                          'bank_account_type'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black,
                         fontSize: 16,
@@ -351,7 +350,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                           ),
                           contentPadding: EdgeInsets.zero,
                           labelText:
-                              AppLocalizations.of(context)!.bank_account_number,
+                              'bank_account_number'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -387,7 +386,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                           ),
                           contentPadding: EdgeInsets.zero,
                           labelText:
-                              AppLocalizations.of(context)!.bank_account_digit,
+                              'bank_account_digit'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -432,7 +431,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
               backgroundColor: _isButtonEnabled ? secondaryColor : Colors.grey,
             ),
             child: Text(
-              AppLocalizations.of(context)!.bank_add_account.toUpperCase(),
+              'bank_add_account'.tr.toUpperCase(),
               style: const TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),

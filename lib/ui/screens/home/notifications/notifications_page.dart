@@ -9,7 +9,7 @@ import 'package:app_flutter_miban4/ui/screens/home/groups/group_contribution_id.
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
-        title: AppLocalizations.of(context)!.notifications,
+        title: 'notifications'.tr,
         backPage: () =>
             Get.off(() => HomeViewPage(), transition: Transition.leftToRight),
       ),
@@ -68,7 +68,7 @@ class _NotificationsState extends State<Notifications> {
                             : Colors.white,
                         title: notification['notification_type_id'] == 12
                             ? Text(
-                                AppLocalizations.of(context)!.credit_approved,
+                                'credit_approved'.tr,
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 18,
