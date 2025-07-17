@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
-import 'package:app_flutter_miban4/data/model/transaction/ted.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/components/dialog/modal_dialog.dart';
 import 'package:flutter/material.dart';
@@ -42,8 +41,7 @@ Future<Map<String, dynamic>> transferOtherBank(
     "account_type": accountType
   };
 
-  var response =
-      await http.post(url, headers: headers, body: body);
+  var response = await http.post(url, headers: headers, body: body);
 
   if (response.statusCode == 200) {
     final responseData = json.decode(response.body);

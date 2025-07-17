@@ -16,8 +16,8 @@ class FinancialDataController extends GetxController {
       String otherCosts) async {
     try {
       isLoading(true);
-      await postFinancialCap(groupID, income, peopleFamily, house,
-              transport, houseCost, transportCost, utilitiesCost, otherCosts)
+      await postFinancialCap(groupID, income, peopleFamily, house, transport,
+              houseCost, transportCost, utilitiesCost, otherCosts)
           .then((value) => {
                 if (value['id'].toString().isNotEmpty) {Get.back()}
               });

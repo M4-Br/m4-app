@@ -16,7 +16,7 @@ Future<bool> validateCnpjCode(String code) async {
 
   final body = {
     'code': code,
-};
+  };
 
   final response = await http.post(
       Uri.parse('${ApiUrls.baseUrl}/v2/register/individual/validate/code'),
@@ -25,7 +25,7 @@ Future<bool> validateCnpjCode(String code) async {
 
   try {
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final jsonMap = json.decode(response.body);
+      json.decode(response.body);
       return true;
     } else {
       final jsonMap = json.decode(response.body);

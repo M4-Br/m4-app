@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
-import 'package:app_flutter_miban4/data/model/transaction/transfer.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> fetchUser(String document) async {
-
   String token = await SharedPreferencesFunctions.getString(key: 'token');
 
   final headers = {
@@ -24,8 +22,7 @@ Future<Map<String, dynamic>> fetchUser(String document) async {
     } else {
       throw Exception('Falha ao carregar dados da API');
     }
-  } catch(e) {
+  } catch (e) {
     throw Exception(e.toString());
   }
-
 }
