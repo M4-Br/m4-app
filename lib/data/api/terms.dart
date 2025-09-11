@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 
 Future<Map> getTerms() async {
-
   String codeLang = await SharedPreferencesFunctions.getString(key: 'codeLang');
 
   final headers = {

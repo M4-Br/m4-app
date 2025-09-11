@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
-                        value: 'pt',
+                        value: 'pt_BR',
                         child: Row(
                           children: [
                             Image.asset(
@@ -181,16 +181,15 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
                         backgroundColor: primaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
-                          side:
-                              const BorderSide(color: Colors.white, width: 2),
+                          side: const BorderSide(color: Colors.white, width: 2),
                         ),
                         alignment: Alignment.center,
                         minimumSize: const Size(double.infinity, 50),
                       ),
                       child: Text(
                         'access'.tr,
-                        style: const TextStyle(
-                            color: Colors.white, fontSize: 16),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     )
                   : const CircularProgressIndicator(

@@ -608,7 +608,7 @@ class StringsEnUS {
     "plan_monthly": "Per month",
     "success": "Success",
     "validator_isEmpty": "Fill in the field",
-    "codeLang": "en",
+    "codeLang": "en_US",
     "version": "Version 6.0.2 - Release (223)",
     "version_app": "6.0.2"
   };

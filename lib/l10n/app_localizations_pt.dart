@@ -1780,7 +1780,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get validator_isEmpty => 'Preencha o campo';
 
   @override
-  String get codeLang => 'pt';
+  String get codeLang => 'pt_BR';
 
   @override
   String get version => 'Versão 5.5.0 - Release (160)';

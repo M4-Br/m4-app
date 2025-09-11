@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LanguageController extends GetxController {
-
   Rx<String?> lang = ''.obs;
 
   void changeLanguage(String languageCode) {
@@ -23,7 +22,7 @@ class LanguageController extends GetxController {
 
   String getLanguageFlag(String languageCode) {
     switch (languageCode) {
-      case 'pt':
+      case 'pt_BR':
         return 'assets/icons/ic_flag_pt.png';
       case 'en':
         return 'assets/icons/ic_flag_en.png';

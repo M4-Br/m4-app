@@ -25,8 +25,8 @@ android {
         applicationId = "mibanka4.release"
         minSdk = 27
         targetSdk = 36
-        versionCode = 1 // Substitua com sua lógica para versionCode
-        versionName = "1.0.0" // Substitua com sua lógica para versionName
+        versionCode = 1
+        versionName = "1.0.0"
     }
 
     signingConfigs {
