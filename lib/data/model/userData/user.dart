@@ -35,6 +35,8 @@ class Payload {
   String documentName;
   String birthDate;
   String avatarUrl;
+  String cardColor;
+  String fontColor;
   String qrcode;
   bool updateProfession;
   Address address;
@@ -58,6 +60,8 @@ class Payload {
     required this.documentName,
     required this.birthDate,
     required this.avatarUrl,
+    required this.cardColor,
+    required this.fontColor,
     required this.qrcode,
     required this.updateProfession,
     required this.address,
@@ -83,6 +87,8 @@ class Payload {
       documentName: json['document_name'] ?? "",
       birthDate: json['birth_date'] ?? "",
       avatarUrl: json['avatar_url'] ?? "",
+      cardColor: json['card_color'] ?? "",
+      fontColor: json['card_font_color'] ?? '',
       qrcode: json['qrcode'] ?? "",
       updateProfession: json['update_profession'] ?? false,
       address: Address.fromJson(json['address'] ?? {}),

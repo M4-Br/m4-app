@@ -8,14 +8,11 @@ import 'package:app_flutter_miban4/ui/controllers/home/home_controller.dart';
 import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/controllers/notifications/notifications_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_scan.dart';
-import 'package:app_flutter_miban4/ui/screens/home/credit/credit_screen.dart';
-import 'package:app_flutter_miban4/ui/screens/home/groups/group_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLinkValue.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
-import 'package:app_flutter_miban4/ui/screens/home/savings/savings_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/store/store_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/qrcode_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
@@ -59,8 +56,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String? defaulter = box.read('defaulter');
-
     HomeController homeController = Get.find();
 
     List<IconModel> manualIcons = [
@@ -86,7 +81,7 @@ class _HomePageState extends State<HomePage> {
       "12": 'assets/icons/ic_home_recharge.png',
       "14": 'assets/icons/ic_home_store.png',
       "19": 'assets/icons/ic_home_pix.png',
-      "30": 'assets/icons/ic_home_faq.png', 
+      "30": 'assets/icons/ic_home_faq.png',
       "31": 'assets/icons/ic_home_warning.png',
     };
 
@@ -265,240 +260,95 @@ class _HomePageState extends State<HomePage> {
                           if (index < homeController.icons.length) {
                             IconModel iconModel = homeController.icons[index];
 
-                            if (iconModel.isActive! &&
-                                localIconPaths.containsKey(iconModel.id)) {
-                              return HomeIcons(
-                                iconUrl: localIconPaths[iconModel.id]!,
-                                text: iconModel.title!,
-                                isLocal: true,
-                                onPressed: () async {
-                                  switch (iconModel.id) {
-                                    case "1":
-                                      Get.to(() => const PaymentLinkValue(),
-                                          transition: Transition.rightToLeft);
-                                      break;
-                                    case "2":
-                                      Get.to(() => const QrcodeScreen(),
-                                          transition: Transition.rightToLeft);
-                                      break;
-                                    case "10":
-                                      Get.to(() => const BarcodeScanScreen(),
-                                          transition: Transition.rightToLeft);
-                                      break;
-                                    case "11":
-                                      Get.to(() => const TransferContactPage(),
-                                          transition: Transition.rightToLeft);
-                                      break;
-                                    case "12":
-                                      Get.defaultDialog(
-                                        title: 'message'.tr,
-                                        content: Column(
-                                          children: [
-                                            Text('unavailable'.tr),
-                                            Padding(
-                                              padding: const EdgeInsets.all(16),
-                                              child: SizedBox(
-                                                height: 45,
-                                                width: double.infinity,
-                                                child: ElevatedButton(
-                                                  onPressed: () => Get.back(),
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                        secondaryColor,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              45),
-                                                    ),
-                                                  ),
-                                                  child: const Text(
-                                                    'OK',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 16,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                      break;
-                                    case "14":
-                                      Get.to(() => const StorePage(),
-                                          transition: Transition.rightToLeft);
-                                      break;
-                                    case "19":
-                                      Get.to(() => PixHome(),
-                                          transition: Transition.rightToLeft);
-                                      break;
-                                    case "30":
-                                      Get.to(
-                                          () => WebviewPage(
-                                                url: 'https://mibank4.com',
-                                                pageTitle: iconModel.title!,
-                                              ),
-                                          transition: Transition.rightToLeft);
-                                      break;
-                                    case "31":
-                                      Get.to(
-                                          () => WebviewPage(
-                                                url: 'https://mibank4.com/#faq',
-                                                pageTitle: iconModel.title!,
-                                              ),
-                                          transition: Transition.rightToLeft);
-                                      break;
-                                    default:
-                                      break;
-                                  }
-                                },
-                              );
-                            } else {
-                              return Container();
-                            }
-                          } else {
-                            IconModel manualIcon = manualIcons[
-                                index - homeController.icons.length];
-
                             return HomeIcons(
-                              iconUrl: manualIcon.icon!,
-                              text: manualIcon.title!,
+                              iconUrl: localIconPaths[iconModel.id]!,
+                              text: iconModel.title!,
                               isLocal: true,
                               onPressed: () async {
-                                switch (manualIcon.id) {
-                                  case "20":
-                                    if (defaulter == 'true') {
-                                      Get.defaultDialog(
-                                        backgroundColor: Colors.white,
-                                        title: 'message'.tr,
-                                        titleStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                        content: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                'block_access'.tr,
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            ElevatedButton(
-                                              onPressed: () => Get.back(),
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: secondaryColor,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(45),
-                                                ),
-                                              ),
-                                              child: const Text(
-                                                'OK',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    } else {
-                                      Get.to(() => const GroupsScreen(),
-                                          transition: Transition.rightToLeft);
-                                    }
+                                switch (iconModel.id) {
+                                  case "1":
+                                    Get.to(() => const PaymentLinkValue(),
+                                        transition: Transition.rightToLeft);
                                     break;
-                                  case "21":
-                                    if (defaulter == 'true') {
-                                      Get.defaultDialog(
-                                        backgroundColor: Colors.white,
-                                        title: 'message'.tr,
-                                        titleStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                        content: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                'block_access'.tr,
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            ElevatedButton(
-                                              onPressed: () => Get.back(),
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: secondaryColor,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(45),
-                                                ),
-                                              ),
-                                              child: const Text(
-                                                'OK',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    } else {
-                                      Get.to(() => const SavingsScreen(),
-                                          transition: Transition.rightToLeft);
-                                    }
+                                  case "2":
+                                    Get.to(() => const QrcodeScreen(),
+                                        transition: Transition.rightToLeft);
                                     break;
-                                  case "22":
-                                    if (defaulter == 'true') {
-                                      Get.defaultDialog(
-                                        backgroundColor: Colors.white,
-                                        title: 'message'.tr,
-                                        titleStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                        content: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                'block_access'.tr,
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            ElevatedButton(
-                                              onPressed: () => Get.back(),
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: secondaryColor,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(45),
+                                  case "10":
+                                    Get.to(() => const BarcodeScanScreen(),
+                                        transition: Transition.rightToLeft);
+                                    break;
+                                  case "11":
+                                    Get.to(() => const TransferContactPage(),
+                                        transition: Transition.rightToLeft);
+                                    break;
+                                  case "12":
+                                    Get.defaultDialog(
+                                      title: 'message'.tr,
+                                      content: Column(
+                                        children: [
+                                          Text('unavailable'.tr),
+                                          Padding(
+                                            padding: const EdgeInsets.all(16),
+                                            child: SizedBox(
+                                              height: 45,
+                                              width: double.infinity,
+                                              child: ElevatedButton(
+                                                onPressed: () => Get.back(),
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      secondaryColor,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            45),
+                                                  ),
+                                                ),
+                                                child: const Text(
+                                                  'OK',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                  ),
                                                 ),
                                               ),
-                                              child: const Text(
-                                                'OK',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
                                             ),
-                                          ],
-                                        ),
-                                      );
-                                    } else {
-                                      Get.to(() => const CreditScreen(),
-                                          transition: Transition.rightToLeft);
-                                      break;
-                                    }
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                    break;
+                                  case "14":
+                                    Get.to(() => const StorePage(),
+                                        transition: Transition.rightToLeft);
+                                    break;
+                                  case "19":
+                                    Get.to(() => PixHome(),
+                                        transition: Transition.rightToLeft);
+                                    break;
+                                  case "30":
+                                    Get.to(
+                                        () => WebviewPage(
+                                              url: 'https://mibank4.com',
+                                              pageTitle: iconModel.title!,
+                                            ),
+                                        transition: Transition.rightToLeft);
+                                    break;
+                                  case "31":
+                                    Get.to(
+                                        () => WebviewPage(
+                                              url: 'https://mibank4.com/#faq',
+                                              pageTitle: iconModel.title!,
+                                            ),
+                                        transition: Transition.rightToLeft);
+                                    break;
+                                  default:
+                                    break;
                                 }
                               },
                             );
                           }
+                          return const SizedBox.shrink();
                         },
                       ),
                     ),
