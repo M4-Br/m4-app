@@ -184,9 +184,10 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
                 ),
                 Text(
                   NumberFormat.currency(locale: 'pt_BR', symbol: '').format(
-                      double.parse(widget.paymentData.details.interest ?? '0')),
+                    (double.tryParse(widget.paymentData.details.interest) ?? 0) / 100,
+                  ),
                   style: const TextStyle(fontSize: 16),
-                )
+                ),
               ],
             ),
           ),

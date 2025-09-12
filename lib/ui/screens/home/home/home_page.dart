@@ -7,14 +7,15 @@ import 'package:app_flutter_miban4/ui/components/home/home_detail/clipper.dart';
 import 'package:app_flutter_miban4/ui/controllers/home/home_controller.dart';
 import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/controllers/notifications/notifications_controller.dart';
+import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_camera.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_scan.dart';
 import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLinkValue.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
+import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
 import 'package:app_flutter_miban4/ui/screens/home/store/store_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/transfer/qrcode_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -271,11 +272,11 @@ class _HomePageState extends State<HomePage> {
                                         transition: Transition.rightToLeft);
                                     break;
                                   case "2":
-                                    Get.to(() => const QrcodeScreen(),
+                                    Get.to(() => const QrCodeCamera(),
                                         transition: Transition.rightToLeft);
                                     break;
                                   case "10":
-                                    Get.to(() => const BarcodeScanScreen(),
+                                    Get.to(() => const BarcodeCamera(),
                                         transition: Transition.rightToLeft);
                                     break;
                                   case "11":

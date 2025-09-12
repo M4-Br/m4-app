@@ -13,8 +13,7 @@ class QRCodeConfirmPayment extends StatefulWidget {
   late int? transfer;
   late InternQRCode? qrCode;
 
-  QRCodeConfirmPayment({Key? key, this.transfer, this.qrCode})
-      : super(key: key);
+  QRCodeConfirmPayment({super.key, this.transfer, this.qrCode});
 
   @override
   State<QRCodeConfirmPayment> createState() => _QRCodeConfirmPaymentState();
@@ -49,7 +48,7 @@ class _QRCodeConfirmPaymentState extends State<QRCodeConfirmPayment> {
       appBar: AppBarDefault(
         title: 'transfer'.tr,
         backPage: () =>
-            Get.off(() => HomeViewPage(), transition: Transition.leftToRight),
+            Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
       ),
       body: Column(
         children: [

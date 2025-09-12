@@ -10,36 +10,34 @@ class QrcodeController extends GetxController {
   var isLoading = false.obs;
   Balance? balance;
 
-  // Future<void> scanQrCode() async {
-  //   isLoading(true);
-  //   try {
-  //     String qrCode = await FlutterBarcodeScanner.scanBarcode(
-  //         '#ff6666', 'Cancel', true, ScanMode.QR);
-  //     balance = await getBalance();
-  //     DecodeQRCode paymentData = await decodeCode(qrCode);
+  Future<void> scanQrCode(String qrCode) async {
+    isLoading(true);
+    try {
+      balance = await getBalance();
+      DecodeQRCode paymentData = await decodeCode(qrCode);
 
-  //     if (paymentData.finalAmount != 0) {
-  //       isLoading(false);
-  //       Get.off(
-  //           () => PixCodeDecode(
-  //                 qrCode: paymentData,
-  //                 balance: balance,
-  //               ),
-  //           transition: Transition.rightToLeft);
-  //     } else {
-  //       isLoading(false);
-  //       Get.off(
-  //           () => PixAddValue(
-  //                 qrCode: paymentData,
-  //                 balance: balance,
-  //               ),
-  //           transition: Transition.rightToLeft);
-  //     }
-  //   } catch (error) {
-  //     isLoading(false);
-  //     throw Exception(error.toString());
-  //   }
-  // }
+      if (paymentData.finalAmount != 0) {
+        isLoading(false);
+        Get.off(
+            () => PixCodeDecode(
+                  qrCode: paymentData,
+                  balance: balance,
+                ),
+            transition: Transition.rightToLeft);
+      } else {
+        isLoading(false);
+        Get.off(
+            () => PixAddValue(
+                  qrCode: paymentData,
+                  balance: balance,
+                ),
+            transition: Transition.rightToLeft);
+      }
+    } catch (error) {
+      isLoading(false);
+      throw Exception(error.toString());
+    }
+  }
 
   Future<void> decodeCopyPaste(String content) async {
     isLoading(true);

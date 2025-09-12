@@ -4,7 +4,9 @@ import 'package:app_flutter_miban4/data/model/barcode/decodeBarcode.dart';
 import 'package:app_flutter_miban4/data/model/userData/balance.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
+import 'package:app_flutter_miban4/ui/controllers/barcode/barcode_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcodeConfirmPayment.dart';
+import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_shifter_v2/mask_shifter.dart';
@@ -17,9 +19,8 @@ class BarcodeScanScreen extends StatefulWidget {
 }
 
 class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
-  String barcode = '';
   final _controller = TextEditingController();
-  var isLoading = false.obs;
+  final BarcodeController _barcodeController = Get.put(BarcodeController());
 
   @override
   void initState() {
@@ -83,7 +84,8 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () async {
-                      _manualBarcode();
+                      _barcodeController
+                          .barcodeDecode(_controller.text.replaceAll('.', ''));
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: secondaryColor),
@@ -107,7 +109,8 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () async {
-                      // _scanBarcode();
+                      Get.to(() => const BarcodeCamera(),
+                          transition: Transition.rightToLeft);
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: secondaryColor),
@@ -148,7 +151,7 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
               ),
             ),
             Obx(
-              () => isLoading.value == true
+              () => _barcodeController.isLoading.value == true
                   ? const Padding(
                       padding: EdgeInsets.symmetric(vertical: 50),
                       child: CircularProgressIndicator(
@@ -161,49 +164,5 @@ class _BarcodeScanScreenState extends State<BarcodeScanScreen> {
         ),
       ),
     );
-  }
-
-  // Future<void> _scanBarcode() async {
-  //   isLoading(true);
-  //   barcode = await FlutterBarcodeScanner.scanBarcode(
-  //       '#ff6666', 'Cancel', true, ScanMode.BARCODE);
-
-  //   try {
-  //     Balance balance = await getBalance();
-  //     PaymentData paymentData = await decodeBarcode(barcode);
-
-  //     if (paymentData.success == true) {
-  //       Get.off(
-  //           () => BarcodeConfirmPayment(
-  //               paymentData: paymentData, balance: balance),
-  //           transition: Transition.rightToLeft);
-  //     } else {
-  //       return;
-  //     }
-  //   } catch (e) {
-  //     throw Exception(e.toString());
-  //   } finally {
-  //     isLoading(false);
-  //   }
-  // }
-
-  //TODO: SOLVE BARCODE SCANNER
-
-  Future<void> _manualBarcode() async {
-    isLoading(true);
-
-    try {
-      barcode = _controller.text.toString();
-      Balance balance = await getBalance();
-      PaymentData paymentData = await decodeBarcode(barcode);
-      Get.off(
-          () =>
-              BarcodeConfirmPayment(paymentData: paymentData, balance: balance),
-          transition: Transition.rightToLeft);
-    } catch (e) {
-      throw Exception(e.toString());
-    } finally {
-      isLoading(false);
-    }
   }
 }

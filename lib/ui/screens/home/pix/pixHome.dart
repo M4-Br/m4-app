@@ -10,10 +10,9 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixManualKey.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixMyLimits.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixWithKey.dart';
-import 'package:app_flutter_miban4/ui/screens/home/transfer/qrcode_screen.dart';
+import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:page_transition/page_transition.dart';
 
 class PixHome extends StatefulWidget {
   late Balance? balance;
@@ -113,7 +112,7 @@ class _PixHomeState extends State<PixHome> {
                           description:
                               'pix_payQrCode'.tr,
                           onPressed: () {
-                            Get.to(() => const QrcodeScreen(),
+                            Get.to(() => const QrCodeCamera(),
                                 transition: Transition.rightToLeft);
                           },
                           icon: Icons.qr_code_2_outlined),
