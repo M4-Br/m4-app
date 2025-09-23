@@ -7,14 +7,15 @@ import 'package:app_flutter_miban4/ui/components/home/home_detail/clipper.dart';
 import 'package:app_flutter_miban4/ui/controllers/home/home_controller.dart';
 import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/controllers/notifications/notifications_controller.dart';
+import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_camera.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_scan.dart';
 import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLinkValue.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
+import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
 import 'package:app_flutter_miban4/ui/screens/home/store/store_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/transfer/qrcode_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -59,18 +60,25 @@ class _HomePageState extends State<HomePage> {
     HomeController homeController = Get.find();
 
     List<IconModel> manualIcons = [
+      // IconModel(
+      //     id: "20",
+      //     icon: "assets/icons/ic_group_blue.png",
+      //     title: 'home_groups'.tr),
+      // IconModel(
+      //     id: "21",
+      //     icon: "assets/icons/ic_economy_blue.png",
+      //     title: 'home_economy'.tr),
+      // IconModel(
+      //     id: "22",
+      //     icon: "assets/icons/ic_credit_blue.png",
+      //     title: 'home_credit'.tr),
+
       IconModel(
-          id: "20",
-          icon: "assets/icons/ic_group_blue.png",
-          title: 'home_groups'.tr),
+          id: "23",
+          icon: "assets/icons/ic_contabil.png",
+          title: "Contabilidade"),
       IconModel(
-          id: "21",
-          icon: "assets/icons/ic_economy_blue.png",
-          title: 'home_economy'.tr),
-      IconModel(
-          id: "22",
-          icon: "assets/icons/ic_credit_blue.png",
-          title: 'home_credit'.tr),
+          id: "24", icon: "assets/icons/ic_services.png", title: "Serviços"),
     ];
 
     final Map<String, String> localIconPaths = {
@@ -258,6 +266,7 @@ class _HomePageState extends State<HomePage> {
                             homeController.icons.length + manualIcons.length,
                         itemBuilder: (context, index) {
                           if (index < homeController.icons.length) {
+                            // Ícones vindos do controller
                             IconModel iconModel = homeController.icons[index];
 
                             return HomeIcons(
@@ -271,11 +280,11 @@ class _HomePageState extends State<HomePage> {
                                         transition: Transition.rightToLeft);
                                     break;
                                   case "2":
-                                    Get.to(() => const QrcodeScreen(),
+                                    Get.to(() => const QrCodeCamera(),
                                         transition: Transition.rightToLeft);
                                     break;
                                   case "10":
-                                    Get.to(() => const BarcodeScanScreen(),
+                                    Get.to(() => const BarcodeCamera(),
                                         transition: Transition.rightToLeft);
                                     break;
                                   case "11":
@@ -329,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                                   case "30":
                                     Get.to(
                                         () => WebviewPage(
-                                              url: 'https://mibank4.com',
+                                              url: 'https://miban4.com',
                                               pageTitle: iconModel.title!,
                                             ),
                                         transition: Transition.rightToLeft);
@@ -337,18 +346,35 @@ class _HomePageState extends State<HomePage> {
                                   case "31":
                                     Get.to(
                                         () => WebviewPage(
-                                              url: 'https://mibank4.com/#faq',
+                                              url: 'https://miban4.com/#faq',
                                               pageTitle: iconModel.title!,
                                             ),
                                         transition: Transition.rightToLeft);
                                     break;
-                                  default:
+                                }
+                              },
+                            );
+                          } else {
+                            // Ícones manuais
+                            IconModel manualIcon = manualIcons[
+                                index - homeController.icons.length];
+
+                            return HomeIcons(
+                              iconUrl: manualIcon.icon!,
+                              text: manualIcon.title!,
+                              isLocal: true,
+                              onPressed: () async {
+                                switch (manualIcon.id) {
+                                  case "23":
+                                    // TODO: ação da contabilidade
+                                    break;
+                                  case "24":
+                                    // TODO: ação dos serviços
                                     break;
                                 }
                               },
                             );
                           }
-                          return const SizedBox.shrink();
                         },
                       ),
                     ),

@@ -3,8 +3,7 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/controllers/qrcode/qrcode_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixTransactionSuccess.dart';
-import 'package:app_flutter_miban4/ui/screens/home/transfer/qrcode_screen.dart';
+import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -42,7 +41,7 @@ class _PixCopyPasteState extends State<PixCopyPaste> {
             Icons.qr_code_2_outlined,
             color: Colors.white,
           ),
-          onPressed: () => Get.to(() => const QrcodeScreen(),
+          onPressed: () => Get.to(() => const QrCodeCamera(),
               transition: Transition.rightToLeft),
         ),
       ),
