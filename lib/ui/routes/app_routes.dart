@@ -76,4 +76,7 @@ class AppRoutes {
   static const String pixTransfer = '/pix_transfer';
   static const String pixWithKey = '/pix_with_key';
   static const String pixInvoice = '/pix_invoice';
+
+  //Rotas de Serviços
+static const String services = '/services';
 }

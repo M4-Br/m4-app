@@ -607,6 +607,8 @@ class StringsEnUS {
     "plan_actual": "Current Plan",
     "plan_monthly": "Per month",
     "success": "Success",
+    "contability_title": "Contability",
+    "services_title": "Services",
     "validator_isEmpty": "Fill in the field",
     "codeLang": "en_US",
     "version": "Version 6.0.2 - Release (223)",

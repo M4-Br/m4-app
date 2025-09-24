@@ -618,6 +618,8 @@ class StringsEsES {
     "plan_actual": "Plan Actual",
     "plan_monthly": "Por mes",
     "success": "Éxito",
+    "contability_title": "Contabilidad",
+    "services_title": "Servicios",
     "validator_isEmpty": "Completa el campo",
     "codeLang": "es_ES",
     "version": "Versión 6.0.2 - Lanzamiento (223)",

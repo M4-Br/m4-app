@@ -15,6 +15,7 @@ import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLinkValue.
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
 import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
+import 'package:app_flutter_miban4/ui/screens/home/services/services_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/store/store_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:flutter/material.dart';
@@ -76,9 +77,9 @@ class _HomePageState extends State<HomePage> {
       IconModel(
           id: "23",
           icon: "assets/icons/ic_contabil.png",
-          title: "Contabilidade"),
+          title: "contability_title".tr),
       IconModel(
-          id: "24", icon: "assets/icons/ic_services.png", title: "Serviços"),
+          id: "24", icon: "assets/icons/ic_services.png", title: "services_title".tr),
     ];
 
     final Map<String, String> localIconPaths = {
@@ -366,10 +367,10 @@ class _HomePageState extends State<HomePage> {
                               onPressed: () async {
                                 switch (manualIcon.id) {
                                   case "23":
-                                    // TODO: ação da contabilidade
+                                    //TODO: Contabilidade
                                     break;
                                   case "24":
-                                    // TODO: ação dos serviços
+                                    Get.to(() => const ServicesPage(), transition: Transition.rightToLeft);
                                     break;
                                 }
                               },

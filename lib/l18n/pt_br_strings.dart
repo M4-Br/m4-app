@@ -610,6 +610,8 @@ class StringsPtBR {
     "plan_date": "Vigência até ",
     "plan_actual": "Plano Atual",
     "plan_monthly": "Por mês",
+    "contability_title": "Contabilidade",
+    "services_title": "Serviços",
     "success": "Sucesso",
     "validator_isEmpty": "Preencha o campo",
     "codeLang": "pt_BR",

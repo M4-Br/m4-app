@@ -4,6 +4,7 @@ import 'package:app_flutter_miban4/ui/routes/notificationsPage/notifications_pag
 import 'package:app_flutter_miban4/ui/routes/onboardingPages/onboarding_pages.dart';
 import 'package:app_flutter_miban4/ui/routes/pixPages/pix_pages.dart';
 import 'package:app_flutter_miban4/ui/routes/profilePages/profile_pages.dart';
+import 'package:app_flutter_miban4/ui/routes/servicesPages/services_pages.dart';
 import 'package:app_flutter_miban4/ui/routes/statementPages/statement_pages.dart';
 import 'package:app_flutter_miban4/ui/routes/transferPages/transfer_pages.dart';
 import 'package:get/get.dart';
@@ -32,6 +33,9 @@ class AppPages {
     ...TransferPages.transferPages,
 
     //Pix Screen
-    ...PixPages.pages
+    ...PixPages.pages,
+
+    //Services Screens
+    ...ServicesPages.pages
   ];
 }
