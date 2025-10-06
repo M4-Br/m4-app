@@ -1,7 +1,8 @@
 import 'dart:io';
 
+import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_my_transactions.dart';
 import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:screenshot/screenshot.dart';
-
 
 class GroupVoucher extends StatefulWidget {
   final Map<String, dynamic>? group;
@@ -52,7 +52,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
 
   @override
   Widget build(BuildContext context) {
-    UserData? userData = _userController.userData.value;
+    User userData = _userController.user.value!;
     final currencyFormat =
         NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
     return Scaffold(
@@ -134,8 +134,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                        'voucher_group_value_payment'.tr,
+                    Text('voucher_group_value_payment'.tr,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16)),
                     Text(currencyFormat.format(int.parse(widget.amount) / 100),
@@ -164,10 +163,10 @@ class _GroupVoucherState extends State<GroupVoucher> {
                       'account'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
-                    Text(
-                      userData!.payload.aliasAccount.accountNumber,
-                      style: const TextStyle(color: Colors.black, fontSize: 16),
-                    )
+                    // Text(
+                    //   userData!.payload.aliasAccount.accountNumber,
+                    //   style: const TextStyle(color: Colors.black, fontSize: 16),
+                    // )
                   ],
                 ),
                 Padding(
@@ -180,11 +179,11 @@ class _GroupVoucherState extends State<GroupVoucher> {
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16),
                       ),
-                      Text(
-                        userData.payload.fullName,
-                        style:
-                            const TextStyle(color: Colors.black, fontSize: 16),
-                      )
+                      // Text(
+                      //   userData.payload.fullName,
+                      //   style:
+                      //       const TextStyle(color: Colors.black, fontSize: 16),
+                      // )
                     ],
                   ),
                 ),
@@ -210,8 +209,7 @@ class _GroupVoucherState extends State<GroupVoucher> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'voucher_destination'.tr
-                        .toUpperCase(),
+                    'voucher_destination'.tr.toUpperCase(),
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 18),
                   ),
@@ -239,11 +237,11 @@ class _GroupVoucherState extends State<GroupVoucher> {
                         style:
                             const TextStyle(color: Colors.black, fontSize: 16),
                       ),
-                      Text(
-                        userData.payload.fullName,
-                        style:
-                            const TextStyle(color: Colors.black, fontSize: 16),
-                      )
+                      // Text(
+                      //   userData.payload.fullName,
+                      //   style:
+                      //       const TextStyle(color: Colors.black, fontSize: 16),
+                      // )
                     ],
                   ),
                 ),
@@ -254,10 +252,10 @@ class _GroupVoucherState extends State<GroupVoucher> {
                       'account'.tr,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
-                    Text(
-                      userData.payload.aliasAccount.economyAccountNumber,
-                      style: const TextStyle(color: Colors.black, fontSize: 16),
-                    )
+                    // Text(
+                    //   userData.payload.aliasAccount.economyAccountNumber,
+                    //   style: const TextStyle(color: Colors.black, fontSize: 16),
+                    // )
                   ],
                 ),
                 Padding(

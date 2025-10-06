@@ -46,7 +46,7 @@ class _HomeViewPageState extends State<HomeViewPage> {
   Widget build(BuildContext context) {
     List<Widget> widgetOptions = <Widget>[
       const HomePage(),
-      StatementPage(),
+      const StatementPage(),
       const ProfilePage(),
     ]; //
 

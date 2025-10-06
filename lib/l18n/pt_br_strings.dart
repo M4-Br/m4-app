@@ -613,6 +613,8 @@ class StringsPtBR {
     "contability_title": "Contabilidade",
     "services_title": "Serviços",
     "success": "Sucesso",
+    "dialog_500":
+        "Não conseguimos processar sua solicitação no momento. Por favor, tente novamente.",
     "validator_isEmpty": "Preencha o campo",
     "codeLang": "pt_BR",
     "version": "Versão 6.0.2 - Release (223)",

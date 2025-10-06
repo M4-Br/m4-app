@@ -6,20 +6,19 @@ import 'package:get/get.dart';
 
 class OnboardingPhoneConfirmPage extends StatefulWidget {
   const OnboardingPhoneConfirmPage(
-      {super.key,
-      this.id,
-      this.phonePrefix,
-      this.phoneNumber});
+      {super.key, this.id, this.phonePrefix, this.phoneNumber});
 
   final String? id;
   final String? phonePrefix;
   final String? phoneNumber;
 
   @override
-  State<OnboardingPhoneConfirmPage> createState() => _OnboardingPhoneConfirmPageState();
+  State<OnboardingPhoneConfirmPage> createState() =>
+      _OnboardingPhoneConfirmPageState();
 }
 
-class _OnboardingPhoneConfirmPageState extends State<OnboardingPhoneConfirmPage> with ValidationsMixin {
+class _OnboardingPhoneConfirmPageState
+    extends State<OnboardingPhoneConfirmPage> {
   late List<TextEditingController> _codeControllers;
   late List<FocusNode> _focusNodes;
   String code = '';
@@ -110,7 +109,7 @@ class _OnboardingPhoneConfirmPageState extends State<OnboardingPhoneConfirmPage>
                         cursorColor: secondaryColor,
                         controller: _codeControllers[i],
                         keyboardType: TextInputType.number,
-                        validator: isNotEmpty,
+                        validator: Validators.isNotEmpty,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 22),
                         decoration: const InputDecoration(
@@ -185,7 +184,7 @@ class _OnboardingPhoneConfirmPageState extends State<OnboardingPhoneConfirmPage>
   }
 
   Future<void> _sendConfirmation() async {
-      try {
+    try {
       _phoneConfirmController.confirmPhone(
           widget.id!, widget.phonePrefix!, widget.phoneNumber!, code);
     } catch (error) {

@@ -16,8 +16,7 @@ class OnboardingStepOnePage extends StatefulWidget {
   State<OnboardingStepOnePage> createState() => _OnboardingStepOnePageState();
 }
 
-class _OnboardingStepOnePageState extends State<OnboardingStepOnePage>
-    with ValidationsMixin {
+class _OnboardingStepOnePageState extends State<OnboardingStepOnePage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _nick = TextEditingController();
@@ -90,9 +89,9 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage>
                       cursorColor: secondaryColor,
                       controller: _name,
                       keyboardType: TextInputType.text,
-                      validator: (value) => combineValidators([
-                        () => isNotEmpty(value),
-                        () => validateChar(value),
+                      validator: (value) => Validators.combine([
+                        () => Validators.isNotEmpty(value),
+                        () => Validators.hasMinChars(value, 6),
                       ]),
                       style: const TextStyle(color: Colors.black, fontSize: 20),
                       decoration: InputDecoration(
@@ -126,7 +125,7 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage>
                       cursorColor: secondaryColor,
                       controller: _nick,
                       keyboardType: TextInputType.text,
-                      validator: isNotEmpty,
+                      validator: Validators.isNotEmpty,
                       style: const TextStyle(color: Colors.black, fontSize: 20),
                       decoration: InputDecoration(
                         prefixText: "@",
@@ -159,9 +158,11 @@ class _OnboardingStepOnePageState extends State<OnboardingStepOnePage>
                       cursorColor: secondaryColor,
                       controller: _email,
                       keyboardType: TextInputType.emailAddress,
-                      validator: (value) => combineValidators([
-                        () => isNotEmpty(value, 'validator_empty'.tr),
-                        () => isValidEmail(value, 'validator_valid_email'.tr)
+                      validator: (value) => Validators.combine([
+                        () =>
+                            Validators.isNotEmpty(value, 'validator_empty'.tr),
+                        () => Validators.isValidEmail(
+                            value, 'validator_valid_email'.tr)
                       ]),
                       style: const TextStyle(color: Colors.black, fontSize: 20),
                       decoration: const InputDecoration(

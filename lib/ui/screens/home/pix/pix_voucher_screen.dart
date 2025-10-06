@@ -1,6 +1,7 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -60,7 +61,7 @@ class PixVoucher extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Obx(() {
-          UserData? userData = _userController.userData.value;
+          User? userData = _userController.user.value;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -144,7 +145,7 @@ class PixVoucher extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    userData!.payload.fullName,
+                    userData!.user.fullName,
                     style: const TextStyle(fontSize: 16),
                   )
                 ],

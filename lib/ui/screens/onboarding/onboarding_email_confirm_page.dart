@@ -20,10 +20,12 @@ class OnboardingEmailConfirmPage extends StatefulWidget {
   final String? promoCode;
 
   @override
-  State<OnboardingEmailConfirmPage> createState() => _OnboardingEmailConfirmPageState();
+  State<OnboardingEmailConfirmPage> createState() =>
+      _OnboardingEmailConfirmPageState();
 }
 
-class _OnboardingEmailConfirmPageState extends State<OnboardingEmailConfirmPage> with ValidationsMixin {
+class _OnboardingEmailConfirmPageState
+    extends State<OnboardingEmailConfirmPage> {
   late List<TextEditingController> _codeControllers;
   late List<FocusNode> _focusNodes;
   String code = '';
@@ -114,7 +116,7 @@ class _OnboardingEmailConfirmPageState extends State<OnboardingEmailConfirmPage>
                         cursorColor: secondaryColor,
                         controller: _codeControllers[i],
                         keyboardType: TextInputType.number,
-                        validator: isNotEmpty,
+                        validator: Validators.isNotEmpty,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 22),
                         decoration: const InputDecoration(

@@ -1,7 +1,8 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/api/credit/get_credit_installment.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_my_transactions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,7 +32,7 @@ class CreditInstallments extends StatefulWidget {
 }
 
 class _CreditInstallmentsState extends State<CreditInstallments> {
-  final UserController _userController = Get.put(UserController());
+  final UserController _user = Get.put(UserController());
   var _obscureText = true.obs;
   var _isLoading = false.obs;
   final TextEditingController _passwordController = TextEditingController();
@@ -50,9 +51,14 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
         Duration.zero,
         () {
           Get.dialog(AlertDialog(
-            title: Text('message'.tr, textAlign: TextAlign.center,),
-            content:
-                Text('credit_installment_delayed'.tr, textAlign: TextAlign.center,),
+            title: Text(
+              'message'.tr,
+              textAlign: TextAlign.center,
+            ),
+            content: Text(
+              'credit_installment_delayed'.tr,
+              textAlign: TextAlign.center,
+            ),
             actions: [
               Align(
                 alignment: Alignment.center,
@@ -138,9 +144,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
-                      dateFormat.format(
-                        DateTime.now()
-                      ),
+                      dateFormat.format(DateTime.now()),
                       style: const TextStyle(
                           color: secondaryColor,
                           fontSize: 16,
@@ -223,8 +227,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
-                      _userController
-                          .userData.value!.payload.aliasAccount.accountNumber,
+                      _user.user.value!.user.aliasAccount!.accountNumber,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ],
@@ -338,8 +341,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                         backgroundColor:
                                                             Colors.red),
                                                     child: Text(
-                                                      'cancel'
-                                                          .tr.toUpperCase(),
+                                                      'cancel'.tr.toUpperCase(),
                                                       style: const TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 14,
@@ -400,8 +402,10 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                                               widget.type,
                                                                         ));
                                                                     Get.snackbar(
-                                                                        'dialog_success'.tr,
-                                                                        'dialog_payment'.tr,
+                                                                        'dialog_success'
+                                                                            .tr,
+                                                                        'dialog_payment'
+                                                                            .tr,
                                                                         snackPosition: SnackPosition
                                                                             .BOTTOM,
                                                                         duration: const Duration(
@@ -428,8 +432,10 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                                       false);
                                                                 });
                                                                 Get.snackbar(
-                                                                    'dialog_error'.tr,
-                                                                    'dialog_password_incorrect'.tr,
+                                                                    'dialog_error'
+                                                                        .tr,
+                                                                    'dialog_password_incorrect'
+                                                                        .tr,
                                                                     snackPosition:
                                                                         SnackPosition
                                                                             .BOTTOM,
@@ -458,7 +464,8 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                                                                     secondaryColor),
                                                             child: Text(
                                                               'group_pay'
-                                                                  .tr.toUpperCase(),
+                                                                  .tr
+                                                                  .toUpperCase(),
                                                               style: const TextStyle(
                                                                   color: Colors
                                                                       .white,

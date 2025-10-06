@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/api/credit/get_credit_installment.dart';
 import 'package:app_flutter_miban4/data/api/groups/getContributionId.dart';
@@ -7,7 +8,6 @@ import 'package:app_flutter_miban4/data/model/userData/balance.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_my_transactions.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_voucher_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
@@ -249,8 +249,8 @@ class _ContributionState extends State<Contribution> {
                                   color: Colors.black, fontSize: 16),
                             ),
                             Text(
-                              _userController.userData.value!.payload
-                                  .aliasAccount.accountNumber,
+                              _userController
+                                  .user.value!.user.aliasAccount!.accountNumber,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                             ),

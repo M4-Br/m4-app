@@ -607,6 +607,8 @@ class StringsEnUS {
     "plan_actual": "Current Plan",
     "plan_monthly": "Per month",
     "success": "Success",
+    "dialog_500":
+        "We couldn't process your request at this time. Please try again.",
     "contability_title": "Contability",
     "services_title": "Services",
     "validator_isEmpty": "Fill in the field",

@@ -13,10 +13,11 @@ class OnboardingStepThreePage extends StatefulWidget {
   const OnboardingStepThreePage({super.key});
 
   @override
-  State<OnboardingStepThreePage> createState() => _OnboardingStepThreePageState();
+  State<OnboardingStepThreePage> createState() =>
+      _OnboardingStepThreePageState();
 }
 
-class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with ValidationsMixin {
+class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> {
   final _formKey = GlobalKey<FormState>();
   bool check = false;
   final TextEditingController _cep = TextEditingController();
@@ -93,10 +94,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
       'address_type_parents'.tr
     ];
 
-    final List<String> residentialTypeEn = [
-      "Own",
-      "Rent"
-    ];
+    final List<String> residentialTypeEn = ["Own", "Rent"];
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -143,7 +141,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                         keyboardType: const TextInputType.numberWithOptions(),
                         style:
                             const TextStyle(color: Colors.black, fontSize: 20),
-                        validator: isNotEmpty,
+                        validator: Validators.isNotEmpty,
                         inputFormatters: [cepMaskFormatter],
                         maxLength: 9,
                         decoration: InputDecoration(
@@ -180,19 +178,21 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                         value: _selectedResidentialType.isEmpty
                             ? null
                             : _selectedResidentialType,
-                        items: lang == 'pt' ? residencialType
-                            .map<DropdownMenuItem<String>>((String item) {
-                          return DropdownMenuItem<String>(
-                              value: item, child: Text(item));
-                        }).toList() : residentialTypeEn
-                            .map<DropdownMenuItem<String>>((String item) {
-                          return DropdownMenuItem<String>(
-                              value: item, child: Text(item));
-                        }).toList(),
+                        items: lang == 'pt'
+                            ? residencialType
+                                .map<DropdownMenuItem<String>>((String item) {
+                                return DropdownMenuItem<String>(
+                                    value: item, child: Text(item));
+                              }).toList()
+                            : residentialTypeEn
+                                .map<DropdownMenuItem<String>>((String item) {
+                                return DropdownMenuItem<String>(
+                                    value: item, child: Text(item));
+                              }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
                             _selectedResidentialType = newValue!;
-                            isNotEmpty;
+                            Validators.isNotEmpty;
                           });
                         },
                       ),
@@ -205,8 +205,8 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                         keyboardType: TextInputType.streetAddress,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 20),
-                        validator: (value) => combineValidators([
-                              () => isNotEmpty(value),
+                        validator: (value) => Validators.combine([
+                          () => Validators.isNotEmpty(value),
                         ]),
                         decoration: InputDecoration(
                           isDense: true,
@@ -238,7 +238,8 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                         cursorColor: secondaryColor,
                         controller: _number,
                         inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9 ]')),
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'[a-zA-Z0-9 ]')),
                         ],
                         keyboardType: const TextInputType.numberWithOptions(),
                         style:
@@ -258,8 +259,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText:
-                              'address_number'.tr,
+                          labelText: 'address_number'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.black54,
                             fontSize: 15,
@@ -314,8 +314,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText:
-                              'address_complement'.tr,
+                          labelText: 'address_complement'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.black54,
                             fontSize: 15,
@@ -332,7 +331,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                         keyboardType: TextInputType.text,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 20),
-                        validator: isNotEmpty,
+                        validator: Validators.isNotEmpty,
                         decoration: InputDecoration(
                           isDense: true,
                           border: InputBorder.none,
@@ -374,7 +373,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                           setState(() {
                             _selectedState =
                                 newValue ?? _residencialState.first;
-                            isNotEmpty;
+                            Validators.isNotEmpty;
                           });
                         },
                       ),
@@ -387,7 +386,7 @@ class _OnboardingStepThreePageState extends State<OnboardingStepThreePage> with 
                         keyboardType: TextInputType.text,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 20),
-                        validator: isNotEmpty,
+                        validator: Validators.isNotEmpty,
                         decoration: InputDecoration(
                           isDense: true,
                           border: InputBorder.none,

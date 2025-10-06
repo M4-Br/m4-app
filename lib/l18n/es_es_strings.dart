@@ -618,6 +618,8 @@ class StringsEsES {
     "plan_actual": "Plan Actual",
     "plan_monthly": "Por mes",
     "success": "Éxito",
+    "dialog_500":
+        "No se pudo procesar su solicitud en este momento. Por favor, inténtelo de nuevo.",
     "contability_title": "Contabilidad",
     "services_title": "Servicios",
     "validator_isEmpty": "Completa el campo",

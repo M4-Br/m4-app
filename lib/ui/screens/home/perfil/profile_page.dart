@@ -1,3 +1,5 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/api/home/params.dart';
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/model/params/params.dart';
@@ -8,12 +10,11 @@ import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/components/perfil/commomItem.dart';
 import 'package:app_flutter_miban4/ui/components/perfil/expansionItem.dart';
 import 'package:app_flutter_miban4/ui/components/perfil/itemMyAccount.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/perfil/change_password_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/perfil/financial_data_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/perfil/plans_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
-import 'package:app_flutter_miban4/ui/screens/login/splash_page.dart';
+import 'package:app_flutter_miban4/features/splash/presentation/splash_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/terms_page.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
         hasIcon: false,
       ),
       body: Obx(() {
-        UserData? userData = _userController.userData.value;
+        User? userData = _userController.user.value;
         Params? params = getGlobalParams();
 
         return Column(
@@ -67,7 +68,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: SizedBox(
                           width: 120,
                           height: 100,
-                          child: Image.network(formatAvatarUrl(userData!.payload.avatarUrl)),
+                          child: Image.network(
+                              formatAvatarUrl(userData!.user.avatarUrl ?? '')),
                         ),
                       ),
                       IconButton(
@@ -79,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      userData!.payload.fullName,
+                      userData!.user.username,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -87,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Text(
-                    '@ ${userData!.payload.username}',
+                    '@ ${userData!.user.username}',
                     style: const TextStyle(fontSize: 16),
                   )
                 ],
@@ -101,11 +103,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     ExpansionItemMyAccount(
                       text: 'account_myAccount'.tr,
-                      account: userData.payload.aliasAccount.accountNumber,
+                      account: userData.user.aliasAccount!.accountNumber,
                       icon: Icons.person_pin_outlined,
                       agency:
-                          userData.payload.aliasAccount.branchNumber.toString(),
-                      bank: userData.payload.aliasAccount.bankNumber,
+                          userData.user.aliasAccount!.branchNumber.toString(),
+                      bank: userData.user.aliasAccount!.bankNumber,
                     ),
                     CommonItem(
                         text: 'account_myQr'.tr,
@@ -116,15 +118,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         }),
                     ExpansionItem(
                         icon: Icons.person_2_outlined,
-                        fieldName:
-                            'account_personalData'.tr,
-                        firstFieldName:
-                            'account_name'.tr,
-                        firstField: userData.payload.fullName.toString(),
-                        secondFieldName:
-                            'account_document'.tr,
+                        fieldName: 'account_personalData'.tr,
+                        firstFieldName: 'account_name'.tr,
+                        firstField: userData.user.fullName.toString(),
+                        secondFieldName: 'account_document'.tr,
                         secondField: cpfMaskFormatter
-                            .maskText(userData.payload.document.toString())),
+                            .maskText(userData.user.document.toString())),
                     CommonItem(
                         text: 'account_data'.tr,
                         icon: Icons.monetization_on_outlined,
@@ -132,14 +131,12 @@ class _ProfilePageState extends State<ProfilePage> {
                             transition: Transition.rightToLeft)),
                     ExpansionItem(
                         icon: Icons.contact_mail_outlined,
-                        fieldName:
-                            'account_contact'.tr,
+                        fieldName: 'account_contact'.tr,
                         firstFieldName: 'EMAIL',
-                        firstField: userData.payload.email.toString(),
-                        secondFieldName:
-                            'account_phone'.tr,
+                        firstField: userData.user.email.toString(),
+                        secondFieldName: 'account_phone'.tr,
                         secondField:
-                            '(${userData.payload.phone.phonePrefix.toString()}) ${userData.payload.phone.phoneNumber.toString()}'),
+                            '(${userData.user.phone.phonePrefix.toString()}) ${userData.user.phone.phoneNumber.toString()}'),
                     ExpansionTile(
                       title: Text(
                         'account_security'.tr,
@@ -182,7 +179,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         text: 'account_plans'.tr,
                         icon: Icons.diamond,
                         onPressed: () {
-                          Get.to(() => const PlansPage(), transition: Transition.rightToLeft);
+                          Get.to(() => const PlansPage(),
+                              transition: Transition.rightToLeft);
                         }),
                     CommonItem(
                         text: 'account_terms'.tr,
@@ -282,7 +280,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 onPressed: () {
                   Get.back();
-                  Get.offAll(() => const SplashPage(), transition: Transition.cupertino);
+                  Get.offAll(() => const SplashPage(),
+                      transition: Transition.cupertino);
                 },
                 child: Container(
                   width: double.infinity,

@@ -1,10 +1,11 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/api/statement/statementAuth.dart';
 import 'package:app_flutter_miban4/data/model/statement/statementModel.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/components/statement/statement_balance.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/statement/statement_voucher_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,7 +46,7 @@ class _StatementPageState extends State<StatementPage> {
 
   @override
   Widget build(BuildContext context) {
-    UserData? userData = _userController.userData.value;
+    User? userData = _userController.user.value;
 
     String formatAmount(String amount) {
       if (amount.contains('.')) {
@@ -225,8 +226,8 @@ class _StatementPageState extends State<StatementPage> {
                   startDate.toString(),
                   endDate.toString(),
                   _screenActivy == 0
-                      ? userData!.payload.aliasAccount.id
-                      : userData!.payload.aliasAccount.economyAccountId),
+                      ? userData!.user.aliasAccount!.accountId
+                      : userData!.user.aliasAccount!.economyAccountId),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
@@ -237,14 +238,13 @@ class _StatementPageState extends State<StatementPage> {
                 } else if (snapshot.hasError) {
                   return Center(
                     child: Text(_screenActivy == 0
-                        ? userData.payload.aliasAccount.id.isNotEmpty &&
-                                userData.payload.aliasAccount.id != ''
+                        ? userData.user.aliasAccount!.accountId.isNotEmpty &&
+                                userData.user.aliasAccount!.accountId != ''
                             ? 'statement_no_data'.tr
                             : 'account_waiting'.tr
-                        : userData.payload.aliasAccount.economyAccountId
+                        : userData.user.aliasAccount!.economyAccountId
                                     .isNotEmpty &&
-                                userData.payload.aliasAccount
-                                        .economyAccountId !=
+                                userData.user.aliasAccount!.economyAccountId !=
                                     ''
                             ? 'statement_no_data'.tr
                             : 'account_savings_waiting'.tr),
@@ -254,8 +254,7 @@ class _StatementPageState extends State<StatementPage> {
 
                   if (statement.statements!.isEmpty) {
                     return Center(
-                      child:
-                          Text('statement_noData'.tr),
+                      child: Text('statement_noData'.tr),
                     );
                   }
 
@@ -308,7 +307,7 @@ class _StatementPageState extends State<StatementPage> {
                                         ? 'pix_send'.tr
                                         : extrato.typeDescription.toString() ==
                                                 "Débito Transferência"
-                                              ? 'transfer_send'.tr
+                                            ? 'transfer_send'.tr
                                             : extrato.typeDescription
                                                         .toString() ==
                                                     "Crédito Transferência"

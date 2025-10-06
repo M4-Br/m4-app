@@ -1,10 +1,11 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/api/pix/pixKeys.dart';
 import 'package:app_flutter_miban4/data/model/pix/pixKeys.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/controllers/pix/create_pixKey_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixKeyManager.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixMyKeys.dart';
@@ -52,10 +53,11 @@ class _PixAddKeysState extends State<PixAddKeys> {
     return Scaffold(
       appBar: AppBarDefault(
         title: 'pix_registerNewKey'.tr,
-        backPage: () => Get.off(() => const PixKeyManager(), transition: Transition.leftToRight),
+        backPage: () => Get.off(() => const PixKeyManager(),
+            transition: Transition.leftToRight),
       ),
       body: Obx(() {
-        UserData? userData = _userController.userData.value;
+        User? userData = _userController.user.value;
 
         return Container(
           width: MediaQuery.of(context).size.width,
@@ -89,7 +91,8 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                   bottom: BorderSide(color: Colors.black54))),
                         ),
                         onChanged: (String? newValue) {
-                          if (newValue != null && newValue != 'pix_choose_new'.tr) {
+                          if (newValue != null &&
+                              newValue != 'pix_choose_new'.tr) {
                             setState(() {
                               dropdownValue = newValue;
                             });
@@ -115,7 +118,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                           setState(() {
                             _isSelected = !_isSelected;
                             _typeSelected = 'document';
-                            _key = userData!.payload.document;
+                            _key = userData!.user.document;
                           });
                         },
                         child: Container(
@@ -140,8 +143,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16),
                                   child: Text(
-                                    MaskUtil.applyMask(
-                                        userData!.payload.document,
+                                    MaskUtil.applyMask(userData!.user.document,
                                         "###.###.###-##"),
                                     style: const TextStyle(
                                         color: Colors.black,
@@ -244,7 +246,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                               setState(() {
                                 _isSelected = !_isSelected;
                                 _typeSelected = 'email';
-                                _key = userData!.payload.email;
+                                _key = userData!.user.email;
                               });
                             },
                             child: Container(
@@ -270,7 +272,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 16),
                                       child: Text(
-                                        userData!.payload.email,
+                                        userData!.user.email,
                                         style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
@@ -341,8 +343,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20))),
                               child: Text(
-                                'cancel'.tr
-                                    .toUpperCase(),
+                                'cancel'.tr.toUpperCase(),
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 16),
                               ),
@@ -453,7 +454,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                                                       () {
                                                                     _keyController.createPixKey(
                                                                         userData!
-                                                                            .payload
+                                                                            .user
                                                                             .document,
                                                                         _passwordController
                                                                             .text
@@ -473,7 +474,8 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                                                     ),
                                                                   ),
                                                                   child: Text(
-                                                                    'confirm'.tr
+                                                                    'confirm'
+                                                                        .tr
                                                                         .toUpperCase(),
                                                                     style: const TextStyle(
                                                                         fontSize:
@@ -515,7 +517,8 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                                         ),
                                                       ),
                                                       child: Text(
-                                                        'cancel'.tr
+                                                        'cancel'
+                                                            .tr
                                                             .toUpperCase(),
                                                         style: const TextStyle(
                                                           fontSize: 16,
@@ -538,8 +541,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20))),
                               child: Text(
-                                'register_button'.tr
-                                    .toUpperCase(),
+                                'register_button'.tr.toUpperCase(),
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 16),
                               ),

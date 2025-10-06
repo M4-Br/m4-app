@@ -1,14 +1,15 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/verify_user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/model/home/home.dart';
-import 'package:app_flutter_miban4/data/model/userData/user.dart';
+import 'package:app_flutter_miban4/features/home/controller/home_icons_controller.dart';
+import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/home/card.dart';
 import 'package:app_flutter_miban4/ui/components/home/homeIcons.dart';
 import 'package:app_flutter_miban4/ui/components/home/home_detail/clipper.dart';
-import 'package:app_flutter_miban4/ui/controllers/home/home_controller.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/controllers/notifications/notifications_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_camera.dart';
-import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_scan.dart';
 import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLinkValue.dart';
@@ -32,15 +33,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final UserController _userController = Get.put(UserController());
+  final _user = Get.put(UserController());
   final NotificationsController _notifications =
       Get.put(NotificationsController());
   bool notifications = false;
   final box = GetStorage();
+  final homeController = Get.put(HomeIconsController());
 
   @override
   void initState() {
     super.initState();
+    homeController.fetchIcons();
     getNotifications();
   }
 
@@ -58,8 +61,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    HomeController homeController = Get.find();
-
     List<IconModel> manualIcons = [
       // IconModel(
       //     id: "20",
@@ -79,7 +80,9 @@ class _HomePageState extends State<HomePage> {
           icon: "assets/icons/ic_contabil.png",
           title: "contability_title".tr),
       IconModel(
-          id: "24", icon: "assets/icons/ic_services.png", title: "services_title".tr),
+          id: "24",
+          icon: "assets/icons/ic_services.png",
+          title: "services_title".tr),
     ];
 
     final Map<String, String> localIconPaths = {
@@ -98,7 +101,7 @@ class _HomePageState extends State<HomePage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Obx(() {
-        UserData? userData = _userController.userData.value;
+        User? userData = _user.user.value;
         return Stack(
           children: [
             ClipPath(
@@ -137,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Text(
-                    userData!.payload.username,
+                    userData!.user.username,
                     style: const TextStyle(color: Colors.white, fontSize: 20),
                   ),
                   IconButton(
@@ -165,13 +168,6 @@ class _HomePageState extends State<HomePage> {
                 return const Center(
                   child: CircularProgressIndicator(
                     color: secondaryColor,
-                  ),
-                );
-              } else if (homeController.error.value.isNotEmpty) {
-                return Center(
-                  child: Text(
-                    homeController.error.value,
-                    textAlign: TextAlign.center,
                   ),
                 );
               } else if (homeController.icons.isEmpty) {
@@ -222,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Text(
-                                userData.payload.username,
+                                userData.user.username,
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 18),
                               ),
@@ -268,11 +264,12 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (context, index) {
                           if (index < homeController.icons.length) {
                             // Ícones vindos do controller
-                            IconModel iconModel = homeController.icons[index];
+                            HomeIconsResponse iconModel =
+                                homeController.icons[index];
 
                             return HomeIcons(
                               iconUrl: localIconPaths[iconModel.id]!,
-                              text: iconModel.title!,
+                              text: iconModel.title,
                               isLocal: true,
                               onPressed: () async {
                                 switch (iconModel.id) {
@@ -340,7 +337,7 @@ class _HomePageState extends State<HomePage> {
                                     Get.to(
                                         () => WebviewPage(
                                               url: 'https://miban4.com',
-                                              pageTitle: iconModel.title!,
+                                              pageTitle: iconModel.title,
                                             ),
                                         transition: Transition.rightToLeft);
                                     break;
@@ -348,7 +345,7 @@ class _HomePageState extends State<HomePage> {
                                     Get.to(
                                         () => WebviewPage(
                                               url: 'https://miban4.com/#faq',
-                                              pageTitle: iconModel.title!,
+                                              pageTitle: iconModel.title,
                                             ),
                                         transition: Transition.rightToLeft);
                                     break;
@@ -370,7 +367,8 @@ class _HomePageState extends State<HomePage> {
                                     //TODO: Contabilidade
                                     break;
                                   case "24":
-                                    Get.to(() => const ServicesPage(), transition: Transition.rightToLeft);
+                                    Get.to(() => const ServicesPage(),
+                                        transition: Transition.rightToLeft);
                                     break;
                                 }
                               },

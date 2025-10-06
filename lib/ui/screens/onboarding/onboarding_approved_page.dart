@@ -1,5 +1,5 @@
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/ui/screens/login/login_page.dart';
+import 'package:app_flutter_miban4/features/auth/presentation/login_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_password_register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,7 +15,6 @@ class OnboardingApprovedPage extends StatefulWidget {
 class _OnboardingApprovedPageState extends State<OnboardingApprovedPage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -24,10 +23,14 @@ class _OnboardingApprovedPageState extends State<OnboardingApprovedPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SvgPicture.asset('assets/images/miban4_colored_logo.svg', width: 180,),
+              SvgPicture.asset(
+                'assets/images/miban4_colored_logo.svg',
+                width: 180,
+              ),
               Text(
                 'approved'.tr,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Text(
                 'need_create_password'.tr,
@@ -35,7 +38,8 @@ class _OnboardingApprovedPageState extends State<OnboardingApprovedPage> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  Get.to(() => OnboardingPasswordRegisterPage(), transition: Transition.rightToLeft);
+                  Get.to(() => OnboardingPasswordRegisterPage(),
+                      transition: Transition.rightToLeft);
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: secondaryColor,
@@ -54,7 +58,8 @@ class _OnboardingApprovedPageState extends State<OnboardingApprovedPage> {
               ),
               TextButton(
                 onPressed: () {
-                  Get.off(() => const LoginPage(), transition: Transition.leftToRight);
+                  Get.off(() => const LoginPage(),
+                      transition: Transition.leftToRight);
                 },
                 child: Text(
                   'back_login'.tr,

@@ -1,0 +1,36 @@
+import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/l18n/app_strings.dart';
+import 'package:app_flutter_miban4/core/config/routes/app_pages.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
+class MiBan4 extends StatelessWidget {
+  const MiBan4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final box = GetStorage();
+    String? language = box.read('language');
+
+    Locale initialLocale =
+        language != null ? Locale(language) : Get.deviceLocale!;
+
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: GetMaterialApp(
+        locale: initialLocale,
+        translations: Messages(),
+        debugShowCheckedModeBanner: false,
+        initialRoute: AppRoutes.splash,
+        getPages: AppPages.pages,
+        navigatorObservers: [
+          SentryNavigatorObserver(),
+        ],
+      ),
+    );
+  }
+}

@@ -1,9 +1,10 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/verify_user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/model/userData/balance.dart';
-import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/ui/colors/theme.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/login/splash_page.dart';
+import 'package:app_flutter_miban4/features/splash/presentation/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +22,7 @@ class _HomeCardState extends State<HomeCard> {
   late String _balanceValue;
   late String _transational;
   late String _transationalValue;
-  final UserController _userController = Get.put(UserController());
+  final _user = Get.put(UserController());
 
   @override
   void initState() {
@@ -38,7 +39,7 @@ class _HomeCardState extends State<HomeCard> {
   @override
   Widget build(BuildContext context) {
     final currencyFormat = NumberFormat.currency(locale: 'pt_BR', symbol: '');
-    UserData? userData = _userController.userData.value;
+    User userData = _user.user.value!;
 
     Color cardColor;
     Color fontColor;
@@ -47,12 +48,12 @@ class _HomeCardState extends State<HomeCard> {
     if (userData != null) {
       cardColor = Color(
         int.parse(
-          "0xFF${userData.payload.cardColor.replaceAll('#', '')}",
+          "0xFF${userData.user.cardColor.replaceAll('#', '')}",
         ),
       );
       fontColor = Color(
         int.parse(
-          "0xFF${userData.payload.fontColor.replaceAll('#', '')}",
+          "0xFF${userData.user.cardFontColor.replaceAll('#', '')}",
         ),
       );
     } else {
@@ -61,7 +62,7 @@ class _HomeCardState extends State<HomeCard> {
     }
 
     if (userData != null) {
-      switch (userData.payload.companyId) {
+      switch (userData.user.companyId) {
         case 1:
           assetPath = 'assets/images/ic_default_logo.png';
           break;
