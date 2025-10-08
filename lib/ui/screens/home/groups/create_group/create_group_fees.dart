@@ -1,5 +1,4 @@
 import 'package:app_flutter_miban4/data/api/groups/createGroupMutualParams.dart';
-import 'package:app_flutter_miban4/data/api/home/params.dart';
 import 'package:app_flutter_miban4/data/model/params/params.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
@@ -46,7 +45,7 @@ class _GroupFeesState extends State<GroupFees> {
   @override
   void initState() {
     super.initState();
-    params = getGlobalParams();
+    // params = getGlobalParams();
     _getLang();
   }
 
@@ -70,7 +69,8 @@ class _GroupFeesState extends State<GroupFees> {
     List<DropdownMenuItem<String>> priorities =
         params!.mutualPriorities.map((priority) {
       return DropdownMenuItem<String>(
-          value: priority.value, child: Text('codeLang'.tr == 'pt' ? priority.label : priority.value));
+          value: priority.value,
+          child: Text('codeLang'.tr == 'pt' ? priority.label : priority.value));
     }).toList();
 
     return Scaffold(

@@ -227,7 +227,7 @@ class _CreditInstallmentsState extends State<CreditInstallments> {
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Text(
-                      _user.user.value!.user.aliasAccount!.accountNumber,
+                      _user.user.value!.payload.aliasAccount!.accountNumber,
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ],

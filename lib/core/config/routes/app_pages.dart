@@ -27,7 +27,7 @@ class AppPages {
     ...ProfilePages.pages,
 
     //Notifications Screen
-    ...NotificationsPage.notifications,
+    ...NotificationPage.notifications,
 
     //Transfers Screens
     ...TransferPages.transferPages,

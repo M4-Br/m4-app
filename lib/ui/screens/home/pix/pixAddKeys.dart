@@ -118,7 +118,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                           setState(() {
                             _isSelected = !_isSelected;
                             _typeSelected = 'document';
-                            _key = userData!.user.document;
+                            _key = userData!.payload.document;
                           });
                         },
                         child: Container(
@@ -143,7 +143,8 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16),
                                   child: Text(
-                                    MaskUtil.applyMask(userData!.user.document,
+                                    MaskUtil.applyMask(
+                                        userData!.payload.document,
                                         "###.###.###-##"),
                                     style: const TextStyle(
                                         color: Colors.black,
@@ -246,7 +247,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                               setState(() {
                                 _isSelected = !_isSelected;
                                 _typeSelected = 'email';
-                                _key = userData!.user.email;
+                                _key = userData!.payload.email;
                               });
                             },
                             child: Container(
@@ -272,7 +273,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 16),
                                       child: Text(
-                                        userData!.user.email,
+                                        userData!.payload.email,
                                         style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
@@ -454,7 +455,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
                                                                       () {
                                                                     _keyController.createPixKey(
                                                                         userData!
-                                                                            .user
+                                                                            .payload
                                                                             .document,
                                                                         _passwordController
                                                                             .text

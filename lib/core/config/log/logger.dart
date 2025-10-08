@@ -50,10 +50,5 @@ class AppLogger {
     if (kDebugMode) {
       _instance.talker.debug(message);
     }
-
-    Sentry.addBreadcrumb(
-      Breadcrumb(
-          message: message, level: SentryLevel.debug, category: 'log.debug'),
-    );
   }
 }

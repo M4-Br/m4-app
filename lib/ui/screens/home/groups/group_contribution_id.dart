@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/api/credit/get_credit_installment.dart';
 import 'package:app_flutter_miban4/data/api/groups/getContributionId.dart';
@@ -10,7 +11,6 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_my_transactions.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_voucher_screen.dart';
-import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -81,8 +81,7 @@ class _ContributionState extends State<Contribution> {
       appBar: AppBarDefault(
         title: 'group_contribution_individual'.tr.toUpperCase(),
         backPage: () => widget.type == 'notifications_pay'
-            ? Get.off(() => const Notifications(),
-                transition: Transition.rightToLeft)
+            ? Get.offNamed(AppRoutes.notifications)
             : Get.off(
                 () => GroupMyTransactions(
                   group: widget.group,
@@ -249,8 +248,8 @@ class _ContributionState extends State<Contribution> {
                                   color: Colors.black, fontSize: 16),
                             ),
                             Text(
-                              _userController
-                                  .user.value!.user.aliasAccount!.accountNumber,
+                              _userController.user.value!.payload.aliasAccount!
+                                  .accountNumber,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 16),
                             ),

@@ -4,7 +4,7 @@ import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.d
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_my_transactions.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

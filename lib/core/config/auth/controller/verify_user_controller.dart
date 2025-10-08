@@ -2,7 +2,9 @@ import 'package:app_flutter_miban4/core/config/auth/controller/auth_redirect_con
 import 'package:app_flutter_miban4/core/config/auth/model/verify_user_response.dart';
 import 'package:app_flutter_miban4/core/config/auth/repositories/auth_repository.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
+import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -40,6 +42,12 @@ class VerifyAccountController extends GetxController {
       }
 
       return response;
+    } on UnauthorizedException catch (e) {
+      ShowToaster.toasterInfo(message: e.message);
+      rethrow;
+    } on ApiException catch (e) {
+      ShowToaster.toasterInfo(message: e.message);
+      rethrow;
     } catch (e, s) {
       AppLogger.I().error('Auth Verify', e, s, {
         'document': document.text,

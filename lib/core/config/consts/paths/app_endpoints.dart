@@ -7,6 +7,13 @@ class AppEndpoints {
   static const String verifyAccount = '/v2/individual/';
   static const String authLogin = '/v3/auth';
 
+  //notifications
+  static const String notifications = '/notifications';
+
   //home
   static const String fetchIcons = '/app/home_info';
+
+  //statements
+  static const String statement = '/v2/statements';
+  static const String statementInvoice = '/statement/ted/';
 }

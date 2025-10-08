@@ -1,7 +1,7 @@
 import 'package:app_flutter_miban4/l10n/app_localizations.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +17,13 @@ class TransactionSuccessTed extends StatefulWidget {
   final int? amount;
 
   const TransactionSuccessTed(
-      {super.key, this.document, this.id, this.name, this.bank, this.account, this.amount});
+      {super.key,
+      this.document,
+      this.id,
+      this.name,
+      this.bank,
+      this.account,
+      this.amount});
 
   @override
   State<TransactionSuccessTed> createState() => _TransactionSuccessTedState();
@@ -28,22 +34,20 @@ class _TransactionSuccessTedState extends State<TransactionSuccessTed> {
 
   @override
   Widget build(BuildContext context) {
-
     final String cpf = widget.document!;
 
     String formatCPF(String cpf) {
       return '${cpf.substring(0, 3)}.${cpf.substring(3, 6)}.${cpf.substring(6, 9)}-${cpf.substring(9)}';
     }
 
-    final int amount =
-        widget.amount!;
+    final int amount = widget.amount!;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
         title: AppLocalizations.of(context)!.transfer,
-        backPage: () =>
-            Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
+        backPage: () => Get.off(() => const HomeViewPage(),
+            transition: Transition.leftToRight),
       ),
       body: Column(
         children: [
@@ -66,8 +70,7 @@ class _TransactionSuccessTedState extends State<TransactionSuccessTed> {
                 ),
                 Text(
                   formattedDate,
-                  style: const TextStyle(
-                      fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 )
               ],
             ),
@@ -172,8 +175,7 @@ class _TransactionSuccessTedState extends State<TransactionSuccessTed> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.grey,
                 shape: RoundedRectangleBorder(

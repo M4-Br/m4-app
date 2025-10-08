@@ -1,10 +1,8 @@
-// file: main.dart
-
 import 'package:app_flutter_miban4/core/config/app/app_init.dart';
-import 'package:flutter/material.dart'; // Import necessário
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  SentryWidgetsFlutterBinding.ensureInitialized();
 
   await AppSetup.setup();
 }

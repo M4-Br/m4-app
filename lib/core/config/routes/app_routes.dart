@@ -32,13 +32,13 @@ class AppRoutes {
   static const String codeValidate = '/code_validate';
 
   //Rotas da Home
-  static const String homeView = '/home';
-  static const String homePage = '/home_page';
+  static const String homeView = '/';
+  static const String homePage = '/home';
   static const String statement = '/statement';
   static const String profile = '/profile';
 
   //Rotas do Extrato
-  static const String statementInvoice = '/statement_invoice';
+  static const String statementInvoice = '/statement_invoice/:id';
 
   //Rotas do Profile
   static const String financialData = '/financial_data';
@@ -48,7 +48,7 @@ class AppRoutes {
   static const String privacyProfile = '/privacy_policy';
 
   //Rotas de Notificação
-  static const String notifications = '/notifications';
+  static const String notifications = '$homePage/notifications';
 
   //Rotas de Transferência
   static const String transferContact = '/transfer_contact';

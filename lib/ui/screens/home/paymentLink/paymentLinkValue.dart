@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/data/util/helpers/currencyFormatter.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/controllers/paymentValue/payment_value_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLink.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,8 +42,8 @@ class _PaymentLinkValueState extends State<PaymentLinkValue> {
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
         title: 'demand_demand'.tr,
-        backPage: () =>
-            Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
+        backPage: () => Get.off(() => const HomeViewPage(),
+            transition: Transition.leftToRight),
       ),
       body: Container(
         color: primaryColor,
@@ -138,7 +138,7 @@ class _PaymentLinkValueState extends State<PaymentLinkValue> {
                                       .replaceAll('.', '')
                                       .replaceAll(',', '');
                                   int amount = int.parse(
-                                          formattedValue.replaceAll('.', ''));
+                                      formattedValue.replaceAll('.', ''));
 
                                   try {
                                     await _paymentValueController

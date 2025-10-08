@@ -1,9 +1,7 @@
 import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
-import 'package:app_flutter_miban4/data/api/home/params.dart';
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/model/params/params.dart';
-import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
@@ -42,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: Obx(() {
         User? userData = _userController.user.value;
-        Params? params = getGlobalParams();
+        // Params? params = getGlobalParams();
 
         return Column(
           children: [
@@ -68,8 +66,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: SizedBox(
                           width: 120,
                           height: 100,
-                          child: Image.network(
-                              formatAvatarUrl(userData!.user.avatarUrl ?? '')),
+                          child: Image.network(formatAvatarUrl(
+                              userData!.payload.avatarUrl ?? '')),
                         ),
                       ),
                       IconButton(
@@ -81,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      userData!.user.username,
+                      userData!.payload.username,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -89,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Text(
-                    '@ ${userData!.user.username}',
+                    '@ ${userData!.payload.username}',
                     style: const TextStyle(fontSize: 16),
                   )
                 ],
@@ -103,11 +101,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     ExpansionItemMyAccount(
                       text: 'account_myAccount'.tr,
-                      account: userData.user.aliasAccount!.accountNumber,
+                      account: userData.payload.aliasAccount!.accountNumber,
                       icon: Icons.person_pin_outlined,
-                      agency:
-                          userData.user.aliasAccount!.branchNumber.toString(),
-                      bank: userData.user.aliasAccount!.bankNumber,
+                      agency: userData.payload.aliasAccount!.branchNumber
+                          .toString(),
+                      bank: userData.payload.aliasAccount!.bankNumber,
                     ),
                     CommonItem(
                         text: 'account_myQr'.tr,
@@ -120,10 +118,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: Icons.person_2_outlined,
                         fieldName: 'account_personalData'.tr,
                         firstFieldName: 'account_name'.tr,
-                        firstField: userData.user.fullName.toString(),
+                        firstField: userData.payload.fullName.toString(),
                         secondFieldName: 'account_document'.tr,
                         secondField: cpfMaskFormatter
-                            .maskText(userData.user.document.toString())),
+                            .maskText(userData.payload.document.toString())),
                     CommonItem(
                         text: 'account_data'.tr,
                         icon: Icons.monetization_on_outlined,
@@ -133,10 +131,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: Icons.contact_mail_outlined,
                         fieldName: 'account_contact'.tr,
                         firstFieldName: 'EMAIL',
-                        firstField: userData.user.email.toString(),
+                        firstField: userData.payload.email.toString(),
                         secondFieldName: 'account_phone'.tr,
                         secondField:
-                            '(${userData.user.phone.phonePrefix.toString()}) ${userData.user.phone.phoneNumber.toString()}'),
+                            '(${userData.payload.phone.phonePrefix.toString()}) ${userData.payload.phone.phoneNumber.toString()}'),
                     ExpansionTile(
                       title: Text(
                         'account_security'.tr,
@@ -206,9 +204,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: Icons.help_outline,
                         fieldName: 'account_helper'.tr,
                         firstFieldName: 'SAC',
-                        firstField: params?.sacMibanka4.isNotEmpty ?? false
-                            ? params!.sacMibanka4[0].value
-                            : '',
+                        firstField: '',
+
+                        // params?.sacMibanka4.isNotEmpty ?? false
+                        //     ? params!.sacMibanka4[0].value
+                        //     : '',
                         secondFieldName: 'EMAIL',
                         secondField: 'sac@mibanka4.com'),
                     CommonItem(

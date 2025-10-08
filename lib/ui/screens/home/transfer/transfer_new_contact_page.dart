@@ -108,7 +108,7 @@ class _TransferNewContactPageState extends State<TransferNewContactPage> {
                     setState(() {
                       _isLoading = true;
                     });
-                    if (document != userData!.user.document) {
+                    if (document != userData!.payload.document) {
                       try {
                         await fetchUser(document).then((userTransfer) {
                           if (userTransfer["id"].toString().isNotEmpty) {

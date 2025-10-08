@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Payload {
   const Payload({
     required this.id,
@@ -15,14 +17,17 @@ class Payload {
   });
 
   factory Payload.fromJson(Map<String, dynamic> json) {
+    final cardColorString = json['card_color'] as String? ?? '002A4D';
+    final cardFontColorString = json['card_font_color'] as String? ?? 'FFFFFF';
+
     return Payload(
       id: json['individual_id'] as int,
-      companyId: json['company_id'] as int,
+      companyId: json['company_id'] as int?,
       username: json['username'] as String,
       email: json['email'] as String,
       document: json['document'] as String,
-      cardColor: json['card_color'] as String,
-      cardFontColor: json['card_font_color'] as String,
+      cardColor: _colorFromHex(cardColorString),
+      cardFontColor: _colorFromHex(cardFontColorString),
       qrCode: json['qrcode'] as String,
       aliasAccount: json['alias_account'] != null
           ? AliasAccount.fromJson(json['alias_account'] as Map<String, dynamic>)
@@ -34,17 +39,22 @@ class Payload {
   }
 
   final int id;
-  final int companyId;
+  final int? companyId;
   final String username;
   final String email;
   final String document;
-  final String cardColor;
-  final String cardFontColor;
+  final Color cardColor;
+  final Color cardFontColor;
   final String qrCode;
   final AliasAccount? aliasAccount;
   final String? avatarUrl;
   final String fullName;
   final Phone phone;
+}
+
+Color _colorFromHex(String hexColor) {
+  final hexCode = hexColor.replaceAll('#', '');
+  return Color(int.parse('FF$hexCode', radix: 16));
 }
 
 class Phone {
@@ -110,17 +120,17 @@ class AliasAccount {
 
 class User {
   const User({
-    required this.user,
+    required this.payload,
     required this.token,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      user: Payload.fromJson(json['payload']),
+      payload: Payload.fromJson(json['payload']),
       token: json['token'] as String,
     );
   }
 
-  final Payload user;
+  final Payload payload;
   final String token;
 }

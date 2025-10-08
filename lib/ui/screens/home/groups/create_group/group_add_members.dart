@@ -52,8 +52,8 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
     if (widget.membership == 'Sim' || widget.membership == 'Yes') {
       memberCounter++;
       users.add({
-        'name': _userController.user.value!.user.fullName,
-        'document': _userController.user.value!.user.document,
+        'name': _userController.user.value!.payload.fullName,
+        'document': _userController.user.value!.payload.document,
         'id': widget.userID
       });
     }

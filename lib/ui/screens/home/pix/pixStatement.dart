@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/data/model/pix/pixStatement.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
-import 'package:app_flutter_miban4/ui/screens/home/statement/statement_voucher_page.dart';
+import 'package:app_flutter_miban4/features/statements/presentation/statement_invoice_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -45,7 +45,9 @@ class _PixStatementPageState extends State<PixStatementPage> {
       } else {
         // Caso contrário, o valor já está no formato desejado
         // Converte para double e formata com duas casas decimais e separador de milhar
-        return (double.parse(amount) / 100).toStringAsFixed(2).replaceAll('.', ',');
+        return (double.parse(amount) / 100)
+            .toStringAsFixed(2)
+            .replaceAll('.', ',');
       }
     }
 
@@ -164,11 +166,10 @@ class _PixStatementPageState extends State<PixStatementPage> {
                             .month;
                     return transactionMonth == selectedMonth;
                   }).toList();
-            
+
                   if (filteredTransactions.length == 0) {
                     return Center(
-                      child: Text(
-                          'statement_noData'.tr),
+                      child: Text('statement_noData'.tr),
                     );
                   }
                   return ListView.builder(
@@ -207,26 +208,7 @@ class _PixStatementPageState extends State<PixStatementPage> {
                       var extrato = filteredTransactions[extratoIndex];
                       return GestureDetector(
                         onTap: () {
-                          Get.to(
-                            () => StatementVoucherScreen(
-                              status: extrato.details.transactionStatus,
-                              amount: extrato.amount,
-                              beneficiary: extrato.details.payer.name,
-                              documentBeneficiary:
-                                  extrato.details.payer.document,
-                              bank: extrato.details.payer.bankName,
-                              origin: extrato.details.payee.name,
-                              originDocument: extrato.details.payee.document,
-                              originBank: extrato.details.payee.bankName,
-                              id: extrato.id,
-                              type:
-                                  extrato.details.transactionStatus == 'ENVIADO'
-                                      ? 'pix_send'.tr
-                                      : 'pix_received'.tr,
-                              date: extrato.details.transactionDate,
-                            ),
-                            transition: Transition.rightToLeft,
-                          );
+                          //TODO: Invoice Screen
                         },
                         child: ListTile(
                           title: Text(
@@ -255,7 +237,10 @@ class _PixStatementPageState extends State<PixStatementPage> {
                           trailing: Text(
                             '${extrato.details.transactionStatus == "ENVIADO" ? '-' : '+'} R\$ ${formatAmount(extrato.amount.toString())}',
                             style: TextStyle(
-                              color: extrato.details.transactionStatus == "ENVIADO" ? Colors.red : primaryColor,
+                              color:
+                                  extrato.details.transactionStatus == "ENVIADO"
+                                      ? Colors.red
+                                      : primaryColor,
                               fontSize: 18,
                             ),
                           ),

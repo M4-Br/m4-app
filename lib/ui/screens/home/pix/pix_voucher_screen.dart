@@ -145,7 +145,7 @@ class PixVoucher extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    userData!.user.fullName,
+                    userData!.payload.fullName,
                     style: const TextStyle(fontSize: 16),
                   )
                 ],

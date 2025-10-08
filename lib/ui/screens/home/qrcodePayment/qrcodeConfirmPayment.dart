@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/data/model/qrCode/internQRCode.dart';
 import 'package:app_flutter_miban4/data/model/transaction/transaction.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_success_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,8 +47,8 @@ class _QRCodeConfirmPaymentState extends State<QRCodeConfirmPayment> {
       resizeToAvoidBottomInset: false,
       appBar: AppBarDefault(
         title: 'transfer'.tr,
-        backPage: () =>
-            Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
+        backPage: () => Get.off(() => const HomeViewPage(),
+            transition: Transition.leftToRight),
       ),
       body: Column(
         children: [

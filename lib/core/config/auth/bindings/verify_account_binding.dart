@@ -6,10 +6,10 @@ import 'package:get/get.dart';
 class VerifyAccountBinding extends Bindings {
   @override
   void dependencies() {
-    AppLogger.I().info('Verify Account Bindings injected');
-
     Get.lazyPut<VerifyAccountController>(() => VerifyAccountController());
 
     LanguageBinding().dependencies();
+
+    AppLogger.I().debug('Verify Account Bindings injected');
   }
 }

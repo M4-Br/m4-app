@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 class AuthBinding extends Bindings {
   @override
   void dependencies() {
-    AppLogger.I().info('Auth Binding injected');
-
     Get.lazyPut<AuthController>(
         () => AuthController(user: Get.find<UserController>()));
+
+    AppLogger.I().debug('Auth Binding injected');
   }
 }

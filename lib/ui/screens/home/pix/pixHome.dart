@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/data/model/userData/balance.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/components/pix/itens_home.dart';
 import 'package:app_flutter_miban4/ui/components/pix/pix_balance.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixCopyPaste.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixKeyManager.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixManualKey.dart';
@@ -51,8 +51,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 32, 16, 8),
                       child: PixHomeItens(
                           name: 'pix_manager_keys'.tr,
-                          description:
-                              'pix_manage_data'.tr,
+                          description: 'pix_manage_data'.tr,
                           onPressed: () {
                             Get.to(() => const PixKeyManager(),
                                 transition: Transition.rightToLeft);
@@ -63,8 +62,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
                           name: 'pix_myLimits'.tr,
-                          description:
-                              'pix_setLimit'.tr,
+                          description: 'pix_setLimit'.tr,
                           onPressed: () {
                             Get.to(() => const PixMyLimits(),
                                 transition: Transition.rightToLeft);
@@ -75,8 +73,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
                           name: 'pix_receive'.tr,
-                          description:
-                              'pix_receiveValue'.tr,
+                          description: 'pix_receiveValue'.tr,
                           onPressed: () {
                             Get.to(() => const PixReceive(),
                                 transition: Transition.rightToLeft);
@@ -109,8 +106,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
                           name: 'pix_qrCode'.tr,
-                          description:
-                              'pix_payQrCode'.tr,
+                          description: 'pix_payQrCode'.tr,
                           onPressed: () {
                             Get.to(() => const QrCodeCamera(),
                                 transition: Transition.rightToLeft);
@@ -121,8 +117,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                       child: PixHomeItens(
                           name: 'pix_copyPaste'.tr,
-                          description:
-                              'pix_payCopy'.tr,
+                          description: 'pix_payCopy'.tr,
                           onPressed: () async {
                             await getBalance().then((balance) => {
                                   Get.to(

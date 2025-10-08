@@ -4,6 +4,9 @@ import 'package:app_flutter_miban4/core/config/auth/model/auth_login_request.dar
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/core/config/auth/repositories/auth_repository.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:app_flutter_miban4/core/config/log/scope_config.dart';
+import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
+import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -35,6 +38,10 @@ class AuthController extends GetxController {
 
       user.user.value = auth;
 
+      await ScopeConfig.setup(auth);
+
+      AppLogger.I().debug('Sentry Scope Initialized');
+
       if (auth.token.isNotEmpty) {
         AppLogger.I().info('Auth Login Success');
         box.write('token', auth.token);
@@ -44,6 +51,12 @@ class AuthController extends GetxController {
       }
 
       return auth;
+    } on UnauthorizedException catch (e) {
+      ShowToaster.toasterInfo(message: e.message);
+      rethrow;
+    } on ApiException catch (e) {
+      ShowToaster.toasterInfo(message: e.message);
+      rethrow;
     } catch (e, s) {
       AppLogger.I().error('Auth Login', e, s);
       rethrow;

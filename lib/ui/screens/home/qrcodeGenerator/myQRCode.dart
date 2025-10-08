@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -42,7 +42,7 @@ class _MyQRCodeState extends State<MyQRCode> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "@${userData?.user.username ?? ''}",
+                "@${userData?.payload.username ?? ''}",
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
@@ -52,7 +52,7 @@ class _MyQRCodeState extends State<MyQRCode> {
                 style: const TextStyle(fontSize: 16),
               ),
               SvgPicture.network(
-                userData!.user.qrCode,
+                userData!.payload.qrCode,
                 height: 200,
                 width: 200,
                 placeholderBuilder: (BuildContext context) =>
@@ -61,7 +61,7 @@ class _MyQRCodeState extends State<MyQRCode> {
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  userData.user.qrCode ?? '',
+                  userData.payload.qrCode ?? '',
                   textAlign: TextAlign.center,
                   style: const TextStyle(decoration: TextDecoration.underline),
                 ),

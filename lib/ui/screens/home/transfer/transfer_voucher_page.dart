@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:app_flutter_miban4/data/model/transaction/ted.dart';
 import 'package:app_flutter_miban4/data/model/transaction/transaction.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
