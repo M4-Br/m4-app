@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/dates.dart';
@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 class StatementController extends GetxController {
   var isLoading = false.obs;
-  final user = Get.find<UserController>();
+  final user = Get.find<UserRx>();
   final Rx<StatementResponse?> statements = Rx<StatementResponse?>(null);
 
   @override

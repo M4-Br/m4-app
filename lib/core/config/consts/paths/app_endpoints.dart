@@ -10,6 +10,9 @@ class AppEndpoints {
   //notifications
   static const String notifications = '/notifications';
 
+  //balance
+  static const String balance = '/account/balance';
+
   //home
   static const String fetchIcons = '/app/home_info';
 

@@ -1,5 +1,5 @@
 import 'package:app_flutter_miban4/core/config/auth/controller/auth_redirect_controller.dart';
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/auth_login_request.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/core/config/auth/repositories/auth_repository.dart';
@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class AuthController extends GetxController {
-  final UserController user;
+  final UserRx user;
   AuthController({required this.user});
 
   var isLoading = false.obs;

@@ -11,3 +11,8 @@ class UnauthorizedException extends ApiException {
       {super.message = 'Sessão expirada. Faça login novamente.'})
       : super(statusCode: 401);
 }
+
+class ServerException extends ApiException {
+  ServerException({super.message = 'Verifique sua conexão e tente novamente'})
+      : super(statusCode: 500);
+}

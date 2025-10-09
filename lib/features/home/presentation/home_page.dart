@@ -1,11 +1,11 @@
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/data/model/home/home.dart';
+import 'package:app_flutter_miban4/features/balance/presentation/card_widget.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_icons_controller.dart';
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/features/home/presentation/widgets/card.dart';
 import 'package:app_flutter_miban4/features/home/presentation/widgets/homeIcons.dart';
 import 'package:app_flutter_miban4/features/home/presentation/widgets/clipper.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_camera.dart';
@@ -23,7 +23,7 @@ import 'package:get/get.dart';
 class HomePage extends GetView<HomeIconsController> {
   HomePage({super.key});
 
-  final _user = Get.find<UserController>();
+  final _user = Get.find<UserRx>();
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +112,7 @@ class HomePage extends GetView<HomeIconsController> {
               alignment: Alignment.topCenter,
               child: Padding(
                 padding: EdgeInsets.only(top: 90),
-                child: HomeCard(),
+                child: CardWidget(),
               ),
             ),
             Obx(() {
@@ -197,7 +197,7 @@ class HomePage extends GetView<HomeIconsController> {
                           alignment: Alignment.topCenter,
                           child: Padding(
                             padding: EdgeInsets.only(top: 90),
-                            child: HomeCard(),
+                            child: CardWidget(),
                           ),
                         ),
                       ],

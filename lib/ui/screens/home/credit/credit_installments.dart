@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/api/credit/get_credit_installment.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
@@ -32,7 +32,7 @@ class CreditInstallments extends StatefulWidget {
 }
 
 class _CreditInstallmentsState extends State<CreditInstallments> {
-  final UserController _user = Get.put(UserController());
+  final UserRx _user = Get.put(UserRx());
   var _obscureText = true.obs;
   var _isLoading = false.obs;
   final TextEditingController _passwordController = TextEditingController();

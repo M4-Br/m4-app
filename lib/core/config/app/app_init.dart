@@ -1,8 +1,9 @@
 // file: app_init.dart
 
 import 'package:app_flutter_miban4/core/config/app/app.dart';
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,8 +14,11 @@ class AppSetup {
     await GetStorage.init();
     AppLogger.I().debug('GetStorage initialized');
 
-    Get.put(UserController(), permanent: true);
-    AppLogger.I().debug('User Controller Initialized');
+    Get.put(UserRx(), permanent: true);
+    AppLogger.I().debug('User RX Initialized');
+
+    Get.put(BalanceRx(), permanent: true);
+    AppLogger.I().debug('Balance RX Initialized');
 
     await SentryFlutter.init(
       (options) => options

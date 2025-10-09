@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/api/pix/pixKeys.dart';
 import 'package:app_flutter_miban4/data/model/pix/pixKeys.dart';
@@ -28,7 +28,7 @@ class _PixAddKeysState extends State<PixAddKeys> {
   var _obscureText = true.obs;
   String dropdownValue = '';
 
-  final UserController _userController = Get.put(UserController());
+  final UserRx _userController = Get.put(UserRx());
   final CreateKeyController _keyController = Get.put(CreateKeyController());
   final TextEditingController _passwordController = TextEditingController();
 

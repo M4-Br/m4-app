@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
@@ -18,7 +18,7 @@ class MyQRCode extends StatefulWidget {
 }
 
 class _MyQRCodeState extends State<MyQRCode> {
-  final UserController _userController = Get.put(UserController());
+  final UserRx _userController = Get.put(UserRx());
 
   @override
   void initState() {

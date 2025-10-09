@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/data/api/groups/groupInvite.dart';
 import 'package:app_flutter_miban4/data/api/transfer/transferAuth.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
@@ -29,7 +29,7 @@ class AddGroupMembers extends StatefulWidget {
 class _AddGroupMembersState extends State<AddGroupMembers> {
   final TextEditingController _controller = TextEditingController();
   late String memberinvite;
-  final UserController _userController = Get.put(UserController());
+  final UserRx _userController = Get.put(UserRx());
 
   var getMember = false.obs;
   var isLoading = false.obs;

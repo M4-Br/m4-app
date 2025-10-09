@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/api/credit/get_credit_installment.dart';
@@ -43,7 +43,7 @@ class Contribution extends StatefulWidget {
 class _ContributionState extends State<Contribution> {
   late Future<ContributionID> _contribution;
   late Future<ContributionID> _installment;
-  final UserController _userController = Get.put(UserController());
+  final UserRx _userController = Get.put(UserRx());
   var _obscureText = true.obs;
   var _isLoading = false.obs;
   final TextEditingController _passwordController = TextEditingController();

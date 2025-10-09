@@ -130,6 +130,10 @@ class ApiConnection {
         throw UnauthorizedException(message: errorMessage);
       }
 
+      if (response.statusCode >= 500) {
+        throw ServerException(message: errorMessage);
+      }
+
       throw ApiException(
         message: errorMessage,
         statusCode: response.statusCode,

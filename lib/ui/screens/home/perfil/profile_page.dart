@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/core/config/auth/controller/user_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/model/params/params.dart';
@@ -27,7 +27,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final UserController _userController = Get.put(UserController());
+  final UserRx _userController = Get.put(UserRx());
 
   @override
   Widget build(BuildContext context) {
