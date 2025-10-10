@@ -12,7 +12,7 @@ class StatementRepository {
     return await ApiConnection().get(
         endpoint: AppEndpoints.statement,
         fromJson: (json) => StatementResponse.fromJson(json),
-        extraHeaders: {
+        queryParameters: {
           'accountId': accountId,
           'startDate': startDate,
           'endDate': endDate

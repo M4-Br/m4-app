@@ -19,7 +19,10 @@ class HomeViewPage extends GetView<HomeViewController> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Obx(() => widgetOptions.elementAt(controller.selectedIndex.value)),
+      body: Obx(() => IndexedStack(
+            index: controller.selectedIndex.value,
+            children: widgetOptions,
+          )),
       bottomNavigationBar: Obx(() => BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,

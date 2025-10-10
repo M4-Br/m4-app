@@ -21,7 +21,7 @@ class BalanceController extends BaseController {
       final balanceDetails = await BalanceRepository().fetchBalance();
       balanceRx.balance.value = balanceDetails;
       AppLogger.I().info('Balance received');
-    });
+    }, message: 'Erro ao obter saldo do usuário');
   }
 
   void toggleVisibility() {

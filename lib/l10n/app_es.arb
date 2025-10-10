@@ -134,7 +134,7 @@
   "barcode_info": "Las facturas se pueden pagar en días hábiles de 7 AM a 5 PM.",
   "barcode_info_after": "Después de esta hora, solo será posible realizar el pago el próximo día hábil.",
 
-  "page18": "Comprobante de Factura",
+  "invoice": "Comprobante de Factura",
   "invoice_success": "¡Pago completado con éxito!",
   "invoice_amount": "Monto pagado:",
   "invoice_date": "En el día:",

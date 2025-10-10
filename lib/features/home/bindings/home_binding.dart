@@ -12,11 +12,12 @@ class HomeViewBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<NotificationsController>(() => NotificationsController());
 
-    Get.lazyPut<BalanceController>(
-        () => BalanceController(balanceRx: Get.find<BalanceRx>()));
+    Get.put<BalanceController>(
+        BalanceController(balanceRx: Get.find<BalanceRx>()));
 
     Get.lazyPut<HomeIconsController>(() => HomeIconsController(
-        notifications: Get.find<NotificationsController>()));
+        notifications: Get.find<NotificationsController>(),
+        balance: Get.find<BalanceController>()));
 
     Get.lazyPut<HomeViewController>(() => HomeViewController());
 

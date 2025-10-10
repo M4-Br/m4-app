@@ -7,7 +7,7 @@ class StatementPages {
   static final List<GetPage> pages = [
     //Invoice
     GetPage(
-      name: AppRoutes.statementInvoice,
+      name: '${AppRoutes.statementInvoice}/:id',
       page: () => const StatementInvoiceScreen(),
       binding: StatementInvoiceBindings(),
     )

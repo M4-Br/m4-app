@@ -72,12 +72,21 @@ class CardWidget extends GetView<BalanceController> {
                   Obx(() {
                     final balance = controller.balanceRx.balance.value;
 
+                    if (controller.isLoading.value) {
+                      return const SizedBox.square(
+                        dimension: 16,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      );
+                    }
+
                     if (balance == null) {
-                      return AppText.bodyMedium(context, 'Indisponível',
+                      return AppText.bodyLarge(context, 'Indisponível',
                           color: fontColor);
                     }
 
-                    return AppText.bodyMedium(
+                    return AppText.bodyLarge(
                       context,
                       controller.isVisible.value
                           ? balance.balanceCents.toBRL()
@@ -85,6 +94,7 @@ class CardWidget extends GetView<BalanceController> {
                       color: fontColor,
                     );
                   }),
+                  const Spacer(),
                   IconButton(
                     onPressed: () => controller.toggleVisibility(),
                     icon: Obx(
@@ -115,12 +125,21 @@ class CardWidget extends GetView<BalanceController> {
               child: Obx(() {
                 final balance = controller.balanceRx.balance.value;
 
+                if (controller.isLoading.value) {
+                  return const SizedBox.square(
+                    dimension: 16,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  );
+                }
+
                 if (balance == null) {
-                  return AppText.bodyMedium(context, 'Indisponível',
+                  return AppText.bodyLarge(context, 'Indisponível',
                       color: fontColor);
                 }
 
-                return AppText.bodyMedium(
+                return AppText.bodyLarge(
                   context,
                   controller.isVisible.value
                       ? balance.transactionalValue.toBRL()

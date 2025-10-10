@@ -808,11 +808,11 @@ abstract class AppLocalizations {
   /// **'After this time, it will only be possible to make the payment on the next business day.'**
   String get barcode_info_after;
 
-  /// No description provided for @page18.
+  /// No description provided for @invoice.
   ///
   /// In en, this message translates to:
   /// **'Invoice Voucher'**
-  String get page18;
+  String get invoice;
 
   /// No description provided for @invoice_success.
   ///

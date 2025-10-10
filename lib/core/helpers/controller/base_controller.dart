@@ -25,7 +25,8 @@ abstract class BaseController extends GetxController {
     super.onInit();
   }
 
-  Future<void> executeSafe(Future<void> Function() action) async {
+  Future<void> executeSafe(Future<void> Function() action,
+      {String? message}) async {
     try {
       isLoading(true);
       await action();
@@ -34,7 +35,7 @@ abstract class BaseController extends GetxController {
       userRx.handleUnauthenticatedUser();
     } on ServerException catch (e) {
       CustomDialogs.showInformationDialog(
-          content: e.message,
+          content: message ?? e.message,
           onCancel: () => Get.offAllNamed(AppRoutes.splash));
     } on ApiException catch (e) {
       ShowToaster.toasterInfo(message: e.message);

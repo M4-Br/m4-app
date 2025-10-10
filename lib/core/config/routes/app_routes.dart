@@ -38,7 +38,7 @@ class AppRoutes {
   static const String profile = '/profile';
 
   //Rotas do Extrato
-  static const String statementInvoice = '/statement_invoice/:id';
+  static const String statementInvoice = '/statement_invoice/';
 
   //Rotas do Profile
   static const String financialData = '/financial_data';

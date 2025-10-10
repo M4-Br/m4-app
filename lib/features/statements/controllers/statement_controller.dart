@@ -1,28 +1,54 @@
-import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
-import 'package:app_flutter_miban4/core/config/log/logger.dart';
-import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
+// lib/features/statements/controllers/statement_controller.dart
+
+import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/dates.dart';
 import 'package:app_flutter_miban4/features/statements/model/statement_response.dart';
 import 'package:app_flutter_miban4/features/statements/repository/statement_repository.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
 import 'package:get/get.dart';
 
-class StatementController extends GetxController {
-  var isLoading = false.obs;
-  final user = Get.find<UserRx>();
+class StatementController extends BaseController {
   final Rx<StatementResponse?> statements = Rx<StatementResponse?>(null);
+  var selectedMonth = DateTime.now().month.obs;
+
+  final List<String> monthLabels = const [
+    'Jan',
+    'Fev',
+    'Mar',
+    'Abr',
+    'Mai',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Set',
+    'Out',
+    'Nov',
+    'Dez'
+  ];
 
   @override
   void onInit() {
     super.onInit();
+    _fetchDataForSelectedMonth();
+  }
 
+  Future<void> changeMonth(int month) async {
+    if (selectedMonth.value == month) {
+      return;
+    }
+    selectedMonth.value = month;
+    await _fetchDataForSelectedMonth();
+  }
+
+  Future<void> _fetchDataForSelectedMonth() async {
     final now = DateTime.now();
+    final year = now.year;
 
-    final startDate = DateTime(now.year, now.month, 1);
+    final startDate = DateTime(year, selectedMonth.value, 1);
+    final endDate = DateTime(year, selectedMonth.value + 1, 0);
 
-    final endDate = DateTime(now.year, now.month + 1, 0);
+    statements.value = null;
 
-    fetchStatementsDetails(
+    await fetchStatementsDetails(
       startDate: startDate.toYYYYMMDD(),
       endDate: endDate.toYYYYMMDD(),
     );
@@ -30,11 +56,8 @@ class StatementController extends GetxController {
 
   Future<void> fetchStatementsDetails(
       {required String startDate, required String endDate}) async {
-    statements.value = null;
-    isLoading.value = true;
-
-    try {
-      final currentUser = user.user.value;
+    await executeSafe(() async {
+      final currentUser = userRx.user.value;
 
       if (currentUser == null) {
         throw Exception('Usuário não autenticado. Impossível buscar extrato.');
@@ -53,16 +76,6 @@ class StatementController extends GetxController {
       );
 
       statements.value = statementsData;
-    } on UnauthorizedException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
-    } on ApiException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
-    } catch (e, s) {
-      AppLogger.I().error('Fetch statements controller', e, s);
-      ShowToaster.toasterInfo(
-          message: 'Ocorreu um erro ao buscar os extratos. Tente novamente.');
-    } finally {
-      isLoading.value = false;
-    }
+    });
   }
 }

@@ -29,25 +29,25 @@ class HomePage extends GetView<HomeIconsController> {
   Widget build(BuildContext context) {
     List<IconModel> manualIcons = [
       IconModel(
-          id: "23",
-          icon: "assets/icons/ic_contabil.png",
-          title: "contability_title".tr),
+          id: '23',
+          icon: 'assets/icons/ic_contabil.png',
+          title: 'contability_title'.tr),
       IconModel(
-          id: "24",
-          icon: "assets/icons/ic_services.png",
-          title: "services_title".tr),
+          id: '24',
+          icon: 'assets/icons/ic_services.png',
+          title: 'services_title'.tr),
     ];
 
     final Map<String, String> localIconPaths = {
-      "1": 'assets/icons/ic_home_payment.png',
-      "2": 'assets/icons/ic_home_qrcode.png',
-      "10": 'assets/icons/ic_home_payment_invoice.png',
-      "11": 'assets/icons/ic_home_transfer.png',
-      "12": 'assets/icons/ic_home_recharge.png',
-      "14": 'assets/icons/ic_home_store.png',
-      "19": 'assets/icons/ic_home_pix.png',
-      "30": 'assets/icons/ic_home_faq.png',
-      "31": 'assets/icons/ic_home_warning.png',
+      '1': 'assets/icons/ic_home_payment.png',
+      '2': 'assets/icons/ic_home_qrcode.png',
+      '10': 'assets/icons/ic_home_payment_invoice.png',
+      '11': 'assets/icons/ic_home_transfer.png',
+      '12': 'assets/icons/ic_home_recharge.png',
+      '14': 'assets/icons/ic_home_store.png',
+      '19': 'assets/icons/ic_home_pix.png',
+      '30': 'assets/icons/ic_home_faq.png',
+      '31': 'assets/icons/ic_home_warning.png',
     };
 
     return Scaffold(
@@ -125,7 +125,7 @@ class HomePage extends GetView<HomeIconsController> {
               } else if (controller.icons.isEmpty) {
                 return const Center(
                   child: Text(
-                    "Erro ao carregar",
+                    'Erro ao carregar',
                     textAlign: TextAlign.center,
                   ),
                 );
@@ -223,23 +223,23 @@ class HomePage extends GetView<HomeIconsController> {
                               isLocal: true,
                               onPressed: () async {
                                 switch (iconModel.id) {
-                                  case "1":
+                                  case '1':
                                     Get.to(() => const PaymentLinkValue(),
                                         transition: Transition.rightToLeft);
                                     break;
-                                  case "2":
+                                  case '2':
                                     Get.to(() => const QrCodeCamera(),
                                         transition: Transition.rightToLeft);
                                     break;
-                                  case "10":
+                                  case '10':
                                     Get.to(() => const BarcodeCamera(),
                                         transition: Transition.rightToLeft);
                                     break;
-                                  case "11":
+                                  case '11':
                                     Get.to(() => const TransferContactPage(),
                                         transition: Transition.rightToLeft);
                                     break;
-                                  case "12":
+                                  case '12':
                                     Get.defaultDialog(
                                       title: 'message'.tr,
                                       content: Column(
@@ -275,15 +275,15 @@ class HomePage extends GetView<HomeIconsController> {
                                       ),
                                     );
                                     break;
-                                  case "14":
+                                  case '14':
                                     Get.to(() => const StorePage(),
                                         transition: Transition.rightToLeft);
                                     break;
-                                  case "19":
+                                  case '19':
                                     Get.to(() => PixHome(),
                                         transition: Transition.rightToLeft);
                                     break;
-                                  case "30":
+                                  case '30':
                                     Get.to(
                                         () => WebviewPage(
                                               url: 'https://miban4.com',
@@ -291,7 +291,7 @@ class HomePage extends GetView<HomeIconsController> {
                                             ),
                                         transition: Transition.rightToLeft);
                                     break;
-                                  case "31":
+                                  case '31':
                                     Get.to(
                                         () => WebviewPage(
                                               url: 'https://miban4.com/#faq',
@@ -313,10 +313,10 @@ class HomePage extends GetView<HomeIconsController> {
                               isLocal: true,
                               onPressed: () async {
                                 switch (manualIcon.id) {
-                                  case "23":
+                                  case '23':
                                     //TODO: Contabilidade
                                     break;
-                                  case "24":
+                                  case '24':
                                     Get.to(() => const ServicesPage(),
                                         transition: Transition.rightToLeft);
                                     break;

@@ -1,3 +1,5 @@
+import 'package:app_flutter_miban4/core/helpers/extensions/numbers.dart';
+
 class StatementInvoice {
   const StatementInvoice({
     required this.id,
@@ -5,6 +7,7 @@ class StatementInvoice {
     required this.amount,
     required this.date,
     required this.type,
+    required this.authentication,
     required this.payer,
     required this.receiver,
   });
@@ -12,10 +15,11 @@ class StatementInvoice {
   factory StatementInvoice.fromJson(Map<String, dynamic> json) {
     return StatementInvoice(
       id: json['id'] as String,
-      status: json['status'] as bool,
-      amount: json['amount'] as String,
+      status: json['status'] as String,
+      amount: (json['amount'] as String).toCurrencyDouble(),
       date: json['date'] as String,
       type: json['type'] as String,
+      authentication: json['authentication'] as String,
       payer: StatementPayer.fromJson(json['payer'] as Map<String, dynamic>),
       receiver:
           StatementReceiver.fromJson(json['receiver'] as Map<String, dynamic>),
@@ -23,10 +27,11 @@ class StatementInvoice {
   }
 
   final String id;
-  final bool status;
-  final String amount;
+  final String status;
+  final double amount;
   final String date;
   final String type;
+  final String authentication;
   final StatementPayer payer;
   final StatementReceiver receiver;
 }

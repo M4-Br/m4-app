@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
+import 'package:app_flutter_miban4/ui/config/theme_app.dart';
 import 'package:flutter/material.dart';
 
 enum AppButtonType { filled, elevated, outlined, text }
@@ -35,7 +36,9 @@ class AppButton extends StatelessWidget {
 
     if (isLoading) {
       action = null;
-      icon = AppLoading(color: color,);
+      icon = AppLoading(
+        color: color,
+      );
     } else {
       action = onPressed;
       icon = this.icon;
@@ -49,18 +52,20 @@ class AppButton extends StatelessWidget {
           label: label,
           icon: icon,
           style: FilledButton.styleFrom(
-              backgroundColor: color,
-              foregroundColor: Colors.white,
-              minimumSize: const Size(double.infinity, 50),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0))),
+            backgroundColor: color ?? secondaryColor,
+            foregroundColor: Colors.white,
+            minimumSize: const Size(double.infinity, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
         ),
       AppButtonType.elevated => ElevatedButton.icon(
           onPressed: action,
           label: label,
           icon: icon,
           style: ElevatedButton.styleFrom(
-              backgroundColor: color,
+              backgroundColor: color ?? secondaryColor,
               foregroundColor: Colors.white,
               minimumSize: const Size(double.infinity, 50)),
         ),
@@ -69,7 +74,7 @@ class AppButton extends StatelessWidget {
           label: label,
           icon: icon,
           style: OutlinedButton.styleFrom(
-              foregroundColor: color,
+              foregroundColor: color ?? secondaryColor,
               side: BorderSide(color: color ?? Colors.grey),
               backgroundColor: Colors.transparent,
               minimumSize: const Size(double.infinity, 50)),

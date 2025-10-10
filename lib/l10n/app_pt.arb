@@ -134,7 +134,7 @@
   "barcode_info": "Os boletos podem ser pagos em dia úteis das 7h até às 17h.",
   "barcode_info_after": "Após esse horário só será possível fazer o pagamento no próximo dia útil.",
 
-  "page18": "Invoice Voucher",
+  "invoice": "Invoice Voucher",
   "invoice_success": "Pagamento realizado com sucesso!",
   "invoice_amount": "Valor pago:",
   "invoice_date": "No dia:",

@@ -1,5 +1,6 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
+import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
@@ -8,7 +9,8 @@ import 'package:get/get.dart';
 
 class HomeIconsController extends GetxController {
   final NotificationsController notifications;
-  HomeIconsController({required this.notifications});
+  final BalanceController balance;
+  HomeIconsController({required this.notifications, required this.balance});
   RxList<HomeIconsResponse> icons = <HomeIconsResponse>[].obs;
   var isLoading = false.obs;
   var hasLoadedIcons = false.obs;
