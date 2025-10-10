@@ -2,6 +2,7 @@ import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/l18n/app_strings.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -29,6 +30,16 @@ class MiBan4 extends StatelessWidget {
         getPages: AppPages.pages,
         navigatorObservers: [
           SentryNavigatorObserver(),
+        ],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('pt', 'BR'),
+          Locale('en', 'US'),
+          Locale('es', 'ES'),
         ],
       ),
     );

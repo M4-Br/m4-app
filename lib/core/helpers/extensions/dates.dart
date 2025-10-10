@@ -6,4 +6,9 @@ extension DateTimeFormattingExtension on DateTime {
 
     return formatter.format(this);
   }
+
+  String toDDMMYYYY() {
+    final DateFormat formatter = DateFormat('dd-MM-yyyy');
+    return formatter.format(this);
+  }
 }

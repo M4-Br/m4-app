@@ -1,6 +1,9 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/core/helpers/extensions/dates.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dimens.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_enums.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/statements/controllers/statement_controller.dart';
@@ -15,15 +18,28 @@ class StatementPage extends GetView<StatementController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'Meu Extrato',
+        title: AppText.titleLarge(
+          context,
+          'statement'.tr,
+          color: Colors.white,
         ),
+        centerTitle: true,
         backgroundColor: primaryColor,
+        actions: [
+          IconButton(
+            tooltip: 'Selecionar período',
+            icon: const Icon(Icons.calendar_month, color: Colors.white),
+            onPressed: () => controller.selectDateRange(context),
+          ),
+        ],
       ),
       body: Column(
         children: [
-          _buildCard(),
+          _buildCard(context),
+          _buildAccountSwitcher(context),
           _buildMonthSelector(),
+          _buildSelectedDateRange(context),
+          _buildPreviousYearWarning(context, controller),
           Expanded(
             child: Obx(() {
               if (controller.isLoading.value &&
@@ -83,8 +99,52 @@ class StatementPage extends GetView<StatementController> {
     );
   }
 
-  Widget _buildCard() {
-    return Container();
+  Widget _buildCard(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: primaryColor,
+      child: Padding(
+        padding: const EdgeInsets.all(AppDimens.kDefaultPadding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppText.titleLarge(
+              context,
+              'balance_available'.tr,
+              color: Colors.white,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Obx(() {
+                    final isVisible = controller.isVisible.value;
+                    final balanceValue = controller.balance.balance.value;
+                    return AppText.headlineMedium(
+                      context,
+                      isVisible
+                          ? (balanceValue?.balanceCents.toBRL() ?? 'R\$ ...')
+                          : '*****',
+                      color: Colors.white,
+                    );
+                  }),
+                ),
+                IconButton(
+                  onPressed: () => controller.toggleVisibility(),
+                  icon: Obx(
+                    () => Icon(
+                      controller.isVisible.value
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildMonthSelector() {
@@ -92,8 +152,10 @@ class StatementPage extends GetView<StatementController> {
       height: 60,
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       color: Colors.white,
-      child: Obx(
-        () => ListView.builder(
+      child: Obx(() {
+        final _ = controller.selectedMonth.value;
+
+        return ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: controller.monthLabels.length,
           itemBuilder: (context, index) {
@@ -137,6 +199,115 @@ class StatementPage extends GetView<StatementController> {
               ),
             );
           },
+        );
+      }),
+    );
+  }
+
+  Widget _buildSelectedDateRange(BuildContext context) {
+    return Obx(
+      () {
+        if (controller.selectedMonth.value != 0) {
+          return const SizedBox.shrink();
+        }
+
+        final start = controller.startDate.value.toDDMMYYYY();
+        final end = controller.endDate.value.toDDMMYYYY();
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
+          color: Colors.white,
+          child: Center(
+            child: AppText.bodyMedium(
+              context,
+              'Período: $start - $end',
+              color: secondaryColor,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildPreviousYearWarning(
+      BuildContext context, StatementController controller) {
+    return Obx(() {
+      if (!controller.isShowingPreviousYear.value) {
+        return const SizedBox.shrink();
+      }
+
+      final year = controller.startDate.value.year;
+
+      return Container(
+        width: double.infinity,
+        color: Colors.amber.shade50,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.info_outline,
+              color: Colors.amber.shade800,
+              size: 18,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              'Exibindo extrato de $year',
+              style: TextStyle(
+                color: Colors.amber.shade900,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+
+  Widget _buildAccountSwitcher(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      color: Colors.white,
+      child: Obx(
+        () {
+          final isPrimarySelected =
+              controller.selectedAccountType.value == AccountType.primary;
+          final isEconomySelected =
+              controller.selectedAccountType.value == AccountType.economy;
+
+          return Row(
+            children: [
+              _buildAccountButton(context, 'Conta Principal', isPrimarySelected,
+                  () => controller.switchAccount(AccountType.primary)),
+              const SizedBox(width: 10),
+              _buildAccountButton(context, 'Conta Economia', isEconomySelected,
+                  () => controller.switchAccount(AccountType.economy)),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildAccountButton(
+      BuildContext context, String label, bool isSelected, VoidCallback onTap) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            color: isSelected ? thirdColor : Colors.grey.shade200,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Center(
+            child: AppText.bodyMedium(
+              context,
+              label,
+              color: isSelected ? Colors.white : Colors.black54,
+            ),
+          ),
         ),
       ),
     );
