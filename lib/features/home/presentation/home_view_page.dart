@@ -1,7 +1,8 @@
 import 'package:app_flutter_miban4/features/home/controller/home_controller.dart';
 import 'package:app_flutter_miban4/features/home/presentation/home_page.dart';
+import 'package:app_flutter_miban4/features/profile/presentation/profile_page.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/ui/screens/home/perfil/profile_page.dart';
+
 import 'package:app_flutter_miban4/features/statements/presentation/statement_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

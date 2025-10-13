@@ -1,5 +1,5 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
-import 'package:app_flutter_miban4/ui/screens/home/perfil/change_password_page.dart';
+import 'package:app_flutter_miban4/features/profile/presentation/change_password_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/perfil/financial_data_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/perfil/plans_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
