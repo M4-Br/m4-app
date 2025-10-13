@@ -138,6 +138,7 @@ class StringsEsES {
         'Después de esta hora, solo será posible realizar el pago el próximo día hábil.',
     'invoice': 'Comprobante de Factura',
     'invoice_success': '¡Pago completado con éxito!',
+    'invoice_type': 'Tipo de transacción',
     'invoice_amount': 'Monto pagado:',
     'invoice_date': 'En el día:',
     'invoice_receiver': 'Beneficiario:',

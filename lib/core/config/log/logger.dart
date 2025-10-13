@@ -24,15 +24,17 @@ class AppLogger {
       );
     }
 
-    Sentry.captureException(
-      error,
-      stackTrace: stackTrace,
-      hint: Hint.withMap({
-        'method': method,
-        'parameters': parameters,
-        'timestamp': DateTime.now().toIso8601String(),
-      }),
-    );
+    if (!kDebugMode) {
+      Sentry.captureException(
+        error,
+        stackTrace: stackTrace,
+        hint: Hint.withMap({
+          'method': method,
+          'parameters': parameters,
+          'timestamp': DateTime.now().toIso8601String(),
+        }),
+      );
+    }
   }
 
   void info(String message) {

@@ -141,6 +141,20 @@ class StatementPage extends GetView<StatementController> {
                 ),
               ],
             ),
+            const SizedBox(height: AppDimens.kDefaultPadding),
+            AppText.titleMedium(context, 'balance_transational'.tr,
+                color: Colors.white),
+            Obx(() {
+              final isVisible = controller.isVisible.value;
+              final balanceValue = controller.balance.balance.value;
+              return AppText.headlineSmall(
+                context,
+                isVisible
+                    ? (balanceValue?.transactionalValue.toBRL() ?? 'R\$ ...')
+                    : '*****',
+                color: Colors.white,
+              );
+            }),
           ],
         ),
       ),

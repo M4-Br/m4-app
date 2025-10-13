@@ -1,5 +1,6 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dimens.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/statements/controllers/statement_invoice_controller.dart';
@@ -18,7 +19,7 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
       appBar: AppBar(
         title: AppText.titleLarge(
           context,
-          'Comprovante', // Título mais específico
+          'invoice'.tr,
           color: Colors.white,
         ),
         foregroundColor: Colors.white,
@@ -42,33 +43,37 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
           );
         }
 
-        // Corpo principal do comprovante
         return Column(
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16.0),
                 child: RepaintBoundary(
                   key: _invoiceKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildHeader(context, invoice),
-                      const SizedBox(height: 24),
-                      _buildTransactionDetails(context, invoice),
-                      const SizedBox(height: 24),
-                      _buildPartyDetailsCard(
-                        context,
-                        title: 'Quem Pagou',
-                        party: invoice.payer,
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppDimens.kPaddingL),
+                    child: Container(
+                      color: Theme.of(context).cardColor,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildHeader(context, invoice),
+                          const SizedBox(height: 24),
+                          _buildTransactionDetails(context, invoice),
+                          const SizedBox(height: 24),
+                          _buildPartyDetailsCard(
+                            context,
+                            title: 'statement_origin'.tr,
+                            party: invoice.payer,
+                          ),
+                          const SizedBox(height: 16),
+                          _buildPartyDetailsCard(
+                            context,
+                            title: 'statement_destiny'.tr,
+                            party: invoice.receiver,
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 16),
-                      _buildPartyDetailsCard(
-                        context,
-                        title: 'Quem Recebeu',
-                        party: invoice.receiver,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -80,7 +85,6 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
     );
   }
 
-  // Cabeçalho com Status e Valor
   Widget _buildHeader(BuildContext context, StatementInvoice invoice) {
     return Center(
       child: Column(
@@ -89,7 +93,7 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
           const SizedBox(height: 8),
           AppText.titleMedium(
             context,
-            'Transferência realizada com sucesso!',
+            'invoice_success'.tr,
             color: Colors.grey.shade800,
           ),
           const SizedBox(height: 8),
@@ -105,24 +109,22 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
     );
   }
 
-  // Detalhes da transação
   Widget _buildTransactionDetails(
       BuildContext context, StatementInvoice invoice) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildDetailRow(context, 'Tipo de transação',
+        _buildDetailRow(context, 'invoice_type'.tr,
             invoice.type.capitalizeFirst ?? invoice.type),
         const Divider(height: 24),
-        _buildDetailRow(context, 'Autenticação', invoice.authentication),
+        _buildDetailRow(
+            context, 'statement_identifier'.tr, invoice.authentication),
       ],
     );
   }
 
-  // Card para Pagador/Recebedor
   Widget _buildPartyDetailsCard(BuildContext context,
       {required String title, required dynamic party}) {
-    // party pode ser StatementPayer ou StatementReceiver
     return Card(
       elevation: 2,
       shadowColor: Colors.grey.withOpacity(0.2),
@@ -137,17 +139,17 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
               title,
             ),
             const SizedBox(height: 12),
-            _buildDetailRow(context, 'Nome', party.name),
+            _buildDetailRow(context, 'name'.tr, party.name),
             const SizedBox(height: 8),
-            _buildDetailRow(context, 'CPF/CNPJ',
-                party.document), // Idealmente formatar com .formatCPF()
+            _buildDetailRow(context, 'statement_document'.tr, party.document),
             if (party.bankName.isNotEmpty) ...[
               const Divider(height: 24),
-              _buildDetailRow(context, 'Instituição', party.bankName),
+              _buildDetailRow(
+                  context, 'statement_institute'.tr, party.bankName),
               const SizedBox(height: 8),
-              _buildDetailRow(context, 'Agência', party.agency),
+              _buildDetailRow(context, 'statement_agency'.tr, party.agency),
               const SizedBox(height: 8),
-              _buildDetailRow(context, 'Conta',
+              _buildDetailRow(context, 'statement_account'.tr,
                   '${party.accountNumber}-${party.accountDigit}'),
             ]
           ],
@@ -156,7 +158,6 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
     );
   }
 
-  // Widget auxiliar para linhas de detalhe (título e valor)
   Widget _buildDetailRow(BuildContext context, String title, String value) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,7 +173,6 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
     );
   }
 
-  // Botões no rodapé
   Widget _buildFooterButtons(
       BuildContext context, StatementInvoice invoice, GlobalKey invoiceKey) {
     return Container(
@@ -191,9 +191,12 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
         child: SizedBox(
           width: double.infinity,
           child: ElevatedButton.icon(
-            icon: const Icon(Icons.share_outlined),
-            label:
-                AppText.bodyLarge(context, 'Compartilhar', color: Colors.white),
+            icon: const Icon(
+              Icons.share_outlined,
+              color: Colors.white,
+            ),
+            label: AppText.bodyLarge(context, 'invoice_share'.tr,
+                color: Colors.white),
             style: ElevatedButton.styleFrom(
               backgroundColor: secondaryColor,
               padding: const EdgeInsets.symmetric(vertical: 14),
