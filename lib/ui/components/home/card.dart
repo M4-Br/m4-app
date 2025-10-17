@@ -65,7 +65,7 @@ class _HomeCardState extends State<HomeCard> {
         case 1:
           assetPath = 'assets/images/ic_default_logo.png';
           break;
-        case 2:
+        case 3:
           assetPath = 'assets/images/acme_logo.png';
           break;
         default:
