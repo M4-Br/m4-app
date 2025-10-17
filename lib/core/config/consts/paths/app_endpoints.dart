@@ -16,6 +16,9 @@ class AppEndpoints {
   //home
   static const String fetchIcons = '/app/home_info';
 
+  //profile
+  static const String userPlans = '/plans/contract/';
+
   //statements
   static const String statement = '/v2/statements';
   static const String statementInvoice = '/statement/ted/';

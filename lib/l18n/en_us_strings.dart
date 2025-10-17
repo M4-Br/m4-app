@@ -607,12 +607,14 @@ class StringsEnUS {
     'plan_date': 'Valid until ',
     'plan_actual': 'Current Plan',
     'plan_monthly': 'Per month',
+    'plans_empty': 'No plans found',
     'success': 'Success',
     'dialog_500':
         "We couldn't process your request at this time. Please try again.",
     'contability_title': 'Contability',
     'services_title': 'Services',
     'validator_isEmpty': 'Fill in the field',
+    'try_again': 'Try again',
     'codeLang': 'en_US',
     'version': 'Version 6.0.2 - Release (223)',
     'version_app': '6.0.2'

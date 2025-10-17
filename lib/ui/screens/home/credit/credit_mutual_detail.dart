@@ -1,12 +1,12 @@
 import 'package:app_flutter_miban4/data/api/account/get_financial_cap.dart';
 import 'package:app_flutter_miban4/data/api/credit/credit_request.dart';
 import 'package:app_flutter_miban4/data/api/credit/credit_simulate.dart';
+import 'package:app_flutter_miban4/features/profile/presentation/financial_data_page.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_mutual_available.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_request.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/terms_credit.dart';
-import 'package:app_flutter_miban4/ui/screens/home/perfil/financial_data_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -17,7 +17,10 @@ class CreditMutualDetails extends StatefulWidget {
   final bool? pageRead;
 
   const CreditMutualDetails(
-      {super.key, required this.id, required this.amount, this.pageRead = false});
+      {super.key,
+      required this.id,
+      required this.amount,
+      this.pageRead = false});
 
   @override
   State<CreditMutualDetails> createState() => _CreditMutualDetailsState();
@@ -143,8 +146,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                 style: const TextStyle(
                                     color: Colors.black, fontSize: 18),
                                 children: [
-                                  TextSpan(
-                                      text: 'credit_paid'.tr),
+                                  TextSpan(text: 'credit_paid'.tr),
                                   TextSpan(
                                       text:
                                           ' ${simulatedResponse['installment']} x ${'off'.tr} R\$${currencyFormat.format(simulatedResponse['installment_amount'] / 100)}',
@@ -186,7 +188,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                         'credit_pay_total'.tr,
+                                          'credit_pay_total'.tr,
                                           style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16),
@@ -365,8 +367,7 @@ class _CreditMutualDetailsState extends State<CreditMutualDetails> {
                                               borderRadius:
                                                   BorderRadius.circular(50))),
                                       child: Text(
-                                        'credit_request'
-                                            .tr.toUpperCase(),
+                                        'credit_request'.tr.toUpperCase(),
                                         style: const TextStyle(
                                             color: Colors.white, fontSize: 16),
                                       ))

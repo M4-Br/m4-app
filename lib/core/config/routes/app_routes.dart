@@ -41,8 +41,8 @@ class AppRoutes {
   static const String statementInvoice = '/statement_invoice/';
 
   //Rotas do Profile
-  static const String financialData = '/financial_data';
-  static const String plans = '/plans';
+  static const String financialData = '$profile/financial_data';
+  static const String plans = '$profile/plans';
   static const String changePassword = '/change_password';
   static const String terms = '/terms';
   static const String privacyProfile = '/privacy_policy';

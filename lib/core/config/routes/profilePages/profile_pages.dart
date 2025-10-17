@@ -1,7 +1,8 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/features/profile/bindings/plans_binding.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/change_password_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/perfil/financial_data_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/perfil/plans_page.dart';
+import 'package:app_flutter_miban4/features/profile/presentation/financial_data_page.dart';
+import 'package:app_flutter_miban4/features/profile/presentation/plans_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/terms_page.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,10 @@ class ProfilePages {
         name: AppRoutes.financialData, page: () => const FinancialDataPage()),
 
     //Plans
-    GetPage(name: AppRoutes.plans, page: () => const PlansPage()),
+    GetPage(
+        name: AppRoutes.plans,
+        page: () => const PlansPage(),
+        binding: PlansBindings()),
 
     //Terms
     GetPage(name: AppRoutes.terms, page: () => const TermsPage()),

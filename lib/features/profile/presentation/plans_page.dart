@@ -1,19 +1,14 @@
-import 'package:app_flutter_miban4/data/model/plans/plans_model.dart';
+import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
+import 'package:app_flutter_miban4/features/profile/controller/plans_controller.dart';
+import 'package:app_flutter_miban4/features/profile/model/plans_response.dart';
 import 'package:app_flutter_miban4/ui/config/theme_app.dart';
-import 'package:app_flutter_miban4/ui/controllers/plans/plans_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
-class PlansPage extends StatefulWidget {
+class PlansPage extends GetView<PlansController> {
   const PlansPage({super.key});
-
-  @override
-  State<PlansPage> createState() => _PlansPageState();
-}
-
-class _PlansPageState extends State<PlansPage> {
-  final _plansController = Get.put(PlansController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +16,10 @@ class _PlansPageState extends State<PlansPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: AppText.titleLarge(
+          context,
           'account_plans'.tr,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          color: Colors.white,
         ),
         backgroundColor: primaryColor,
         leading: IconButton(
@@ -34,55 +30,44 @@ class _PlansPageState extends State<PlansPage> {
           ),
         ),
       ),
-      body: FutureBuilder<PlansModel>(
-        future: _plansController.getPlan(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: secondaryColor,
-              ),
-            );
-          } else if (snapshot.hasError) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Get.defaultDialog(
-                title: 'dialogErro'.tr,
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('dialog_someError'.tr),
-                    ElevatedButton(
-                      onPressed: () {
-                        Get.back();
-                        Get.back();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: secondaryColor,
-                      ),
-                      child: const Text(
-                        'OK',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: secondaryColor,
+            ),
+          );
+        }
+
+        if (controller.plans.value != null) {
+          return _buildPlansList(controller.plans.value!);
+        }
+
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AppText.bodyMedium(
+                  context,
+                  'plans_empty'.tr,
                 ),
-              );
-            });
-            return const SizedBox.shrink();
-          } else if (snapshot.hasData) {
-            final data = snapshot.data!;
-            return _buildPlansList(data);
-          } else {
-            return const SizedBox();
-          }
-        },
-      ),
+                const SizedBox(height: 16),
+                AppButton(
+                  buttonType: AppButtonType.elevated,
+                  onPressed: controller.fetchPlansDetails,
+                  labelText: 'try_again'.tr,
+                )
+              ],
+            ),
+          ),
+        );
+      }),
     );
   }
 
-  Widget _buildPlansList(PlansModel plans) {
-    final currencyFormat =
-        NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
+  Widget _buildPlansList(UserPlansResponse plans) {
     return ListView.builder(
       itemCount: plans.servicePlan.products.length,
       itemBuilder: (context, index) {
@@ -119,9 +104,7 @@ class _PlansPageState extends State<PlansPage> {
                           style: const TextStyle(color: Colors.white),
                         ),
                         Text(
-                          currencyFormat.format(double.parse(
-                                  plans.servicePlan.monthlyPayment.toString()) /
-                              100),
+                          plans.servicePlan.monthlyPayment.toBRL(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -158,17 +141,12 @@ class _PlansPageState extends State<PlansPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('plan_add'.tr),
-                      Text(
-                        currencyFormat.format(double.parse(
-                                plans.servicePlan.data[index].fee.toString()) /
-                            100),
-                      )
+                      Text(plans.servicePlan.data[index].fee.toBRL()),
                     ],
                   ),
                 ],
               ),
-              onTap: () {
-              },
+              onTap: () {},
             ),
             Divider(
               thickness: 0.2,

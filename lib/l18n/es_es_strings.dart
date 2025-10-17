@@ -618,12 +618,14 @@ class StringsEsES {
     'plan_add': 'Adicional',
     'plan_actual': 'Plan Actual',
     'plan_monthly': 'Por mes',
+    'plans_empty': 'Ningún plan encontrado',
     'success': 'Éxito',
     'dialog_500':
         'No se pudo procesar su solicitud en este momento. Por favor, inténtelo de nuevo.',
     'contability_title': 'Contabilidad',
     'services_title': 'Servicios',
     'validator_isEmpty': 'Completa el campo',
+    'try_again': 'Intentar de nuevo',
     'codeLang': 'es_ES',
     'version': 'Versión 6.0.2 - Lanzamiento (223)',
     'version_app': '6.0.2'

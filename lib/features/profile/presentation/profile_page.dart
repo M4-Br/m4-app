@@ -7,10 +7,7 @@ import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/change_password_page.dart';
-
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/home/perfil/financial_data_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/perfil/plans_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/terms_page.dart';
@@ -83,8 +80,7 @@ class ProfilePage extends GetView<ProfileController> {
                     leading: const Icon(Icons.monetization_on_outlined,
                         color: Colors.black),
                     title: Text('account_data'.tr),
-                    onTap: () => Get.to(() => const FinancialDataPage(),
-                        transition: Transition.rightToLeft),
+                    onTap: () => Get.toNamed(AppRoutes.financialData),
                   ),
                   ExpansionTile(
                     leading: const Icon(Icons.contact_mail_outlined,
@@ -126,8 +122,7 @@ class ProfilePage extends GetView<ProfileController> {
                   ListTile(
                     leading: const Icon(Icons.diamond, color: Colors.black),
                     title: Text('account_plans'.tr),
-                    onTap: () => Get.to(() => const PlansPage(),
-                        transition: Transition.rightToLeft),
+                    onTap: () => Get.toNamed(AppRoutes.plans),
                   ),
                   ListTile(
                     leading:
@@ -248,8 +243,6 @@ class ProfilePage extends GetView<ProfileController> {
       ),
     );
   }
-
-  // Adicione este método dentro da sua classe ProfilePage
 
   void _showLogoutConfirmation(BuildContext context) {
     showModalBottomSheet(

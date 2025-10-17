@@ -611,12 +611,14 @@ class StringsPtBR {
     'plan_date': 'Vigência até ',
     'plan_actual': 'Plano Atual',
     'plan_monthly': 'Por mês',
+    'plans_empty': 'Nenhum plano encontrado',
     'contability_title': 'Contabilidade',
     'services_title': 'Serviços',
     'success': 'Sucesso',
     'dialog_500':
         'Não conseguimos processar sua solicitação no momento. Por favor, tente novamente.',
     'validator_isEmpty': 'Preencha o campo',
+    'try_again': 'Tentar novamente',
     'codeLang': 'pt_BR',
     'version': 'Versão 6.0.2 - Release (223)',
     'version_app': '6.0.2'
