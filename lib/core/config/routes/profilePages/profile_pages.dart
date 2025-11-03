@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/features/profile/bindings/financial_binding.dart';
 import 'package:app_flutter_miban4/features/profile/bindings/plans_binding.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/change_password_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/financial_data_page.dart';
@@ -15,7 +16,9 @@ class ProfilePages {
 
     //Financial Data
     GetPage(
-        name: AppRoutes.financialData, page: () => const FinancialDataPage()),
+        name: AppRoutes.financialData,
+        page: () => const FinancialDataPage(),
+        binding: FinancialParamsBinding()),
 
     //Plans
     GetPage(

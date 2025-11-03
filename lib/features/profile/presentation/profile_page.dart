@@ -80,7 +80,9 @@ class ProfilePage extends GetView<ProfileController> {
                     leading: const Icon(Icons.monetization_on_outlined,
                         color: Colors.black),
                     title: Text('account_data'.tr),
-                    onTap: () => Get.toNamed(AppRoutes.financialData),
+                    onTap: () => Get.toNamed(
+                      AppRoutes.financialData,
+                    ),
                   ),
                   ExpansionTile(
                     leading: const Icon(Icons.contact_mail_outlined,
