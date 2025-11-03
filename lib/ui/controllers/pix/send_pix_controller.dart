@@ -6,21 +6,23 @@ class SendPixController extends GetxController {
   var isLoading = false.obs;
 
   Future<void> pixTransfer(
-      String amount,
-      String description,
-      String id,
-      String password,
-      String idText,
-      String accountNumber,
-      String accountType,
-      String branchNumber,
-      String type,
-      String document,
-      String ispb,
-      String name,
-      String key,
-      int transferType,
-      String institute) async {
+    String amount,
+    String description,
+    String id,
+    String password,
+    String idText,
+    String accountNumber,
+    String accountType,
+    String branchNumber,
+    String type,
+    String document,
+    String ispb,
+    String name,
+    String key,
+    int transferType,
+    String institute,
+    String date,
+  ) async {
     isLoading(true);
 
     try {
@@ -38,7 +40,8 @@ class SendPixController extends GetxController {
           ispb,
           name,
           key,
-          transferType);
+          transferType,
+          date);
 
       if (pixSend['success'] == true) {
         Get.off(

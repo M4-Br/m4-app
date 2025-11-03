@@ -65,9 +65,7 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                 padding: const EdgeInsets.all(24.0),
                 child: Text(
                   //What will show
-                  widget.page == 1
-                      ? 'pix_valueTo'.tr
-                      : 'pix_youReceived'.tr,
+                  widget.page == 1 ? 'pix_valueTo'.tr : 'pix_youReceived'.tr,
                   style: const TextStyle(
                       fontSize: 20,
                       color: Colors.black,
@@ -454,7 +452,8 @@ class _PixCodeDecodeState extends State<PixCodeDecode> {
                 ispb,
                 name,
                 key,
-                transferType)
+                transferType,
+                DateTime.now().toString())
             .then((transfer) {
           if (transfer['success'] == true) {
             Get.off(() => PixTransactionSuccess(transfer: transfer),

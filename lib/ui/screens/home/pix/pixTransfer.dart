@@ -390,6 +390,8 @@ class _PixTransferState extends State<PixTransfer> {
                           String name = widget.pix!.name;
                           String key = widget.pix!.key;
 
+                          final formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDate);
+
                           _sendPixController.pixTransfer(
                               amount,
                               description,
@@ -405,7 +407,8 @@ class _PixTransferState extends State<PixTransfer> {
                               name,
                               key,
                               transferType,
-                              widget.pix!.bankName);
+                              widget.pix!.bankName,
+                          formattedDate);
 
                           return AlertDialog.adaptive(
                             title: Text(

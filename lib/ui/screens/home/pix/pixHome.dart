@@ -9,6 +9,7 @@ import 'package:app_flutter_miban4/ui/screens/home/pix/pixKeyManager.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixManualKey.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixMyLimits.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
+import 'package:app_flutter_miban4/ui/screens/home/pix/pixScheduleTransfers.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixWithKey.dart';
 import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
 import 'package:flutter/material.dart';
@@ -51,8 +52,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 32, 16, 8),
                       child: PixHomeItens(
                           name: 'pix_manager_keys'.tr,
-                          description:
-                              'pix_manage_data'.tr,
+                          description: 'pix_manage_data'.tr,
                           onPressed: () {
                             Get.to(() => const PixKeyManager(),
                                 transition: Transition.rightToLeft);
@@ -63,8 +63,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
                           name: 'pix_myLimits'.tr,
-                          description:
-                              'pix_setLimit'.tr,
+                          description: 'pix_setLimit'.tr,
                           onPressed: () {
                             Get.to(() => const PixMyLimits(),
                                 transition: Transition.rightToLeft);
@@ -75,8 +74,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
                           name: 'pix_receive'.tr,
-                          description:
-                              'pix_receiveValue'.tr,
+                          description: 'pix_receiveValue'.tr,
                           onPressed: () {
                             Get.to(() => const PixReceive(),
                                 transition: Transition.rightToLeft);
@@ -97,6 +95,16 @@ class _PixHomeState extends State<PixHome> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
+                          name: 'pix_schedule_transfer'.tr,
+                          description: 'Gerencie seus pix agendados',
+                          onPressed: () {
+                            Get.to(() => const PixScheduleTransfers(), transition: Transition.rightToLeft);
+                          },
+                          icon: Icons.schedule_outlined),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                      child: PixHomeItens(
                           name: 'pix_manualKey'.tr,
                           description: 'pix_bank'.tr,
                           onPressed: () {
@@ -109,8 +117,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                       child: PixHomeItens(
                           name: 'pix_qrCode'.tr,
-                          description:
-                              'pix_payQrCode'.tr,
+                          description: 'pix_payQrCode'.tr,
                           onPressed: () {
                             Get.to(() => const QrCodeCamera(),
                                 transition: Transition.rightToLeft);
@@ -121,8 +128,7 @@ class _PixHomeState extends State<PixHome> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                       child: PixHomeItens(
                           name: 'pix_copyPaste'.tr,
-                          description:
-                              'pix_payCopy'.tr,
+                          description: 'pix_payCopy'.tr,
                           onPressed: () async {
                             await getBalance().then((balance) => {
                                   Get.to(
