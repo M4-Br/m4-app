@@ -11,7 +11,7 @@ class AppEndpoints {
   static const String onboardingStepOne = '/v2/register/individual';
 
   //onboarding novo
-  static const String onboardingOne = '/user';
+  static const String onboardingOne = '/v2/register/individual';
   static const String onboardingSendTokenToEmail = '/user/send_code_email';
   static const String onboardingConfirmEmail = '/user/validate_email';
   static const String onboardingRegisterPassword =

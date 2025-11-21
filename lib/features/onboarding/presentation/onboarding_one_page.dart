@@ -24,27 +24,9 @@ class OnboardingOnePage extends GetView<OnboardingOneController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 gapXL,
-                AppText.headlineMedium(context, 'Bem-vindo(a)'),
+                AppText.headlineMedium(context, 'welcome'.tr),
                 gapXL,
-                AppText.bodyLarge(context,
-                    'Digite seus dados iniciais para\ndarmos início ao seu cadastro'),
-                gapXL,
-                _buildCustomInput(
-                  label: 'Nome',
-                  hint: 'Digite seu nome',
-                  controller: controller.nameController,
-                  validator: (v) =>
-                      v?.isEmpty ?? true ? 'Nome obrigatório' : null,
-                ),
-                gapXL,
-                _buildCustomInput(
-                  label: 'Email',
-                  hint: 'Digite seu Email',
-                  controller: controller.emailController,
-                  keyboardType: TextInputType.number,
-                  validator: (v) =>
-                      v?.isEmpty ?? true ? 'CPF obrigatório' : null,
-                ),
+                AppText.bodyLarge(context, 'insert_cpf'.tr),
                 gapXL,
                 _buildCustomInput(
                   label: 'CPF',
@@ -54,16 +36,6 @@ class OnboardingOnePage extends GetView<OnboardingOneController> {
                   formatters: [cpfMaskFormatter],
                   validator: (v) =>
                       v?.isEmpty ?? true ? 'CPF obrigatório' : null,
-                ),
-                gapXL,
-                _buildCustomInput(
-                  label: 'Celular',
-                  hint: 'Digite seu celular',
-                  controller: controller.phoneController,
-                  formatters: [phoneMaskFormatter],
-                  keyboardType: TextInputType.number,
-                  validator: (v) =>
-                      v?.isEmpty ?? true ? 'Telefone obrigatório' : null,
                 ),
               ],
             ),
