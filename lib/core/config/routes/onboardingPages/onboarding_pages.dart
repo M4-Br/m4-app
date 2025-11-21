@@ -1,4 +1,10 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/features/onboarding/bindings/onboarding_confirm_email_bindings.dart';
+import 'package:app_flutter_miban4/features/onboarding/bindings/onboarding_one_bindings.dart';
+import 'package:app_flutter_miban4/features/onboarding/bindings/onboarding_password_register_bindings.dart';
+import 'package:app_flutter_miban4/features/onboarding/presentation/onboarding_confirm_email_page.dart';
+import 'package:app_flutter_miban4/features/onboarding/presentation/onboarding_one_page.dart';
+import 'package:app_flutter_miban4/features/onboarding/presentation/onboarding_register_password_page.dart';
 import 'package:app_flutter_miban4/ui/screens/login/code_validate/code_validate_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_approved_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_document_choose_page.dart';
@@ -74,6 +80,23 @@ class OnboardingPages {
         page: () => const OnboardingApprovedPage()),
 
     //Code Validator
-    GetPage(name: AppRoutes.codeValidate, page: () => const CodeValidatePage())
+    GetPage(name: AppRoutes.codeValidate, page: () => const CodeValidatePage()),
+
+    //NEW BASIC ONBOARDING
+    GetPage(
+      name: AppRoutes.onboardingBasic,
+      page: () => const OnboardingOnePage(),
+      binding: OnboardingOneBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.onboardingConfirmEmail,
+      page: () => const OnboardingConfirmEmailPage(),
+      binding: OnboardingConfirmEmailBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.onboardingRegisterPassword,
+      page: () => const OnboardingRegisterPasswordPage(),
+      binding: OnboardingPasswordRegisterBindings(),
+    ),
   ];
 }

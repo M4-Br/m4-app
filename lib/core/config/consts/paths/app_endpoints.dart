@@ -7,6 +7,16 @@ class AppEndpoints {
   static const String verifyAccount = '/v2/individual/';
   static const String authLogin = '/v3/auth';
 
+  //onboarding antigo
+  static const String onboardingStepOne = '/v2/register/individual';
+
+  //onboarding novo
+  static const String onboardingOne = '/user';
+  static const String onboardingSendTokenToEmail = '/user/send_code_email';
+  static const String onboardingConfirmEmail = '/user/validate_email';
+  static const String onboardingRegisterPassword =
+      '/v2/register/individual/step9';
+
   //notifications
   static const String notifications = '/notifications';
 

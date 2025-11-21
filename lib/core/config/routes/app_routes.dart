@@ -31,6 +31,11 @@ class AppRoutes {
   static const String onboardingApproved = '/onboarding_approved';
   static const String codeValidate = '/code_validate';
 
+  //NEW ONBOARDING
+  static const String onboardingBasic = '/register';
+  static const String onboardingConfirmEmail = '$onboardingBasic/confirmEmail';
+  static const String onboardingRegisterPassword = '$onboardingBasic/password';
+
   //Rotas da Home
   static const String homeView = '/';
   static const String homePage = '/home';

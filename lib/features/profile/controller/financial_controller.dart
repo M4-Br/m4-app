@@ -21,7 +21,6 @@ class FinancialController extends BaseController {
   final RxBool isButtonEnabled = false.obs;
   final RxBool isPosting = false.obs;
 
-  // --- CONTROLADORES DE TEXTO ---
   final TextEditingController incomeController = TextEditingController();
   final TextEditingController familySizeController = TextEditingController();
   final TextEditingController houseCostsController = TextEditingController();
@@ -50,24 +49,18 @@ class FinancialController extends BaseController {
     super.onClose();
   }
 
-  // --- MÉTODOS DE INICIALIZAÇÃO ---
-
   Future<void> _fetchInitialData() async {
-    // Usamos Future.wait para carregar os dois ao mesmo tempo
     await executeSafe(() async {
       final futures = [
         fetchFinancialParams(),
         fetchFinancialCapacity(),
       ];
       await Future.wait(futures);
-
-      // Após carregar, populamos os campos
       _populateFieldsFromData();
     }, message: 'Erro ao obter dados financeiros');
   }
 
   Future<void> fetchFinancialParams() async {
-    // Não precisa mais do executeSafe aqui, pois está no _fetchInitialData
     final financialParams = await _repository.fetchFinancial();
     AppLogger.I().debug('Financial Params fetched');
     userParams.value = financialParams;
@@ -81,12 +74,9 @@ class FinancialController extends BaseController {
     userCapacity.value = financialCapacity;
   }
 
-  /// Popula os campos de texto e dropdowns com dados da API
   void _populateFieldsFromData() {
     final capacity = userCapacity.value;
     if (capacity == null) return;
-
-    // Supus os nomes das variáveis no seu CapacityResponse baseado na sua page
     incomeController.text = capacity.incomeFamily.toString();
     houseCostsController.text = capacity.houseCost.centsToBRL();
     transportCostsController.text = capacity.transportCost.centsToBRL();
@@ -95,21 +85,13 @@ class FinancialController extends BaseController {
 
     selectedHomeType.value = capacity.house;
     selectedTransport.value = capacity.transport;
-
-    // Força a verificação do botão após popular
     _checkIfAllFieldsAreFilled();
   }
-
-  // --- LÓGICA DA VIEW ---
-
-  // Em financial_controller.dart
 
   List<DropdownMenuItem<String>> get dropdownHouse {
     if (userParams.value == null) return [];
 
-    return userParams.value!.home
-        // .where((option) => option.value.isNotEmpty) // <-- REMOVA ESTA LINHA
-        .map((option) {
+    return userParams.value!.home.map((option) {
       return DropdownMenuItem<String>(
         value: option.value,
         child: Text(option.label),
@@ -120,9 +102,7 @@ class FinancialController extends BaseController {
   List<DropdownMenuItem<String>> get dropdownTransport {
     if (userParams.value == null) return [];
 
-    return userParams.value!.transport
-        // .where((option) => option.value.isNotEmpty) // <-- REMOVA ESTA LINHA
-        .map((option) {
+    return userParams.value!.transport.map((option) {
       return DropdownMenuItem<String>(
         value: option.value,
         child: Text(option.label),
@@ -139,7 +119,6 @@ class FinancialController extends BaseController {
     otherCostsController.addListener(_checkIfAllFieldsAreFilled);
   }
 
-  /// Verifica se todos os campos estão preenchidos para habilitar o botão
   void _checkIfAllFieldsAreFilled() {
     isButtonEnabled.value = incomeController.text.isNotEmpty &&
         familySizeController.text.isNotEmpty &&

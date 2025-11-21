@@ -41,6 +41,7 @@ abstract class BaseController extends GetxController {
       ShowToaster.toasterInfo(message: e.message);
     } catch (e, s) {
       AppLogger.I().error('Base Controller', e, s);
+      rethrow;
     } finally {
       isLoading(false);
     }

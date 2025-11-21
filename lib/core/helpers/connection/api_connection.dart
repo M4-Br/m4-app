@@ -37,8 +37,8 @@ class ApiConnection {
 
   Future<T> post<T>({
     required String endpoint,
-    required T Function(dynamic) fromJson,
-    Map<String, dynamic>? body,
+    T Function(dynamic)? fromJson,
+    Object? body,
     Map<String, dynamic>? queryParameters,
     Map<String, String>? extraHeaders,
   }) async {
@@ -63,7 +63,9 @@ class ApiConnection {
       body: body != null ? json.encode(body) : null,
     );
 
-    return _handleResponse(response, fromJson, 'POST');
+    final parser = fromJson ?? (_) => null as T;
+
+    return _handleResponse(response, parser, 'POST');
   }
 
   Future<T> delete<T>({

@@ -41,6 +41,8 @@ class CapacityResponse {
     );
   }
 
+  //TODO: CORRIGIR
+
   // CORRETO: int (centavos)
   final int incomeFamily;
 

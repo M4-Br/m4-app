@@ -1,9 +1,9 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/auth/controller/verify_user_controller.dart';
+import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
 import 'package:app_flutter_miban4/data/util/helpers/validators.dart';
 import 'package:app_flutter_miban4/features/auth/presentation/widgets/language_selector_widget.dart';
-import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_screen.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +43,7 @@ class LoginPage extends GetView<VerifyAccountController> {
                 style: const TextStyle(color: Colors.white, fontSize: 20),
                 inputFormatters: [
                   MaskedTextInputFormatterShifter(
-                      maskONE: "XXX.XXX.XXX-XX", maskTWO: "XX.XXX.XXX/XXXX-XX"),
+                      maskONE: 'XXX.XXX.XXX-XX', maskTWO: 'XX.XXX.XXX/XXXX-XX'),
                 ],
                 validator: Validators.isNotEmpty,
                 decoration: InputDecoration(
@@ -90,10 +90,7 @@ class LoginPage extends GetView<VerifyAccountController> {
           AppButton(
             labelText: 'register'.tr,
             onPressed: () async {
-              Get.to(
-                () => const OnboardingPage(),
-                transition: Transition.rightToLeft,
-              );
+              Get.toNamed(AppRoutes.onboardingBasic);
             },
             buttonType: AppButtonType.filled,
             color: thirdColor,
