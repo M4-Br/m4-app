@@ -223,22 +223,24 @@ class _LoginPageState extends State<LoginPage> with ValidationsMixin {
           ],
         ),
       ),
-      bottomNavigationBar: InkWell(
-        onTap: () async {
-          await SharedPreferencesFunctions.saveString(
-              key: 'codeLang', value: 'codeLang'.tr);
-          Get.to(() => const OnboardingPage(),
-              transition: Transition.rightToLeft);
-        },
-        child: Container(
-          width: double.infinity,
-          color: thirdColor,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(
-              'register'.tr,
-              style: const TextStyle(color: Colors.white, fontSize: 16),
-              textAlign: TextAlign.center,
+      bottomNavigationBar: SafeArea(
+        child: InkWell(
+          onTap: () async {
+            await SharedPreferencesFunctions.saveString(
+                key: 'codeLang', value: 'codeLang'.tr);
+            Get.to(() => const OnboardingPage(),
+                transition: Transition.rightToLeft);
+          },
+          child: Container(
+            width: double.infinity,
+            color: thirdColor,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                'register'.tr,
+                style: const TextStyle(color: Colors.white, fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ),
