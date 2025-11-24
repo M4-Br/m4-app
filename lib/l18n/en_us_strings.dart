@@ -615,6 +615,11 @@ class StringsEnUS {
     'services_title': 'Services',
     'validator_isEmpty': 'Fill in the field',
     'try_again': 'Try again',
+    'token_sent_message':
+        'We sent a token to @email. Please enter the received token to confirm your email.',
+    'token_write': 'Enter the token received',
+    'resend': 'Resend',
+    'resend_in': 'Resend in @seconds seconds',
     'codeLang': 'en_US',
     'version': 'Version 6.0.2 - Release (223)',
     'version_app': '6.0.2'

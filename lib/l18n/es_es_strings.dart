@@ -626,6 +626,11 @@ class StringsEsES {
     'services_title': 'Servicios',
     'validator_isEmpty': 'Completa el campo',
     'try_again': 'Intentar de nuevo',
+    'token_sent_message':
+        'Enviamos un token a @email. Por favor, ingresa el token recibido para confirmar tu correo electrónico.',
+    'token_write': 'Ingresa el token recibido',
+    'resend': 'Reenviar',
+    'resend_in': 'Reenviar en @seconds segundos',
     'codeLang': 'es_ES',
     'version': 'Versión 6.0.2 - Lanzamiento (223)',
     'version_app': '6.0.2'

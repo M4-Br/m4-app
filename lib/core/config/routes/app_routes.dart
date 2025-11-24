@@ -32,9 +32,14 @@ class AppRoutes {
   static const String codeValidate = '/code_validate';
 
   //NEW ONBOARDING
-  static const String onboardingBasic = '/register';
-  static const String onboardingConfirmEmail = '$onboardingBasic/confirmEmail';
-  static const String onboardingRegisterPassword = '$onboardingBasic/password';
+  static const String onboardingDocument = '/register';
+  static const String onboardingBasicData = '$onboardingDocument/initial';
+  static const String onboardingConfirmEmail =
+      '$onboardingDocument/confirmEmail';
+  static const String onboardingPhone = '$onboarding/phone';
+  static const String onboardingConfirmPhone = '$onboarding/phonePhone';
+  static const String onboardingRegisterPassword =
+      '$onboardingDocument/password';
 
   //Rotas da Home
   static const String homeView = '/';

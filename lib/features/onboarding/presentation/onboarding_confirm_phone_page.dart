@@ -3,13 +3,13 @@ import 'package:app_flutter_miban4/core/helpers/utils/app_dimens.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/bottom_button.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/custom_textfield.dart';
-import 'package:app_flutter_miban4/features/onboarding/controller/onboarding_confirm_email_controller.dart';
+import 'package:app_flutter_miban4/features/onboarding/controller/onboarding_confirm_phone_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OnboardingConfirmEmailPage
-    extends GetView<OnboardingConfirmEmailController> {
-  const OnboardingConfirmEmailPage({super.key});
+class OnboardingConfirmPhonePage
+    extends GetView<OnboardingConfirmPhoneController> {
+  const OnboardingConfirmPhonePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,28 +24,23 @@ class OnboardingConfirmEmailPage
               child: ConstrainedBox(
                 constraints: BoxConstraints(minWidth: constrains.maxHeight),
                 child: Form(
-                  key: controller.formKey,
+                  key: controller.key,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       gapXL,
-                      AppText.headlineLarge(context, 'email_confirm'.tr),
+                      AppText.headlineLarge(context, 'phone_confirm'.tr),
                       gapXL,
-                      AppText.bodyLarge(
-                        context,
-                        'token_sent_message'.trParams({
-                          'email': controller.email.value,
-                        }),
-                      ),
+                      AppText.bodyLarge(context, 'email_send_code'.tr),
                       gapXL,
                       AppText.bodyLarge(context, 'email_perhaps'.tr),
                       gapXL,
                       buildCustomInput(
-                        label: 'Token',
-                        hint: 'token_write'.tr,
-                        controller: controller.tokenController,
-                        maxLength: 6,
-                      ),
+                          label: 'Token',
+                          hint: 'token_write'.tr,
+                          controller: controller.tokenController,
+                          keyboardType: TextInputType.number,
+                          maxLength: 6),
                       Obx(
                         () {
                           return AppButton(
@@ -63,7 +58,7 @@ class OnboardingConfirmEmailPage
                         },
                       ),
                       bottomButton(
-                          onPressed: () async => controller.validateEmail(),
+                          onPressed: () async => controller.confirmPhone(),
                           labelText: 'next'.tr)
                     ],
                   ),

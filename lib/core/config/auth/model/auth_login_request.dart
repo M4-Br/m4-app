@@ -25,7 +25,6 @@ class AuthLoginRequest {
     return {
       'document': document,
       'password': password,
-      // 4. Use o getter corrigido aqui também
       'is_android': isAndroid,
       'version': version
     };

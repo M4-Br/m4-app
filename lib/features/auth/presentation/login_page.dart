@@ -90,7 +90,7 @@ class LoginPage extends GetView<VerifyAccountController> {
           AppButton(
             labelText: 'register'.tr,
             onPressed: () async {
-              Get.toNamed(AppRoutes.onboardingBasic);
+              Get.toNamed(AppRoutes.onboardingDocument);
             },
             buttonType: AppButtonType.filled,
             color: thirdColor,

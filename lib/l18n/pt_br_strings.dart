@@ -619,6 +619,11 @@ class StringsPtBR {
         'Não conseguimos processar sua solicitação no momento. Por favor, tente novamente.',
     'validator_isEmpty': 'Preencha o campo',
     'try_again': 'Tentar novamente',
+    'token_sent_message':
+        'Enviamos um token para @email. Por favor, digite o token recebido para confirmar seu e-mail.',
+    'token_write': 'Digite o token recebido',
+    'resend': 'Reenviar',
+    'resend_in': 'Reenviar em @seconds segundos',
     'codeLang': 'pt_BR',
     'version': 'Versão 6.0.2 - Release (223)',
     'version_app': '6.0.2'
