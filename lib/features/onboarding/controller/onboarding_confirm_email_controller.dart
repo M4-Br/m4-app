@@ -20,7 +20,7 @@ class OnboardingConfirmEmailController extends GetxController {
   final RxString fullName = ''.obs;
   final RxString userName = ''.obs;
 
-  final formKey = GlobalKey<FormState>();
+  final key = GlobalKey<FormState>();
 
   final tokenController = TextEditingController();
 
@@ -59,7 +59,7 @@ class OnboardingConfirmEmailController extends GetxController {
         countdown.value--;
       } else {
         canResend.value = true;
-        _timer?.cancel();
+        timer.cancel();
       }
     });
   }
@@ -78,7 +78,10 @@ class OnboardingConfirmEmailController extends GetxController {
     startCountdown();
   }
 
-  Future<OnboardingBasicRegisterResponse> validateEmail() async {
+  Future<OnboardingBasicRegisterResponse?> validateEmail() async {
+    if (key.currentState?.validate() != true) {
+      return null;
+    }
     isLoading(true);
     try {
       final request = OnboardingVerifyEmailRequest(
@@ -95,19 +98,19 @@ class OnboardingConfirmEmailController extends GetxController {
       Get.toNamed(AppRoutes.onboardingPhone, arguments: {'id': id.value});
 
       return response;
-    } on ServerException catch (e, s) {
-      AppLogger.I().error('Confirm email token', e, s);
-      CustomDialogs.showInformationDialog(
-          content: e.message,
-          onCancel: () => Get.offAllNamed(AppRoutes.splash));
-      rethrow;
-    } on ApiException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
-      rethrow;
     } catch (e, s) {
       AppLogger.I().error('Confirm email token', e, s);
-      ShowToaster.toasterInfo(message: e.toString());
-      rethrow;
+      if (e is ApiException) {
+        if (e.statusCode == 500) {
+          CustomDialogs.showInformationDialog(
+              content: e.message,
+              onCancel: () => Get.offAllNamed(AppRoutes.splash));
+        } else {
+          ShowToaster.toasterInfo(message: e.message);
+        }
+      }
+
+      return null;
     } finally {
       isLoading(false);
     }

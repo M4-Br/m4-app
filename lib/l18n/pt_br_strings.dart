@@ -32,6 +32,7 @@ class StringsPtBR {
     'confirm_email': 'Confirme seu email',
     'page6': 'Onboarding Step 3 Page',
     'phone_register': 'Cadastro de telefone',
+    'phone_required': 'Telefone é obrigatório',
     'for_secure_phone':
         'Para sua segurança vamos cadastrar seu telefone,\n garantindo que só você acessará sua conta.',
     'phone': 'Celular',

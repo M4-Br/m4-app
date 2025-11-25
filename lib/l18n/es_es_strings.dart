@@ -35,6 +35,7 @@ class StringsEsES {
     'confirm_email': 'Confirma tu correo electrónico (e-mail)',
     'page6': 'Página de Registro Paso 3',
     'phone_register': 'Registro de Teléfono Móvil',
+    'phone_required': 'El teléfono es obligatorio',
     'for_secure_phone':
         'Para tu seguridad, registraremos tu telefono móvil para asegurar que solo tú puedas acceder a tu cuenta.',
     'phone': 'Teléfono Móvil',

@@ -15,7 +15,7 @@ class OnboardingBasicRegisterRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'individual_id': id,
       'full_name': fullName,
       'username': username,
       'email': email,

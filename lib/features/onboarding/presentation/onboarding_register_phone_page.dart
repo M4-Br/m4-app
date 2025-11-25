@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/helpers/formatters/formatters.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dimens.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/bottom_button.dart';
@@ -22,23 +23,36 @@ class OnboardingRegisterPhonePage
               ),
               child: ConstrainedBox(
                 constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    gapXL,
-                    AppText.headlineMedium(context, 'phone_register'.tr),
-                    gapXL,
-                    AppText.bodyMedium(context, 'for_secure_phone'.tr),
-                    gapXL,
-                    buildCustomInput(
-                        label: 'phone'.tr,
-                        hint: 'phone'.tr,
-                        controller: controller.phoneController,
-                        keyboardType: TextInputType.phone),
-                    bottomButton(
-                        onPressed: () async => controller.registerPhone(),
-                        labelText: 'next'.tr),
-                  ],
+                child: IntrinsicHeight(
+                  child: Form(
+                    key: controller.key,
+                    child: Column(
+                      children: [
+                        gapXL,
+                        AppText.headlineMedium(context, 'phone_register'.tr),
+                        gapXL,
+                        AppText.bodyLarge(context, 'for_secure_phone'.tr),
+                        const Spacer(),
+                        buildCustomInput(
+                          label: 'phone'.tr,
+                          hint: 'phone'.tr,
+                          controller: controller.phoneController,
+                          formatters: [phoneFormatter],
+                          keyboardType: TextInputType.phone,
+                          validator: (v) =>
+                              v?.isEmpty ?? true ? 'phone_required'.tr : null,
+                        ),
+                        const Spacer(),
+                        Obx(
+                          () => bottomButton(
+                            isLoading: controller.isLoading.value,
+                            onPressed: () async => controller.registerPhone(),
+                            labelText: 'next'.tr,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             );

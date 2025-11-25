@@ -24,7 +24,7 @@ class OnboardingDocumentPage extends GetView<OnboardingDocumentController> {
                 constraints: BoxConstraints(minHeight: constraints.maxHeight),
                 child: IntrinsicHeight(
                   child: Form(
-                    key: key,
+                    key: controller.key,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -46,6 +46,7 @@ class OnboardingDocumentPage extends GetView<OnboardingDocumentController> {
                               v?.isEmpty ?? true ? 'CPF obrigatório' : null,
                         ),
                         bottomButton(
+                          isLoading: controller.isLoading.value,
                           onPressed: () async => controller.register(),
                           labelText: 'next'.tr,
                         ),

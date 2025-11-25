@@ -14,7 +14,10 @@ class OnboardingDocumentController extends GetxController {
 
   final documentController = TextEditingController();
 
-  Future<OnboardingDocumentRegisterResponse> register() async {
+  Future<OnboardingDocumentRegisterResponse?> register() async {
+    if (key.currentState?.validate() != true) {
+      return null;
+    }
     isLoading(true);
 
     final doc = documentController.text.replaceAll('.', '').replaceAll('-', '');
@@ -28,19 +31,18 @@ class OnboardingDocumentController extends GetxController {
       }
 
       return response;
-    } on AlreadyExistsException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
-      rethrow;
-    } on ServerException catch (e, s) {
-      AppLogger.I().error('Cpf initial register', e, s);
-      CustomDialogs.showInformationDialog(
-          content: e.message,
-          onCancel: () => Get.offAndToNamed(AppRoutes.splash));
-      rethrow;
     } catch (e, s) {
       AppLogger.I().error('Cpf initial register', e, s);
-      ShowToaster.toasterInfo(message: e.toString());
-      rethrow;
+      if (e is ApiException) {
+        if (e.statusCode == 500) {
+          CustomDialogs.showInformationDialog(
+              content: e.message,
+              onCancel: () => Get.offAllNamed(AppRoutes.splash));
+        } else {
+          ShowToaster.toasterInfo(message: e.message);
+        }
+      }
+      return null;
     } finally {
       isLoading(false);
     }

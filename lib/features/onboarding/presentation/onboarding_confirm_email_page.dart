@@ -19,53 +19,65 @@ class OnboardingConfirmEmailPage
           builder: (context, constrains) {
             return SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.kPaddingXL,
-                  vertical: AppDimens.kPaddingL),
+                horizontal: AppDimens.kPaddingXL,
+              ),
               child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: constrains.maxHeight),
-                child: Form(
-                  key: controller.formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      gapXL,
-                      AppText.headlineLarge(context, 'email_confirm'.tr),
-                      gapXL,
-                      AppText.bodyLarge(
-                        context,
-                        'token_sent_message'.trParams({
-                          'email': controller.email.value,
-                        }),
-                      ),
-                      gapXL,
-                      AppText.bodyLarge(context, 'email_perhaps'.tr),
-                      gapXL,
-                      buildCustomInput(
-                        label: 'Token',
-                        hint: 'token_write'.tr,
-                        controller: controller.tokenController,
-                        maxLength: 6,
-                      ),
-                      Obx(
-                        () {
-                          return AppButton(
-                            onPressed: controller.canResend.value
-                                ? controller.resendToken
-                                : null,
-                            buttonType: AppButtonType.text,
-                            labelText: controller.canResend.value
-                                ? 'resend'.tr
-                                : 'resend_in'.trParams({
-                                    'seconds':
-                                        controller.countdown.value.toString(),
-                                  }),
-                          );
-                        },
-                      ),
-                      bottomButton(
+                constraints: BoxConstraints(minHeight: constrains.maxHeight),
+                child: IntrinsicHeight(
+                  child: Form(
+                    key: controller.key,
+                    child: Column(
+                      children: [
+                        gapXL,
+                        AppText.headlineLarge(context, 'email_confirm'.tr),
+                        gapXL,
+                        AppText.bodyLarge(
+                          context,
+                          textAlign: TextAlign.center,
+                          'token_sent_message'.trParams({
+                            'email': controller.email.value,
+                          }),
+                        ),
+                        gapXL,
+                        AppText.bodyLarge(
+                            context,
+                            textAlign: TextAlign.center,
+                            'email_perhaps'.tr),
+                        const Spacer(),
+                        buildCustomInput(
+                          label: 'Token',
+                          hint: 'token_write'.tr,
+                          controller: controller.tokenController,
+                          maxLength: 6,
+                        ),
+                        Obx(
+                          () {
+                            return AppButton(
+                              onPressed: controller.canResend.value
+                                  ? controller.resendToken
+                                  : null,
+                              color: controller.canResend.value
+                                  ? Colors.blue
+                                  : Colors.grey,
+                              buttonType: AppButtonType.text,
+                              labelText: controller.canResend.value
+                                  ? 'resend'.tr
+                                  : 'resend_in'.trParams({
+                                      'seconds':
+                                          controller.countdown.value.toString(),
+                                    }),
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                        gapM,
+                        bottomButton(
+                          isLoading: controller.isLoading.value,
                           onPressed: () async => controller.validateEmail(),
-                          labelText: 'next'.tr)
-                    ],
+                          labelText: 'next'.tr,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

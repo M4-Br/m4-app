@@ -45,45 +45,44 @@ class PasswordPage extends GetView<AuthController> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(32, 55, 32, 50),
-              child: TextFormField(
-                cursorColor: Colors.white,
-                validator: (value) => Validators.combine([
-                  () => Validators.isNotEmpty(value),
-                  () => Validators.hasMinChars(value, 6)
-                ]),
-                controller: controller.password,
-                keyboardType: TextInputType.number,
-                style: const TextStyle(color: Colors.white, fontSize: 20),
-                obscureText: controller.obscureText.value,
-                maxLength: 6,
-                decoration: InputDecoration(
-                  counterText: "",
-                  isDense: true,
-                  border: InputBorder.none,
-                  enabledBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  contentPadding: EdgeInsets.zero,
-                  labelText: 'password'.tr,
-                  labelStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                  hintText: '',
-                  suffixIcon: Obx(
-                    () => IconButton(
-                      onPressed: () {
-                        controller.obscureText.value =
-                            !controller.obscureText.value;
-                      },
-                      icon: Icon(
-                        controller.obscureText.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: Colors.white,
+              child: Obx(
+                () => TextFormField(
+                  cursorColor: Colors.white,
+                  validator: (value) => Validators.combine([
+                    () => Validators.isNotEmpty(value),
+                    () => Validators.hasMinChars(value, 6)
+                  ]),
+                  controller: controller.password,
+                  keyboardType: TextInputType.number,
+                  style: const TextStyle(color: Colors.white, fontSize: 20),
+                  obscureText: controller.obscureText.value,
+                  maxLength: 6,
+                  decoration: InputDecoration(
+                    counterText: '',
+                    isDense: true,
+                    border: InputBorder.none,
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    contentPadding: EdgeInsets.zero,
+                    labelText: 'password'.tr,
+                    labelStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                    hintText: '',
+                    suffixIcon: Obx(
+                      () => IconButton(
+                        onPressed: () => controller.toggleObscureText(),
+                        icon: Icon(
+                          controller.obscureText.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

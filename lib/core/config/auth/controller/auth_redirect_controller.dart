@@ -23,7 +23,15 @@ class AuthRedirect {
       AppLogger.I()
           .info('Usuário já cadastrado, redirecionando para PasswordPage');
       Get.toNamed(AppRoutes.password);
+      return;
+    }
 
+    //Apenas documento preenchido
+    if (response.document.isNotEmpty && response.email?.isEmpty == true) {
+      AppLogger.I().info(
+          'Usuário com documento preenchido mas email vazio, redirecionando para OnboardingBasicDataPage');
+      Get.toNamed(AppRoutes.onboardingBasicData,
+          arguments: {'id': response.id});
       return;
     }
 
@@ -40,7 +48,7 @@ class AuthRedirect {
       if (!step.done) {
         AppLogger.I()
             .info('Redirecionando para o step: ${step.id} - ${step.name}');
-        _navigateToStep(step.id);
+        _navigateToStep(step.id, response.id);
         return;
       }
     }
@@ -61,40 +69,26 @@ class AuthRedirect {
         return;
       }
     }
-    AppLogger.I().error('Auth Redirect', Exception("Resposta inválida da API"),
+    AppLogger.I().error('Auth Redirect', Exception('Resposta inválida da API'),
         StackTrace.current, {'response': response.toString()});
-    throw Exception("Resposta inválida da API");
+    throw Exception('Resposta inválida da API');
   }
 
   /// Mapeia o step_id para a página correta
-  static void _navigateToStep(int stepId) {
+  static void _navigateToStep(int stepId, dynamic userId) {
     switch (stepId) {
       case 1:
-        Get.toNamed(AppRoutes.onboardingStepOne);
+        Get.toNamed(AppRoutes.onboardingBasicData, arguments: {'id': userId});
         break;
       case 2:
-        Get.toNamed(AppRoutes.onboardingStepTwo);
+        Get.toNamed(AppRoutes.onboardingPhone, arguments: {'id': userId});
         break;
-      case 3:
-        Get.toNamed(AppRoutes.onboardingStepThree);
-        break;
-      case 4:
-        Get.toNamed(AppRoutes.onboardingStepFour);
-        break;
-      case 5:
-        Get.toNamed(AppRoutes.onboardingStepFive);
-        break;
-      case 6:
-        Get.toNamed(AppRoutes.onboardingDocumentChoose);
-        break;
-      case 7:
-        Get.toNamed(AppRoutes.onboardingStepSeven);
-        break;
-      case 8:
-        Get.toNamed(AppRoutes.onboardingStepEight);
+      case 9:
+        Get.toNamed(AppRoutes.onboardingRegisterPassword,
+            arguments: {'id': userId});
         break;
       default:
-        throw Exception("Step desconhecido: $stepId");
+        throw Exception('Step desconhecido: $stepId');
     }
   }
 

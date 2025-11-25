@@ -34,6 +34,7 @@ class StringsEnUS {
     'for_secure_phone':
         'For your security, we will register your phone to ensure that only you can access your account.',
     'phone': 'Phone',
+    'phone_required': 'Phone is required',
     'page7': 'Onboarding Step 4 Page',
     'full_address_information': 'Provide your complete residential address:',
     'address_cep': 'ZIP Code',

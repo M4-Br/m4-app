@@ -2,8 +2,10 @@ import 'package:app_flutter_miban4/core/config/auth/controller/auth_redirect_con
 import 'package:app_flutter_miban4/core/config/auth/model/verify_user_response.dart';
 import 'package:app_flutter_miban4/core/config/auth/repositories/auth_repository.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
+import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,25 +14,35 @@ import 'package:get_storage/get_storage.dart';
 class VerifyAccountController extends GetxController {
   VerifyAccountController();
 
+  final RxString documentText = ''.obs;
+
   var isLoading = false.obs;
   TextEditingController document = TextEditingController();
   final box = GetStorage();
   final formKey = GlobalKey<FormState>();
 
   @override
-  onInit() {
+  void onInit() {
     super.onInit();
+    final arguments = Get.arguments as Map<String, dynamic>?;
+    if (arguments != null) {
+      documentText.value = arguments['document'] ?? '';
+    }
     lastLogin();
   }
 
   Future<VerifyUserResponse?> authVerify() async {
+    if (!formKey.currentState!.validate()) {
+      return null;
+    }
+
     isLoading(true);
     try {
       final response = await AuthRepository().verifyAccount(
         document: document.text
-            .replaceAll(".", "")
-            .replaceAll("-", "")
-            .replaceAll("/", ""),
+            .replaceAll('.', '')
+            .replaceAll('-', '')
+            .replaceAll('/', ''),
       );
 
       if (response != null) {
@@ -42,17 +54,22 @@ class VerifyAccountController extends GetxController {
       }
 
       return response;
-    } on UnauthorizedException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
-      rethrow;
-    } on ApiException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
-      rethrow;
     } catch (e, s) {
       AppLogger.I().error('Auth Verify', e, s, {
         'document': document.text,
       });
-      rethrow;
+      if (e is ApiException) {
+        if (e.statusCode == 422) {
+          ShowToaster.toasterInfo(message: 'Este usuário não existe.');
+        } else if (e.statusCode == 500) {
+          CustomDialogs.showInformationDialog(
+            content: 'Verifique sua conexão e tente novamente',
+            onCancel: () => Get.offAllNamed(AppRoutes.splash),
+          );
+        }
+      }
+
+      return null;
     } finally {
       isLoading(false);
     }
@@ -60,7 +77,8 @@ class VerifyAccountController extends GetxController {
 
   void lastLogin() async {
     final box = GetStorage();
-    String? lastLogin = box.read('document');
+    String? lastLogin =
+        documentText.value.isEmpty ? box.read('document') : documentText.value;
 
     if (lastLogin != null) {
       AppLogger.I().debug('Last Login: $lastLogin');

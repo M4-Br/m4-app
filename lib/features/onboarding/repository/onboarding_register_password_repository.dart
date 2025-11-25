@@ -7,7 +7,11 @@ class OnboardingRegisterPasswordRepository {
       int id, int password) async {
     return await ApiConnection().post(
         endpoint: AppEndpoints.onboardingRegisterPassword,
-        body: {'id': id, 'password': password, 'confirm_password': password},
+        body: {
+          'individual_id': id,
+          'password': password,
+          'confirm_password': password
+        },
         fromJson: (json) => OnboardingRegisterPasswordResponse.fromJson(json));
   }
 }

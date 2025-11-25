@@ -7,8 +7,8 @@ class OnboardingVerifyPhoneRequest {
   });
 
   final int id;
-  final int prefix;
-  final int phone;
+  final String prefix;
+  final String phone;
   final int code;
 
   Map<String, dynamic> toJson() {

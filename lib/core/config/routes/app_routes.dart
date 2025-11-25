@@ -40,6 +40,8 @@ class AppRoutes {
   static const String onboardingConfirmPhone = '$onboarding/phonePhone';
   static const String onboardingRegisterPassword =
       '$onboardingDocument/password';
+  static const String onboardingInitialRegisterDone =
+      '$onboardingDocument/done';
 
   //Rotas da Home
   static const String homeView = '/';

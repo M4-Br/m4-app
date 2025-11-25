@@ -15,7 +15,6 @@ class OnboardingBasicDataController extends GetxController {
 
   final key = GlobalKey<FormState>();
 
-  final nameController = TextEditingController();
   final fullNameController = TextEditingController();
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
@@ -30,7 +29,11 @@ class OnboardingBasicDataController extends GetxController {
     }
   }
 
-  Future<OnboardingBasicRegisterResponse> registerBasicData() async {
+  Future<OnboardingBasicRegisterResponse?> registerBasicData() async {
+    if (key.currentState?.validate() != true) {
+      return null;
+    }
+
     isLoading(true);
 
     try {
@@ -57,21 +60,18 @@ class OnboardingBasicDataController extends GetxController {
       }
 
       return response;
-    } on ApiException catch (e, s) {
-      AppLogger.I().error('Onboarding Basic Register', e, s);
-      if (ApiException is ServerException) {
-        CustomDialogs.showInformationDialog(
-            content: e.message,
-            onCancel: () => Get.offAllNamed(AppRoutes.splash));
-      }
-
-      ShowToaster.toasterInfo(message: e.toString());
-
-      rethrow;
     } catch (e, s) {
       AppLogger.I().error('Onboarding Basic Register', e, s);
-      ShowToaster.toasterInfo(message: e.toString());
-      rethrow;
+      if (e is ApiException) {
+        if (e.statusCode == 500) {
+          CustomDialogs.showInformationDialog(
+              content: e.message,
+              onCancel: () => Get.offAllNamed(AppRoutes.splash));
+        } else {
+          ShowToaster.toasterInfo(message: e.message);
+        }
+      }
+      return null;
     } finally {
       isLoading(false);
     }

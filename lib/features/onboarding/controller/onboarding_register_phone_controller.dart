@@ -15,6 +15,8 @@ class OnboardingRegisterPhoneController extends GetxController {
 
   final phoneController = TextEditingController();
 
+  final key = GlobalKey<FormState>();
+
   @override
   void onInit() {
     super.onInit();
@@ -24,7 +26,10 @@ class OnboardingRegisterPhoneController extends GetxController {
     }
   }
 
-  Future<OnboardingBasicRegisterResponse> registerPhone() async {
+  Future<OnboardingBasicRegisterResponse?> registerPhone() async {
+    if (key.currentState?.validate() != true) {
+      return null;
+    }
     isLoading(true);
 
     final cleanedPhone = phoneController.text.replaceAll(RegExp(r'[^0-9]'), '');
@@ -33,8 +38,7 @@ class OnboardingRegisterPhoneController extends GetxController {
     final phone = cleanedPhone.substring(3);
 
     final request = OnboardingRegisterPhone(
-        id: id.value, prefix: int.parse(phonePrefix), phone: int.parse(phone));
-
+        id: id.value, prefix: phonePrefix, phone: phone);
     try {
       final response =
           await OnboardingRegisterPhoneRepository().registerPhone(request);
@@ -45,21 +49,18 @@ class OnboardingRegisterPhoneController extends GetxController {
         return response;
       }
       return response;
-    } on ApiException catch (e, s) {
-      AppLogger.I().error('Onboarding register Phone', e, s);
-      if (ApiException is ServerException) {
-        CustomDialogs.showInformationDialog(
-            content: e.message,
-            onCancel: () => Get.offAllNamed(AppRoutes.splash));
-      }
-
-      ShowToaster.toasterInfo(message: e.message);
-
-      rethrow;
     } catch (e, s) {
       AppLogger.I().error('Onboarding register Phone', e, s);
-      ShowToaster.toasterInfo(message: e.toString());
-      rethrow;
+      if (e is ApiException) {
+        if (e.statusCode == 500) {
+          CustomDialogs.showInformationDialog(
+              content: e.message,
+              onCancel: () => Get.offAllNamed(AppRoutes.splash));
+        } else {
+          ShowToaster.toasterInfo(message: e.message);
+        }
+      }
+      return null;
     } finally {
       isLoading(false);
     }

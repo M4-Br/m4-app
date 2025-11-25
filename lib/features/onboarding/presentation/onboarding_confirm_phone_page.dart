@@ -19,48 +19,58 @@ class OnboardingConfirmPhonePage
           builder: (context, constrains) {
             return SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.kPaddingXL,
-                  vertical: AppDimens.kPaddingL),
+                horizontal: AppDimens.kPaddingXL,
+              ),
               child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: constrains.maxHeight),
-                child: Form(
-                  key: controller.key,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      gapXL,
-                      AppText.headlineLarge(context, 'phone_confirm'.tr),
-                      gapXL,
-                      AppText.bodyLarge(context, 'email_send_code'.tr),
-                      gapXL,
-                      AppText.bodyLarge(context, 'email_perhaps'.tr),
-                      gapXL,
-                      buildCustomInput(
-                          label: 'Token',
-                          hint: 'token_write'.tr,
-                          controller: controller.tokenController,
-                          keyboardType: TextInputType.number,
-                          maxLength: 6),
-                      Obx(
-                        () {
-                          return AppButton(
-                            onPressed: controller.canResend.value
-                                ? controller.resendToken
-                                : null,
-                            buttonType: AppButtonType.text,
-                            labelText: controller.canResend.value
-                                ? 'resend'.tr
-                                : 'resend_in'.trParams({
-                                    'seconds':
-                                        controller.countdown.value.toString(),
-                                  }),
-                          );
-                        },
-                      ),
-                      bottomButton(
-                          onPressed: () async => controller.confirmPhone(),
-                          labelText: 'next'.tr)
-                    ],
+                constraints: BoxConstraints(minHeight: constrains.maxHeight),
+                child: IntrinsicHeight(
+                  child: Form(
+                    key: controller.key,
+                    child: Column(
+                      children: [
+                        gapXL,
+                        AppText.headlineLarge(context, 'phone_confirm'.tr),
+                        gapXL,
+                        AppText.bodyLarge(context, 'email_send_code'.tr),
+                        gapXL,
+                        AppText.bodyLarge(context, 'email_perhaps'.tr),
+                        gapXL,
+                        buildCustomInput(
+                            label: 'Token',
+                            hint: 'token_write'.tr,
+                            controller: controller.tokenController,
+                            keyboardType: TextInputType.number,
+                            maxLength: 6),
+                        Obx(
+                          () {
+                            return AppButton(
+                              onPressed: controller.canResend.value
+                                  ? controller.resendToken
+                                  : null,
+                              color: controller.canResend.value
+                                  ? Colors.blue
+                                  : Colors.grey,
+                              buttonType: AppButtonType.text,
+                              labelText: controller.canResend.value
+                                  ? 'resend'.tr
+                                  : 'resend_in'.trParams({
+                                      'seconds':
+                                          controller.countdown.value.toString(),
+                                    }),
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                        gapM,
+                        Obx(
+                          () => bottomButton(
+                            isLoading: controller.isLoading.value,
+                            onPressed: () async => controller.confirmPhone(),
+                            labelText: 'next'.tr,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

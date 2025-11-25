@@ -6,8 +6,8 @@ class OnboardingRegisterPhone {
   });
 
   final int id;
-  final int prefix;
-  final int phone;
+  final String prefix;
+  final String phone;
 
   Map<String, dynamic> toJson() {
     return {

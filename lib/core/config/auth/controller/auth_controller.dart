@@ -5,7 +5,9 @@ import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/core/config/auth/repositories/auth_repository.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/log/scope_config.dart';
+import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
+import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,19 +21,29 @@ class AuthController extends GetxController {
   final box = GetStorage();
   final formKey = GlobalKey<FormState>();
   TextEditingController password = TextEditingController();
-  var obscureText = true.obs;
+  final RxBool obscureText = true.obs;
+
+  void toggleObscureText() {
+    obscureText.value = !obscureText.value;
+  }
 
   Future<User?> authLogin() async {
+    if (!formKey.currentState!.validate()) {
+      return null;
+    }
+
     try {
       isLoading(true);
       final doc = box.read('document');
 
       if (doc == null || doc.isEmpty) {
         AppLogger.I().error(
-            'Auth Login', Exception('Document not find'), StackTrace.current);
-        throw Exception(
-            'Documento não encontrado. Faça a verificação antes do login.');
+            'Auth Login', Exception('Document not found'), StackTrace.current);
+        ShowToaster.toasterInfo(
+            message: 'Documento não encontrado. Reinicie o app.');
+        return null;
       }
+
       final auth = await AuthRepository().authLogin(
           loginRequest:
               AuthLoginRequest(document: doc, password: password.text));
@@ -51,17 +63,23 @@ class AuthController extends GetxController {
       }
 
       return auth;
-    } on UnauthorizedException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
-      rethrow;
-    } on ApiException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
-      rethrow;
     } catch (e, s) {
-      AppLogger.I().error('Auth Login', e, s);
-      rethrow;
+      if (e is ApiException) {
+        AppLogger.I().error('Auth Login Error', e, s);
+
+        if (e.statusCode == 401) {
+          ShowToaster.toasterInfo(message: 'Senha incorreta. Tente novamente.');
+        } else {
+          CustomDialogs.showInformationDialog(
+            content: 'Verifique sua conexão e tente novamente',
+            onCancel: () => Get.offAllNamed(AppRoutes.splash),
+          );
+        }
+        return null;
+      }
     } finally {
       isLoading(false);
     }
+    return null;
   }
 }

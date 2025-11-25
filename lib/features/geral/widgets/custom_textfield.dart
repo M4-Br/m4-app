@@ -9,6 +9,8 @@ Widget buildCustomInput({
   TextInputType keyboardType = TextInputType.text,
   String? Function(String?)? validator,
   int? maxLength,
+  bool? obscureText,
+  VoidCallback? onTogglePassword,
 }) {
   return TextFormField(
     controller: controller,
@@ -16,7 +18,16 @@ Widget buildCustomInput({
     validator: validator,
     maxLength: maxLength,
     inputFormatters: formatters,
+    obscureText: obscureText ?? false,
     decoration: InputDecoration(
+      suffixIcon: obscureText != null
+          ? IconButton(
+              icon: Icon(
+                obscureText ? Icons.visibility_off : Icons.visibility,
+              ),
+              onPressed: onTogglePassword,
+            )
+          : null,
       labelText: label,
       hintText: hint,
       contentPadding: const EdgeInsets.symmetric(vertical: 12),

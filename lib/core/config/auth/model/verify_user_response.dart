@@ -1,18 +1,20 @@
 class VerifyUserResponse {
   const VerifyUserResponse({
     required this.id,
+    required this.document,
     required this.documentType,
+    required this.email,
     required this.firstAccess,
     required this.defaulter,
-    required this.document,
     required this.steps,
   });
 
   factory VerifyUserResponse.fromJson(Map<String, dynamic> json) {
     return VerifyUserResponse(
       id: json['id'] as int,
-      documentType: json['type'] as String,
       document: json['document'] as String,
+      documentType: json['type'] as String,
+      email: json['email'] as String?,
       firstAccess: json['first_access'] as bool,
       defaulter: json['defaulter_user'] as bool,
       steps: (json['steps'] as List<dynamic>)
@@ -24,6 +26,7 @@ class VerifyUserResponse {
   final int id;
   final String document;
   final String documentType;
+  final String? email;
   final bool firstAccess;
   final bool defaulter;
   final List<Steps> steps;

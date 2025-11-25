@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 Widget bottomButton({
   required VoidCallback onPressed,
   required String labelText,
+  required bool isLoading,
 }) {
   return Padding(
     padding: const EdgeInsets.only(
@@ -14,6 +15,7 @@ Widget bottomButton({
       width: double.infinity,
       height: 56,
       child: AppButton(
+        isLoading: isLoading,
         onPressed: () async => onPressed(),
         labelText: labelText,
         buttonType: AppButtonType.filled,

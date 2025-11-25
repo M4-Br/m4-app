@@ -9,10 +9,11 @@ class CustomDialogs {
     required VoidCallback onConfirm,
   }) {
     Get.defaultDialog(
-        title: 'button_title'.tr.toUpperCase(),
-        content: Text(content),
-        textConfirm: 'button_confirm'.tr.toUpperCase(),
-        textCancel: 'button_cancel'.tr.toUpperCase(),
+        title: 'dialog_error'.tr.toUpperCase(),
+        content: Text(
+          content,
+          textAlign: TextAlign.center,
+        ),
         onConfirm: onConfirm,
         cancel: AppButton(
           buttonType: AppButtonType.filled,
@@ -26,9 +27,12 @@ class CustomDialogs {
   static void showInformationDialog(
       {required String content, required VoidCallback onCancel}) {
     Get.defaultDialog(
-      title: 'button_title'.tr.toUpperCase(),
+      title: 'dialog_error'.tr.toUpperCase(),
       titleStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-      content: Text(content),
+      content: Text(
+        content,
+        textAlign: TextAlign.center,
+      ),
       textConfirm: 'OK',
       onConfirm: onCancel,
       buttonColor: secondaryColor,

@@ -16,8 +16,8 @@ import 'package:get/get.dart';
 class OnboardingConfirmPhoneController extends GetxController {
   var isLoading = false.obs;
   final RxInt id = 0.obs;
-  final RxInt prefix = 0.obs;
-  final RxInt phone = 0.obs;
+  final RxString prefix = ''.obs;
+  final RxString phone = ''.obs;
 
   final RxInt countdown = 30.obs;
   final RxBool canResend = false.obs;
@@ -34,9 +34,11 @@ class OnboardingConfirmPhoneController extends GetxController {
     final arguments = Get.arguments as Map<String, dynamic>?;
     if (arguments != null) {
       id.value = arguments['id'] ?? 0;
-      prefix.value = int.parse(arguments['prefix'] ?? '0');
-      phone.value = int.parse(arguments['phone'] ?? '0');
+      prefix.value = arguments['prefix'] ?? '';
+      phone.value = arguments['phone'] ?? '';
     }
+
+    startCountdown();
   }
 
   @override
@@ -56,7 +58,7 @@ class OnboardingConfirmPhoneController extends GetxController {
         countdown.value--;
       } else {
         canResend.value = true;
-        _timer?.cancel();
+        timer.cancel();
       }
     });
   }
@@ -72,7 +74,10 @@ class OnboardingConfirmPhoneController extends GetxController {
     startCountdown();
   }
 
-  Future<OnboardingBasicRegisterResponse> confirmPhone() async {
+  Future<OnboardingBasicRegisterResponse?> confirmPhone() async {
+    if (key.currentState?.validate() != true) {
+      return null;
+    }
     final request = OnboardingVerifyPhoneRequest(
         id: id.value,
         prefix: prefix.value,
@@ -90,19 +95,18 @@ class OnboardingConfirmPhoneController extends GetxController {
       }
 
       return response;
-    } on ServerException catch (e, s) {
-      AppLogger.I().error('Confirm phone token', e, s);
-      CustomDialogs.showInformationDialog(
-          content: e.message,
-          onCancel: () => Get.offAllNamed(AppRoutes.splash));
-      rethrow;
-    } on ApiException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
-      rethrow;
     } catch (e, s) {
       AppLogger.I().error('Confirm phone token', e, s);
-      ShowToaster.toasterInfo(message: e.toString());
-      rethrow;
+      if (e is ApiException) {
+        if (e.statusCode == 500) {
+          CustomDialogs.showInformationDialog(
+              content: e.message,
+              onCancel: () => Get.offAllNamed(AppRoutes.splash));
+        } else {
+          ShowToaster.toasterInfo(message: e.message);
+        }
+      }
+      return null;
     } finally {
       isLoading(false);
     }
