@@ -54,10 +54,13 @@ class OnboardingRegisterPhoneController extends GetxController {
       if (e is ApiException) {
         if (e.statusCode == 500) {
           CustomDialogs.showInformationDialog(
-              content: e.message,
+              content: 'Verifique sua conexão e tente novamente mais tarde.',
               onCancel: () => Get.offAllNamed(AppRoutes.splash));
         } else {
-          ShowToaster.toasterInfo(message: e.message);
+          ShowToaster.toasterInfo(
+            message: e.message,
+            isError: true,
+          );
         }
       }
       return null;

@@ -83,6 +83,10 @@ class AuthRedirect {
       case 2:
         Get.toNamed(AppRoutes.onboardingPhone, arguments: {'id': userId});
         break;
+      case 3:
+        Get.toNamed(AppRoutes.onboardingRegisterPassword,
+            arguments: {'id': userId});
+        break;
       case 9:
         Get.toNamed(AppRoutes.onboardingRegisterPassword,
             arguments: {'id': userId});

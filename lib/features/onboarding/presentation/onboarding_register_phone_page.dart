@@ -31,7 +31,11 @@ class OnboardingRegisterPhonePage
                         gapXL,
                         AppText.headlineMedium(context, 'phone_register'.tr),
                         gapXL,
-                        AppText.bodyLarge(context, 'for_secure_phone'.tr),
+                        AppText.bodyLarge(
+                          context,
+                          'for_secure_phone'.tr,
+                          textAlign: TextAlign.center,
+                        ),
                         const Spacer(),
                         buildCustomInput(
                           label: 'phone'.tr,

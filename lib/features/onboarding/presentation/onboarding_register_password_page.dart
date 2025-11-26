@@ -43,10 +43,12 @@ class OnboardingRegisterPasswordPage
                             controller: controller.pswController,
                             maxLength: 6,
                             validator: (v) {
-                              v?.isEmpty ?? true ? 'password_create'.tr : null;
-                              v?.isNotEmpty == true && v!.length < 6
-                                  ? 'password_six'.tr
-                                  : null;
+                              if (v == null || v.isEmpty) {
+                                return 'password_required'.tr;
+                              }
+                              if (v.length < 6) {
+                                return 'password_six'.tr;
+                              }
                               return null;
                             },
                             obscureText: controller.showPassword.value,
@@ -61,14 +63,15 @@ class OnboardingRegisterPasswordPage
                             controller: controller.confirmPwsController,
                             maxLength: 6,
                             validator: (v) {
-                              v?.isEmpty ?? true ? 'password_again'.tr : null;
-                              v?.isNotEmpty == true && v!.length < 6
-                                  ? 'password_six'.tr
-                                  : null;
-                              v?.isNotEmpty == true &&
-                                      v != controller.pswController.text
-                                  ? 'password_equals'.tr
-                                  : null;
+                              if (v == null || v.isEmpty) {
+                                return 'password_required'.tr;
+                              }
+                              if (v.length < 6) {
+                                return 'validator_six_char'.tr;
+                              }
+                              if (v != controller.pswController.text) {
+                                return 'validator_password_confirm'.tr;
+                              }
                               return null;
                             },
                             obscureText: controller.showPassword.value,

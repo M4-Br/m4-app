@@ -15,10 +15,19 @@ class HomeIconsController extends BaseController {
   RxList<HomeIconsResponse> icons = <HomeIconsResponse>[].obs;
   var hasLoadedIcons = false.obs;
 
+  final RxBool incomplete = false.obs;
+
   @override
   void onInit() {
     super.onInit();
+    registerIncomplete();
     fetchIcons();
+  }
+
+  void registerIncomplete() {
+    if (userRx.user.value!.payload.aliasAccount?.accountId == null) {
+      incomplete.value = true;
+    }
   }
 
   Future<void> fetchIcons() async {

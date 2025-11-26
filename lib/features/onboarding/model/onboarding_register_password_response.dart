@@ -24,7 +24,7 @@ class OnboardingRegisterPasswordResponse {
       status: AccountStatus.values.byName(json['status'] as String),
       individualId: json['individual_id'] as int,
       activeAccount: json['active_account'] as bool?,
-      companyId: json['company_id'] as int,
+      companyId: json['company_id'] as int?,
     );
   }
 
@@ -36,5 +36,5 @@ class OnboardingRegisterPasswordResponse {
   final AccountStatus status;
   final int individualId;
   final bool? activeAccount;
-  final int companyId;
+  final int? companyId;
 }

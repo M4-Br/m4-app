@@ -621,6 +621,9 @@ class StringsEnUS {
     'token_write': 'Enter the token received',
     'resend': 'Resend',
     'resend_in': 'Resend in @seconds seconds',
+    'password_hint': 'Enter the desired password',
+    'confirm_password_hint': 'Re-enter the desired password',
+    'password_required': 'Password is required',
     'codeLang': 'en_US',
     'version': 'Version 6.0.2 - Release (223)',
     'version_app': '6.0.2'

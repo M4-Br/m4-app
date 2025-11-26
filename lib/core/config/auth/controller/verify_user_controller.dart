@@ -60,19 +60,24 @@ class VerifyAccountController extends GetxController {
       });
       if (e is ApiException) {
         if (e.statusCode == 422) {
-          ShowToaster.toasterInfo(message: 'Este usuário não existe.');
+          ShowToaster.toasterInfo(
+            message: 'Este usuário não existe.',
+          );
         } else if (e.statusCode == 500) {
           CustomDialogs.showInformationDialog(
-            content: 'Verifique sua conexão e tente novamente',
-            onCancel: () => Get.offAllNamed(AppRoutes.splash),
+              content: 'Verifique sua conexão e tente novamente mais tarde.',
+              onCancel: () => Get.offAllNamed(AppRoutes.splash));
+        } else {
+          ShowToaster.toasterInfo(
+            message: e.message,
+            isError: true,
           );
         }
       }
-
-      return null;
     } finally {
       isLoading(false);
     }
+    return null;
   }
 
   void lastLogin() async {

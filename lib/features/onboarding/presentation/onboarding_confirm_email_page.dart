@@ -45,11 +45,19 @@ class OnboardingConfirmEmailPage
                             'email_perhaps'.tr),
                         const Spacer(),
                         buildCustomInput(
-                          label: 'Token',
-                          hint: 'token_write'.tr,
-                          controller: controller.tokenController,
-                          maxLength: 6,
-                        ),
+                            label: 'Token',
+                            hint: 'token_write'.tr,
+                            controller: controller.tokenController,
+                            maxLength: 6,
+                            validator: (v) {
+                              if (v == null || v.isEmpty) {
+                                return 'O token é necessário.';
+                              }
+                              if (v.length < 6) {
+                                return 'O token deve ter 6 dígitos.';
+                              }
+                              return null;
+                            }),
                         Obx(
                           () {
                             return AppButton(

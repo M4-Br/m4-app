@@ -266,6 +266,7 @@ class StringsPtBR {
     'password_create': 'Crie sua senha',
     'password_need':
         'Você precisará dela sempre que fizer pagamento,\n por isso guarde-a e lembra-se dela.\n Sua senha será uma sequência de 6 números.',
+    'password_required': 'A senha é obrigatória',
     'password_six': 'A senha precisa conter 6 digitos',
     'password_confirm': 'Confirmar senha',
     'password_again': 'Digite a senha novamente',
@@ -625,6 +626,8 @@ class StringsPtBR {
     'token_write': 'Digite o token recebido',
     'resend': 'Reenviar',
     'resend_in': 'Reenviar em @seconds segundos',
+    'password_hint': 'Digite a senha desejada',
+    'confirm_password_hint': 'Digite novamente a senha desejada',
     'codeLang': 'pt_BR',
     'version': 'Versão 6.0.2 - Release (223)',
     'version_app': '6.0.2'

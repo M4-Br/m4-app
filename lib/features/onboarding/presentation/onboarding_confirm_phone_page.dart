@@ -31,16 +31,33 @@ class OnboardingConfirmPhonePage
                         gapXL,
                         AppText.headlineLarge(context, 'phone_confirm'.tr),
                         gapXL,
-                        AppText.bodyLarge(context, 'email_send_code'.tr),
+                        AppText.bodyLarge(
+                          context,
+                          'email_send_code'.tr,
+                          textAlign: TextAlign.center,
+                        ),
                         gapXL,
-                        AppText.bodyLarge(context, 'email_perhaps'.tr),
-                        gapXL,
+                        AppText.bodyLarge(
+                          context,
+                          'email_perhaps'.tr,
+                          textAlign: TextAlign.center,
+                        ),
+                        const Spacer(),
                         buildCustomInput(
                             label: 'Token',
                             hint: 'token_write'.tr,
                             controller: controller.tokenController,
                             keyboardType: TextInputType.number,
-                            maxLength: 6),
+                            maxLength: 6,
+                            validator: (v) {
+                              if (v == null || v.isEmpty) {
+                                return 'O token é necessário.';
+                              }
+                              if (v.length < 6) {
+                                return 'O token deve ter 6 dígitos.';
+                              }
+                              return null;
+                            }),
                         Obx(
                           () {
                             return AppButton(

@@ -14,6 +14,6 @@ class OnboardingInitialRegisterDoneController extends GetxController {
   }
 
   void proccedToLogin() {
-    Get.offAllNamed(AppRoutes.login, arguments: {'document': document});
+    Get.offAllNamed(AppRoutes.login, arguments: {'document': document.value});
   }
 }

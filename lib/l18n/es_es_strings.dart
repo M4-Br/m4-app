@@ -632,6 +632,9 @@ class StringsEsES {
     'token_write': 'Ingresa el token recibido',
     'resend': 'Reenviar',
     'resend_in': 'Reenviar en @seconds segundos',
+    'password_hint': 'Ingrese la contraseña deseada',
+    'confirm_password_hint': 'Vuelva a ingresar la contraseña deseada',
+    'password_required': 'La contraseña es obligatoria',
     'codeLang': 'es_ES',
     'version': 'Versión 6.0.2 - Lanzamiento (223)',
     'version_app': '6.0.2'

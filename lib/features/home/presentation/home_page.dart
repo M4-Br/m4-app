@@ -17,6 +17,7 @@ import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.
 import 'package:app_flutter_miban4/ui/screens/home/services/services_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/store/store_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
+import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -157,11 +158,16 @@ class HomePage extends GetView<HomeIconsController> {
                             children: [
                               IconButton(
                                 onPressed: () async {
-                                  Get.to(
-                                      () => const PixReceive(
-                                            type: 1,
-                                          ),
-                                      transition: Transition.rightToLeft);
+                                  controller.incomplete.value == true
+                                      ? CustomDialogs.showInformationDialog(
+                                          content:
+                                              'Para utilizar essa funcionalidade é preciso completar seu cadastro',
+                                          onCancel: () => Get.back())
+                                      : Get.to(
+                                          () => const PixReceive(
+                                                type: 1,
+                                              ),
+                                          transition: Transition.rightToLeft);
                                 },
                                 icon: const Icon(
                                   Icons.qr_code_2,
@@ -224,56 +230,46 @@ class HomePage extends GetView<HomeIconsController> {
                               onPressed: () async {
                                 switch (iconModel.id) {
                                   case '1':
-                                    Get.to(() => const PaymentLinkValue(),
-                                        transition: Transition.rightToLeft);
+                                    controller.incomplete.value == true
+                                        ? CustomDialogs.showInformationDialog(
+                                            content:
+                                                'Para utilizar essa funcionalidade é preciso completar seu cadastro',
+                                            onCancel: () => Get.back())
+                                        : Get.to(() => const PaymentLinkValue(),
+                                            transition: Transition.rightToLeft);
                                     break;
                                   case '2':
-                                    Get.to(() => const QrCodeCamera(),
-                                        transition: Transition.rightToLeft);
+                                    controller.incomplete.value == true
+                                        ? CustomDialogs.showInformationDialog(
+                                            content:
+                                                'Para utilizar essa funcionalidade é preciso completar seu cadastro',
+                                            onCancel: () => Get.back())
+                                        : Get.to(() => const QrCodeCamera(),
+                                            transition: Transition.rightToLeft);
                                     break;
                                   case '10':
-                                    Get.to(() => const BarcodeCamera(),
-                                        transition: Transition.rightToLeft);
+                                    controller.incomplete.value == true
+                                        ? CustomDialogs.showInformationDialog(
+                                            content:
+                                                'Para utilizar essa funcionalidade é preciso completar seu cadastro',
+                                            onCancel: () => Get.back())
+                                        : Get.to(() => const BarcodeCamera(),
+                                            transition: Transition.rightToLeft);
                                     break;
                                   case '11':
-                                    Get.to(() => const TransferContactPage(),
-                                        transition: Transition.rightToLeft);
+                                    controller.incomplete.value == true
+                                        ? CustomDialogs.showInformationDialog(
+                                            content:
+                                                'Para utilizar essa funcionalidade é preciso completar seu cadastro',
+                                            onCancel: () => Get.back())
+                                        : Get.to(
+                                            () => const TransferContactPage(),
+                                            transition: Transition.rightToLeft);
                                     break;
                                   case '12':
-                                    Get.defaultDialog(
-                                      title: 'message'.tr,
-                                      content: Column(
-                                        children: [
-                                          Text('unavailable'.tr),
-                                          Padding(
-                                            padding: const EdgeInsets.all(16),
-                                            child: SizedBox(
-                                              height: 45,
-                                              width: double.infinity,
-                                              child: ElevatedButton(
-                                                onPressed: () => Get.back(),
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      secondaryColor,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            45),
-                                                  ),
-                                                ),
-                                                child: const Text(
-                                                  'OK',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
+                                    CustomDialogs.showInformationDialog(
+                                        content: 'unavailable'.tr,
+                                        onCancel: () => Get.back());
                                     break;
                                   case '14':
                                     Get.to(() => const StorePage(),

@@ -4,7 +4,6 @@ import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/features/onboarding/model/onboarding_register_password_response.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_register_password_repository.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -55,10 +54,8 @@ class OnboardingPasswordRegisterController extends GetxController {
       if (e is ApiException) {
         if (e.statusCode == 500) {
           CustomDialogs.showInformationDialog(
-              content: e.message,
+              content: 'Verifique sua conexão e tente novamente mais tarde.',
               onCancel: () => Get.offAllNamed(AppRoutes.splash));
-        } else {
-          ShowToaster.toasterInfo(message: e.message);
         }
       }
       return null;

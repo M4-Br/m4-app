@@ -65,17 +65,21 @@ class AuthController extends GetxController {
       return auth;
     } catch (e, s) {
       if (e is ApiException) {
-        AppLogger.I().error('Auth Login Error', e, s);
-
+        AppLogger.I().error('Auth Login', e, s);
         if (e.statusCode == 401) {
-          ShowToaster.toasterInfo(message: 'Senha incorreta. Tente novamente.');
-        } else {
+          ShowToaster.toasterInfo(
+            message: 'Senha incorreta. Tente novamente.',
+          );
+        } else if (e.statusCode == 500) {
           CustomDialogs.showInformationDialog(
-            content: 'Verifique sua conexão e tente novamente',
-            onCancel: () => Get.offAllNamed(AppRoutes.splash),
+              content: 'Verifique sua conexão e tente novamente mais tarde.',
+              onCancel: () => Get.offAllNamed(AppRoutes.splash));
+        } else {
+          ShowToaster.toasterInfo(
+            message: e.message,
+            isError: true,
           );
         }
-        return null;
       }
     } finally {
       isLoading(false);
