@@ -65,6 +65,7 @@ class OnboardingRegisterPasswordPage
                             label: 'password'.tr,
                             hint: 'password_hint'.tr,
                             controller: controller.pswController,
+                            keyboardType: TextInputType.number,
                             maxLength: 6,
                             validator: (v) {
                               if (v == null || v.isEmpty) {
@@ -85,6 +86,7 @@ class OnboardingRegisterPasswordPage
                             label: 'password_confirm'.tr,
                             hint: 'confirm_password_hint'.tr,
                             controller: controller.confirmPwsController,
+                            keyboardType: TextInputType.number,
                             maxLength: 6,
                             validator: (v) {
                               if (v == null || v.isEmpty) {

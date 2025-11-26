@@ -71,6 +71,7 @@ class OnboardingConfirmEmailPage
                         buildCustomInput(
                             label: 'Token',
                             hint: 'token_write'.tr,
+                            keyboardType: TextInputType.number,
                             controller: controller.tokenController,
                             maxLength: 6,
                             validator: (v) {

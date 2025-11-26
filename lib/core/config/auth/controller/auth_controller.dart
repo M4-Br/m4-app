@@ -69,6 +69,7 @@ class AuthController extends GetxController {
         if (e.statusCode == 401) {
           ShowToaster.toasterInfo(
             message: 'Senha incorreta. Tente novamente.',
+            isError: true,
           );
         } else if (e.statusCode == 500) {
           CustomDialogs.showInformationDialog(
