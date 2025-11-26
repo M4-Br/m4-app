@@ -30,8 +30,33 @@ class OnboardingDocumentPage extends GetView<OnboardingDocumentController> {
                       children: [
                         Column(
                           children: [
-                            gapXL, // Espaço do topo
-                            AppText.headlineMedium(context, 'welcome'.tr),
+                            gapXL,
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: GestureDetector(
+                                      onTap: () => Get.back(),
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        child: const Icon(
+                                          Icons.arrow_back_ios_new,
+                                          size: 24,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: AppText.headlineMedium(
+                                      context,
+                                      'welcome'.tr,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  )
+                                ]),
                             gapXL,
                             AppText.bodyLarge(context, 'insert_cpf'.tr),
                           ],

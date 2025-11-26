@@ -7,7 +7,7 @@ final cpfFormatter = MaskTextInputFormatter(
 );
 
 final phoneFormatter = MaskTextInputFormatter(
-  mask: '(###) #####-####',
+  mask: '(##) #####-####',
   filter: {'#': RegExp(r'[0-9]')},
   type: MaskAutoCompletionType.lazy,
 );

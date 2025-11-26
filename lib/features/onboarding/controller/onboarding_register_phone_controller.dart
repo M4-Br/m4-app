@@ -34,8 +34,8 @@ class OnboardingRegisterPhoneController extends GetxController {
 
     final cleanedPhone = phoneController.text.replaceAll(RegExp(r'[^0-9]'), '');
 
-    final phonePrefix = cleanedPhone.substring(0, 3);
-    final phone = cleanedPhone.substring(3);
+    final phonePrefix = cleanedPhone.substring(0, 2);
+    final phone = cleanedPhone.substring(2);
 
     final request = OnboardingRegisterPhone(
         id: id.value, prefix: phonePrefix, phone: phone);

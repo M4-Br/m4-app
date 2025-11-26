@@ -43,10 +43,8 @@ class OnboardingPasswordRegisterController extends GetxController {
       final value = await OnboardingRegisterPasswordRepository()
           .registerPassword(id.value, password);
 
-      if (value.id != 0) {
-        Get.toNamed(AppRoutes.onboardingInitialRegisterDone,
-            arguments: {'document': value.document});
-      }
+      Get.toNamed(AppRoutes.onboardingInitialRegisterDone,
+          arguments: {'document': value.document});
 
       return value;
     } catch (e, s) {

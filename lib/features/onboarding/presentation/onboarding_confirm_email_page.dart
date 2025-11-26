@@ -29,7 +29,31 @@ class OnboardingConfirmEmailPage
                     child: Column(
                       children: [
                         gapXL,
-                        AppText.headlineLarge(context, 'email_confirm'.tr),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: GestureDetector(
+                                  onTap: () => Get.back(),
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    child: const Icon(
+                                      Icons.arrow_back_ios_new,
+                                      size: 24,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: AppText.headlineMedium(
+                                  context,
+                                  'email_confirm'.tr,
+                                  textAlign: TextAlign.center,
+                                ),
+                              )
+                            ]),
                         gapXL,
                         AppText.bodyLarge(
                           context,
