@@ -1,5 +1,12 @@
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.util.Properties 
+
+val localProps = Properties()
+val localPropsFile = rootProject.file("local.properties")
+if (localPropsFile.exists()) {
+    localProps.load(localPropsFile.inputStream())
+}
 
 plugins {
     id("com.android.application")
@@ -30,15 +37,16 @@ android {
     }
 
     signingConfigs {
-        create("release") {
-            keyAlias = "Mibanka4"
-            keyPassword = "#L1v30n"
-            storeFile = file("miban4.jks")
-            storePassword = "#L1v30n"
-            enableV1Signing = false
-            enableV2Signing = true
-        }
+    create("release") {
+        keyAlias = localProps["KEY_ALIAS"] as String
+        keyPassword = localProps["KEY_PASSWORD"] as String
+        storeFile = file(localProps["STORE_FILE"] as String)
+        storePassword = localProps["STORE_PASSWORD"] as String
+
+        enableV1Signing = false
+        enableV2Signing = true
     }
+}
 
     buildTypes {
         getByName("release") {
