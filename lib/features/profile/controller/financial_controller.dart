@@ -1,7 +1,7 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
-import 'package:app_flutter_miban4/features/profile/data/financial_params_repository.dart';
+import 'package:app_flutter_miban4/features/profile/repository/financial_params_repository.dart';
 import 'package:app_flutter_miban4/features/profile/model/capacity_response.dart';
 import 'package:app_flutter_miban4/features/profile/model/params_reponse.dart';
 import 'package:flutter/material.dart';
