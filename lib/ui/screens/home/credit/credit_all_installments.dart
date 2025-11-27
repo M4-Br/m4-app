@@ -2,7 +2,7 @@ import 'package:app_flutter_miban4/data/api/credit/get_all_credit.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_installments.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -49,21 +49,17 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
       backgroundColor: primaryColor,
       appBar: AppBarDefault(
         title: 'credit_credit'.tr.toUpperCase(),
-        backPage: () =>
-            Get.offAll(
-              const HomeViewPage(),
-              transition: Transition.leftToRight,
-            ),
+        backPage: () => Get.offAll(
+          const HomeViewPage(),
+          transition: Transition.leftToRight,
+        ),
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: _contributions,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
+              height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: const Center(
                 child: CircularProgressIndicator(
@@ -73,10 +69,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
             );
           } else if (snapshot.hasError) {
             return Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
+              height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: Center(
                 child: Text(
@@ -87,10 +80,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
             );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
+              height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: Center(
                 child: Text(
@@ -241,19 +231,25 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
                     color: const Color(0xFFe9eaf0),
                     child: _screenActivity == 0
                         ? _buildTransactionList(
-                      snapshot.data!.where((transaction) => transaction['status'] == 'pending').toList(),
-                      'pending',
-                      totalAmount,
-                      allPaid,
-                      true,
-                    )
+                            snapshot.data!
+                                .where((transaction) =>
+                                    transaction['status'] == 'pending')
+                                .toList(),
+                            'pending',
+                            totalAmount,
+                            allPaid,
+                            true,
+                          )
                         : _buildTransactionList(
-                      snapshot.data!.where((transaction) => transaction['status'] == 'success').toList(),
-                      'success',
-                      totalAmount,
-                      false,
-                      false,
-                    ),
+                            snapshot.data!
+                                .where((transaction) =>
+                                    transaction['status'] == 'success')
+                                .toList(),
+                            'success',
+                            totalAmount,
+                            false,
+                            false,
+                          ),
                   ),
                 ),
               ],
@@ -264,11 +260,13 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
     );
   }
 
-  Widget _buildTransactionList(List<Map<String, dynamic>> transactions,
-      String status,
-      double amount,
-      bool allInstalments,
-      bool checkFirstPending,) {
+  Widget _buildTransactionList(
+    List<Map<String, dynamic>> transactions,
+    String status,
+    double amount,
+    bool allInstalments,
+    bool checkFirstPending,
+  ) {
     if (allInstalments == true) {
       return Center(
         child: Text(
@@ -301,13 +299,14 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
     }
   }
 
-
-  Widget _buildTransactionCard(Map<String, dynamic> transaction,
-      String installment,
-      double amount,
-      int totalInstallment,
-      int index,
-      bool isFirstPending,) {
+  Widget _buildTransactionCard(
+    Map<String, dynamic> transaction,
+    String installment,
+    double amount,
+    int totalInstallment,
+    int index,
+    bool isFirstPending,
+  ) {
     final currencyFormat = NumberFormat.currency(locale: 'pt_BR', symbol: '');
     final dateFormat = DateFormat('dd/MM/yyyy');
 
@@ -349,13 +348,14 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
             ));
           } else {
             DateTime today = DateTime.now();
-            DateTime todayAtMidnight = DateTime(today.year, today.month, today.day);
+            DateTime todayAtMidnight =
+                DateTime(today.year, today.month, today.day);
 
             Map<String, dynamic> creditInstallmentMap = {
               'id': transaction['id'],
               'dueDate': transaction['due_date'],
-              'amount': DateTime.parse(transaction['due_date']).isBefore(
-                  todayAtMidnight)
+              'amount': DateTime.parse(transaction['due_date'])
+                      .isBefore(todayAtMidnight)
                   ? int.parse(transaction['amount_with_interest'].toString())
                   : transaction['amount'],
               'status': transaction['status'],
@@ -366,14 +366,13 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
             };
 
             Get.to(
-                  () =>
-                  CreditInstallments(
-                    creditInstallment: creditInstallmentMap,
-                    id: widget.id.toString(),
-                    pay: transaction['status'] == 'success' ? 1 : 0,
-                    type: widget.type,
-                    amount: amount,
-                  ),
+              () => CreditInstallments(
+                creditInstallment: creditInstallmentMap,
+                id: widget.id.toString(),
+                pay: transaction['status'] == 'success' ? 1 : 0,
+                type: widget.type,
+                amount: amount,
+              ),
             );
           }
         } else {
@@ -388,14 +387,13 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
             'name': transaction['destination_account']['full_name'] ?? '',
           };
           Get.to(
-                () =>
-                CreditInstallments(
-                  creditInstallment: creditInstallmentMap,
-                  id: widget.id.toString(),
-                  pay: transaction['status'] == 'success' ? 1 : 0,
-                  type: widget.type,
-                  amount: amount,
-                ),
+            () => CreditInstallments(
+              creditInstallment: creditInstallmentMap,
+              id: widget.id.toString(),
+              pay: transaction['status'] == 'success' ? 1 : 0,
+              type: widget.type,
+              amount: amount,
+            ),
           );
         }
       },
@@ -434,8 +432,7 @@ class _CreditAllInstallmentsState extends State<CreditAllInstallments> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'R\$ ${currencyFormat.format(
-                        double.parse(transaction['amount'].toString()) / 100)}',
+                    'R\$ ${currencyFormat.format(double.parse(transaction['amount'].toString()) / 100)}',
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,

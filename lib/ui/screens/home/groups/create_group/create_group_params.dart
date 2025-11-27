@@ -1,5 +1,4 @@
 import 'package:app_flutter_miban4/data/api/groups/createGroupParams.dart';
-import 'package:app_flutter_miban4/data/api/home/params.dart';
 import 'package:app_flutter_miban4/data/model/params/params.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
@@ -42,7 +41,7 @@ class _GroupParamsState extends State<GroupParams> {
   @override
   void initState() {
     super.initState();
-    params = getGlobalParams();
+    // params = getGlobalParams();
     _getLang();
   }
 

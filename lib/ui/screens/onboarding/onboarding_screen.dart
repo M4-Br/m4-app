@@ -2,7 +2,7 @@ import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/data/util/helpers/validators.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/onboarding/step_one_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/login/login_page.dart';
+import 'package:app_flutter_miban4/features/auth/presentation/login_page.dart';
 import 'package:app_flutter_miban4/ui/screens/onboarding/onboarding_privacy_policy_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +21,7 @@ class OnboardingPage extends StatefulWidget {
   State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
+class _OnboardingPageState extends State<OnboardingPage> {
   final StepOneController _stepOneController = Get.put(StepOneController());
 
   void _navigateToPrivacyPolicy() {
@@ -83,8 +83,8 @@ class _OnboardingPageState extends State<OnboardingPage> with ValidationsMixin {
                 key: _stepOneController.formKey,
                 child: TextFormField(
                   cursorColor: secondaryColor,
-                  validator: (value) => combineValidators([
-                    () => isNotEmpty(value),
+                  validator: (value) => Validators.combine([
+                    () => Validators.isNotEmpty(value),
                   ]),
                   controller: _stepOneController.cpfController,
                   keyboardType: TextInputType.number,

@@ -5,7 +5,7 @@ import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/controllers/pix/pix_receive_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixKeyManager.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixQRCodeReceive.dart';
@@ -58,7 +58,8 @@ class _PixReceiveState extends State<PixReceive> {
         backPage: () => widget.type == 0
             ? Get.off(() => PixHome(), transition: Transition.leftToRight)
             : widget.type == 1
-                ? Get.off(() => const HomeViewPage(), transition: Transition.leftToRight)
+                ? Get.off(() => const HomeViewPage(),
+                    transition: Transition.leftToRight)
                 : Get.back(),
       ),
       body: FutureBuilder<PixKeys>(
@@ -107,9 +108,7 @@ class _PixReceiveState extends State<PixReceive> {
                     Text.rich(
                       TextSpan(
                         children: [
-                          TextSpan(
-                              text:
-                                  'pix_selectKey'.tr),
+                          TextSpan(text: 'pix_selectKey'.tr),
                           TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => Get.to(

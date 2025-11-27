@@ -14,7 +14,7 @@ class OnboardingStepFivePage extends StatefulWidget {
   State<OnboardingStepFivePage> createState() => _OnboardingStepFivePageState();
 }
 
-class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with ValidationsMixin {
+class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> {
   bool check = false;
   String id = '';
   bool _isPep = false;
@@ -116,10 +116,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
       'nationality_foreigner'.tr
     ];
 
-    List<String> pep = [
-      'pep_no'.tr,
-      'pep_yes'.tr
-    ];
+    List<String> pep = ['pep_no'.tr, 'pep_yes'.tr];
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -164,9 +161,9 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                     controller: _name,
                     keyboardType: TextInputType.text,
                     style: const TextStyle(color: Colors.black, fontSize: 20),
-                    validator: (value) => combineValidators([
-                      () => isNotEmpty(value),
-                      () => validateChar(value),
+                    validator: (value) => Validators.combine([
+                      () => Validators.isNotEmpty(value),
+                      () => Validators.hasMinChars(value, 3),
                     ]),
                     decoration: InputDecoration(
                       isDense: true,
@@ -199,9 +196,9 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                     controller: _motherName,
                     keyboardType: TextInputType.text,
                     style: const TextStyle(color: Colors.black, fontSize: 20),
-                    validator: (value) => combineValidators([
-                      () => isNotEmpty(value),
-                      () => validateChar(value),
+                    validator: (value) => Validators.combine([
+                      () => Validators.isNotEmpty(value),
+                      () => Validators.hasMinChars(value, 3),
                     ]),
                     decoration: InputDecoration(
                       isDense: true,
@@ -218,8 +215,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                         borderSide: BorderSide(color: secondaryColor),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText:
-                          'document_mother_name'.tr,
+                      labelText: 'document_mother_name'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 15,
@@ -262,8 +258,8 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                     controller: _birth,
                     keyboardType: TextInputType.datetime,
                     style: const TextStyle(color: Colors.black, fontSize: 20),
-                    validator: (value) => combineValidators([
-                      () => validateDate(value),
+                    validator: (value) => Validators.combine([
+                      () => Validators.isOfLegalAge(value),
                     ]),
                     inputFormatters: [birthMaskFormatter],
                     maxLength: 10,
@@ -283,8 +279,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                         borderSide: BorderSide(color: secondaryColor),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText:
-                          'document_birthday'.tr,
+                      labelText: 'document_birthday'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 15,
@@ -296,8 +291,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                   padding: const EdgeInsets.only(top: 10),
                   child: DropdownButton<String>(
                     dropdownColor: Colors.white,
-                    hint: Text(
-                        'document_marital_status'.tr),
+                    hint: Text('document_marital_status'.tr),
                     value: selectedMaritalStatus.isEmpty
                         ? null
                         : selectedMaritalStatus,
@@ -335,8 +329,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                   padding: const EdgeInsets.only(top: 10),
                   child: DropdownButton<String>(
                     dropdownColor: Colors.white,
-                    hint: Text(
-                        'document_nationality'.tr),
+                    hint: Text('document_nationality'.tr),
                     value: selectedNacionality.isEmpty
                         ? null
                         : selectedNacionality,
@@ -369,7 +362,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                     controller: _rg,
                     keyboardType: const TextInputType.numberWithOptions(),
                     style: const TextStyle(color: Colors.black, fontSize: 20),
-                    validator: isNotEmpty,
+                    validator: Validators.isNotEmpty,
                     inputFormatters: [rgMaskFormatter],
                     maxLength: 12,
                     decoration: InputDecoration(
@@ -434,9 +427,9 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                     controller: _rgIssuer,
                     keyboardType: TextInputType.text,
                     style: const TextStyle(color: Colors.black, fontSize: 20),
-                    validator: (value) => combineValidators([
-                      () => isNotEmpty(value),
-                      () => validateChar(value),
+                    validator: (value) => Validators.combine([
+                      () => Validators.isNotEmpty(value),
+                      () => Validators.isDocument(value),
                     ]),
                     decoration: InputDecoration(
                       isDense: true,
@@ -453,8 +446,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                         borderSide: BorderSide(color: secondaryColor),
                       ),
                       contentPadding: EdgeInsets.zero,
-                      labelText:
-                          'document_rgEmission'.tr,
+                      labelText: 'document_rgEmission'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black54,
                         fontSize: 15,
@@ -463,12 +455,8 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                     ),
                   ),
                 ),
-                commonTextField(
-                    _rgDate,
-                    'document_rg_date'.tr,
-                    TextInputType.datetime,
-                    "",
-                    birthMaskFormatter, (text) {
+                commonTextField(_rgDate, 'document_rg_date'.tr,
+                    TextInputType.datetime, "", birthMaskFormatter, (text) {
                   final brazilianDate = birthMaskFormatter.getUnmaskedText();
                   if (brazilianDate.length == 10) {
                     final parsedDate =
@@ -498,9 +486,7 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                 DropdownButton<String>(
                   dropdownColor: Colors.white,
                   hint: Text('document_pep'.tr),
-                  value: _selectedPep.isEmpty
-                      ? 'pep_no'.tr
-                      : _selectedPep,
+                  value: _selectedPep.isEmpty ? 'pep_no'.tr : _selectedPep,
                   isExpanded: true,
                   underline: Container(
                     height: 1,
@@ -517,12 +503,10 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                   onChanged: (String? newValue) {
                     setState(() {
                       _selectedPep = newValue!;
-                      if (_selectedPep ==
-                          'pep_yes'.tr) {
+                      if (_selectedPep == 'pep_yes'.tr) {
                         _isPep = true;
                         _pepFinal = true;
-                      } else if (_selectedPep ==
-                          'pep_no'.tr) {
+                      } else if (_selectedPep == 'pep_no'.tr) {
                         _isPep = false;
                         _pepFinal = false;
                       }
@@ -531,12 +515,8 @@ class _OnboardingStepFivePageState extends State<OnboardingStepFivePage> with Va
                 ),
                 Visibility(
                   visible: _isPep,
-                  child: commonTextField(
-                      _pepDate,
-                      'document_pep_date'.tr,
-                      TextInputType.datetime,
-                      "",
-                      birthMaskFormatter, (text) {
+                  child: commonTextField(_pepDate, 'document_pep_date'.tr,
+                      TextInputType.datetime, "", birthMaskFormatter, (text) {
                     final brazilianDate = birthMaskFormatter.getUnmaskedText();
                     if (brazilianDate.length == 10) {
                       final parsedDate =

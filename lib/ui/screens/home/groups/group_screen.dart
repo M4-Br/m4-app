@@ -5,7 +5,7 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/controllers/groups/verify_agent.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_data.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -35,8 +35,8 @@ class _GroupsScreenState extends State<GroupsScreen> {
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
         title: 'groups_screen'.tr,
-        backPage: () =>
-            Get.off(() => const HomeViewPage(), transition: Transition.leftToRight),
+        backPage: () => Get.off(() => const HomeViewPage(),
+            transition: Transition.leftToRight),
       ),
       body: FutureBuilder<List<Group>>(
         future: _futureGroups,
@@ -80,8 +80,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
                   ),
                   Text(
                     'group_no_group_detail'.tr,
-                    style:
-                    const TextStyle(color: Colors.grey, fontSize: 18),
+                    style: const TextStyle(color: Colors.grey, fontSize: 18),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -100,8 +99,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
 
             return ListView(
               children: groupedByStatus.keys.map((status) {
-                if (status == 'active' ||
-                    status == 'canceled' ) {
+                if (status == 'active' || status == 'canceled') {
                   List<Group> groupsForStatus = groupedByStatus[status]!;
 
                   return Column(
@@ -184,8 +182,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
                   onPressed: () {
                     _verifyAgent(
                         title: 'facilitator'.tr,
-                        explain:
-                            'facilitator_explain'.tr,
+                        explain: 'facilitator_explain'.tr,
                         buttonName: 'site'.tr);
                   },
                   style: ElevatedButton.styleFrom(

@@ -1,8 +1,7 @@
-
 import 'package:app_flutter_miban4/data/api/login/cnpj/register_password.dart';
 import 'package:app_flutter_miban4/data/api/onboarding/step_seven.dart';
-import 'package:app_flutter_miban4/ui/screens/login/login_page.dart';
-import 'package:app_flutter_miban4/ui/screens/login/password_page.dart';
+import 'package:app_flutter_miban4/features/auth/presentation/login_page.dart';
+import 'package:app_flutter_miban4/features/auth/presentation/password_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -14,10 +13,11 @@ class CreatePasswordController extends GetxController {
     isLoading(true);
 
     try {
-      final Map<String, dynamic> response = await stepSeven(password, confirmPassword);
+      final Map<String, dynamic> response =
+          await stepSeven(password, confirmPassword);
 
-      if(response['status'] == 'approved') {
-        Get.off(() => PasswordPage(document: response['document']), transition: Transition.rightToLeft);
+      if (response['status'] == 'approved') {
+        Get.off(() => PasswordPage(), transition: Transition.rightToLeft);
       } else {
         throw Exception('Erro ao cadastrar senha: ${response['message']}');
       }
@@ -28,11 +28,13 @@ class CreatePasswordController extends GetxController {
     }
   }
 
-  Future<void> createCnpjPassword(String password, String newPassword, BuildContext context) async {
+  Future<void> createCnpjPassword(
+      String password, String newPassword, BuildContext context) async {
     isLoading(true);
 
     try {
-      final Map<String, dynamic> response = await registerPassword(password, newPassword);
+      final Map<String, dynamic> response =
+          await registerPassword(password, newPassword);
 
       if (response['id'].toString().isNotEmpty) {
         Get.snackbar('password_success'.tr, 'password_content'.tr,

@@ -380,7 +380,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Após esse horário só será possível fazer o pagamento no próximo dia útil.';
 
   @override
-  String get page18 => 'Invoice Voucher';
+  String get invoice => 'Invoice Voucher';
 
   @override
   String get invoice_success => 'Pagamento realizado com sucesso!';

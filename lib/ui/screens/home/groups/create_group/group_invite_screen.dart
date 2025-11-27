@@ -1,8 +1,8 @@
+import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/data/api/groups/getMembers.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/controllers/groups/invite_group_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -59,8 +59,7 @@ class _GroupInviteState extends State<GroupInvite> {
       backgroundColor: Colors.white,
       appBar: AppBarDefault(
         title: data['data'][0]['group_account']['name'],
-        backPage: () => Get.off(() => const Notifications(),
-            transition: Transition.leftToRight),
+        backPage: () => Get.offNamed(AppRoutes.notifications),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -87,7 +86,7 @@ class _GroupInviteState extends State<GroupInvite> {
                       ),
                       child: Center(
                         child: Text(
-                         'group_information'.tr,
+                          'group_information'.tr,
                           style: TextStyle(
                               color: _isActive ? Colors.white : Colors.white54),
                         ),
@@ -116,7 +115,7 @@ class _GroupInviteState extends State<GroupInvite> {
                       ),
                       child: Center(
                         child: Text(
-                         'group_members'.tr,
+                          'group_members'.tr,
                           style: TextStyle(
                               color:
                                   !_isActive ? Colors.white : Colors.white54),

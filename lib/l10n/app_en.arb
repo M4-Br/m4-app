@@ -134,7 +134,7 @@
   "barcode_info": "The bills can be paid on business days from 7 AM to 5 PM.",
   "barcode_info_after": "After this time, it will only be possible to make the payment on the next business day.",
 
-  "page18": "Invoice Voucher",
+  "invoice": "Invoice Voucher",
   "invoice_success": "Payment successfully completed!",
   "invoice_amount": "Amount paid:",
   "invoice_date": "On the day:",

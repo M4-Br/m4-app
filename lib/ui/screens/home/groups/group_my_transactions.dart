@@ -4,7 +4,7 @@ import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_contribution_id.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/group_data.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -56,28 +56,23 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
         title: widget.page == 0 || widget.page == 1
             ? 'group_my_contributions'.tr.toUpperCase()
             : 'credit_credit'.tr.toUpperCase(),
-        backPage: () =>
-            Get.off(
-                  () =>
-              widget.page == 0
-                  ? GroupData(
-                group: widget.group,
-                type: '0',
-                groupID: widget.id.toString(),
-              )
-                  : HomeViewPage(),
-              transition: Transition.leftToRight,
-            ),
+        backPage: () => Get.off(
+          () => widget.page == 0
+              ? GroupData(
+                  group: widget.group,
+                  type: '0',
+                  groupID: widget.id.toString(),
+                )
+              : HomeViewPage(),
+          transition: Transition.leftToRight,
+        ),
       ),
       body: FutureBuilder<List<TransactionGroup>>(
         future: _contributions,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
+              height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: const Center(
                 child: CircularProgressIndicator(
@@ -87,10 +82,7 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
             );
           } else if (snapshot.hasError) {
             return Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
+              height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: Center(
                 child: Text(
@@ -101,10 +93,7 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
             );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
+              height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: Center(
                 child: Text(
@@ -160,8 +149,7 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                         ],
                       ),
                       Text(
-                        '${'group_pending'.tr} R\$ ${currencyFormat.format(
-                            totalOpen / 100)}',
+                        '${'group_pending'.tr} R\$ ${currencyFormat.format(totalOpen / 100)}',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -239,21 +227,23 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                     color: const Color(0xFFe9eaf0),
                     child: _screenActivity == 0
                         ? _buildTransactionList(
-                        snapshot.data!.where((transaction) =>
-                        transaction.status == 'pending').toList(),
-                        'pending',
-                        totalAmount,
-                        allPaid,
-                      allInstallments
-                    )
+                            snapshot.data!
+                                .where((transaction) =>
+                                    transaction.status == 'pending')
+                                .toList(),
+                            'pending',
+                            totalAmount,
+                            allPaid,
+                            allInstallments)
                         : _buildTransactionList(
-                        snapshot.data!.where((transaction) =>
-                        transaction.status == 'success').toList(),
-                        'success',
-                        totalAmount,
-                        false,
-                      allInstallments
-                    ),
+                            snapshot.data!
+                                .where((transaction) =>
+                                    transaction.status == 'success')
+                                .toList(),
+                            'success',
+                            totalAmount,
+                            false,
+                            allInstallments),
                   ),
                 )
               ],
@@ -264,8 +254,12 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
     );
   }
 
-  Widget _buildTransactionList(List<TransactionGroup> transactions,
-      String status, double amount, bool allInstalments, int allGroupInstallments) {
+  Widget _buildTransactionList(
+      List<TransactionGroup> transactions,
+      String status,
+      double amount,
+      bool allInstalments,
+      int allGroupInstallments) {
     int firstPendingIndex = -1;
 
     for (int i = 0; i < transactions.length; i++) {
@@ -300,11 +294,8 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
     }
   }
 
-  Widget _buildTransactionCard(TransactionGroup transaction,
-      double amount,
-      int totalInstallment,
-      int index,
-      int firstPendingIndex) {
+  Widget _buildTransactionCard(TransactionGroup transaction, double amount,
+      int totalInstallment, int index, int firstPendingIndex) {
     final currencyFormat = NumberFormat.currency(locale: 'pt_BR', symbol: '');
     final dateFormat = DateFormat('dd/MM/yyyy');
 
@@ -345,16 +336,15 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
           ));
         } else {
           Get.to(
-                () =>
-                Contribution(
-                  id: transaction.id ?? '',
-                  group: widget.group,
-                  pay: transaction.status == 'success' ? 1 : 0,
-                  groupID: widget.id.toString(),
-                  page: widget.page,
-                  type: widget.type,
-                  amount: amount,
-                ),
+            () => Contribution(
+              id: transaction.id ?? '',
+              group: widget.group,
+              pay: transaction.status == 'success' ? 1 : 0,
+              groupID: widget.id.toString(),
+              page: widget.page,
+              type: widget.type,
+              amount: amount,
+            ),
           );
         }
       },
@@ -380,8 +370,8 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                     style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                   Text(
-                    dateFormat.format(
-                        DateTime.parse(transaction.dueDate ?? '')),
+                    dateFormat
+                        .format(DateTime.parse(transaction.dueDate ?? '')),
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -394,9 +384,7 @@ class _GroupMyTransactionsState extends State<GroupMyTransactions> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'R\$ ${currencyFormat.format(
-                        double.parse(transaction.amount.toString()) / 100
-                    )}',
+                    'R\$ ${currencyFormat.format(double.parse(transaction.amount.toString()) / 100)}',
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,

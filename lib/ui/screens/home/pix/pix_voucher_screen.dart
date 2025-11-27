@@ -1,6 +1,7 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class PixVoucher extends StatelessWidget {
     return '$date | $hour';
   }
 
-  final UserController _userController = Get.put(UserController());
+  final UserRx _userController = Get.put(UserRx());
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,7 @@ class PixVoucher extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Obx(() {
-          UserData? userData = _userController.userData.value;
+          User? userData = _userController.user.value;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

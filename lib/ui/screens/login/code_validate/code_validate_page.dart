@@ -1,7 +1,7 @@
 import 'package:app_flutter_miban4/data/util/helpers/validators.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/controllers/login/cnpj/validate_code_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/login/login_page.dart';
+import 'package:app_flutter_miban4/features/auth/presentation/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ class CodeValidatePage extends StatefulWidget {
   State<CodeValidatePage> createState() => _CodeValidatePageState();
 }
 
-class _CodeValidatePageState extends State<CodeValidatePage> with ValidationsMixin {
+class _CodeValidatePageState extends State<CodeValidatePage> {
   late List<TextEditingController> _codeControllers;
   late List<FocusNode> _focusNodes;
   String code = '';
@@ -61,8 +61,7 @@ class _CodeValidatePageState extends State<CodeValidatePage> with ValidationsMix
         title: SafeArea(
           child: Text(
             widget.page == 1
-                ? 'password_register_cnpj'
-                    .toUpperCase().tr
+                ? 'password_register_cnpj'.toUpperCase().tr
                 : 'email_confirm'.toUpperCase().tr,
             style: const TextStyle(color: Colors.white, fontSize: 20),
           ),
@@ -72,7 +71,8 @@ class _CodeValidatePageState extends State<CodeValidatePage> with ValidationsMix
         leading: SafeArea(
           child: IconButton(
             onPressed: () {
-              Get.off(() => const LoginPage(), transition: Transition.rightToLeft);
+              Get.off(() => const LoginPage(),
+                  transition: Transition.rightToLeft);
             },
             icon: const Icon(
               Icons.arrow_back_ios_new_outlined,
@@ -128,7 +128,7 @@ class _CodeValidatePageState extends State<CodeValidatePage> with ValidationsMix
                         cursorColor: secondaryColor,
                         controller: _codeControllers[i],
                         keyboardType: TextInputType.number,
-                        validator: isNotEmpty,
+                        validator: Validators.isNotEmpty,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 20),
                         decoration: const InputDecoration(

@@ -1,9 +1,10 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/data/api/transfer/transferAuth.dart';
 import 'package:app_flutter_miban4/data/model/userData/user.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_bank_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +20,13 @@ class TransferNewContactPage extends StatefulWidget {
 
 class _TransferNewContactPageState extends State<TransferNewContactPage> {
   final TextEditingController _controller = TextEditingController();
-  final UserController _userController = Get.put(UserController());
+  final UserRx _userController = Get.put(UserRx());
 
   bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    UserData? userData = _userController.userData.value;
+    User? userData = _userController.user.value;
 
     return Scaffold(
       appBar: AppBarDefault(
@@ -160,8 +161,7 @@ class _TransferNewContactPageState extends State<TransferNewContactPage> {
                     setState(() {
                       _isLoading = false;
                     });
-                    Get.snackbar('message'.tr,
-                        'Documento Inválido',
+                    Get.snackbar('message'.tr, 'Documento Inválido',
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: Colors.white);
                   }

@@ -381,7 +381,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'After this time, it will only be possible to make the payment on the next business day.';
 
   @override
-  String get page18 => 'Invoice Voucher';
+  String get invoice => 'Invoice Voucher';
 
   @override
   String get invoice_success => 'Payment successfully completed!';

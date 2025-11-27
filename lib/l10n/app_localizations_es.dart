@@ -386,7 +386,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Después de esta hora, solo será posible realizar el pago el próximo día hábil.';
 
   @override
-  String get page18 => 'Comprobante de Factura';
+  String get invoice => 'Comprobante de Factura';
 
   @override
   String get invoice_success => '¡Pago completado con éxito!';

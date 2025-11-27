@@ -1,10 +1,10 @@
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/data/api/groups/groupInvite.dart';
 import 'package:app_flutter_miban4/data/api/transfer/transferAuth.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/controllers/login/user_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/create_group/create_group_fees.dart';
 import 'package:app_flutter_miban4/ui/screens/home/groups/create_group/group_preview.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class AddGroupMembers extends StatefulWidget {
 class _AddGroupMembersState extends State<AddGroupMembers> {
   final TextEditingController _controller = TextEditingController();
   late String memberinvite;
-  final UserController _userController = Get.put(UserController());
+  final UserRx _userController = Get.put(UserRx());
 
   var getMember = false.obs;
   var isLoading = false.obs;
@@ -52,8 +52,8 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
     if (widget.membership == 'Sim' || widget.membership == 'Yes') {
       memberCounter++;
       users.add({
-        'name': _userController.userData!.value!.payload.fullName,
-        'document': _userController.userData.value!.payload.document,
+        'name': _userController.user.value!.payload.fullName,
+        'document': _userController.user.value!.payload.document,
         'id': widget.userID
       });
     }
@@ -83,7 +83,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-             'group_search_details'.tr,
+              'group_search_details'.tr,
               style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -138,8 +138,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
                           return ListTile(
                             title: Text.rich(TextSpan(children: [
                               TextSpan(
-                                  text:
-                                      "${'name'.tr}: ",
+                                  text: "${'name'.tr}: ",
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold)),
@@ -149,8 +148,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
                             ])),
                             subtitle: Text.rich(TextSpan(children: [
                               TextSpan(
-                                  text:
-                                      "${'document'.tr}: ",
+                                  text: "${'document'.tr}: ",
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold)),
@@ -185,8 +183,7 @@ class _AddGroupMembersState extends State<AddGroupMembers> {
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 ),
-                Text(
-                    '$memberCounter ${'off'.tr} ${widget.members}'),
+                Text('$memberCounter ${'off'.tr} ${widget.members}'),
               ],
             ),
             Expanded(

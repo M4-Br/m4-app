@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/data/model/qrCode/decodeQRCode.dart';
 import 'package:app_flutter_miban4/data/model/userData/balance.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixAddValue.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixTransactionSuccess.dart';
 import 'package:flutter/material.dart';

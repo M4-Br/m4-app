@@ -20,7 +20,6 @@ import 'package:path_provider_foundation/path_provider_foundation.dart' as path_
 import 'package:shared_preferences_foundation/shared_preferences_foundation.dart' as shared_preferences_foundation;
 import 'package:url_launcher_ios/url_launcher_ios.dart' as url_launcher_ios;
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart' as webview_flutter_wkwebview;
-import 'package:app_links_linux/app_links_linux.dart' as app_links_linux;
 import 'package:file_selector_linux/file_selector_linux.dart' as file_selector_linux;
 import 'package:image_picker_linux/image_picker_linux.dart' as image_picker_linux;
 import 'package:package_info_plus/package_info_plus.dart' as package_info_plus;
@@ -179,15 +178,6 @@ class _PluginRegistrant {
       }
 
     } else if (Platform.isLinux) {
-      try {
-        app_links_linux.AppLinksPluginLinux.registerWith();
-      } catch (err) {
-        print(
-          '`app_links_linux` threw an error: $err. '
-          'The app may not function as expected until you remove this plugin from pubspec.yaml'
-        );
-      }
-
       try {
         file_selector_linux.FileSelectorLinux.registerWith();
       } catch (err) {

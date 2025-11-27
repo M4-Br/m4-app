@@ -14,7 +14,7 @@ class OnboardingStepTwoPage extends StatefulWidget {
   State<OnboardingStepTwoPage> createState() => _OnboardingStepTwoPageState();
 }
 
-class _OnboardingStepTwoPageState extends State<OnboardingStepTwoPage> with ValidationsMixin {
+class _OnboardingStepTwoPageState extends State<OnboardingStepTwoPage> {
   final _formKey = GlobalKey<FormState>();
   final _phone = TextEditingController();
   String id = '';
@@ -44,7 +44,8 @@ class _OnboardingStepTwoPageState extends State<OnboardingStepTwoPage> with Vali
         leading: SafeArea(
           child: IconButton(
             onPressed: () {
-              Get.to(() => const OnboardingStepOnePage(), transition: Transition.leftToRight);
+              Get.to(() => const OnboardingStepOnePage(),
+                  transition: Transition.leftToRight);
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined),
             color: Colors.black,
@@ -81,7 +82,7 @@ class _OnboardingStepTwoPageState extends State<OnboardingStepTwoPage> with Vali
                   controller: _phone,
                   keyboardType: const TextInputType.numberWithOptions(),
                   style: const TextStyle(color: Colors.black, fontSize: 20),
-                  validator: isNotEmpty,
+                  validator: Validators.isNotEmpty,
                   maxLength: 15,
                   inputFormatters: [phoneMaskFormatter],
                   decoration: InputDecoration(

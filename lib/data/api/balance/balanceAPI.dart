@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/model/userData/balance.dart';
-import 'package:app_flutter_miban4/data/util/helpers/shared_preferences.dart';
-import 'package:http/http.dart'as http;
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 
 Future<Balance> getBalance() async {
+  final box = GetStorage();
 
-  String token = await SharedPreferencesFunctions.getString(key: 'token');
+  String token = box.read('token');
 
   final headers = {
     'Authorization': 'Bearer $token',
@@ -25,7 +26,8 @@ Future<Balance> getBalance() async {
 
       return balance;
     } else {
-      throw Exception('Falha ao carregar dados da API, ${response.statusCode}, ${response.body}');
+      throw Exception(
+          'Falha ao carregar dados da API, ${response.statusCode}, ${response.body}');
     }
   } catch (e) {
     throw Exception(e.toString());

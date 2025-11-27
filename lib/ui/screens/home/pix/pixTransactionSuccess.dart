@@ -1,6 +1,6 @@
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/home/home_view_page.dart';
+import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixCopyPaste.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

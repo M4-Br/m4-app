@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ExpansionItemMyAccount extends StatefulWidget {
-  ExpansionItemMyAccount({
-    Key? key,
-    required this.text,
-    required this.account,
-    required this.icon,
-    required this.bank,
-    required this.agency
-  }) : super(key: key);
+  ExpansionItemMyAccount(
+      {Key? key,
+      required this.text,
+      required this.account,
+      required this.icon,
+      required this.bank,
+      required this.agency})
+      : super(key: key);
 
   final String text;
   final String account;
@@ -18,8 +18,7 @@ class ExpansionItemMyAccount extends StatefulWidget {
   final String agency;
 
   @override
-  State<ExpansionItemMyAccount> createState() =>
-      _ExpansionItemMyAccountState();
+  State<ExpansionItemMyAccount> createState() => _ExpansionItemMyAccountState();
 }
 
 class _ExpansionItemMyAccountState extends State<ExpansionItemMyAccount> {
@@ -70,7 +69,8 @@ class _ExpansionItemMyAccountState extends State<ExpansionItemMyAccount> {
                             style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold)),
                       ),
-                      Text(widget.account, style: const TextStyle(fontSize: 16)),
+                      Text(widget.account,
+                          style: const TextStyle(fontSize: 16)),
                     ],
                   ),
                 ),

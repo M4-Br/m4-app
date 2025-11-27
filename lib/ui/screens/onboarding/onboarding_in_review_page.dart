@@ -1,5 +1,5 @@
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/ui/screens/login/login_page.dart';
+import 'package:app_flutter_miban4/features/auth/presentation/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -23,10 +23,14 @@ class _OnboardingInReviewPageState extends State<OnboardingInReviewPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SvgPicture.asset('assets/images/miban4_colored_logo.svg', width: 180,),
+              SvgPicture.asset(
+                'assets/images/miban4_colored_logo.svg',
+                width: 180,
+              ),
               Text(
                 'analysis_progress'.tr,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Text(
                 'request_sent'.tr,
@@ -52,7 +56,8 @@ class _OnboardingInReviewPageState extends State<OnboardingInReviewPage> {
               ),
               TextButton(
                 onPressed: () {
-                  Get.offAll(() => const LoginPage(), transition: Transition.leftToRight);
+                  Get.offAll(() => const LoginPage(),
+                      transition: Transition.leftToRight);
                 },
                 child: Text(
                   'back_login'.tr,

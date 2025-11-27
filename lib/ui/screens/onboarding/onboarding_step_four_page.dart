@@ -15,7 +15,7 @@ class OnboardingStepFourPage extends StatefulWidget {
   State<OnboardingStepFourPage> createState() => _OnboardingStepFourPageState();
 }
 
-class _OnboardingStepFourPageState extends State<OnboardingStepFourPage> with ValidationsMixin {
+class _OnboardingStepFourPageState extends State<OnboardingStepFourPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _income = TextEditingController();
   final TextEditingController _profession = TextEditingController();
@@ -125,7 +125,7 @@ class _OnboardingStepFourPageState extends State<OnboardingStepFourPage> with Va
                     }),
                   ],
                   style: const TextStyle(color: Colors.black, fontSize: 20),
-                  validator: isNotEmpty,
+                  validator: Validators.isNotEmpty,
                   decoration: InputDecoration(
                     isDense: true,
                     border: InputBorder.none,
@@ -183,7 +183,7 @@ class _OnboardingStepFourPageState extends State<OnboardingStepFourPage> with Va
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-            title: Text('choose_profession'.tr),
+          title: Text('choose_profession'.tr),
           content: Container(
             color: Colors.white,
             width: double.maxFinite,

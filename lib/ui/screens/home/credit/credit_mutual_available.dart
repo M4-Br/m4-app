@@ -1,10 +1,10 @@
+import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/data/api/credit/available_mutual.dart';
 import 'package:app_flutter_miban4/data/util/helpers/currencyFormatter.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_mutual_detail.dart';
 import 'package:app_flutter_miban4/ui/screens/home/credit/credit_screen.dart';
-import 'package:app_flutter_miban4/ui/screens/home/notifications/notifications_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -45,8 +45,7 @@ class _CreditMutualAvailableState extends State<CreditMutualAvailable> {
         backPage: () => widget.page == 0
             ? Get.off(() => const CreditScreen(),
                 transition: Transition.leftToRight)
-            : Get.off(() => const Notifications(),
-                transition: Transition.leftToRight),
+            : Get.offNamed(AppRoutes.notifications),
       ),
       body: FutureBuilder<Map<String, dynamic>>(
           future: _mutual,
@@ -79,7 +78,8 @@ class _CreditMutualAvailableState extends State<CreditMutualAvailable> {
             final currencyFormat =
                 NumberFormat.currency(locale: 'pt_BR', symbol: '');
 
-            _installmentController.text = mutualResponse!['installment'].toString();
+            _installmentController.text =
+                mutualResponse!['installment'].toString();
 
             return Container(
               color: primaryColor,
@@ -279,7 +279,7 @@ class _CreditMutualAvailableState extends State<CreditMutualAvailable> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50))),
             child: Text(
-             'proceed'.tr,
+              'proceed'.tr,
               style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
