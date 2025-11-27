@@ -5,6 +5,7 @@
 .packages
 .pub-cache/
 build/
+.dart_tool/
 
 # Flutter generated files
 flutter_export_environment.sh
