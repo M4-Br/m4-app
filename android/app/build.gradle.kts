@@ -37,29 +37,45 @@ android {
     }
 
     signingConfigs {
-    create("release") {
-        val keyAliasValue = System.getenv("CM_KEY_ALIAS")
-        val keyPasswordValue = System.getenv("CM_KEY_PASSWORD")
-        val storePasswordValue = System.getenv("CM_KEYSTORE_PASSWORD")
-        val storeFilePath = System.getenv("CM_KEYSTORE_PATH")
+        create("release") {
+            // --- PASSO 1: Tenta pegar do seu local.properties (VS Code) ---
+            // Nota: O 'as String?' serve para evitar erros de tipo se a chave não existir
+            var storePath = localProps["storeFile"] as String?
+            var storePass = localProps["storePassword"] as String?
+            var keyAlias = localProps["keyAlias"] as String?
+            var keyPass = localProps["keyPassword"] as String?
 
-        if (keyAliasValue == null || keyPasswordValue == null || storePasswordValue == null || storeFilePath == null) {
-            throw GradleException("Codemagic keystore variables are missing!")
+            // --- PASSO 2: Se não achou (null), tenta pegar do Codemagic ---
+            if (storePath == null) storePath = System.getenv("CM_KEYSTORE_PATH")
+            if (storePass == null) storePass = System.getenv("CM_KEYSTORE_PASSWORD")
+            if (keyAlias == null) keyAlias = System.getenv("CM_KEY_ALIAS")
+            if (keyPass == null) keyPass = System.getenv("CM_KEY_PASSWORD")
+
+            // --- PASSO 3: Validação Final ---
+            if (storePath != null && storePass != null && keyAlias != null && keyPass != null) {
+                storeFile = file(storePath)
+                storePassword = storePass
+                keyAlias = keyAlias
+                keyPassword = keyPass
+                
+                enableV1Signing = false
+                enableV2Signing = true
+                println("✅ Assinatura de Release configurada com sucesso!")
+            } else {
+                // Se estiver no emulador (Debug), isso vai aparecer e é normal.
+                println("⚠️ Chaves de release não encontradas. Build local rodará sem assinatura de release.")
+            }
         }
-
-        keyAlias = keyAliasValue
-        keyPassword = keyPasswordValue
-        storePassword = storePasswordValue
-        storeFile = file(storeFilePath)
-
-        enableV1Signing = false
-        enableV2Signing = true
     }
-}
 
     buildTypes {
         getByName("release") {
-            signingConfig = signingConfigs.getByName("release")
+            // Só aplica a assinatura se ela foi configurada com sucesso acima
+            val releaseConfig = signingConfigs.getByName("release")
+            if (releaseConfig.storeFile != null) {
+                signingConfig = releaseConfig
+            }
+            
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
