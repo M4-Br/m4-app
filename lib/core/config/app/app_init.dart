@@ -3,7 +3,6 @@ import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/helpers/env_helper.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -23,18 +22,14 @@ class AppSetup {
     Get.put(BalanceRx(), permanent: true);
     AppLogger.I().debug('Balance RX Initialized');
 
-    if (kDebugMode) {
-      AppLogger.I().debug('Running in Debug Mode - Sentry Disabled');
-      runApp(const MiBan4());
-    } else {
-      await SentryFlutter.init(
-        (options) => options
-          ..dsn = Env.sentryDns
-          ..tracesSampleRate = 1.0
-          ..enableAutoSessionTracking = false,
-        appRunner: () => runApp(const MiBan4()),
-      );
-      AppLogger.I().debug('Sentry initialized (Release Mode)');
-    }
+    await SentryFlutter.init(
+      (options) => options
+        ..dsn = Env.sentryDns
+        ..tracesSampleRate = 1.0
+        ..enableAutoSessionTracking = false,
+      appRunner: () => runApp(const MiBan4()),
+    );
+
+    AppLogger.I().debug('Sentry initialized');
   }
 }

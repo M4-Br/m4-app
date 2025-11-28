@@ -1,24 +1,11 @@
 import 'package:app_flutter_miban4/data/api/password/change_password.dart';
+import 'package:app_flutter_miban4/features/profile/controller/change_password_controller.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ChangePasswordPage extends StatefulWidget {
+class ChangePasswordPage extends GetView<ChangePasswordController> {
   const ChangePasswordPage({super.key});
-
-  @override
-  State<ChangePasswordPage> createState() => _ChangePasswordPageState();
-}
-
-class _ChangePasswordPageState extends State<ChangePasswordPage> {
-  final _passwordController = TextEditingController();
-  final _newPasswordController = TextEditingController();
-  final _confirmNewPasswordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  var _passwordObscure = true.obs;
-  var _newPasswordObscure = true.obs;
-  var _confirmpasswordObscure = true.obs;
-  var _isLoading = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -38,36 +25,32 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
-          key: _formKey,
+          key: controller.formKey,
           child: Column(
             children: [
               TextFormField(
-                controller: _passwordController,
+                controller: controller.passwordController,
                 keyboardType: const TextInputType.numberWithOptions(),
-                obscureText: _passwordObscure.value,
+                obscureText: controller.passwordObscure.value,
                 maxLength: 6,
                 cursorColor: secondaryColor,
                 validator: (value) {
                   if (value!.length < 6) {
                     return 'change_password_validate'.tr;
                   }
+                  return null;
                 },
                 decoration: InputDecoration(
-                  label: Text(
-                      'change_password_password'.tr),
+                  label: Text('change_password_password'.tr),
                   labelStyle:
                       const TextStyle(color: Colors.black, fontSize: 15),
                   floatingLabelStyle:
                       const TextStyle(color: secondaryColor, fontSize: 15),
                   counterText: '',
                   suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _passwordObscure.value = !_passwordObscure.value;
-                      });
-                    },
+                    onPressed: () => controller.toggleObscure(),
                     icon: Icon(
-                      _passwordObscure.value
+                      controller.passwordObscure.value
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined,
                       color: Colors.black,
@@ -78,33 +61,28 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 36),
                 child: TextFormField(
-                  controller: _newPasswordController,
+                  controller: controller.newPasswordController,
                   keyboardType: const TextInputType.numberWithOptions(),
-                  obscureText: _newPasswordObscure.value,
+                  obscureText: controller.passwordObscure.value,
                   maxLength: 6,
                   cursorColor: secondaryColor,
                   validator: (value) {
                     if (value!.length < 6) {
                       return 'change_password_validate'.tr;
                     }
+                    return null;
                   },
                   decoration: InputDecoration(
-                    label:
-                        Text('change_password_new'.tr),
+                    label: Text('change_password_new'.tr),
                     labelStyle:
                         const TextStyle(color: Colors.black, fontSize: 15),
                     floatingLabelStyle:
                         const TextStyle(color: secondaryColor, fontSize: 15),
                     counterText: '',
                     suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _newPasswordObscure.value =
-                              !_newPasswordObscure.value;
-                        });
-                      },
+                      onPressed: () => controller.toggleObscure(),
                       icon: Icon(
-                        _newPasswordObscure.value
+                        controller.passwordObscure.value
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined,
                         color: Colors.black,
@@ -114,17 +92,18 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 ),
               ),
               TextFormField(
-                controller: _confirmNewPasswordController,
+                controller: controller.confirmNewPasswordController,
                 keyboardType: const TextInputType.numberWithOptions(),
-                obscureText: _confirmpasswordObscure.value,
+                obscureText: controller.passwordObscure.value,
                 maxLength: 6,
                 cursorColor: secondaryColor,
                 validator: (value) {
                   if (value!.length < 6) {
                     return 'change_password_validate'.tr;
-                  } else if (value != _newPasswordController.text) {
+                  } else if (value != controller.newPasswordController.text) {
                     return 'change_password_not_equal'.tr;
                   }
+                  return null;
                 },
                 decoration: InputDecoration(
                   label: Text('change_password_new_confirm'.tr),
@@ -134,14 +113,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       const TextStyle(color: secondaryColor, fontSize: 15),
                   counterText: '',
                   suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _confirmpasswordObscure.value =
-                            !_confirmpasswordObscure.value;
-                      });
-                    },
+                    onPressed: () => controller.toggleObscure(),
                     icon: Icon(
-                      _confirmpasswordObscure.value
+                      controller.passwordObscure.value
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined,
                       color: Colors.black,
@@ -153,7 +127,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           ),
         ),
       ),
-      bottomNavigationBar: _isLoading.value == false
+      bottomNavigationBar: controller.isLoading.value == false
           ? Padding(
               padding: const EdgeInsets.all(16),
               child: SizedBox(
@@ -161,7 +135,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 height: 45,
                 child: ElevatedButton(
                   onPressed: () => _changePassword(
-                      _passwordController.text, _newPasswordController.text),
+                      controller.passwordController.text,
+                      controller.newPasswordController.text),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: secondaryColor,
                     shape: RoundedRectangleBorder(
@@ -190,13 +165,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   }
 
   _changePassword(String password, String confirm) async {
-    if (_formKey.currentState!.validate()) {
+    if (controller.formKey.currentState!.validate()) {
       try {
-        _isLoading(true);
+        controller.isLoading(true);
         await changePassword(password, confirm).then((value) {
           if (value['success'] == true) {
-            Get.snackbar('message'.tr,
-                'change_password_changed'.tr);
+            Get.snackbar('message'.tr, 'change_password_changed'.tr);
 
             Get.back();
           }
@@ -204,7 +178,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       } catch (e) {
         throw Exception(e.toString());
       } finally {
-        _isLoading(false);
+        controller.isLoading(false);
       }
     } else {
       return;
