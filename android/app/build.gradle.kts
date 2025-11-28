@@ -38,10 +38,19 @@ android {
 
     signingConfigs {
     create("release") {
-        keyAlias = localProps["KEY_ALIAS"] as String
-        keyPassword = localProps["KEY_PASSWORD"] as String
-        storeFile = file(localProps["STORE_FILE"] as String)
-        storePassword = localProps["STORE_PASSWORD"] as String
+        val keyAliasValue = System.getenv("CM_KEY_ALIAS")
+        val keyPasswordValue = System.getenv("CM_KEY_PASSWORD")
+        val storePasswordValue = System.getenv("CM_KEYSTORE_PASSWORD")
+        val storeFilePath = System.getenv("CM_KEYSTORE_PATH")
+
+        if (keyAliasValue == null || keyPasswordValue == null || storePasswordValue == null || storeFilePath == null) {
+            throw GradleException("Codemagic keystore variables are missing!")
+        }
+
+        keyAlias = keyAliasValue
+        keyPassword = keyPasswordValue
+        storePassword = storePasswordValue
+        storeFile = file(storeFilePath)
 
         enableV1Signing = false
         enableV2Signing = true
