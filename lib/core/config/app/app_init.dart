@@ -1,6 +1,7 @@
 import 'package:app_flutter_miban4/core/config/app/app.dart';
 import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:app_flutter_miban4/core/helpers/env_helper.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -23,7 +24,7 @@ class AppSetup {
 
     await SentryFlutter.init(
       (options) => options
-        ..dsn = dotenv.env['SENTRY_DNS']
+        ..dsn = Env.sentryDns
         ..tracesSampleRate = 1.0
         ..enableAutoSessionTracking = false,
       appRunner: () => runApp(const MiBan4()),
