@@ -1,14 +1,13 @@
 import 'package:flutter/foundation.dart';
-import 'package:sentry_flutter/sentry_flutter.dart'; // 1. Importe o pacote do Sentry
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 class AppLogger {
   factory AppLogger.I() => _instance;
-
   AppLogger._internal();
+  static final _instance = AppLogger._internal();
 
   final Talker talker = TalkerFlutter.init();
-  static final _instance = AppLogger._internal();
 
   void error(
     String method,
@@ -20,7 +19,7 @@ class AppLogger {
       _instance.talker.handle(
         error,
         stackTrace,
-        'Error $method $parameters. $error',
+        'Error $method | Params: $parameters',
       );
     }
 
@@ -31,7 +30,6 @@ class AppLogger {
         hint: Hint.withMap({
           'method': method,
           'parameters': parameters,
-          'timestamp': DateTime.now().toIso8601String(),
         }),
       );
     }
@@ -42,10 +40,15 @@ class AppLogger {
       _instance.talker.info(message);
     }
 
-    Sentry.addBreadcrumb(
-      Breadcrumb(
-          message: message, level: SentryLevel.info, category: 'log.info'),
-    );
+    if (!kDebugMode) {
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: message,
+          level: SentryLevel.info,
+          category: 'log.info',
+        ),
+      );
+    }
   }
 
   void debug(String message) {
