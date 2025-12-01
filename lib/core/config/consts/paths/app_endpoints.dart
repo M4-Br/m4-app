@@ -1,7 +1,7 @@
-import 'package:app_flutter_miban4/core/config/consts/app_url.dart';
+import 'package:app_flutter_miban4/core/helpers/url_helper.dart';
 
 class AppEndpoints {
-  static const String baseUrl = UrlConst.urlBase;
+  static String baseUrl = UrlHelper.url;
 
   //login
   static const String verifyAccount = '/v2/individual/';
@@ -35,4 +35,7 @@ class AppEndpoints {
   //statements
   static const String statement = '/v2/statements';
   static const String statementInvoice = '/statement/ted/';
+
+  //payment link
+  static const String paymentLink = '/transactions/link/create';
 }

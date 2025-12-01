@@ -10,12 +10,12 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class OnboardingRegisterPhoneController extends GetxController {
-  var isLoading = false.obs;
-  final RxInt id = 0.obs;
-
+  final key = GlobalKey<FormState>();
   final phoneController = TextEditingController();
 
-  final key = GlobalKey<FormState>();
+  final isLoading = false.obs;
+  final enable = false.obs;
+  final RxInt id = 0.obs;
 
   @override
   void onInit() {
@@ -24,21 +24,42 @@ class OnboardingRegisterPhoneController extends GetxController {
     if (arguments != null) {
       id.value = arguments['id'] ?? 0;
     }
+    phoneController.addListener(_checkValidation);
+  }
+
+  @override
+  void onClose() {
+    phoneController.dispose();
+    super.onClose();
+  }
+
+  void _checkValidation() {
+    final cleanPhone = phoneController.text.replaceAll(RegExp(r'[^0-9]'), '');
+    enable.value = cleanPhone.length >= 11;
   }
 
   Future<OnboardingBasicRegisterResponse?> registerPhone() async {
+    if (!enable.value) return null;
+
     if (key.currentState?.validate() != true) {
       return null;
     }
-    isLoading(true);
+
+    isLoading.value = true;
 
     final cleanedPhone = phoneController.text.replaceAll(RegExp(r'[^0-9]'), '');
+
+    if (cleanedPhone.length < 11) {
+      isLoading.value = false;
+      return null;
+    }
 
     final phonePrefix = cleanedPhone.substring(0, 2);
     final phone = cleanedPhone.substring(2);
 
     final request = OnboardingRegisterPhone(
         id: id.value, prefix: phonePrefix, phone: phone);
+
     try {
       final response =
           await OnboardingRegisterPhoneRepository().registerPhone(request);
@@ -65,7 +86,7 @@ class OnboardingRegisterPhoneController extends GetxController {
       }
       return null;
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 }

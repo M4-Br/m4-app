@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OnboardingPasswordRegisterController extends GetxController {
-  var isLoading = false.obs;
-  final RxInt id = 0.obs;
-
-  final RxBool showPassword = false.obs;
-
+  final key = GlobalKey<FormState>();
   final pswController = TextEditingController();
   final confirmPwsController = TextEditingController();
 
-  final key = GlobalKey<FormState>();
+  final isLoading = false.obs;
+  final enable = false.obs;
+  final RxBool showPassword = false.obs;
+
+  final RxInt id = 0.obs;
 
   @override
   void onInit() {
@@ -25,21 +25,43 @@ class OnboardingPasswordRegisterController extends GetxController {
     if (arguments != null) {
       id.value = arguments['id'] ?? 0;
     }
+
+    pswController.addListener(_checkValidation);
+    confirmPwsController.addListener(_checkValidation);
+  }
+
+  @override
+  void onClose() {
+    pswController.dispose();
+    confirmPwsController.dispose();
+    super.onClose();
   }
 
   void toggleShowPassword() {
     showPassword.value = !showPassword.value;
   }
 
+  void _checkValidation() {
+    final p1 = pswController.text;
+    final p2 = confirmPwsController.text;
+
+    final isValid = p1.length == 6 && p2.length == 6 && p1 == p2;
+
+    enable.value = isValid;
+  }
+
   Future<OnboardingRegisterPasswordResponse?> register() async {
+    if (!enable.value) return null;
+
     if (key.currentState?.validate() != true) {
       return null;
     }
-    isLoading(true);
 
-    final int password = int.parse(confirmPwsController.text);
+    isLoading.value = true;
 
     try {
+      final int password = int.parse(confirmPwsController.text);
+
       final value = await OnboardingRegisterPasswordRepository()
           .registerPassword(id.value, password);
 
@@ -58,7 +80,7 @@ class OnboardingPasswordRegisterController extends GetxController {
       }
       return null;
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 }

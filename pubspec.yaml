@@ -63,7 +63,6 @@ dependencies:
   url_launcher: ^6.3.0
   camera_android_camerax: ^0.6.8+2
   simple_html_css: ^5.0.0
-  local_auth: ^2.3.0
   flutter_native_splash: ^2.4.1
   screenshot: ^3.0.0
 
@@ -74,6 +73,7 @@ dependencies:
   mobile_scanner: ^7.0.1
   talker_flutter: any
   flutter_secure_storage: ^9.0.0
+  local_auth: ^2.1.6
   sentry_flutter: ^9.4.1
   flutter_dotenv: ^5.1.0
 

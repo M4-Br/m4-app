@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'package:app_flutter_miban4/core/config/consts/paths/app_endpoints.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:app_flutter_miban4/core/config/consts/app_header.dart';
-import 'package:app_flutter_miban4/core/config/consts/app_url.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 
 class ApiConnection {
@@ -16,7 +16,7 @@ class ApiConnection {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? extraHeaders,
   }) async {
-    final uri = Uri.parse('${UrlConst.urlBase}$endpoint').replace(
+    final uri = Uri.parse('${AppEndpoints.baseUrl}$endpoint').replace(
       queryParameters: queryParameters,
     );
 
@@ -42,7 +42,7 @@ class ApiConnection {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? extraHeaders,
   }) async {
-    final uri = Uri.parse('${UrlConst.urlBase}$endpoint').replace(
+    final uri = Uri.parse('${AppEndpoints.baseUrl}$endpoint').replace(
       queryParameters: queryParameters,
     );
 
@@ -75,7 +75,7 @@ class ApiConnection {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? extraHeaders,
   }) async {
-    final uri = Uri.parse('${UrlConst.urlBase}$endpoint').replace(
+    final uri = Uri.parse('${AppEndpoints.baseUrl}$endpoint').replace(
       queryParameters: queryParameters,
     );
 

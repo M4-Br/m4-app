@@ -91,6 +91,31 @@ class LoginPage extends GetView<VerifyAccountController> {
                         ),
                       ),
                     ),
+                    Obx(() {
+                      if (controller.canCheckBiometrics.value) {
+                        return Padding(
+                          padding:
+                              const EdgeInsets.only(top: 20.0), // Espaçamento
+                          child: InkWell(
+                            onTap: () => controller.loginWithBiometrics(),
+                            child: const Column(
+                              children: [
+                                Icon(Icons.fingerprint,
+                                    size: 50, color: Colors.white),
+                                SizedBox(height: 5),
+                                Text(
+                                  'Entrar com digital',
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+                      return const SizedBox
+                          .shrink(); // Não mostra nada se não tiver biometria
+                    }),
                     Align(
                       alignment: Alignment.center,
                       child: AppButton(

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
-import 'package:app_flutter_miban4/features/onboarding/model/onboarding_basic_register_response.dart';
 import 'package:app_flutter_miban4/features/onboarding/model/onboarding_register_phone_request.dart';
 import 'package:app_flutter_miban4/features/onboarding/model/onboarding_verify_phone_request.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_confirm_phone_repository.dart';
@@ -14,17 +13,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OnboardingConfirmPhoneController extends GetxController {
-  var isLoading = false.obs;
+  final key = GlobalKey<FormState>();
+  final tokenController = TextEditingController();
+
+  final isLoading = false.obs;
+  final enable = false.obs;
+
   final RxInt id = 0.obs;
   final RxString prefix = ''.obs;
   final RxString phone = ''.obs;
 
   final RxInt countdown = 30.obs;
   final RxBool canResend = false.obs;
-
-  final key = GlobalKey<FormState>();
-
-  final tokenController = TextEditingController();
 
   Timer? _timer;
 
@@ -38,13 +38,19 @@ class OnboardingConfirmPhoneController extends GetxController {
       phone.value = arguments['phone'] ?? '';
     }
 
+    tokenController.addListener(_checkValidation);
     startCountdown();
   }
 
   @override
   void onClose() {
+    tokenController.dispose();
     _timer?.cancel();
     super.onClose();
+  }
+
+  void _checkValidation() {
+    enable.value = tokenController.text.length == 6;
   }
 
   void startCountdown() {
@@ -74,10 +80,15 @@ class OnboardingConfirmPhoneController extends GetxController {
     startCountdown();
   }
 
-  Future<OnboardingBasicRegisterResponse?> confirmPhone() async {
+  Future<void> confirmPhone() async {
+    if (!enable.value) return;
+
     if (key.currentState?.validate() != true) {
-      return null;
+      return;
     }
+
+    isLoading.value = true;
+
     final request = OnboardingVerifyPhoneRequest(
         id: id.value,
         prefix: prefix.value,
@@ -91,10 +102,7 @@ class OnboardingConfirmPhoneController extends GetxController {
       if (response.id != 0) {
         Get.toNamed(AppRoutes.onboardingRegisterPassword,
             arguments: {'id': id.value});
-        return response;
       }
-
-      return response;
     } catch (e, s) {
       AppLogger.I().error('Confirm phone token', e, s);
       if (e is ApiException) {
@@ -109,9 +117,8 @@ class OnboardingConfirmPhoneController extends GetxController {
           );
         }
       }
-      return null;
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 }

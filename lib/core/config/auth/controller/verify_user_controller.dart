@@ -1,15 +1,21 @@
 import 'package:app_flutter_miban4/core/config/auth/controller/auth_redirect_controller.dart';
+import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
+import 'package:app_flutter_miban4/core/config/auth/model/auth_login_request.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/verify_user_response.dart';
 import 'package:app_flutter_miban4/core/config/auth/repositories/auth_repository.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:app_flutter_miban4/core/config/log/scope_config.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:local_auth/local_auth.dart';
 
 class VerifyAccountController extends GetxController {
   VerifyAccountController();
@@ -21,6 +27,14 @@ class VerifyAccountController extends GetxController {
   final box = GetStorage();
   final formKey = GlobalKey<FormState>();
 
+  // --- BIOMETRIA ---
+  final _secureStorage = const FlutterSecureStorage();
+  final _localAuth = LocalAuthentication();
+  final canCheckBiometrics = false.obs;
+  // Precisamos do UserRx para setar o usuário logado caso a biometria funcione
+  final UserRx userRx = Get.find<UserRx>();
+  // -----------------
+
   @override
   void onInit() {
     super.onInit();
@@ -29,6 +43,99 @@ class VerifyAccountController extends GetxController {
       documentText.value = arguments['document'] ?? '';
     }
     lastLogin();
+    _checkBiometricAvailability();
+  }
+
+  Future<void> _checkBiometricAvailability() async {
+    try {
+      final bool canAuthenticateWithBiometrics =
+          await _localAuth.canCheckBiometrics;
+      final bool canAuthenticate =
+          canAuthenticateWithBiometrics || await _localAuth.isDeviceSupported();
+
+      final storedPass = await _secureStorage.read(key: 'user_password');
+      final storedDoc = await _secureStorage.read(key: 'user_document');
+
+      // Verifica disponibilidade E credenciais
+      final bool isAvailable =
+          canAuthenticate && (storedPass != null && storedDoc != null);
+
+      canCheckBiometrics.value = isAvailable;
+
+      // --- AQUI ESTÁ A MÁGICA ---
+      // Se estiver disponível, já chama o prompt da digital na hora.
+      if (isAvailable) {
+        // Pequeno delay para garantir que a UI carregou (opcional, mas recomendado para evitar conflitos de renderização)
+        await Future.delayed(const Duration(milliseconds: 500));
+        loginWithBiometrics();
+      }
+      // --------------------------
+    } catch (e) {
+      AppLogger.I().error('Erro ao verificar biometria', e, StackTrace.current);
+    }
+  }
+
+  Future<void> loginWithBiometrics() async {
+    try {
+      final didAuthenticate = await _localAuth.authenticate(
+        localizedReason: 'Autenticar para entrar',
+        options:
+            const AuthenticationOptions(stickyAuth: true, biometricOnly: true),
+      );
+
+      if (didAuthenticate) {
+        isLoading(true);
+        final storedDoc = await _secureStorage.read(key: 'user_document');
+        final storedPass = await _secureStorage.read(key: 'user_password');
+
+        if (storedDoc != null && storedPass != null) {
+          await _performDirectLogin(storedDoc, storedPass);
+        } else {
+          ShowToaster.toasterInfo(message: 'Credenciais expiradas.');
+        }
+      }
+    } on PlatformException catch (e) {
+      AppLogger.I().error('Biometria Platform Error', e, StackTrace.current);
+    } catch (e) {
+      AppLogger.I().error('Biometria Error', e, StackTrace.current);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  /// Realiza o login completo (Cópia da lógica do AuthController, adaptada)
+  Future<void> _performDirectLogin(String doc, String pass) async {
+    try {
+      final auth = await AuthRepository().authLogin(
+          loginRequest: AuthLoginRequest(document: doc, password: pass));
+
+      userRx.user.value = auth;
+      await ScopeConfig.setup(auth);
+
+      if (auth.token.isNotEmpty) {
+        AppLogger.I().info('Biometric Login Success');
+        box.write('token', auth.token);
+        // Atualiza o lastLogin para o documento que acabou de logar
+        box.write('document', auth.payload.document);
+
+        AuthRedirect.login(); // Redireciona para Home
+      }
+    } catch (e, s) {
+      if (e is ApiException) {
+        // Tratamento de erro padrão
+        if (e.statusCode == 401) {
+          ShowToaster.toasterInfo(
+              message: 'Senha salva inválida. Digite novamente.',
+              isError: true);
+          // Opcional: Limpar senha inválida
+          // await _secureStorage.delete(key: 'user_password');
+        } else {
+          ShowToaster.toasterInfo(message: e.message, isError: true);
+        }
+      } else {
+        AppLogger.I().error('Erro Login Biometria', e, s);
+      }
+    }
   }
 
   Future<VerifyUserResponse?> authVerify() async {

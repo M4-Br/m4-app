@@ -1,23 +1,10 @@
 import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
-import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
-import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
-import 'package:app_flutter_miban4/data/model/home/home.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/features/balance/presentation/card_widget.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_icons_controller.dart';
-import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/features/home/presentation/widgets/homeIcons.dart';
+import 'package:app_flutter_miban4/features/home/presentation/widgets/home_icons.dart';
 import 'package:app_flutter_miban4/features/home/presentation/widgets/clipper.dart';
-import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_camera.dart';
-import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/paymentLink/paymentLinkValue.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
-import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
-import 'package:app_flutter_miban4/ui/screens/home/services/services_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/store/store_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,308 +15,107 @@ class HomePage extends GetView<HomeIconsController> {
 
   @override
   Widget build(BuildContext context) {
-    List<IconModel> manualIcons = [
-      IconModel(
-          id: '23',
-          icon: 'assets/icons/ic_contabil.png',
-          title: 'contability_title'.tr),
-      IconModel(
-          id: '24',
-          icon: 'assets/icons/ic_services.png',
-          title: 'services_title'.tr),
-    ];
-
-    final Map<String, String> localIconPaths = {
-      '1': 'assets/icons/ic_home_payment.png',
-      '2': 'assets/icons/ic_home_qrcode.png',
-      '10': 'assets/icons/ic_home_payment_invoice.png',
-      '11': 'assets/icons/ic_home_transfer.png',
-      '12': 'assets/icons/ic_home_recharge.png',
-      '14': 'assets/icons/ic_home_store.png',
-      '19': 'assets/icons/ic_home_pix.png',
-      '30': 'assets/icons/ic_home_faq.png',
-      '31': 'assets/icons/ic_home_warning.png',
-    };
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: Obx(() {
-        User? userData = _user.user.value;
-        return Stack(
-          children: [
-            ClipPath(
-              clipper: BackWaveClipper(),
-              child: Container(
-                color: secondaryColor,
-                height: 280,
-              ),
+      body: Stack(
+        children: [
+          _buildBackgroundWaves(),
+          _buildHeader(),
+          const Align(
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding: EdgeInsets.only(top: 90),
+              child: CardWidget(),
             ),
-            ClipPath(
-              clipper: FrontWaveClipper(),
-              child: Container(
-                color: primaryColor,
-                height: 240,
-              ),
-            ),
-            Positioned(
-              top: 40,
-              left: 16,
-              right: 16,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () async {
-                      Get.to(
-                          () => const PixReceive(
-                                type: 1,
-                              ),
-                          transition: Transition.rightToLeft);
-                    },
-                    icon: const Icon(
-                      Icons.qr_code_2,
-                      color: Colors.white,
-                      size: 32,
-                    ),
-                  ),
-                  Text(
-                    userData!.payload.username,
-                    style: const TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        Get.toNamed(AppRoutes.notifications);
-                      },
-                      icon: const Icon(
-                        Icons.notifications,
-                        color: Colors.red,
-                        size: 32,
-                      )),
-                ],
-              ),
-            ),
-            const Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: EdgeInsets.only(top: 90),
-                child: CardWidget(),
-              ),
-            ),
-            Obx(() {
+          ),
+          Positioned.fill(
+            top: 315,
+            child: Obx(() {
               if (controller.isLoading.value) {
                 return const Center(
-                  child: CircularProgressIndicator(
-                    color: secondaryColor,
-                  ),
-                );
-              } else if (controller.icons.isEmpty) {
-                return const Center(
-                  child: Text(
-                    'Erro ao carregar',
-                    textAlign: TextAlign.center,
-                  ),
-                );
-              } else {
-                return Column(
-                  children: [
-                    Stack(
-                      children: [
-                        ClipPath(
-                          clipper: BackWaveClipper(),
-                          child: Container(
-                            color: secondaryColor,
-                            height: 280,
-                          ),
-                        ),
-                        ClipPath(
-                          clipper: FrontWaveClipper(),
-                          child: Container(
-                            color: primaryColor,
-                            height: 240,
-                          ),
-                        ),
-                        Positioned(
-                          top: 40,
-                          left: 16,
-                          right: 16,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              IconButton(
-                                onPressed: () async {
-                                  controller.incomplete.value == true
-                                      ? CustomDialogs.showInformationDialog(
-                                          content:
-                                              'Para utilizar essa funcionalidade é preciso completar seu cadastro',
-                                          onCancel: () => Get.back())
-                                      : Get.to(
-                                          () => const PixReceive(
-                                                type: 1,
-                                              ),
-                                          transition: Transition.rightToLeft);
-                                },
-                                icon: const Icon(
-                                  Icons.qr_code_2,
-                                  color: Colors.white,
-                                  size: 32,
-                                ),
-                              ),
-                              Text(
-                                userData.payload.username,
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 18),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    Get.toNamed(AppRoutes.notifications);
-                                  },
-                                  icon: controller.notifications
-                                          .hasUnreadNotifications.value
-                                      ? const Icon(
-                                          Icons.notifications_active,
-                                          color: Colors.red,
-                                          size: 32,
-                                        )
-                                      : const Icon(
-                                          Icons.notifications,
-                                          color: Colors.white,
-                                          size: 32,
-                                        )),
-                            ],
-                          ),
-                        ),
-                        const Align(
-                          alignment: Alignment.topCenter,
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 90),
-                            child: CardWidget(),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                      child: GridView.builder(
-                        scrollDirection: Axis.vertical,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          childAspectRatio: 1.0,
-                        ),
-                        itemCount: controller.icons.length + manualIcons.length,
-                        itemBuilder: (context, index) {
-                          if (index < controller.icons.length) {
-                            // Ícones vindos do controller
-                            HomeIconsResponse iconModel =
-                                controller.icons[index];
-
-                            return HomeIcons(
-                              iconUrl: localIconPaths[iconModel.id]!,
-                              text: iconModel.title,
-                              isLocal: true,
-                              onPressed: () async {
-                                switch (iconModel.id) {
-                                  case '1':
-                                    controller.incomplete.value == true
-                                        ? CustomDialogs.showInformationDialog(
-                                            content:
-                                                'Para utilizar essa funcionalidade é preciso completar seu cadastro',
-                                            onCancel: () => Get.back())
-                                        : Get.to(() => const PaymentLinkValue(),
-                                            transition: Transition.rightToLeft);
-                                    break;
-                                  case '2':
-                                    controller.incomplete.value == true
-                                        ? CustomDialogs.showInformationDialog(
-                                            content:
-                                                'Para utilizar essa funcionalidade é preciso completar seu cadastro',
-                                            onCancel: () => Get.back())
-                                        : Get.to(() => const QrCodeCamera(),
-                                            transition: Transition.rightToLeft);
-                                    break;
-                                  case '10':
-                                    controller.incomplete.value == true
-                                        ? CustomDialogs.showInformationDialog(
-                                            content:
-                                                'Para utilizar essa funcionalidade é preciso completar seu cadastro',
-                                            onCancel: () => Get.back())
-                                        : Get.to(() => const BarcodeCamera(),
-                                            transition: Transition.rightToLeft);
-                                    break;
-                                  case '11':
-                                    controller.incomplete.value == true
-                                        ? CustomDialogs.showInformationDialog(
-                                            content:
-                                                'Para utilizar essa funcionalidade é preciso completar seu cadastro',
-                                            onCancel: () => Get.back())
-                                        : Get.to(
-                                            () => const TransferContactPage(),
-                                            transition: Transition.rightToLeft);
-                                    break;
-                                  case '12':
-                                    CustomDialogs.showInformationDialog(
-                                        content: 'unavailable'.tr,
-                                        onCancel: () => Get.back());
-                                    break;
-                                  case '14':
-                                    Get.to(() => const StorePage(),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                  case '19':
-                                    Get.to(() => PixHome(),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                  case '30':
-                                    Get.to(
-                                        () => WebviewPage(
-                                              url: 'https://miban4.com',
-                                              pageTitle: iconModel.title,
-                                            ),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                  case '31':
-                                    Get.to(
-                                        () => WebviewPage(
-                                              url: 'https://miban4.com/#faq',
-                                              pageTitle: iconModel.title,
-                                            ),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                }
-                              },
-                            );
-                          } else {
-                            // Ícones manuais
-                            IconModel manualIcon =
-                                manualIcons[index - controller.icons.length];
-
-                            return HomeIcons(
-                              iconUrl: manualIcon.icon!,
-                              text: manualIcon.title!,
-                              isLocal: true,
-                              onPressed: () async {
-                                switch (manualIcon.id) {
-                                  case '23':
-                                    //TODO: Contabilidade
-                                    break;
-                                  case '24':
-                                    Get.to(() => const ServicesPage(),
-                                        transition: Transition.rightToLeft);
-                                    break;
-                                }
-                              },
-                            );
-                          }
-                        },
-                      ),
-                    ),
-                  ],
+                  child: AppLoading(),
                 );
               }
+
+              final menuItems = controller.combinedMenuList;
+
+              if (menuItems.isEmpty) {
+                return const Center(child: Text('Nenhum serviço disponível'));
+              }
+
+              return GridView.builder(
+                padding: const EdgeInsets.only(top: 10, bottom: 20),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1.0,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                ),
+                itemCount: menuItems.length,
+                itemBuilder: (context, index) {
+                  final item = menuItems[index];
+                  return HomeIcons(
+                    iconUrl: item.iconPath,
+                    text: item.title,
+                    isLocal: item.isLocal,
+                    onPressed: () =>
+                        controller.onMenuOptionTap(item.id, item.title),
+                  );
+                },
+              );
             }),
-          ],
-        );
-      }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBackgroundWaves() {
+    return Stack(
+      children: [
+        ClipPath(
+          clipper: BackWaveClipper(),
+          child: Container(color: secondaryColor, height: 280),
+        ),
+        ClipPath(
+          clipper: FrontWaveClipper(),
+          child: Container(color: primaryColor, height: 240),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHeader() {
+    return Positioned(
+      top: 40,
+      left: 16,
+      right: 16,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            onPressed: controller.openPixReceive,
+            icon: const Icon(Icons.qr_code_2, color: Colors.white, size: 32),
+          ),
+          Obx(() => Text(
+                _user.user.value?.payload.username ?? '',
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+              )),
+          IconButton(
+            onPressed: controller.openNotifications,
+            icon: Obx(() => Icon(
+                  controller.notifications.hasUnreadNotifications.value
+                      ? Icons.notifications_active
+                      : Icons.notifications,
+                  color: controller.notifications.hasUnreadNotifications.value
+                      ? Colors.red
+                      : Colors.white,
+                  size: 32,
+                )),
+          ),
+        ],
+      ),
     );
   }
 }

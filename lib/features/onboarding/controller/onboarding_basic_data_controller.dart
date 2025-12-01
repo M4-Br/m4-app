@@ -1,24 +1,24 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/features/onboarding/model/onboarding_basic_register_request.dart';
-import 'package:app_flutter_miban4/features/onboarding/model/onboarding_basic_register_response.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_basic_register_repository.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class OnboardingBasicDataController extends GetxController {
-  var isLoading = false.obs;
-  final RxInt id = 0.obs;
-
-  final key = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   final fullNameController = TextEditingController();
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final promotionalCodeController = TextEditingController();
+
+  final isLoading = false.obs;
+  final enable = false.obs;
+  final RxInt id = 0.obs;
 
   @override
   void onInit() {
@@ -27,14 +27,36 @@ class OnboardingBasicDataController extends GetxController {
     if (arguments != null) {
       id.value = arguments['id'] ?? 0;
     }
+
+    fullNameController.addListener(_checkFormValidation);
+    usernameController.addListener(_checkFormValidation);
+    emailController.addListener(_checkFormValidation);
   }
 
-  Future<OnboardingBasicRegisterResponse?> registerBasicData() async {
-    if (key.currentState?.validate() != true) {
-      return null;
+  @override
+  void onClose() {
+    fullNameController.dispose();
+    usernameController.dispose();
+    emailController.dispose();
+    promotionalCodeController.dispose();
+    super.onClose();
+  }
+
+  void _checkFormValidation() {
+    final isValid = fullNameController.text.trim().isNotEmpty &&
+        usernameController.text.trim().isNotEmpty &&
+        emailController.text.trim().isNotEmpty;
+
+    enable.value = isValid;
+  }
+
+  Future<void> registerBasicData() async {
+    if (!enable.value) return;
+    if (formKey.currentState?.validate() != true) {
+      return;
     }
 
-    isLoading(true);
+    isLoading.value = true;
 
     try {
       final request = OnboardingBasicRegisterRequest(
@@ -42,9 +64,7 @@ class OnboardingBasicDataController extends GetxController {
           fullName: fullNameController.text,
           username: usernameController.text,
           email: emailController.text,
-          promotionalCode: promotionalCodeController.text.isEmpty
-              ? ''
-              : promotionalCodeController.text);
+          promotionalCode: promotionalCodeController.text.trim());
 
       final response =
           await OnboardingBasicRegisterRepository().basicRegister(request);
@@ -56,10 +76,7 @@ class OnboardingBasicDataController extends GetxController {
           'fullName': fullNameController.text,
           'username': usernameController.text,
         });
-        return response;
       }
-
-      return response;
     } catch (e, s) {
       AppLogger.I().error('Onboarding Basic Register', e, s);
       if (e is ApiException) {
@@ -74,9 +91,8 @@ class OnboardingBasicDataController extends GetxController {
           );
         }
       }
-      return null;
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 }

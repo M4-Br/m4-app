@@ -92,4 +92,8 @@ class AppRoutes {
 
   //Rotas de Serviços
   static const String services = '/services';
+
+  //Rotas Links de Pagamento
+  static const String paymentLink = '/payment_link';
+  static const String paymentLinkGenerated = '$paymentLink/generated';
 }

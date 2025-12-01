@@ -1,7 +1,6 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
-import 'package:app_flutter_miban4/features/onboarding/model/onboarding_document_register_response.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_document_repository.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
@@ -9,28 +8,46 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class OnboardingDocumentController extends GetxController {
-  var isLoading = false.obs;
   final key = GlobalKey<FormState>();
-
   final documentController = TextEditingController();
 
-  Future<OnboardingDocumentRegisterResponse?> register() async {
+  final isLoading = false.obs;
+  final enable = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    documentController.addListener(_checkValidation);
+  }
+
+  @override
+  void onClose() {
+    documentController.dispose();
+    super.onClose();
+  }
+
+  void _checkValidation() {
+    enable.value = documentController.text.length == 14;
+  }
+
+  Future<void> register() async {
+    if (!enable.value) return;
+
     if (key.currentState?.validate() != true) {
-      return null;
+      return;
     }
-    isLoading(true);
+
+    isLoading.value = true;
 
     final doc = documentController.text.replaceAll('.', '').replaceAll('-', '');
+
     try {
       final response = await OnboardingDocumentRepository().basicRegister(doc);
 
       if (response.id != 0) {
         Get.toNamed(AppRoutes.onboardingBasicData,
             arguments: {'id': response.id});
-        return response;
       }
-
-      return response;
     } catch (e, s) {
       AppLogger.I().error('Cpf initial register', e, s);
       if (e is ApiException) {
@@ -45,9 +62,8 @@ class OnboardingDocumentController extends GetxController {
           );
         }
       }
-      return null;
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 }

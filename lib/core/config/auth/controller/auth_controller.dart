@@ -10,6 +10,7 @@ import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -22,6 +23,8 @@ class AuthController extends GetxController {
   final formKey = GlobalKey<FormState>();
   TextEditingController password = TextEditingController();
   final RxBool obscureText = true.obs;
+
+  final _secureStorage = const FlutterSecureStorage();
 
   void toggleObscureText() {
     obscureText.value = !obscureText.value;
@@ -58,6 +61,11 @@ class AuthController extends GetxController {
         AppLogger.I().info('Auth Login Success');
         box.write('token', auth.token);
         AppLogger.I().debug('Token ${auth.token} saved at Storage');
+
+        await _secureStorage.write(key: 'user_password', value: password.text);
+        await _secureStorage.write(key: 'user_document', value: doc);
+
+        AppLogger.I().debug('Login saved at secure');
 
         AuthRedirect.login();
       }

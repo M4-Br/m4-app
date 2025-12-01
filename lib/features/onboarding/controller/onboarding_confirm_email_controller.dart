@@ -3,7 +3,6 @@ import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/features/onboarding/model/onboarding_basic_register_request.dart';
-import 'package:app_flutter_miban4/features/onboarding/model/onboarding_basic_register_response.dart';
 import 'package:app_flutter_miban4/features/onboarding/model/onboarding_verify_email_request.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_basic_register_repository.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_verfy_email_token_repository.dart';
@@ -13,16 +12,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class OnboardingConfirmEmailController extends GetxController {
-  var isLoading = false.obs;
+  final key = GlobalKey<FormState>();
+  final tokenController = TextEditingController();
+
+  final isLoading = false.obs;
+  final enable = false.obs;
 
   final RxInt id = 0.obs;
   final RxString email = ''.obs;
   final RxString fullName = ''.obs;
   final RxString userName = ''.obs;
-
-  final key = GlobalKey<FormState>();
-
-  final tokenController = TextEditingController();
 
   final RxInt countdown = 30.obs;
   final RxBool canResend = false.obs;
@@ -34,18 +33,24 @@ class OnboardingConfirmEmailController extends GetxController {
     final arguments = Get.arguments as Map<String, dynamic>?;
     if (arguments != null) {
       id.value = arguments['id'] ?? 0;
-      email.value = arguments['email'] ?? 'Nenhum email encontrado';
-      fullName.value = arguments['fullName'] ?? 'Nenhum nome encontrado';
-      userName.value =
-          arguments['username'] ?? 'Nenhum nome de usuário encontrado';
+      email.value = arguments['email'] ?? '';
+      fullName.value = arguments['fullName'] ?? '';
+      userName.value = arguments['username'] ?? '';
     }
+
+    tokenController.addListener(_checkValidation);
     startCountdown();
   }
 
   @override
   void onClose() {
+    tokenController.dispose();
     _timer?.cancel();
     super.onClose();
+  }
+
+  void _checkValidation() {
+    enable.value = tokenController.text.length == 6;
   }
 
   void startCountdown() {
@@ -78,11 +83,15 @@ class OnboardingConfirmEmailController extends GetxController {
     startCountdown();
   }
 
-  Future<OnboardingBasicRegisterResponse?> validateEmail() async {
+  Future<void> validateEmail() async {
+    if (!enable.value) return;
+
     if (key.currentState?.validate() != true) {
-      return null;
+      return;
     }
-    isLoading(true);
+
+    isLoading.value = true;
+
     try {
       final request = OnboardingVerifyEmailRequest(
         id: id.value,
@@ -93,11 +102,8 @@ class OnboardingConfirmEmailController extends GetxController {
         code: int.parse(tokenController.text),
       );
 
-      final response =
-          OnboardingVerifyEmailTokenRepository().validateToken(request);
+      await OnboardingVerifyEmailTokenRepository().validateToken(request);
       Get.toNamed(AppRoutes.onboardingPhone, arguments: {'id': id.value});
-
-      return response;
     } catch (e, s) {
       AppLogger.I().error('Confirm email token', e, s);
       if (e is ApiException) {
@@ -112,10 +118,8 @@ class OnboardingConfirmEmailController extends GetxController {
           );
         }
       }
-
-      return null;
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 }

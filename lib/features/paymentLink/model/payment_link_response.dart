@@ -1,11 +1,11 @@
-class PaymentLinkEntity {
+class PaymentLinkResponse {
   final bool success;
   final String nickname;
   final int value;
   final String description;
   final String link;
 
-  PaymentLinkEntity({
+  PaymentLinkResponse({
     required this.success,
     required this.nickname,
     required this.value,
@@ -13,13 +13,13 @@ class PaymentLinkEntity {
     required this.link,
   });
 
-  factory PaymentLinkEntity.fromJson(Map<String, dynamic> json) {
-    return PaymentLinkEntity(
-      success: json['success'],
-      nickname: json['nickname'],
+  factory PaymentLinkResponse.fromJson(Map<String, dynamic> json) {
+    return PaymentLinkResponse(
+      success: json['success'] as bool,
+      nickname: json['nickname'] as String,
       value: json['value'],
-      description: json['description'],
-      link: json['link'],
+      description: json['description'] as String,
+      link: json['link'] as String,
     );
   }
 
