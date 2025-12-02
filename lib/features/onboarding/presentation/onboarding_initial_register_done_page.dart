@@ -33,13 +33,11 @@ class OnboardingInitialRegisterDonePage
             textAlign: TextAlign.center,
           ),
           const Spacer(),
-          Obx(
-            () => bottomButton(
-              onPressed: controller.proccedToLogin,
-              labelText: 'next'.tr,
-              isLoading: false,
-              enable: true,
-            ),
+          bottomButton(
+            onPressed: controller.proccedToLogin,
+            labelText: 'next'.tr,
+            isLoading: false,
+            enable: true,
           ),
         ],
       ),

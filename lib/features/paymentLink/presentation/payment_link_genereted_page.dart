@@ -38,20 +38,20 @@ class PaymentLinkGeneretedPage extends GetView<PaymentLinkGeneratedController> {
           ),
           gap,
           Obx(
-            () => AppText.bodyMedium(
+            () => AppText.headlineLarge(
               context,
               controller.formattedValue,
               color: secondaryColor,
             ),
           ),
           gap,
-          AppText.bodyMedium(
+          AppText.bodyLarge(
             context,
             controller.currentDate,
             color: Colors.grey,
           ),
           gapXL,
-          AppText.bodyMedium(
+          AppText.bodyLarge(
             context,
             'payment_link_share'.tr,
             color: Colors.grey,

@@ -592,6 +592,7 @@ class StringsPtBR {
     'transfer_add_person': 'Adicionar Pessoa',
     'unavailable': 'Temporariamente indisponível',
     'all_paid': 'Nenhuma transação pendente.',
+    'pix_schedule_transfer': 'Pix agendado',
     'credit_installment_delayed':
         'Parcela em atraso, com incidência de juros e mora.',
     'first_installment':
@@ -626,6 +627,7 @@ class StringsPtBR {
     'token_write': 'Digite o token recebido',
     'resend': 'Reenviar',
     'resend_in': 'Reenviar em @seconds segundos',
+    'pix_selectKey': 'Selecione sua chave pix ou ',
     'password_hint': 'Digite a senha desejada',
     'confirm_password_hint': 'Digite novamente a senha desejada',
     'codeLang': 'pt_BR',

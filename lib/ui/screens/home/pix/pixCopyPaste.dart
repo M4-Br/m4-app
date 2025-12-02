@@ -1,4 +1,4 @@
-import 'package:app_flutter_miban4/data/model/userData/balance.dart';
+import 'package:app_flutter_miban4/features/balance/model/balance_response.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/controllers/qrcode/qrcode_controller.dart';
@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class PixCopyPaste extends StatefulWidget {
-  late Balance? balance;
+  late BalanceResponse? balance;
 
   PixCopyPaste({Key? key, this.balance}) : super(key: key);
 
@@ -69,7 +69,7 @@ class _PixCopyPasteState extends State<PixCopyPaste> {
             ),
             const Spacer(),
             Text(
-              '${'balance_available'.tr} R\$ ${currencyFormat.format((int.parse(widget.balance!.balanceCents!) / 100))}',
+              '${'balance_available'.tr} R\$ ${currencyFormat.format((int.parse('10') / 100))}',
               style: const TextStyle(color: Colors.black, fontSize: 16),
               textAlign: TextAlign.center,
             ),

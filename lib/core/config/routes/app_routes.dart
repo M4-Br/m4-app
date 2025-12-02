@@ -36,8 +36,8 @@ class AppRoutes {
   static const String onboardingBasicData = '$onboardingDocument/initial';
   static const String onboardingConfirmEmail =
       '$onboardingDocument/confirmEmail';
-  static const String onboardingPhone = '$onboarding/phone';
-  static const String onboardingConfirmPhone = '$onboarding/phonePhone';
+  static const String onboardingPhone = '$onboardingDocument/phone';
+  static const String onboardingConfirmPhone = '$onboardingDocument/phonePhone';
   static const String onboardingRegisterPassword =
       '$onboardingDocument/password';
   static const String onboardingInitialRegisterDone =
@@ -72,18 +72,19 @@ class AppRoutes {
   static const String transferVoucher = '/transfer_voucher';
 
   //Rotas de Pix
-  static const String pixHome = '/pix_home';
+  static const String pixHome = '/pix';
+  static const String pixKeyManager = '$pixHome/keys_manager';
+  static const String pixLimits = '$pixHome/limits';
+  static const String pixReceive = '$pixHome/receive';
+  static const String pixReceiveQrCode = '$pixReceive/qrcode';
+
   static const String pixMyKeys = '/pix_my_keys';
-  static const String pixKeyManagement = '/pix_key_management';
   static const String pixAddKey = '/pix_add_key';
   static const String pixAddValue = '/pix_add_value';
   static const String pixDecode = '/pix_code';
   static const String pixCopyPaste = '/pix_copy_paste';
   static const String pixManualKey = '/pix_manual_key';
-  static const String pixMyLimits = '/pix_limits';
   static const String pixNewKey = '/pix_new_key';
-  static const String pixQRReceive = '/pix_qr_code';
-  static const String pixReceive = '/pix_receive';
   static const String pixStatement = '/pix_statement';
   static const String pixSuccess = '/pix_success';
   static const String pixTransfer = '/pix_transfer';

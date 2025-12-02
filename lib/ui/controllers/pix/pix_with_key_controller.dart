@@ -1,4 +1,3 @@
-
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/api/pix/pixValidateKey.dart';
 import 'package:app_flutter_miban4/data/model/pix/pixValidateKey.dart';
@@ -17,7 +16,12 @@ class PixWithKeyController extends GetxController {
       ValidateKey keyValidate = await validateKey(key);
 
       if (keyValidate.success == true) {
-        Get.to(() => PixTransfer(pix: keyValidate, balance: balance,), transition: Transition.rightToLeft);
+        Get.to(
+            () => PixTransfer(
+                  pix: keyValidate,
+                  balance: balance,
+                ),
+            transition: Transition.rightToLeft);
       }
     } catch (error) {
       isLoading(false);

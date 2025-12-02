@@ -38,4 +38,9 @@ class AppEndpoints {
 
   //payment link
   static const String paymentLink = '/transactions/link/create';
+
+  //pix
+  static const String pixKeyManager = '/pix/dict';
+  static const String pixLimits = '/pix/limits';
+  static const String pixReceive = '/pix/code/static';
 }

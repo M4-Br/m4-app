@@ -578,6 +578,7 @@ class StringsEnUS {
     'transactional_statement': 'Transactional',
     'savings_statement': 'Savings',
     'account_waiting': 'Your account is not active yet',
+    'pix_schedule_transfer': 'Scheduled Pix',
     'account_savings_waiting': 'Your savings account is not active yet',
     'onboarding_confirm_selfie':
         'Did the photo turn out well? Is the text clear? The image should not contain reflections.',

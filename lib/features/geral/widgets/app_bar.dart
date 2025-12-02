@@ -1,3 +1,5 @@
+// app_bar.dart
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,17 +24,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color defaultPrimaryColor = Colors.blue;
-
     return AppBar(
       title: AppText.titleMedium(context, title, color: Colors.white),
       centerTitle: true,
-      backgroundColor: backgroundColor ?? defaultPrimaryColor,
+      backgroundColor: backgroundColor ?? primaryColor,
       elevation: 0,
       actions: actions,
       leading: showBackButton
           ? IconButton(
-              onPressed: onBackPressed ?? () => Get.back(),
+              onPressed: onBackPressed ??
+                  () {
+                    FocusScope.of(context).unfocus();
+
+                    if (Get.isSnackbarOpen) Get.closeAllSnackbars();
+                    Navigator.of(context).maybePop();
+                  },
               icon: Icon(
                 Icons.arrow_back_ios_new_outlined,
                 color: iconColor,

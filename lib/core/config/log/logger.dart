@@ -7,7 +7,11 @@ class AppLogger {
   AppLogger._internal();
   static final _instance = AppLogger._internal();
 
-  final Talker talker = TalkerFlutter.init();
+  final Talker talker = TalkerFlutter.init(
+    settings: TalkerSettings(
+      enabled: !kReleaseMode,
+    ),
+  );
 
   void error(
     String method,
@@ -15,15 +19,7 @@ class AppLogger {
     StackTrace stackTrace, [
     Map<String, String>? parameters,
   ]) {
-    if (kDebugMode) {
-      _instance.talker.handle(
-        error,
-        stackTrace,
-        'Error $method | Params: $parameters',
-      );
-    }
-
-    if (!kDebugMode) {
+    if (kReleaseMode) {
       Sentry.captureException(
         error,
         stackTrace: stackTrace,
@@ -32,15 +28,17 @@ class AppLogger {
           'parameters': parameters,
         }),
       );
+    } else {
+      _instance.talker.handle(
+        error,
+        stackTrace,
+        'Error $method | Params: $parameters',
+      );
     }
   }
 
   void info(String message) {
-    if (kDebugMode) {
-      _instance.talker.info(message);
-    }
-
-    if (!kDebugMode) {
+    if (kReleaseMode) {
       Sentry.addBreadcrumb(
         Breadcrumb(
           message: message,
@@ -48,11 +46,13 @@ class AppLogger {
           category: 'log.info',
         ),
       );
+    } else {
+      _instance.talker.info(message);
     }
   }
 
   void debug(String message) {
-    if (kDebugMode) {
+    if (!kReleaseMode) {
       _instance.talker.debug(message);
     }
   }

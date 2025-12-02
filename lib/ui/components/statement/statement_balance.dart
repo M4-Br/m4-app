@@ -48,16 +48,16 @@ class _StatementBalanceState extends State<StatementBalance> {
           Balance balance = snapshot.data!;
           _balanceValue = balance.balanceCents != "N/D"
               ? balance.balanceCents != null && balance.balanceCents != 0
-              ? currencyFormat
-              .format(double.parse(balance.balanceCents) / 100)
-              : "0,00"
+                  ? currencyFormat
+                      .format(double.parse(balance.balanceCents) / 100)
+                  : "0,00"
               : balance.balanceCents;
           _transationalValue = balance.transactionalValue;
           _transational = _transationalValue != "N/D"
               ? _transationalValue.isNotEmpty
-              ? currencyFormat
-              .format(double.parse(_transationalValue.toString()) / 100)
-              : "0,00"
+                  ? currencyFormat
+                      .format(double.parse(_transationalValue.toString()) / 100)
+                  : "0,00"
               : _transationalValue;
 
           return _buildBalanceWidget(snapshot.data!,

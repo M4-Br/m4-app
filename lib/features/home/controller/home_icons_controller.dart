@@ -7,7 +7,6 @@ import 'package:app_flutter_miban4/features/home/repository/fetch_icons_reposito
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_camera.dart';
 import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixHome.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
 import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
 import 'package:app_flutter_miban4/ui/screens/home/services/services_page.dart';
@@ -118,16 +117,20 @@ class HomeIconsController extends BaseController {
     switch (id) {
       case '1':
         Get.toNamed(AppRoutes.paymentLink);
+        AppLogger.I().info('Going to Payment Link');
         break;
       case '2':
         Get.to(() => const QrCodeCamera(), transition: Transition.rightToLeft);
+        AppLogger.I().info('Going to QR Code Payment');
         break;
       case '10':
         Get.to(() => const BarcodeCamera(), transition: Transition.rightToLeft);
+        AppLogger.I().info('Going to Barcode Payment');
         break;
       case '11':
         Get.to(() => const TransferContactPage(),
             transition: Transition.rightToLeft);
+        AppLogger.I().info('Going to Transfer Page');
         break;
       case '12':
         CustomDialogs.showInformationDialog(
@@ -135,21 +138,27 @@ class HomeIconsController extends BaseController {
         break;
       case '14':
         Get.to(() => const StorePage(), transition: Transition.rightToLeft);
+        AppLogger.I().info('Going to Store Page');
         break;
       case '19':
-        Get.to(() => PixHome(), transition: Transition.rightToLeft);
+        Get.toNamed(AppRoutes.pixHome);
+        AppLogger.I().info('Going to Pix Home');
         break;
       case '30':
         _openWebView('https://miban4.com', title);
+        AppLogger.I().info('Going to Message');
         break;
       case '31':
         _openWebView('https://miban4.com/#faq', title);
+        AppLogger.I().info('Going to Warnings');
         break;
       case '23':
         // TODO: Contabilidade
+        AppLogger.I().info('Going to Contabilidade');
         break;
       case '24':
         Get.to(() => const ServicesPage(), transition: Transition.rightToLeft);
+        AppLogger.I().info('Going to Services');
         break;
       default:
         AppLogger.I().info('Menu option $id not implemented');

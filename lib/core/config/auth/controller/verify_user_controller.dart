@@ -31,7 +31,6 @@ class VerifyAccountController extends GetxController {
   final _secureStorage = const FlutterSecureStorage();
   final _localAuth = LocalAuthentication();
   final canCheckBiometrics = false.obs;
-  // Precisamos do UserRx para setar o usuário logado caso a biometria funcione
   final UserRx userRx = Get.find<UserRx>();
   // -----------------
 
@@ -56,16 +55,11 @@ class VerifyAccountController extends GetxController {
       final storedPass = await _secureStorage.read(key: 'user_password');
       final storedDoc = await _secureStorage.read(key: 'user_document');
 
-      // Verifica disponibilidade E credenciais
       final bool isAvailable =
           canAuthenticate && (storedPass != null && storedDoc != null);
 
       canCheckBiometrics.value = isAvailable;
-
-      // --- AQUI ESTÁ A MÁGICA ---
-      // Se estiver disponível, já chama o prompt da digital na hora.
       if (isAvailable) {
-        // Pequeno delay para garantir que a UI carregou (opcional, mas recomendado para evitar conflitos de renderização)
         await Future.delayed(const Duration(milliseconds: 500));
         loginWithBiometrics();
       }
@@ -103,7 +97,6 @@ class VerifyAccountController extends GetxController {
     }
   }
 
-  /// Realiza o login completo (Cópia da lógica do AuthController, adaptada)
   Future<void> _performDirectLogin(String doc, String pass) async {
     try {
       final auth = await AuthRepository().authLogin(
@@ -115,20 +108,16 @@ class VerifyAccountController extends GetxController {
       if (auth.token.isNotEmpty) {
         AppLogger.I().info('Biometric Login Success');
         box.write('token', auth.token);
-        // Atualiza o lastLogin para o documento que acabou de logar
         box.write('document', auth.payload.document);
 
-        AuthRedirect.login(); // Redireciona para Home
+        AuthRedirect.login();
       }
     } catch (e, s) {
       if (e is ApiException) {
-        // Tratamento de erro padrão
         if (e.statusCode == 401) {
           ShowToaster.toasterInfo(
               message: 'Senha salva inválida. Digite novamente.',
               isError: true);
-          // Opcional: Limpar senha inválida
-          // await _secureStorage.delete(key: 'user_password');
         } else {
           ShowToaster.toasterInfo(message: e.message, isError: true);
         }

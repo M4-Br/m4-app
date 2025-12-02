@@ -109,8 +109,7 @@ class _PixTransferState extends State<PixTransfer> {
                     color: Colors.black,
                   ),
                   counterStyle: const TextStyle(color: secondaryColor),
-                  hintText:
-                      'pix_descriptionTransfer'.tr,
+                  hintText: 'pix_descriptionTransfer'.tr,
                   hintStyle: const TextStyle(color: Colors.black),
                   border: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black),
@@ -390,7 +389,8 @@ class _PixTransferState extends State<PixTransfer> {
                           String name = widget.pix!.name;
                           String key = widget.pix!.key;
 
-                          final formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDate);
+                          final formattedDate =
+                              DateFormat('yyyy-MM-dd').format(_selectedDate);
 
                           _sendPixController.pixTransfer(
                               amount,
@@ -408,7 +408,7 @@ class _PixTransferState extends State<PixTransfer> {
                               key,
                               transferType,
                               widget.pix!.bankName,
-                          formattedDate);
+                              formattedDate);
 
                           return AlertDialog.adaptive(
                             title: Text(

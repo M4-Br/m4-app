@@ -30,7 +30,7 @@ class PaymentLinkPage extends GetView<PaymentLinkController> {
             'demand_value'.tr,
             color: Colors.white,
           ),
-          gapS,
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Obx(

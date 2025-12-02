@@ -1,4 +1,3 @@
-
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/api/barcode/decodeBarcode.dart';
 import 'package:app_flutter_miban4/data/model/barcode/decodeBarcode.dart';
@@ -16,7 +15,7 @@ class BarcodeController extends GetxController {
       Balance balance = await getBalance();
       PaymentData paymentData = await decodeBarcode(barcode);
       Get.off(
-              () =>
+          () =>
               BarcodeConfirmPayment(paymentData: paymentData, balance: balance),
           transition: Transition.rightToLeft);
     } catch (e) {

@@ -184,7 +184,9 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
                 ),
                 Text(
                   NumberFormat.currency(locale: 'pt_BR', symbol: '').format(
-                    (double.tryParse(widget.paymentData.details.interest) ?? 0) / 100,
+                    (double.tryParse(widget.paymentData.details.interest) ??
+                            0) /
+                        100,
                   ),
                   style: const TextStyle(fontSize: 16),
                 ),
@@ -355,8 +357,8 @@ class _BarcodeConfirmPaymentState extends State<BarcodeConfirmPayment> {
     String formattedDate = DateFormat('yyyy/MM/dd').format(today);
 
     try {
-      BarcodeVoucher payment =
-          await payBarcode(context, amount, password, barcode, formattedDate, assignor);
+      BarcodeVoucher payment = await payBarcode(
+          context, amount, password, barcode, formattedDate, assignor);
 
       if (payment.success == true) {
         Get.to(() => BarcodeVoucherScreen(paymentData: payment));

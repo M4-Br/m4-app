@@ -11,3 +11,6 @@ final phoneFormatter = MaskTextInputFormatter(
   filter: {'#': RegExp(r'[0-9]')},
   type: MaskAutoCompletionType.lazy,
 );
+
+final cnpjFormatter = MaskTextInputFormatter(
+    mask: '##.###.###/####-##', filter: {'#': RegExp(r'[0-9]')});

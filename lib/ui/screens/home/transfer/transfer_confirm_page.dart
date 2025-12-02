@@ -456,11 +456,12 @@ class _TransferConfirmPageState extends State<TransferConfirmPage> {
                                                           document: widget
                                                               .document
                                                               .toString(),
-                                                      id: result['id'],
-                                                      bank: widget.bank,
-                                                      account: widget.accountNumber,
-                                                      amount: amount,
-                                                      name: widget.name,
+                                                          id: result['id'],
+                                                          bank: widget.bank,
+                                                          account: widget
+                                                              .accountNumber,
+                                                          amount: amount,
+                                                          name: widget.name,
                                                         ),
                                                     transition:
                                                         Transition.rightToLeft);

@@ -9,19 +9,22 @@ class CustomDialogs {
     required VoidCallback onConfirm,
   }) {
     Get.defaultDialog(
-        title: 'dialog_error'.tr.toUpperCase(),
-        content: Text(
-          content,
-          textAlign: TextAlign.center,
-        ),
-        onConfirm: onConfirm,
-        cancel: AppButton(
-          buttonType: AppButtonType.filled,
-          onPressed: () async => Get.back(),
-          color: Colors.redAccent,
-        ),
-        buttonColor: secondaryColor,
-        confirmTextColor: Colors.white);
+      title: 'dialog_error'.tr.toUpperCase(),
+      content: Text(
+        content,
+        textAlign: TextAlign.center,
+      ),
+      confirm: AppButton(
+        onPressed: () async => onConfirm(),
+        labelText: 'confirm'.tr,
+      ),
+      cancel: AppButton(
+        buttonType: AppButtonType.filled,
+        onPressed: () async => Get.back(),
+        color: Colors.redAccent,
+        labelText: 'cancel'.tr,
+      ),
+    );
   }
 
   static void showInformationDialog(

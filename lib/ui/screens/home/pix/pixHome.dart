@@ -1,5 +1,6 @@
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
 import 'package:app_flutter_miban4/data/model/userData/balance.dart';
+import 'package:app_flutter_miban4/features/balance/model/balance_response.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/ui/components/pix/itens_home.dart';
 import 'package:app_flutter_miban4/ui/components/pix/pix_balance.dart';
@@ -98,7 +99,8 @@ class _PixHomeState extends State<PixHome> {
                           name: 'pix_schedule_transfer'.tr,
                           description: 'Gerencie seus pix agendados',
                           onPressed: () {
-                            Get.to(() => const PixScheduleTransfers(), transition: Transition.rightToLeft);
+                            Get.to(() => const PixScheduleTransfers(),
+                                transition: Transition.rightToLeft);
                           },
                           icon: Icons.schedule_outlined),
                     ),
@@ -133,7 +135,11 @@ class _PixHomeState extends State<PixHome> {
                             await getBalance().then((balance) => {
                                   Get.to(
                                       () => PixCopyPaste(
-                                            balance: balance,
+                                            balance: BalanceResponse(
+                                                success: true,
+                                                balance: 12,
+                                                balanceCents: 12,
+                                                transactionalValue: 12),
                                           ),
                                       transition: Transition.rightToLeft)
                                 });

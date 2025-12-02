@@ -593,6 +593,7 @@ class StringsEsES {
     'onboarding_confirm_selfie':
         '¿La foto salió bien? ¿El texto es claro? La imagen no debe contener reflejos.',
     'onboarding_confirm_again': 'Tomar otra',
+    'pix_schedule_transfer': 'Pix programado',
     'onboarding_confirm_cool': 'Se ve bien',
     'transfer_add_person': 'Agregar Persona',
     'share': 'Compartir',

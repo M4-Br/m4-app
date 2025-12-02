@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/data/api/balance/balanceAPI.dart';
+import 'package:app_flutter_miban4/features/balance/model/balance_response.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
 import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixCopyPaste.dart';
@@ -82,7 +83,13 @@ class _PixTransactionSuccessState extends State<PixTransactionSuccess> {
                     Navigator.pushReplacement(
                         context,
                         PageTransition(
-                            child: PixCopyPaste(balance: balance),
+                            child: PixCopyPaste(
+                              balance: BalanceResponse(
+                                  success: true,
+                                  balance: 12,
+                                  balanceCents: 12,
+                                  transactionalValue: 12),
+                            ),
                             type: PageTransitionType.rightToLeft));
                   }
                 });

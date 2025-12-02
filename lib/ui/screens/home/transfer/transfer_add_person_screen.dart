@@ -102,9 +102,8 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: TextFormField(
                     cursorColor: secondaryColor,
-                    validator: (value) => value!.isEmpty
-                        ? 'validator_empty'.tr
-                        : null,
+                    validator: (value) =>
+                        value!.isEmpty ? 'validator_empty'.tr : null,
                     controller: _nameController,
                     keyboardType: TextInputType.name,
                     style: const TextStyle(color: Colors.black, fontSize: 20),
@@ -263,8 +262,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText:
-                              'bank_agency_digit'.tr,
+                          labelText: 'bank_agency_digit'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -284,8 +282,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                     isExpanded: true,
                     style: const TextStyle(color: Colors.black, fontSize: 16),
                     decoration: InputDecoration(
-                      labelText:
-                          'bank_account_type'.tr,
+                      labelText: 'bank_account_type'.tr,
                       labelStyle: const TextStyle(
                         color: Colors.black,
                         fontSize: 16,
@@ -349,8 +346,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText:
-                              'bank_account_number'.tr,
+                          labelText: 'bank_account_number'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -385,8 +381,7 @@ class _TransferAddPersonScreenState extends State<TransferAddPersonScreen> {
                             borderSide: BorderSide(color: Colors.red),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          labelText:
-                              'bank_account_digit'.tr,
+                          labelText: 'bank_account_digit'.tr,
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
