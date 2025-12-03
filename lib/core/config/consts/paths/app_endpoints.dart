@@ -46,4 +46,5 @@ class AppEndpoints {
   static const String pixValidateKey = '/pix/dict/validate';
   static const String pixTransfer = '/pix/transfers';
   static const String pixScheduled = '/pix/scheduled';
+  static const String pixCodeDecode = '/pix/code/decode';
 }

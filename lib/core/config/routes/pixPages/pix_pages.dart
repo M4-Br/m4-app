@@ -1,4 +1,8 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/features/pix/copyPaste/bindings/pix_copy_paste_bindings.dart';
+import 'package:app_flutter_miban4/features/pix/copyPaste/presentation/pix_copy_paste_page.dart';
+import 'package:app_flutter_miban4/features/pix/decode/bindings/pix_code_decode_bindings.dart';
+import 'package:app_flutter_miban4/features/pix/decode/presentation/pix_code_decode_page.dart';
 import 'package:app_flutter_miban4/features/pix/home/bindings/pix_home_bindings.dart';
 import 'package:app_flutter_miban4/features/pix/home/presentation/pix_home_page.dart';
 import 'package:app_flutter_miban4/features/pix/keyManager/bindings/pix_key_manager_bindings.dart';
@@ -19,12 +23,11 @@ import 'package:app_flutter_miban4/features/pix/voucher/bindings/pix_voucher_bin
 import 'package:app_flutter_miban4/features/pix/voucher/presentation/pix_voucher_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixAddKeys.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixAddValue.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixCodeDecode.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixCopyPaste.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixMyKeys.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixNewKey.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixStatement.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixTransactionSuccess.dart';
+import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
 import 'package:get/get.dart';
 
 class PixPages {
@@ -80,17 +83,29 @@ class PixPages {
       binding: PixVoucherBindings(),
     ),
     GetPage(
-        name: AppRoutes.pixScheduled,
-        page: () => const PixSchedulePage(),
-        binding: PixScheduleBindings()),
+      name: AppRoutes.pixScheduled,
+      page: () => const PixSchedulePage(),
+      binding: PixScheduleBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.pixCopyPaste,
+      page: () => const PixCopyPastePage(),
+      binding: PixCopyPasteBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.pixQrCodeReader,
+      page: () => const QrCodeCamera(),
+    ),
+    GetPage(
+        name: AppRoutes.pixDecode,
+        page: () => const PixCodeDecodePage(),
+        binding: PixCodeDecodeBindings()),
 
     //Divisão
     GetPage(name: AppRoutes.pixMyKeys, page: () => const PixMyKeys()),
     GetPage(name: AppRoutes.pixStatement, page: () => const PixStatementPage()),
     GetPage(name: AppRoutes.pixAddKey, page: () => const PixAddKeys()),
     GetPage(name: AppRoutes.pixAddValue, page: () => PixAddValue()),
-    GetPage(name: AppRoutes.pixDecode, page: () => PixCodeDecode()),
-    GetPage(name: AppRoutes.pixCopyPaste, page: () => PixCopyPaste()),
     GetPage(name: AppRoutes.pixNewKey, page: () => PixNewKey()),
     GetPage(name: AppRoutes.pixSuccess, page: () => PixTransactionSuccess()),
   ];

@@ -139,7 +139,7 @@ class PixHomePage extends GetView<PixHomeController> {
               name: 'pix_copyPaste'.tr,
               description: 'pix_payCopy'.tr,
               icon: Icons.copy_outlined,
-              onPressed: controller.goToCopyPaste,
+              onPressed: () => controller.goToCopyPaste(),
             ),
           ),
         ],

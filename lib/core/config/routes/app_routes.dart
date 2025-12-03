@@ -50,7 +50,7 @@ class AppRoutes {
   static const String profile = '/profile';
 
   //Rotas do Extrato
-  static const String statementInvoice = '/statement_invoice/';
+  static const String statementInvoice = '$statement/invoice/';
 
   //Rotas do Profile
   static const String financialData = '$profile/financial_data';
@@ -85,11 +85,14 @@ class AppRoutes {
 
   static const String pixScheduled = '$pixHome/scheduled';
 
+  static const String pixCopyPaste = '$pixHome/paste';
+
+  static const String pixQrCodeReader = '$pixHome/qrcode';
+  static const String pixDecode = '$pixHome/code';
+
   static const String pixMyKeys = '/pix_my_keys';
   static const String pixAddKey = '/pix_add_key';
   static const String pixAddValue = '/pix_add_value';
-  static const String pixDecode = '/pix_code';
-  static const String pixCopyPaste = '/pix_copy_paste';
   static const String pixManualKey = '/pix_manual_key';
   static const String pixNewKey = '/pix_new_key';
   static const String pixStatement = '/pix_statement';

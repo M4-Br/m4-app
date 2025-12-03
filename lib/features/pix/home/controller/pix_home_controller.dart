@@ -2,7 +2,6 @@ import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixCopyPaste.dart';
 import 'package:get/get.dart';
 
 class PixHomeController extends BaseController {
@@ -41,11 +40,7 @@ class PixHomeController extends BaseController {
   }
 
   void goToCopyPaste() {
-    final currentBalance = balance.balance.value;
-
-    Get.to(
-      () => PixCopyPaste(balance: currentBalance),
-      transition: Transition.rightToLeft,
-    );
+    Get.toNamed(AppRoutes.pixCopyPaste);
+    AppLogger.I().info('Going to Pix Copy Paste');
   }
 }
