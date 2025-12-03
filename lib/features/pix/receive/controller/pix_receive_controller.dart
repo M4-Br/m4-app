@@ -98,6 +98,7 @@ class PixReceiveController extends BaseController {
       );
 
       if (response.success) {
+        FocusManager.instance.primaryFocus?.unfocus();
         Get.toNamed(AppRoutes.pixReceiveQrCode, arguments: response);
       }
     });

@@ -31,64 +31,113 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Future<void> Function()? action;
-    final Widget? icon;
-
     if (isLoading) {
-      action = null;
-      icon = AppLoading(
-        color: color,
+      return SizedBox(
+        height: 50,
+        child: Center(
+          child: AppLoading(
+            color: color ?? secondaryColor,
+          ),
+        ),
       );
-    } else {
-      action = onPressed;
-      icon = this.icon;
     }
 
     final Widget label = _label();
+    const double minHeight = 50.0;
+    final BorderRadius borderRadius = BorderRadius.circular(12);
 
     return switch (buttonType) {
-      AppButtonType.filled => FilledButton.icon(
-          onPressed: action,
-          label: label,
-          icon: icon,
-          style: FilledButton.styleFrom(
-            backgroundColor: color ?? secondaryColor,
-            foregroundColor: Colors.white,
-            minimumSize: const Size(double.infinity, 50),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+      // --- FILLED ---
+      AppButtonType.filled => icon != null
+          ? FilledButton.icon(
+              onPressed: onPressed,
+              label: label,
+              icon: icon!,
+              style: FilledButton.styleFrom(
+                backgroundColor: color ?? secondaryColor,
+                foregroundColor: Colors.white,
+                minimumSize: Size(double.infinity, minHeight),
+                shape: RoundedRectangleBorder(borderRadius: borderRadius),
+              ),
+            )
+          : FilledButton(
+              onPressed: onPressed,
+              style: FilledButton.styleFrom(
+                backgroundColor: color ?? secondaryColor,
+                foregroundColor: Colors.white,
+                minimumSize: Size(double.infinity, minHeight),
+                shape: RoundedRectangleBorder(borderRadius: borderRadius),
+              ),
+              child: label,
             ),
-          ),
-        ),
-      AppButtonType.elevated => ElevatedButton.icon(
-          onPressed: action,
-          label: label,
-          icon: icon,
-          style: ElevatedButton.styleFrom(
-              backgroundColor: color ?? secondaryColor,
-              foregroundColor: Colors.white,
-              minimumSize: const Size(double.infinity, 50)),
-        ),
-      AppButtonType.outlined => OutlinedButton.icon(
-          onPressed: action,
-          label: label,
-          icon: icon,
-          style: OutlinedButton.styleFrom(
-              foregroundColor: color ?? secondaryColor,
-              side: BorderSide(color: color ?? Colors.grey),
-              backgroundColor: Colors.transparent,
-              minimumSize: const Size(double.infinity, 50)),
-        ),
-      AppButtonType.text => TextButton.icon(
-          onPressed: action,
-          label: label,
-          icon: icon,
-          style: TextButton.styleFrom(
-            foregroundColor: color,
-            alignment: Alignment.center,
-            textStyle: const TextStyle(fontSize: 16),
-          ),
-        ),
+
+      // --- ELEVATED ---
+      AppButtonType.elevated => icon != null
+          ? ElevatedButton.icon(
+              onPressed: onPressed,
+              label: label,
+              icon: icon!,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: color ?? secondaryColor,
+                foregroundColor: Colors.white,
+                minimumSize: Size(double.infinity, minHeight),
+              ),
+            )
+          : ElevatedButton(
+              onPressed: onPressed,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: color ?? secondaryColor,
+                foregroundColor: Colors.white,
+                minimumSize: Size(double.infinity, minHeight),
+              ),
+              child: label,
+            ),
+
+      // --- OUTLINED ---
+      AppButtonType.outlined => icon != null
+          ? OutlinedButton.icon(
+              onPressed: onPressed,
+              label: label,
+              icon: icon!,
+              style: OutlinedButton.styleFrom(
+                foregroundColor: color ?? secondaryColor,
+                side: BorderSide(color: color ?? Colors.grey),
+                backgroundColor: Colors.transparent,
+                minimumSize: Size(double.infinity, minHeight),
+              ),
+            )
+          : OutlinedButton(
+              onPressed: onPressed,
+              style: OutlinedButton.styleFrom(
+                foregroundColor: color ?? secondaryColor,
+                side: BorderSide(color: color ?? Colors.grey),
+                backgroundColor: Colors.transparent,
+                minimumSize: Size(double.infinity, minHeight),
+              ),
+              child: label,
+            ),
+
+      // --- TEXT ---
+      AppButtonType.text => icon != null
+          ? TextButton.icon(
+              onPressed: onPressed,
+              label: label,
+              icon: icon!,
+              style: TextButton.styleFrom(
+                foregroundColor: color,
+                alignment: Alignment.center,
+                textStyle: const TextStyle(fontSize: 16),
+              ),
+            )
+          : TextButton(
+              onPressed: onPressed,
+              style: TextButton.styleFrom(
+                foregroundColor: color,
+                alignment: Alignment.center,
+                textStyle: const TextStyle(fontSize: 16),
+              ),
+              child: label,
+            ),
     };
   }
 

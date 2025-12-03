@@ -42,4 +42,31 @@ class CustomDialogs {
       confirmTextColor: Colors.white,
     );
   }
+
+  static void showWidgetDialog({
+    required String title,
+    required Widget content,
+    required VoidCallback onConfirm,
+    String? confirmText,
+  }) {
+    Get.defaultDialog(
+      title: title.toUpperCase(),
+      titleStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      content: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: content,
+      ),
+      confirm: AppButton(
+        onPressed: () async => onConfirm(),
+        labelText: confirmText ?? 'confirm'.tr,
+        color: secondaryColor,
+      ),
+      cancel: AppButton(
+        buttonType: AppButtonType.filled,
+        onPressed: () async => Get.back(),
+        color: Colors.redAccent,
+        labelText: 'cancel'.tr,
+      ),
+    );
+  }
 }

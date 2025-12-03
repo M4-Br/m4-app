@@ -76,7 +76,7 @@ dependencies:
   local_auth: ^2.1.6
   sentry_flutter: ^9.4.1
   flutter_dotenv: ^5.1.0
-  image_gallery_saver: ^2.0.3
+  gal: ^2.3.2
 
 
 dev_dependencies:

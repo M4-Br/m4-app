@@ -30,6 +30,11 @@ class PixHomeController extends BaseController {
     AppLogger.I().info('Going to Pix Receive');
   }
 
+  void goToPixWithKey() {
+    Get.toNamed(AppRoutes.pixWithKey);
+    AppLogger.I().info('Going to Pix With Key');
+  }
+
   void goToCopyPaste() {
     final currentBalance = balance.balance.value;
 

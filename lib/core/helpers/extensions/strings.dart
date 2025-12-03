@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/helpers/extensions/dates.dart';
 import 'package:intl/intl.dart';
 
 final _brlFormatter = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
@@ -25,5 +26,16 @@ extension StringCurrencyExtension on String {
     }
 
     return int.parse(digitsOnly);
+  }
+}
+
+extension StringDateExtension on String {
+  String toVoucherFormat() {
+    try {
+      final dateTime = DateTime.parse(this);
+      return dateTime.toVoucherFormat();
+    } catch (e) {
+      return this;
+    }
   }
 }

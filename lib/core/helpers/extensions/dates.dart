@@ -11,4 +11,9 @@ extension DateTimeFormattingExtension on DateTime {
     final DateFormat formatter = DateFormat('dd-MM-yyyy');
     return formatter.format(this);
   }
+
+  String toVoucherFormat() {
+    final DateFormat formatter = DateFormat('dd/MM/yyyy | HH:mm:ss');
+    return formatter.format(this);
+  }
 }

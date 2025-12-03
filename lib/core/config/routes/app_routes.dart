@@ -75,8 +75,13 @@ class AppRoutes {
   static const String pixHome = '/pix';
   static const String pixKeyManager = '$pixHome/keys_manager';
   static const String pixLimits = '$pixHome/limits';
+
   static const String pixReceive = '$pixHome/receive';
   static const String pixReceiveQrCode = '$pixReceive/qrcode';
+
+  static const String pixWithKey = '$pixHome/key';
+  static const String pixTransfer = '$pixHome/transfer';
+  static const String pixInvoice = '$pixTransfer/invoice';
 
   static const String pixMyKeys = '/pix_my_keys';
   static const String pixAddKey = '/pix_add_key';
@@ -87,9 +92,6 @@ class AppRoutes {
   static const String pixNewKey = '/pix_new_key';
   static const String pixStatement = '/pix_statement';
   static const String pixSuccess = '/pix_success';
-  static const String pixTransfer = '/pix_transfer';
-  static const String pixWithKey = '/pix_with_key';
-  static const String pixInvoice = '/pix_invoice';
 
   //Rotas de Serviços
   static const String services = '/services';

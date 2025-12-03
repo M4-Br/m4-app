@@ -43,4 +43,6 @@ class AppEndpoints {
   static const String pixKeyManager = '/pix/dict';
   static const String pixLimits = '/pix/limits';
   static const String pixReceive = '/pix/code/static';
+  static const String pixValidateKey = '/pix/dict/validate';
+  static const String pixTransfer = '/pix/transfers';
 }
