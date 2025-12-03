@@ -45,4 +45,5 @@ class AppEndpoints {
   static const String pixReceive = '/pix/code/static';
   static const String pixValidateKey = '/pix/dict/validate';
   static const String pixTransfer = '/pix/transfers';
+  static const String pixScheduled = '/pix/scheduled';
 }

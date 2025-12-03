@@ -83,6 +83,8 @@ class AppRoutes {
   static const String pixTransfer = '$pixHome/transfer';
   static const String pixInvoice = '$pixTransfer/invoice';
 
+  static const String pixScheduled = '$pixHome/scheduled';
+
   static const String pixMyKeys = '/pix_my_keys';
   static const String pixAddKey = '/pix_add_key';
   static const String pixAddValue = '/pix_add_value';

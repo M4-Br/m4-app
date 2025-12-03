@@ -35,6 +35,11 @@ class PixHomeController extends BaseController {
     AppLogger.I().info('Going to Pix With Key');
   }
 
+  void gotoScheduledPix() {
+    Get.toNamed(AppRoutes.pixScheduled);
+    AppLogger.I().info('Going to Pix Scheduled');
+  }
+
   void goToCopyPaste() {
     final currentBalance = balance.balance.value;
 

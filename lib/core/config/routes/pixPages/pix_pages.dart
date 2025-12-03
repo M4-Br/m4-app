@@ -11,6 +11,8 @@ import 'package:app_flutter_miban4/features/pix/receive/bindings/pix_receive_bin
 import 'package:app_flutter_miban4/features/pix/receive/bindings/pix_receive_qr_code_bindings.dart';
 import 'package:app_flutter_miban4/features/pix/receive/presentation/pix_receive_page.dart';
 import 'package:app_flutter_miban4/features/pix/receive/presentation/pix_receive_qr_code_page.dart';
+import 'package:app_flutter_miban4/features/pix/scheduled/bindings/pix_schedule_bindings.dart';
+import 'package:app_flutter_miban4/features/pix/scheduled/presentation/pix_schedule_page.dart';
 import 'package:app_flutter_miban4/features/pix/transfer/bindings/pix_transfer_binding.dart';
 import 'package:app_flutter_miban4/features/pix/transfer/presentation/pix_transfer_page.dart';
 import 'package:app_flutter_miban4/features/pix/voucher/bindings/pix_voucher_bindings.dart';
@@ -73,9 +75,14 @@ class PixPages {
       binding: PixTransferBindings(),
     ),
     GetPage(
-        name: AppRoutes.pixInvoice,
-        page: () => const PixVoucherPage(),
-        binding: PixVoucherBindings()),
+      name: AppRoutes.pixInvoice,
+      page: () => const PixVoucherPage(),
+      binding: PixVoucherBindings(),
+    ),
+    GetPage(
+        name: AppRoutes.pixScheduled,
+        page: () => const PixSchedulePage(),
+        binding: PixScheduleBindings()),
 
     //Divisão
     GetPage(name: AppRoutes.pixMyKeys, page: () => const PixMyKeys()),

@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart';
 import 'package:app_flutter_miban4/features/pix/home/controller/pix_home_controller.dart';
 import 'package:app_flutter_miban4/features/pix/home/presentation/widgets/pix_home_item.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixScheduleTransfers.dart';
 import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -125,8 +124,7 @@ class PixHomePage extends GetView<PixHomeController> {
             name: 'pix_schedule_transfer'.tr,
             description: 'Gerencie seus pix agendados',
             icon: Icons.schedule_outlined,
-            onPressed: () => Get.to(() => const PixScheduleTransfers(),
-                transition: Transition.rightToLeft),
+            onPressed: () => controller.gotoScheduledPix(),
           ),
           PixHomeItem(
             name: 'pix_qrCode'.tr,
