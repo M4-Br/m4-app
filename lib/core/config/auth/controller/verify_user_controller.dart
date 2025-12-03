@@ -132,6 +132,10 @@ class VerifyAccountController extends GetxController {
       return null;
     }
 
+    if (!document.text.isCpf) {
+      ShowToaster.toasterInfo(message: 'Digite um CPF Válido');
+    }
+
     isLoading(true);
     try {
       final response = await AuthRepository().verifyAccount(

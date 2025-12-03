@@ -37,6 +37,10 @@ class OnboardingDocumentController extends GetxController {
       return;
     }
 
+    if (!documentController.text.isCpf) {
+      ShowToaster.toasterInfo(message: 'Digite um CPF Válido');
+    }
+
     isLoading.value = true;
 
     final doc = documentController.text.replaceAll('.', '').replaceAll('-', '');
