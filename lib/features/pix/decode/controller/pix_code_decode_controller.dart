@@ -100,14 +100,6 @@ class PixCodeDecodeController extends BaseController {
     return DateFormat('dd/MM/yyyy').format(qrData.dueDate!);
   }
 
-  void handleBack() {
-    if (originPage == 1) {
-      Get.offNamed(AppRoutes.pixAddValue);
-    } else {
-      Get.offNamed(AppRoutes.homeView);
-    }
-  }
-
   void togglePassword() => isPasswordObscure.toggle();
 
   void openPasswordDialog() {

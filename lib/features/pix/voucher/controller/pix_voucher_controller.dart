@@ -65,11 +65,15 @@ class PixVoucherController extends BaseController {
   String get bankName => voucherData.bankName;
   String get payerName => userRx.user.value?.payload.fullName ?? 'Usuário';
 
-  // --- Ações ---
-
   void closeVoucher() {
-    Get.offNamedUntil(AppRoutes.pixHome,
-        (route) => route.settings.name == AppRoutes.homeView);
+    Get.until((route) {
+      final name = route.settings.name;
+      return name == AppRoutes.pixHome || name == AppRoutes.homeView;
+    });
+    if (Get.currentRoute != AppRoutes.pixHome &&
+        Get.currentRoute != AppRoutes.homeView) {
+      Get.offAllNamed(AppRoutes.homeView);
+    }
   }
 
   Future<void> shareVoucher() async {

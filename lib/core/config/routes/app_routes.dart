@@ -90,11 +90,12 @@ class AppRoutes {
   static const String pixQrCodeReader = '$pixHome/qrcode';
   static const String pixDecode = '$pixHome/code';
 
+  static const String pixNewKey = '$pixHome/new';
+
   static const String pixMyKeys = '/pix_my_keys';
   static const String pixAddKey = '/pix_add_key';
   static const String pixAddValue = '/pix_add_value';
   static const String pixManualKey = '/pix_manual_key';
-  static const String pixNewKey = '/pix_new_key';
   static const String pixStatement = '/pix_statement';
   static const String pixSuccess = '/pix_success';
 

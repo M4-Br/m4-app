@@ -5,7 +5,9 @@ import 'package:app_flutter_miban4/features/pix/decode/bindings/pix_code_decode_
 import 'package:app_flutter_miban4/features/pix/decode/presentation/pix_code_decode_page.dart';
 import 'package:app_flutter_miban4/features/pix/home/bindings/pix_home_bindings.dart';
 import 'package:app_flutter_miban4/features/pix/home/presentation/pix_home_page.dart';
+import 'package:app_flutter_miban4/features/pix/keyManager/bindings/pix_add_new_key_bindings.dart';
 import 'package:app_flutter_miban4/features/pix/keyManager/bindings/pix_key_manager_bindings.dart';
+import 'package:app_flutter_miban4/features/pix/keyManager/presentation/pix_add_new_key_page.dart';
 import 'package:app_flutter_miban4/features/pix/keyManager/presentation/pix_key_manager_page.dart';
 import 'package:app_flutter_miban4/features/pix/limits/bindings/pix_limits_bindings.dart';
 import 'package:app_flutter_miban4/features/pix/limits/presentation/pix_limits_page.dart';
@@ -21,13 +23,7 @@ import 'package:app_flutter_miban4/features/pix/transfer/bindings/pix_transfer_b
 import 'package:app_flutter_miban4/features/pix/transfer/presentation/pix_transfer_page.dart';
 import 'package:app_flutter_miban4/features/pix/voucher/bindings/pix_voucher_bindings.dart';
 import 'package:app_flutter_miban4/features/pix/voucher/presentation/pix_voucher_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixAddKeys.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixAddValue.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixMyKeys.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixNewKey.dart';
 import 'package:app_flutter_miban4/ui/screens/home/pix/pixStatement.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixTransactionSuccess.dart';
-import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
 import 'package:get/get.dart';
 
 class PixPages {
@@ -93,20 +89,16 @@ class PixPages {
       binding: PixCopyPasteBindings(),
     ),
     GetPage(
-      name: AppRoutes.pixQrCodeReader,
-      page: () => const QrCodeCamera(),
-    ),
-    GetPage(
         name: AppRoutes.pixDecode,
         page: () => const PixCodeDecodePage(),
         binding: PixCodeDecodeBindings()),
+    GetPage(
+      name: AppRoutes.pixNewKey,
+      page: () => const PixAddNewKeyPage(),
+      binding: PixAddNewKeyBindings(),
+    ),
 
     //Divisão
-    GetPage(name: AppRoutes.pixMyKeys, page: () => const PixMyKeys()),
     GetPage(name: AppRoutes.pixStatement, page: () => const PixStatementPage()),
-    GetPage(name: AppRoutes.pixAddKey, page: () => const PixAddKeys()),
-    GetPage(name: AppRoutes.pixAddValue, page: () => PixAddValue()),
-    GetPage(name: AppRoutes.pixNewKey, page: () => PixNewKey()),
-    GetPage(name: AppRoutes.pixSuccess, page: () => PixTransactionSuccess()),
   ];
 }

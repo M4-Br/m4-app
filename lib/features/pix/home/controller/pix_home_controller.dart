@@ -34,9 +34,14 @@ class PixHomeController extends BaseController {
     AppLogger.I().info('Going to Pix With Key');
   }
 
-  void gotoScheduledPix() {
+  void goToScheduledPix() {
     Get.toNamed(AppRoutes.pixScheduled);
     AppLogger.I().info('Going to Pix Scheduled');
+  }
+
+  void goToPixQrCodeReader() {
+    Get.toNamed(AppRoutes.pixQrCodeReader);
+    AppLogger.I().info('Going to Pix QR Code Reader');
   }
 
   void goToCopyPaste() {

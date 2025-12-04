@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/routes/cameraPage/camera_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/homePage/home_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/loginPages/login_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/notificationsPage/notifications_page.dart';
@@ -40,6 +41,9 @@ class AppPages {
     ...ServicesPages.pages,
 
     //Payment Link Screens
-    ...PaymentLinkPages.paymentLinkPages
+    ...PaymentLinkPages.paymentLinkPages,
+
+    //Camera Screens
+    ...CameraPages.pages
   ];
 }

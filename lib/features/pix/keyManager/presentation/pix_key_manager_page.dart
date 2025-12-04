@@ -3,7 +3,6 @@ import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart';
 import 'package:app_flutter_miban4/features/pix/keyManager/controller/pix_key_manager_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixAddKeys.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +13,7 @@ class PixKeyManagerPage extends GetView<PixKeyManagerController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFe9eaf0), // Mantendo sua cor de fundo
+      backgroundColor: const Color(0xFFe9eaf0),
       appBar: CustomAppBar(
         title: 'pix_keyManager'.tr,
       ),
@@ -151,8 +150,7 @@ class PixKeyManagerPage extends GetView<PixKeyManagerController> {
         width: double.infinity,
         height: 50,
         child: ElevatedButton(
-          onPressed: () => Get.to(() => const PixAddKeys(),
-              transition: Transition.rightToLeft),
+          onPressed: () => controller.goToAddKey(),
           style: ElevatedButton.styleFrom(
             backgroundColor: secondaryColor,
             shape:

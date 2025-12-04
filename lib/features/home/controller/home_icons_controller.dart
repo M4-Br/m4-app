@@ -120,7 +120,7 @@ class HomeIconsController extends BaseController {
         AppLogger.I().info('Going to Payment Link');
         break;
       case '2':
-        Get.to(() => const QrCodeCamera(), transition: Transition.rightToLeft);
+        Get.toNamed(AppRoutes.pixQrCodeReader);
         AppLogger.I().info('Going to QR Code Payment');
         break;
       case '10':

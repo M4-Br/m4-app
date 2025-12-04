@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/formatters/formatters.dart';
 import 'package:app_flutter_miban4/features/pix/keyManager/model/pix_key_response.dart';
@@ -22,6 +23,10 @@ class PixKeyManagerController extends BaseController {
 
       pixKeysData.value = result;
     });
+  }
+
+  void goToAddKey() async {
+    Get.toNamed(AppRoutes.pixNewKey);
   }
 
   Future<void> deleteKey(String key) async {
