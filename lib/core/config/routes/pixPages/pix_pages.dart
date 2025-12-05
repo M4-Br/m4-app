@@ -19,11 +19,12 @@ import 'package:app_flutter_miban4/features/pix/receive/presentation/pix_receive
 import 'package:app_flutter_miban4/features/pix/receive/presentation/pix_receive_qr_code_page.dart';
 import 'package:app_flutter_miban4/features/pix/scheduled/bindings/pix_schedule_bindings.dart';
 import 'package:app_flutter_miban4/features/pix/scheduled/presentation/pix_schedule_page.dart';
+import 'package:app_flutter_miban4/features/pix/statement/bindings/pix_statement_bindings.dart';
+import 'package:app_flutter_miban4/features/pix/statement/presentation/pix_statement_page.dart';
 import 'package:app_flutter_miban4/features/pix/transfer/bindings/pix_transfer_binding.dart';
 import 'package:app_flutter_miban4/features/pix/transfer/presentation/pix_transfer_page.dart';
 import 'package:app_flutter_miban4/features/pix/voucher/bindings/pix_voucher_bindings.dart';
 import 'package:app_flutter_miban4/features/pix/voucher/presentation/pix_voucher_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixStatement.dart';
 import 'package:get/get.dart';
 
 class PixPages {
@@ -97,8 +98,9 @@ class PixPages {
       page: () => const PixAddNewKeyPage(),
       binding: PixAddNewKeyBindings(),
     ),
-
-    //Divisão
-    GetPage(name: AppRoutes.pixStatement, page: () => const PixStatementPage()),
+    GetPage(
+        name: AppRoutes.pixStatement,
+        page: () => const PixStatementPage(),
+        binding: PixStatementBindings()),
   ];
 }

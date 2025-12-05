@@ -47,4 +47,10 @@ class AppEndpoints {
   static const String pixTransfer = '/pix/transfers';
   static const String pixScheduled = '/pix/scheduled';
   static const String pixCodeDecode = '/pix/code/decode';
+
+  //services
+  static const String services = '/service';
+
+  //storage
+  static const String store = '/voucher/merchants';
 }

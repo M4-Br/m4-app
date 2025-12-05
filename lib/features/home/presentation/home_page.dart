@@ -94,13 +94,15 @@ class HomePage extends GetView<HomeIconsController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(
-            onPressed: controller.openPixReceive,
-            icon: const Icon(Icons.qr_code_2, color: Colors.white, size: 32),
-          ),
-          Obx(() => Text(
-                _user.user.value?.payload.username ?? '',
-                style: const TextStyle(color: Colors.white, fontSize: 20),
+          Obx(() => Expanded(
+                child: Text(
+                  _user.user.value?.payload.username ?? '',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               )),
           IconButton(
             onPressed: controller.openNotifications,

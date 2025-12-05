@@ -32,57 +32,95 @@ class PixHomePage extends GetView<PixHomeController> {
     return Container(
       width: double.infinity,
       color: primaryColor,
-      padding: const EdgeInsets.all(AppDimens.kDefaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppText.titleLarge(
-            context,
-            'balance_available'.tr,
-            color: Colors.white,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Obx(() {
+          Padding(
+            padding: const EdgeInsets.all(AppDimens.kDefaultPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppText.titleLarge(
+                  context,
+                  'balance_available'.tr,
+                  color: Colors.white,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Obx(() {
+                        final isVisible = controller.isVisible.value;
+                        final balanceValue = controller.balance.balance.value;
+                        return AppText.headlineMedium(
+                          context,
+                          isVisible
+                              ? (balanceValue?.balanceCents.toBRL() ??
+                                  'R\$ ...')
+                              : '*****',
+                          color: Colors.white,
+                        );
+                      }),
+                    ),
+                    IconButton(
+                      onPressed: () => controller.toggleVisibility(),
+                      icon: Obx(
+                        () => Icon(
+                          controller.isVisible.value
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                AppText.titleMedium(context, 'balance_transational'.tr,
+                    color: Colors.white70),
+                Obx(() {
                   final isVisible = controller.isVisible.value;
                   final balanceValue = controller.balance.balance.value;
-                  return AppText.headlineMedium(
+                  return AppText.headlineSmall(
                     context,
                     isVisible
-                        ? (balanceValue?.balanceCents.toBRL() ?? 'R\$ ...')
+                        ? (balanceValue?.transactionalValue.toBRL() ??
+                            'R\$ ...')
                         : '*****',
                     color: Colors.white,
                   );
                 }),
-              ),
-              IconButton(
-                onPressed: () => controller.toggleVisibility(),
-                icon: Obx(
-                  () => Icon(
-                    controller.isVisible.value
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                    color: Colors.white,
+              ],
+            ),
+          ),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () => controller.goToStatement(),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.kDefaultPadding,
+                  vertical: 12,
+                ),
+                decoration: const BoxDecoration(
+                  border: Border(
+                    top: BorderSide(color: Colors.white24, width: 1),
                   ),
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppText.bodyLarge(
+                      context,
+                      'pix_statement'.tr,
+                      color: Colors.white,
+                    ),
+                    const Icon(Icons.chevron_right_rounded,
+                        color: Colors.white),
+                  ],
+                ),
               ),
-            ],
+            ),
           ),
-          const SizedBox(height: AppDimens.kDefaultPadding),
-          AppText.titleMedium(context, 'balance_transational'.tr,
-              color: Colors.white),
-          Obx(() {
-            final isVisible = controller.isVisible.value;
-            final balanceValue = controller.balance.balance.value;
-            return AppText.headlineSmall(
-              context,
-              isVisible
-                  ? (balanceValue?.transactionalValue.toBRL() ?? 'R\$ ...')
-                  : '*****',
-              color: Colors.white,
-            );
-          }),
         ],
       ),
     );

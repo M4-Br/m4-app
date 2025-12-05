@@ -14,6 +14,11 @@ class PixHomeController extends BaseController {
     isVisible.value = !isVisible.value;
   }
 
+  void goToStatement() {
+    Get.toNamed(AppRoutes.pixStatement);
+    AppLogger.I().info('Going to Pix Statement');
+  }
+
   void goToPixKeyManager() {
     Get.toNamed(AppRoutes.pixKeyManager);
     AppLogger.I().info('Going to Pix Key Manager');

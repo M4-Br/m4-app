@@ -91,16 +91,13 @@ class AppRoutes {
   static const String pixDecode = '$pixHome/code';
 
   static const String pixNewKey = '$pixHome/new';
-
-  static const String pixMyKeys = '/pix_my_keys';
-  static const String pixAddKey = '/pix_add_key';
-  static const String pixAddValue = '/pix_add_value';
-  static const String pixManualKey = '/pix_manual_key';
-  static const String pixStatement = '/pix_statement';
-  static const String pixSuccess = '/pix_success';
+  static const String pixStatement = '$pixHome/statement';
 
   //Rotas de Serviços
   static const String services = '/services';
+
+  //Rotas de Loja
+  static const String store = '/store';
 
   //Rotas Links de Pagamento
   static const String paymentLink = '/payment_link';

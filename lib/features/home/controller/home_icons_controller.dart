@@ -7,10 +7,6 @@ import 'package:app_flutter_miban4/features/home/repository/fetch_icons_reposito
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
 import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_camera.dart';
 import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
-import 'package:app_flutter_miban4/ui/screens/home/qrcodePayment/qr_code_camera.dart';
-import 'package:app_flutter_miban4/ui/screens/home/services/services_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/store/store_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
 import 'package:get/get.dart';
@@ -137,7 +133,7 @@ class HomeIconsController extends BaseController {
             content: 'unavailable'.tr, onCancel: () => Get.back());
         break;
       case '14':
-        Get.to(() => const StorePage(), transition: Transition.rightToLeft);
+        Get.toNamed(AppRoutes.store);
         AppLogger.I().info('Going to Store Page');
         break;
       case '19':
@@ -157,7 +153,7 @@ class HomeIconsController extends BaseController {
         AppLogger.I().info('Going to Contabilidade');
         break;
       case '24':
-        Get.to(() => const ServicesPage(), transition: Transition.rightToLeft);
+        Get.toNamed(AppRoutes.services);
         AppLogger.I().info('Going to Services');
         break;
       default:
@@ -170,10 +166,6 @@ class HomeIconsController extends BaseController {
       () => WebviewPage(url: url, pageTitle: title),
       transition: Transition.rightToLeft,
     );
-  }
-
-  void openPixReceive() {
-    Get.to(() => const PixReceive(type: 1), transition: Transition.rightToLeft);
   }
 
   void openNotifications() {

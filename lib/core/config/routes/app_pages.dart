@@ -8,6 +8,7 @@ import 'package:app_flutter_miban4/core/config/routes/pixPages/pix_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/profilePages/profile_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/servicesPages/services_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/statementPages/statement_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/storePages/store_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/transferPages/transfer_pages.dart';
 import 'package:get/get.dart';
 
@@ -42,6 +43,9 @@ class AppPages {
 
     //Payment Link Screens
     ...PaymentLinkPages.paymentLinkPages,
+
+    //Store
+    ...StorePages.pages,
 
     //Camera Screens
     ...CameraPages.pages

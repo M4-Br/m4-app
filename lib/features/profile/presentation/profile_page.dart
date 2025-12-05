@@ -8,7 +8,6 @@ import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/change_password_page.dart';
 import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/home/pix/pixReceive.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
 import 'package:app_flutter_miban4/ui/screens/politics/terms_page.dart';
 import 'package:flutter/material.dart';
@@ -56,13 +55,6 @@ class ProfilePage extends GetView<ProfileController> {
                             'account_account'.tr, account?.accountNumber ?? ''),
                       ]),
                     ],
-                  ),
-                  ListTile(
-                    leading:
-                        const Icon(Icons.qr_code_outlined, color: Colors.black),
-                    title: Text('account_myQr'.tr),
-                    onTap: () => Get.to(() => const PixReceive(),
-                        transition: Transition.rightToLeft),
                   ),
                   ExpansionTile(
                     leading: const Icon(Icons.person_2_outlined,
