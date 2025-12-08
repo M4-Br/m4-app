@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/features/onboarding/controller/onboarding_initial_register_done_controller.dart';
 import 'package:get/get.dart';
 
@@ -7,5 +8,7 @@ class OnboardingInitialRegisterDoneBindings extends Bindings {
     Get.lazyPut<OnboardingInitialRegisterDoneController>(
       () => OnboardingInitialRegisterDoneController(),
     );
+
+    AppLogger.I().info('Onboarding done dependencies injected');
   }
 }

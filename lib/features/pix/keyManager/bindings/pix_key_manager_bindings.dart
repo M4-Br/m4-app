@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/features/pix/keyManager/controller/pix_key_manager_controller.dart';
 import 'package:get/get.dart';
 
@@ -7,5 +8,7 @@ class PixKeyManagerBindings extends Bindings {
     Get.lazyPut<PixKeyManagerController>(
       () => PixKeyManagerController(),
     );
+
+    AppLogger.I().info('Pix key manager dependencies injected');
   }
 }

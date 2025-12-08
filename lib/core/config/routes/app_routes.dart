@@ -8,7 +8,6 @@ class AppRoutes {
   //Rotas de Login
   static const String login = '/login';
   static const String password = '/password';
-  static const String privacy = '/privacy';
 
   //Rotas de Onboarding
   static const String onboarding = '/onboarding';
@@ -55,9 +54,9 @@ class AppRoutes {
   //Rotas do Profile
   static const String financialData = '$profile/financial_data';
   static const String plans = '$profile/plans';
-  static const String changePassword = '/change_password';
-  static const String terms = '/terms';
-  static const String privacyProfile = '/privacy_policy';
+  static const String changePasswordFromProfile = '$profile/change_password';
+  static const String privacyPolicyFromProfile = '$profile/privacy_policy';
+  static const String termsFromProfile = '$profile/terms';
 
   //Rotas de Notificação
   static const String notifications = '$homePage/notifications';
@@ -102,4 +101,13 @@ class AppRoutes {
   //Rotas Links de Pagamento
   static const String paymentLink = '/payment_link';
   static const String paymentLinkGenerated = '$paymentLink/generated';
+
+  //Rotas de termos e politicas
+  static const String privacyPolicyFromLogin = '$login/privacy_policy';
+
+  //barcode
+  static const String barcode = '/barcode';
+  static const String barcodeManual = '$barcode/manual';
+  static const String barcodeConfirmPayment = '$barcode/confirm';
+  static const String barcodeVoucher = '$barcode/invoice';
 }

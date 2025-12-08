@@ -8,6 +8,6 @@ class OnboardingDocumentBindings extends Bindings {
     Get.lazyPut<OnboardingDocumentController>(
         () => OnboardingDocumentController());
 
-    AppLogger.I().info('Onboarding Step one bindings injected');
+    AppLogger.I().info('Onboarding Document bindings injected');
   }
 }

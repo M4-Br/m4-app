@@ -1,7 +1,7 @@
 import 'package:app_flutter_miban4/core/config/auth/controller/auth_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
 import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/ui/screens/login/code_validate/code_validate_page.dart';
+import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -113,11 +113,8 @@ class PasswordPage extends GetView<AuthController> {
                         ),
                         const Spacer(),
                         AppButton(
-                          onPressed: () async => Get.to(
-                              () => const CodeValidatePage(
-                                    page: 0,
-                                  ),
-                              transition: Transition.rightToLeft),
+                          onPressed: () async => ShowToaster.toasterInfo(
+                              message: 'Implementação em andamento'),
                           buttonType: AppButtonType.filled,
                           labelText: 'forgot_password'.tr,
                           color: thirdColor,

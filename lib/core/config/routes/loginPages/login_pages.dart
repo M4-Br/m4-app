@@ -1,11 +1,12 @@
 import 'package:app_flutter_miban4/core/config/auth/bindings/auth_binding.dart';
 import 'package:app_flutter_miban4/core/config/auth/bindings/verify_account_binding.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/features/appTerms/bindings/privacy_policy_bindings.dart';
+import 'package:app_flutter_miban4/features/appTerms/presentation/privacy_policy_page.dart';
 import 'package:app_flutter_miban4/features/auth/presentation/login_page.dart';
 import 'package:app_flutter_miban4/features/auth/presentation/password_page.dart';
 import 'package:app_flutter_miban4/features/splash/bindings/splash_binding.dart';
 import 'package:app_flutter_miban4/features/splash/presentation/splash_page.dart';
-import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
 import 'package:get/get.dart';
 
 class LoginPages {
@@ -29,6 +30,9 @@ class LoginPages {
         binding: AuthBinding()),
 
     //Privacy Policy Screen
-    GetPage(name: AppRoutes.privacy, page: () => const PrivacyPolicyPage()),
+    GetPage(
+        name: AppRoutes.privacyPolicyFromLogin,
+        page: () => const PrivacyPolicyPage(),
+        binding: PrivacyPolicyBindings()),
   ];
 }

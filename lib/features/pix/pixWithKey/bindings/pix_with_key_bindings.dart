@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/features/pix/pixWithKey/controller/pix_with_key_controller.dart';
 import 'package:get/get.dart';
 
@@ -7,5 +8,7 @@ class PixWithKeyBindings extends Bindings {
     Get.lazyPut<PixWithKeyController>(
       () => PixWithKeyController(),
     );
+
+    AppLogger.I().info('Pix with key dependencies injected');
   }
 }

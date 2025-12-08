@@ -1,18 +1,23 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/features/appTerms/bindings/privacy_policy_bindings.dart';
+import 'package:app_flutter_miban4/features/appTerms/bindings/terms_bindings.dart';
+import 'package:app_flutter_miban4/features/appTerms/presentation/privacy_policy_page.dart';
+import 'package:app_flutter_miban4/features/appTerms/presentation/terms_page.dart';
+import 'package:app_flutter_miban4/features/profile/bindings/change_password_bindings.dart';
 import 'package:app_flutter_miban4/features/profile/bindings/financial_binding.dart';
 import 'package:app_flutter_miban4/features/profile/bindings/plans_binding.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/change_password_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/financial_data_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/plans_page.dart';
-import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
-import 'package:app_flutter_miban4/ui/screens/politics/terms_page.dart';
 import 'package:get/get.dart';
 
 class ProfilePages {
   static final List<GetPage> pages = [
     //Change Password
     GetPage(
-        name: AppRoutes.changePassword, page: () => const ChangePasswordPage()),
+        name: AppRoutes.changePasswordFromProfile,
+        page: () => const ChangePasswordPage(),
+        binding: ChangePasswordBindings()),
 
     //Financial Data
     GetPage(
@@ -27,10 +32,15 @@ class ProfilePages {
         binding: PlansBindings()),
 
     //Terms
-    GetPage(name: AppRoutes.terms, page: () => const TermsPage()),
+    GetPage(
+        name: AppRoutes.termsFromProfile,
+        page: () => const TermsPage(),
+        binding: TermsBindings()),
 
     //Prvacy
     GetPage(
-        name: AppRoutes.privacyProfile, page: () => const PrivacyPolicyPage()),
+        name: AppRoutes.privacyPolicyFromLogin,
+        page: () => const PrivacyPolicyPage(),
+        binding: PrivacyPolicyBindings()),
   ];
 }

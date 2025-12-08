@@ -1,23 +1,10 @@
 import 'package:app_flutter_miban4/core/config/auth/model/verify_user_response.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
-import 'package:app_flutter_miban4/ui/screens/login/code_validate/code_validate_page.dart';
 import 'package:get/get.dart';
 
 class AuthRedirect {
   static void handleRedirect(VerifyUserResponse response) {
-    // PJ no primeiro acesso
-    if (response.documentType == 'PJ' &&
-        response.document.length > 11 &&
-        response.firstAccess) {
-      AppLogger.I()
-          .info('PJ no primeiro acesso, redirecionando para CodeValidatePage');
-      Get.to(() => const CodeValidatePage(page: 1),
-          transition: Transition.rightToLeft);
-
-      return;
-    }
-
     // Usuário já cadastrado
     if (!response.firstAccess) {
       AppLogger.I()

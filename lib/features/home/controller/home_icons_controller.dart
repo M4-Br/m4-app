@@ -5,7 +5,6 @@ import 'package:app_flutter_miban4/features/balance/controller/balance_controlle
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/home/barcodePayment/barcode_camera.dart';
 import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
 import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
 import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
@@ -120,7 +119,7 @@ class HomeIconsController extends BaseController {
         AppLogger.I().info('Going to QR Code Payment');
         break;
       case '10':
-        Get.to(() => const BarcodeCamera(), transition: Transition.rightToLeft);
+        Get.toNamed(AppRoutes.barcode);
         AppLogger.I().info('Going to Barcode Payment');
         break;
       case '11':

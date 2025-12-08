@@ -5,11 +5,8 @@ import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
+import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
-import 'package:app_flutter_miban4/features/profile/presentation/change_password_page.dart';
-import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
-import 'package:app_flutter_miban4/ui/screens/politics/privacy_policy_page.dart';
-import 'package:app_flutter_miban4/ui/screens/politics/terms_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,9 +17,9 @@ class ProfilePage extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarDefault(
+      appBar: CustomAppBar(
         title: 'perfil_icon'.tr,
-        hasIcon: false,
+        showBackButton: false,
       ),
       body: Obx(() {
         final user = controller.userRx.user.value;
@@ -98,9 +95,8 @@ class ProfilePage extends GetView<ProfileController> {
                         width: double.infinity,
                         alignment: Alignment.centerLeft,
                         child: TextButton(
-                          onPressed: () => Get.to(
-                              () => const ChangePasswordPage(),
-                              transition: Transition.rightToLeft),
+                          onPressed: () =>
+                              Get.toNamed(AppRoutes.changePasswordFromProfile),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 58.0),
                             child: Text('change_app_password'.tr,
@@ -122,15 +118,13 @@ class ProfilePage extends GetView<ProfileController> {
                     leading:
                         const Icon(Icons.paste_outlined, color: Colors.black),
                     title: Text('account_terms'.tr),
-                    onTap: () => Get.to(() => const TermsPage(),
-                        transition: Transition.rightToLeft),
+                    onTap: () => Get.toNamed(AppRoutes.termsFromProfile),
                   ),
                   ListTile(
                     leading: const Icon(Icons.table_view_outlined,
                         color: Colors.black),
                     title: Text('account_privacy'.tr),
-                    onTap: () => Get.to(() => const PrivacyPolicyPage(),
-                        transition: Transition.rightToLeft),
+                    onTap: () => Get.toNamed(AppRoutes.privacyPolicyFromLogin),
                   ),
                   ExpansionTile(
                     leading:

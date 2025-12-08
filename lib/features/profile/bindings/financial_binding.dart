@@ -7,6 +7,6 @@ class FinancialParamsBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<FinancialController>(() => FinancialController());
 
-    AppLogger.I().debug('Financial Controller charged');
+    AppLogger.I().debug('Profile financial data dependencies injected');
   }
 }

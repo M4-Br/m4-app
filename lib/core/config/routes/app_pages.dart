@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/routes/barcodePages/barcode_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/cameraPage/camera_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/homePage/home_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/loginPages/login_pages.dart';
@@ -48,6 +49,9 @@ class AppPages {
     ...StorePages.pages,
 
     //Camera Screens
-    ...CameraPages.pages
+    ...CameraPages.pages,
+
+    //Barcode Screens
+    ...BarcodePages.pages
   ];
 }

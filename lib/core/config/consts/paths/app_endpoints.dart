@@ -53,4 +53,14 @@ class AppEndpoints {
 
   //storage
   static const String store = '/voucher/merchants';
+
+  //policy
+  static const String privacyPolicy = '/app/privacy-policy';
+
+  // terms
+  static const String terms = '/app/terms';
+
+  //barcode
+  static const String barcode = '/payment/validate';
+  static const String barcodePayment = '/transactions/payment';
 }
