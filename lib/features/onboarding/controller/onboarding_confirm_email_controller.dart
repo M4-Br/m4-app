@@ -6,8 +6,8 @@ import 'package:app_flutter_miban4/features/onboarding/model/onboarding_basic_re
 import 'package:app_flutter_miban4/features/onboarding/model/onboarding_verify_email_request.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_basic_register_repository.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_verfy_email_token_repository.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

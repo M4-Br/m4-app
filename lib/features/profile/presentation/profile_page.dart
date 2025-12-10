@@ -1,9 +1,9 @@
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
+import 'package:app_flutter_miban4/core/config/consts/paths/app_endpoints.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
-import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
@@ -283,7 +283,7 @@ class ProfilePage extends GetView<ProfileController> {
   }
 
   String formatAvatarUrl(String avatarUrl) {
-    const baseUrl = ApiUrls.baseUrl;
+    final baseUrl = AppEndpoints.baseUrl;
 
     final regex = RegExp(r'^.*(/storage.*)$');
     final match = regex.firstMatch(avatarUrl);

@@ -5,9 +5,7 @@ import 'package:app_flutter_miban4/features/balance/controller/balance_controlle
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
-import 'package:app_flutter_miban4/ui/screens/home/partners/webview_page.dart';
-import 'package:app_flutter_miban4/ui/screens/home/transfer/transfer_contact_page.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:get/get.dart';
 
 class HomeMenuItem {
@@ -123,8 +121,7 @@ class HomeIconsController extends BaseController {
         AppLogger.I().info('Going to Barcode Payment');
         break;
       case '11':
-        Get.to(() => const TransferContactPage(),
-            transition: Transition.rightToLeft);
+        Get.toNamed(AppRoutes.transfer);
         AppLogger.I().info('Going to Transfer Page');
         break;
       case '12':
@@ -161,10 +158,7 @@ class HomeIconsController extends BaseController {
   }
 
   void _openWebView(String url, String title) {
-    Get.to(
-      () => WebviewPage(url: url, pageTitle: title),
-      transition: Transition.rightToLeft,
-    );
+    Get.toNamed(AppRoutes.webView, arguments: {'url': url, 'title': title});
   }
 
   void openNotifications() {

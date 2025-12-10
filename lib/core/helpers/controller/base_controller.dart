@@ -3,8 +3,8 @@ import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:get/get.dart';
 
 abstract class BaseController extends GetxController {

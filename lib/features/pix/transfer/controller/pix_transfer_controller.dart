@@ -7,8 +7,8 @@ import 'package:app_flutter_miban4/features/pix/pixWithKey/model/pix_validate_ke
 import 'package:app_flutter_miban4/features/pix/transfer/model/pix_transfer_request.dart';
 import 'package:app_flutter_miban4/features/pix/transfer/model/pix_transfer_response.dart';
 import 'package:app_flutter_miban4/features/pix/transfer/repository/pix_transfer_repository.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

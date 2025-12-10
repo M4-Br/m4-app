@@ -4,7 +4,7 @@ import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/features/pix/receive/model/pix_create_qr_code_response.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';

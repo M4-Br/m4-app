@@ -71,7 +71,7 @@ class BarcodeCameraPage extends GetView<BarcodeCameraController> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 30),
                       SizedBox(
                         height: 45,
                         child: ElevatedButton.icon(

@@ -1,8 +1,9 @@
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/data/util/helpers/currencyFormatter.dart';
+import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/profile/controller/financial_controller.dart';
-import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/ui/components/appBar/appBar_components.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -16,9 +17,9 @@ class FinancialDataPage extends GetView<FinancialController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarDefault(
+      appBar: CustomAppBar(
         title: 'account_data'.tr,
-        backPage: () => Get.back(),
+        showBackButton: false,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {

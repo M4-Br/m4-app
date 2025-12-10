@@ -1,5 +1,5 @@
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';

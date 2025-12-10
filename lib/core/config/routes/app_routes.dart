@@ -62,13 +62,13 @@ class AppRoutes {
   static const String notifications = '$homePage/notifications';
 
   //Rotas de Transferência
-  static const String transferContact = '/transfer_contact';
-  static const String transferNewContact = '/transfer_new_contact';
-  static const String transferBank = '/transfer_bank';
-  static const String transferValue = '/transfer_value';
-  static const String transferConfirm = '/transfer_confirm';
-  static const String transferSuccess = '/transfer_success';
-  static const String transferVoucher = '/transfer_voucher';
+  static const String transfer = '/transfers';
+  static const String transferNewContact = '$transfer/new_contact';
+
+  static const String transferBank = '$transfer/bank';
+  static const String transferValueAndConfirm = '$transfer/value';
+  static const String transferSuccess = '$transfer/success';
+  static const String transferVoucher = '$transfer/voucher';
 
   //Rotas de Pix
   static const String pixHome = '/pix';
@@ -110,4 +110,7 @@ class AppRoutes {
   static const String barcodeManual = '$barcode/manual';
   static const String barcodeConfirmPayment = '$barcode/confirm';
   static const String barcodeVoucher = '$barcode/invoice';
+
+  //web
+  static const String webView = '/web';
 }

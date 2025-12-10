@@ -1,7 +1,8 @@
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/auth/controller/auth_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
-import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

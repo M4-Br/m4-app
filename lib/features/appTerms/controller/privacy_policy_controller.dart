@@ -1,6 +1,6 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/features/appTerms/repository/privacy_policy_repository.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:get/get.dart';
 
 class PrivacyPolicyController extends GetxController {

@@ -7,7 +7,7 @@ import 'package:app_flutter_miban4/features/barcodeCamera/model/barcode_response
 class BarcodeRepository {
   Future<BarcodeResponse> decodeBarcode(String barcode) async {
     return ApiConnection().get(
-        endpoint: '${AppEndpoints.barcode}/barcode',
+        endpoint: '${AppEndpoints.barcode}/$barcode',
         fromJson: (json) => BarcodeResponse.fromJson(json));
   }
 

@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
-import 'package:app_flutter_miban4/ui/config/theme_app.dart';
 import 'package:flutter/material.dart';
 
 enum AppButtonType { filled, elevated, outlined, text }

@@ -1,8 +1,9 @@
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/features/balance/presentation/card_widget.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_icons_controller.dart';
-import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
+
 import 'package:app_flutter_miban4/features/home/presentation/widgets/home_icons.dart';
 import 'package:app_flutter_miban4/features/home/presentation/widgets/clipper.dart';
 import 'package:flutter/material.dart';

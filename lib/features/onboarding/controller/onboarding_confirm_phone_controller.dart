@@ -7,8 +7,8 @@ import 'package:app_flutter_miban4/features/onboarding/model/onboarding_register
 import 'package:app_flutter_miban4/features/onboarding/model/onboarding_verify_phone_request.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_confirm_phone_repository.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_register_phone_repository.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

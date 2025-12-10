@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart';
 import 'package:app_flutter_miban4/features/pix/keyManager/controller/pix_key_manager_controller.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

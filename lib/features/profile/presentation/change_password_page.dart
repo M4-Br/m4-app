@@ -1,6 +1,7 @@
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/data/api/password/change_password.dart';
 import 'package:app_flutter_miban4/features/profile/controller/change_password_controller.dart';
-import 'package:app_flutter_miban4/ui/colors/app_colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

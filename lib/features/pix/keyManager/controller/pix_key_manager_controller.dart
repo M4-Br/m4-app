@@ -3,8 +3,8 @@ import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart'
 import 'package:app_flutter_miban4/core/helpers/formatters/formatters.dart';
 import 'package:app_flutter_miban4/features/pix/keyManager/model/pix_key_response.dart';
 import 'package:app_flutter_miban4/features/pix/keyManager/repository/pix_key_manager_repository.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 

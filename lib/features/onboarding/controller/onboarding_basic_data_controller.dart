@@ -5,8 +5,8 @@ import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/features/onboarding/model/onboarding_basic_register_request.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_basic_register_repository.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_dialogs.dart';
-import 'package:app_flutter_miban4/ui/widgets/dialogs/custom_toaster.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 
 class OnboardingBasicDataController extends GetxController {
   final formKey = GlobalKey<FormState>();

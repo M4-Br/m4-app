@@ -63,4 +63,9 @@ class AppEndpoints {
   //barcode
   static const String barcode = '/payment/validate';
   static const String barcodePayment = '/transactions/payment';
+
+  //transfer
+  static const String tranferP2P = '/transactions/p2p';
+  static const String transferTED = '/transactions/ted';
+  static const String transferFindContact = '/account/document';
 }

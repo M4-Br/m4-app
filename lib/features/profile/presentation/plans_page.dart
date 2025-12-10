@@ -1,9 +1,9 @@
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/profile/controller/plans_controller.dart';
 import 'package:app_flutter_miban4/features/profile/model/plans_response.dart';
-import 'package:app_flutter_miban4/ui/config/theme_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
