@@ -34,7 +34,7 @@ class LoginPage extends GetView<VerifyAccountController> {
                       child: SizedBox(
                         width: 200,
                         child: Image.asset(
-                          'assets/images/ic_default_logo.png',
+                          'assets/images/m4_ic_logo.png',
                           width: 120,
                         ),
                       ),

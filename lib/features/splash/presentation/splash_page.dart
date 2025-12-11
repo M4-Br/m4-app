@@ -22,7 +22,7 @@ class SplashPage extends GetView<SplashScreenController> {
                 opacity: controller.fadeAnimation.value,
                 child: Transform.scale(
                   scale: controller.sizeAnimation.value,
-                  child: Image.asset('assets/images/ic_default_logo.png'),
+                  child: Image.asset('assets/images/m4_ic_logo.png'),
                 ),
               ),
             );

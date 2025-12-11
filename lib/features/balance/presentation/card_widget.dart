@@ -25,13 +25,13 @@ class CardWidget extends GetView<BalanceController> {
 
     switch (currentUser.payload.companyId) {
       case 1:
-        assetPath = 'assets/images/ic_default_logo.png';
+        assetPath = 'assets/images/m4_ic_logo.png';
         break;
       case 2:
         assetPath = 'assets/images/acme_logo.png';
         break;
       default:
-        assetPath = 'assets/images/ic_default_logo.png';
+        assetPath = 'assets/images/m4_ic_logo.png';
     }
 
     return Container(

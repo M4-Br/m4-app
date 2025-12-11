@@ -45,8 +45,7 @@ class PasswordPage extends GetView<AuthController> {
                           padding: const EdgeInsets.fromLTRB(0, 32, 0, 50),
                           child: SizedBox(
                             width: 200,
-                            child: Image.asset(
-                                'assets/images/ic_default_logo.png'),
+                            child: Image.asset('assets/images/m4_ic_logo.png'),
                           ),
                         ),
                         Padding(
