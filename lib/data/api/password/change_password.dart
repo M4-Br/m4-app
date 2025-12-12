@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> changePassword(
@@ -13,11 +10,11 @@ Future<Map<String, dynamic>> changePassword(
     'app-key': '2z4R55CZdPiuKVJeOnCmWp8krhexXzINcKwOc22y1US49TaBEHqDJhN3wMqp',
   };
 
-  final body = {"password": password, "confirm_password": confirm};
+  final body = {'password': password, 'confirm_password': confirm};
 
   final response = await http.put(
       Uri.parse(
-          "${ApiUrls.baseUrl}/account/forgot_password?token=token"), //PASSAR TOKEN AQUI
+          '${ApiUrls.baseUrl}/account/forgot_password?token=token'), //PASSAR TOKEN AQUI
       headers: headers);
 
   if (response.statusCode == 200) {

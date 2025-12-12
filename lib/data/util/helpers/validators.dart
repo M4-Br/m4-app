@@ -32,7 +32,7 @@ class Validators {
 
   static String? confirmPassword(String? value1, String? value2,
       [String? message]) {
-    if (value1 != value2) return message ?? "As senhas precisam ser iguais";
+    if (value1 != value2) return message ?? 'As senhas precisam ser iguais';
     return null;
   }
 

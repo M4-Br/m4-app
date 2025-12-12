@@ -7,7 +7,7 @@ void main() {
     test('deve chamar verifyAccount e retornar resposta', () async {
       final repository = AuthRepository();
 
-      final response = await repository.verifyAccount(document: "33279287898");
+      final response = await repository.verifyAccount(document: '33279287898');
 
       // Aqui você valida o que espera de volta
       expect(response, isA<VerifyUserResponse?>());

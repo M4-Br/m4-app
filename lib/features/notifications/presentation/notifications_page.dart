@@ -18,7 +18,7 @@ class NotificationsPage extends GetView<NotificationsController> {
         }
 
         if (controller.notifications.isEmpty) {
-          return const Center(child: Text("Nenhuma notificação encontrada."));
+          return const Center(child: Text('Nenhuma notificação encontrada.'));
         }
 
         return ListView.builder(

@@ -56,7 +56,7 @@ class AppButton extends StatelessWidget {
               style: FilledButton.styleFrom(
                 backgroundColor: color ?? secondaryColor,
                 foregroundColor: Colors.white,
-                minimumSize: Size(double.infinity, minHeight),
+                minimumSize: const Size(double.infinity, minHeight),
                 shape: RoundedRectangleBorder(borderRadius: borderRadius),
               ),
             )
@@ -65,7 +65,7 @@ class AppButton extends StatelessWidget {
               style: FilledButton.styleFrom(
                 backgroundColor: color ?? secondaryColor,
                 foregroundColor: Colors.white,
-                minimumSize: Size(double.infinity, minHeight),
+                minimumSize: const Size(double.infinity, minHeight),
                 shape: RoundedRectangleBorder(borderRadius: borderRadius),
               ),
               child: label,
@@ -80,7 +80,7 @@ class AppButton extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: color ?? secondaryColor,
                 foregroundColor: Colors.white,
-                minimumSize: Size(double.infinity, minHeight),
+                minimumSize: const Size(double.infinity, minHeight),
               ),
             )
           : ElevatedButton(
@@ -88,7 +88,7 @@ class AppButton extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: color ?? secondaryColor,
                 foregroundColor: Colors.white,
-                minimumSize: Size(double.infinity, minHeight),
+                minimumSize: const Size(double.infinity, minHeight),
               ),
               child: label,
             ),
@@ -103,7 +103,7 @@ class AppButton extends StatelessWidget {
                 foregroundColor: color ?? secondaryColor,
                 side: BorderSide(color: color ?? Colors.grey),
                 backgroundColor: Colors.transparent,
-                minimumSize: Size(double.infinity, minHeight),
+                minimumSize: const Size(double.infinity, minHeight),
               ),
             )
           : OutlinedButton(
@@ -112,7 +112,7 @@ class AppButton extends StatelessWidget {
                 foregroundColor: color ?? secondaryColor,
                 side: BorderSide(color: color ?? Colors.grey),
                 backgroundColor: Colors.transparent,
-                minimumSize: Size(double.infinity, minHeight),
+                minimumSize: const Size(double.infinity, minHeight),
               ),
               child: label,
             ),

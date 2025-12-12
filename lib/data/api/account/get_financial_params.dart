@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> getFinancialParams() async {

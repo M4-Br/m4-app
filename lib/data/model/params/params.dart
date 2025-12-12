@@ -75,31 +75,31 @@ class Params {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['periods'] = periods.map((e)=>e.toJson()).toList();
-    _data['amount_by_periods'] = amountByPeriods.map((e)=>e.toJson()).toList();
-    _data['mutual_installments'] = mutualInstallments.map((e)=>e.toJson()).toList();
-    _data['mutual_priorities'] = mutualPriorities.map((e)=>e.toJson()).toList();
-    _data['mutual_fee'] = mutualFee.map((e)=>e.toJson()).toList();
-    _data['mutual_request_day'] = mutualRequestDay.map((e)=>e.toJson()).toList();
-    _data['mutual_votation_days'] = mutualVotationDays.map((e)=>e.toJson()).toList();
-    _data['mutual_approvation_day'] = mutualApprovationDay.map((e)=>e.toJson()).toList();
-    _data['mutual_approvation_hour'] = mutualApprovationHour.map((e)=>e.toJson()).toList();
-    _data['mutual_minimun_approvation'] = mutualMinimunApprovation.map((e)=>e.toJson()).toList();
-    _data['mutual_amount_multiplier'] = mutualAmountMultiplier.map((e)=>e.toJson()).toList();
-    _data['mutual_extra_fee'] = mutualExtraFee.map((e)=>e.toJson()).toList();
-    _data['mutual_checkout_charge'] = mutualCheckoutCharge.map((e)=>e.toJson()).toList();
-    _data['mutual_charge'] = mutualCharge.map((e)=>e.toJson()).toList();
-    _data['quotation_credit '] = quotationCredit .map((e)=>e.toJson()).toList();
-    _data['mutual_minimun_approvation_value'] = mutualMinimunApprovationValue.map((e)=>e.toJson()).toList();
-    _data['minimum_group_saving'] = minimumGroupSaving.map((e)=>e.toJson()).toList();
-    _data['minimum_period_contribution'] = minimumPeriodContribution.map((e)=>e.toJson()).toList();
-    _data['credit_available_day'] = creditAvailableDay.map((e)=>e.toJson()).toList();
-    _data['credit_available_hour'] = creditAvailableHour.map((e)=>e.toJson()).toList();
-    _data['sac_mibanka4'] = sacMibanka4.map((e)=>e.toJson()).toList();
-    _data['installments'] = installments.map((e)=>e.toJson()).toList();
-    _data['quantity_of_members'] = quantityOfMembers.map((e)=>e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['periods'] = periods.map((e)=>e.toJson()).toList();
+    data['amount_by_periods'] = amountByPeriods.map((e)=>e.toJson()).toList();
+    data['mutual_installments'] = mutualInstallments.map((e)=>e.toJson()).toList();
+    data['mutual_priorities'] = mutualPriorities.map((e)=>e.toJson()).toList();
+    data['mutual_fee'] = mutualFee.map((e)=>e.toJson()).toList();
+    data['mutual_request_day'] = mutualRequestDay.map((e)=>e.toJson()).toList();
+    data['mutual_votation_days'] = mutualVotationDays.map((e)=>e.toJson()).toList();
+    data['mutual_approvation_day'] = mutualApprovationDay.map((e)=>e.toJson()).toList();
+    data['mutual_approvation_hour'] = mutualApprovationHour.map((e)=>e.toJson()).toList();
+    data['mutual_minimun_approvation'] = mutualMinimunApprovation.map((e)=>e.toJson()).toList();
+    data['mutual_amount_multiplier'] = mutualAmountMultiplier.map((e)=>e.toJson()).toList();
+    data['mutual_extra_fee'] = mutualExtraFee.map((e)=>e.toJson()).toList();
+    data['mutual_checkout_charge'] = mutualCheckoutCharge.map((e)=>e.toJson()).toList();
+    data['mutual_charge'] = mutualCharge.map((e)=>e.toJson()).toList();
+    data['quotation_credit '] = quotationCredit .map((e)=>e.toJson()).toList();
+    data['mutual_minimun_approvation_value'] = mutualMinimunApprovationValue.map((e)=>e.toJson()).toList();
+    data['minimum_group_saving'] = minimumGroupSaving.map((e)=>e.toJson()).toList();
+    data['minimum_period_contribution'] = minimumPeriodContribution.map((e)=>e.toJson()).toList();
+    data['credit_available_day'] = creditAvailableDay.map((e)=>e.toJson()).toList();
+    data['credit_available_hour'] = creditAvailableHour.map((e)=>e.toJson()).toList();
+    data['sac_mibanka4'] = sacMibanka4.map((e)=>e.toJson()).toList();
+    data['installments'] = installments.map((e)=>e.toJson()).toList();
+    data['quantity_of_members'] = quantityOfMembers.map((e)=>e.toJson()).toList();
+    return data;
   }
 }
 
@@ -123,12 +123,12 @@ class Periods {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -152,12 +152,12 @@ class AmountByPeriods {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -181,12 +181,12 @@ class MutualInstallments {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -210,12 +210,12 @@ class MutualPriorities {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -239,12 +239,12 @@ class MutualFee {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -268,12 +268,12 @@ class MutualRequestDay {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -297,12 +297,12 @@ class MutualVotationDays {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -326,12 +326,12 @@ class MutualApprovationDay {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -355,12 +355,12 @@ class MutualApprovationHour {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -384,12 +384,12 @@ class MutualMinimunApprovation {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -413,12 +413,12 @@ class MutualAmountMultiplier {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -442,12 +442,12 @@ class MutualExtraFee {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -471,12 +471,12 @@ class MutualCheckoutCharge {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -500,12 +500,12 @@ class MutualCharge {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -529,12 +529,12 @@ class QuotationCredit  {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -558,12 +558,12 @@ class MutualMinimunApprovationValue {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -587,12 +587,12 @@ class MinimumGroupSaving {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -616,12 +616,12 @@ class MinimumPeriodContribution {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -645,12 +645,12 @@ class CreditAvailableDay {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -674,12 +674,12 @@ class CreditAvailableHour {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -703,12 +703,12 @@ class SacMibanka4 {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -732,12 +732,12 @@ class Installments {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }
 
@@ -761,11 +761,11 @@ class QuantityOfMembers {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['label'] = label;
-    _data['value'] = value;
-    _data['description'] = description;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['label'] = label;
+    data['value'] = value;
+    data['description'] = description;
+    return data;
   }
 }

@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:app_flutter_miban4/data/api/url/url_api.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> postFinancialCap(
@@ -22,16 +19,16 @@ Future<Map<String, dynamic>> postFinancialCap(
   };
 
   final body = {
-    "user_id": 'id',
-    "group_account_id": groupID,
-    "income_family": income.toString(),
-    "people_family": peopleFamily,
-    "house": house,
-    "transport": transport,
-    "house_cost": houseCost,
-    "transport_cost": transportCost,
-    "utilities_cost": utilitiesCost,
-    "other_cost": otherCosts
+    'user_id': 'id',
+    'group_account_id': groupID,
+    'income_family': income.toString(),
+    'people_family': peopleFamily,
+    'house': house,
+    'transport': transport,
+    'house_cost': houseCost,
+    'transport_cost': transportCost,
+    'utilities_cost': utilitiesCost,
+    'other_cost': otherCosts
   };
 
   final response = await http.post(
