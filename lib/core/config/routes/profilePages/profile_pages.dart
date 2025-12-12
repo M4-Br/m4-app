@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/auth/service/auth_guard.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/features/appTerms/bindings/privacy_policy_bindings.dart';
 import 'package:app_flutter_miban4/features/appTerms/bindings/terms_bindings.dart';
@@ -17,25 +18,29 @@ class ProfilePages {
     GetPage(
         name: AppRoutes.changePasswordFromProfile,
         page: () => const ChangePasswordPage(),
-        binding: ChangePasswordBindings()),
+        binding: ChangePasswordBindings(),
+        middlewares: [AuthGuard()]),
 
     //Financial Data
     GetPage(
         name: AppRoutes.financialData,
         page: () => const FinancialDataPage(),
-        binding: FinancialParamsBinding()),
+        binding: FinancialParamsBinding(),
+        middlewares: [AuthGuard()]),
 
     //Plans
     GetPage(
         name: AppRoutes.plans,
         page: () => const PlansPage(),
-        binding: PlansBindings()),
+        binding: PlansBindings(),
+        middlewares: [AuthGuard()]),
 
     //Terms
     GetPage(
         name: AppRoutes.termsFromProfile,
         page: () => const TermsPage(),
-        binding: TermsBindings()),
+        binding: TermsBindings(),
+        middlewares: [AuthGuard()]),
 
     //Prvacy
     GetPage(

@@ -1,6 +1,6 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
+import 'package:app_flutter_miban4/core/helpers/formatters/currency_formatter.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
-import 'package:app_flutter_miban4/data/util/helpers/currencyFormatter.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/profile/controller/financial_controller.dart';
 

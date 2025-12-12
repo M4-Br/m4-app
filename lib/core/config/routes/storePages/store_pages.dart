@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/auth/service/auth_guard.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/features/store/bindings/store_bindings.dart';
 import 'package:app_flutter_miban4/features/store/presentation/store_page.dart';
@@ -8,6 +9,7 @@ class StorePages {
     GetPage(
         name: AppRoutes.store,
         page: () => const StorePage(),
-        binding: StoreBindings()),
+        binding: StoreBindings(),
+        middlewares: [AuthGuard()]),
   ];
 }

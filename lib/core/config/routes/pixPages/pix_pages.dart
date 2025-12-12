@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/auth/service/auth_guard.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/features/pix/copyPaste/bindings/pix_copy_paste_bindings.dart';
 import 'package:app_flutter_miban4/features/pix/copyPaste/presentation/pix_copy_paste_page.dart';
@@ -31,76 +32,78 @@ class PixPages {
   static final List<GetPage> pages = [
     //Home
     GetPage(
-      name: AppRoutes.pixHome,
-      page: () => const PixHomePage(),
-      binding: PixHomeBindings(),
-    ),
+        name: AppRoutes.pixHome,
+        page: () => const PixHomePage(),
+        binding: PixHomeBindings(),
+        middlewares: [AuthGuard()]),
 
     //Key Manager
     GetPage(
-      name: AppRoutes.pixKeyManager,
-      page: () => const PixKeyManagerPage(),
-      binding: PixKeyManagerBindings(),
-    ),
+        name: AppRoutes.pixKeyManager,
+        page: () => const PixKeyManagerPage(),
+        binding: PixKeyManagerBindings(),
+        middlewares: [AuthGuard()]),
 
     //Limits
     GetPage(
-      name: AppRoutes.pixLimits,
-      page: () => const PixLimitsPage(),
-      binding: PixMyLimitsBindings(),
-    ),
+        name: AppRoutes.pixLimits,
+        page: () => const PixLimitsPage(),
+        binding: PixMyLimitsBindings(),
+        middlewares: [AuthGuard()]),
 
     //Generate QR Code
     GetPage(
-      name: AppRoutes.pixReceive,
-      page: () => const PixReceivePage(),
-      binding: PixReceiveBindings(),
-    ),
+        name: AppRoutes.pixReceive,
+        page: () => const PixReceivePage(),
+        binding: PixReceiveBindings(),
+        middlewares: [AuthGuard()]),
     GetPage(
-      name: AppRoutes.pixReceiveQrCode,
-      page: () => const PixReceiveQrCodePage(),
-      binding: PixReceiveQrCodeBindings(),
-    ),
+        name: AppRoutes.pixReceiveQrCode,
+        page: () => const PixReceiveQrCodePage(),
+        binding: PixReceiveQrCodeBindings(),
+        middlewares: [AuthGuard()]),
 
     //Send pix to key
     GetPage(
-      name: AppRoutes.pixWithKey,
-      page: () => const PixWithKeyPage(),
-      binding: PixWithKeyBindings(),
-    ),
+        name: AppRoutes.pixWithKey,
+        page: () => const PixWithKeyPage(),
+        binding: PixWithKeyBindings(),
+        middlewares: [AuthGuard()]),
 
     GetPage(
-      name: AppRoutes.pixTransfer,
-      page: () => const PixTransferPage(),
-      binding: PixTransferBindings(),
-    ),
+        name: AppRoutes.pixTransfer,
+        page: () => const PixTransferPage(),
+        binding: PixTransferBindings(),
+        middlewares: [AuthGuard()]),
     GetPage(
-      name: AppRoutes.pixInvoice,
-      page: () => const PixVoucherPage(),
-      binding: PixVoucherBindings(),
-    ),
+        name: AppRoutes.pixInvoice,
+        page: () => const PixVoucherPage(),
+        binding: PixVoucherBindings(),
+        middlewares: [AuthGuard()]),
     GetPage(
-      name: AppRoutes.pixScheduled,
-      page: () => const PixSchedulePage(),
-      binding: PixScheduleBindings(),
-    ),
+        name: AppRoutes.pixScheduled,
+        page: () => const PixSchedulePage(),
+        binding: PixScheduleBindings(),
+        middlewares: [AuthGuard()]),
     GetPage(
-      name: AppRoutes.pixCopyPaste,
-      page: () => const PixCopyPastePage(),
-      binding: PixCopyPasteBindings(),
-    ),
+        name: AppRoutes.pixCopyPaste,
+        page: () => const PixCopyPastePage(),
+        binding: PixCopyPasteBindings(),
+        middlewares: [AuthGuard()]),
     GetPage(
         name: AppRoutes.pixDecode,
         page: () => const PixCodeDecodePage(),
-        binding: PixCodeDecodeBindings()),
+        binding: PixCodeDecodeBindings(),
+        middlewares: [AuthGuard()]),
     GetPage(
-      name: AppRoutes.pixNewKey,
-      page: () => const PixAddNewKeyPage(),
-      binding: PixAddNewKeyBindings(),
-    ),
+        name: AppRoutes.pixNewKey,
+        page: () => const PixAddNewKeyPage(),
+        binding: PixAddNewKeyBindings(),
+        middlewares: [AuthGuard()]),
     GetPage(
         name: AppRoutes.pixStatement,
         page: () => const PixStatementPage(),
-        binding: PixStatementBindings()),
+        binding: PixStatementBindings(),
+        middlewares: [AuthGuard()]),
   ];
 }

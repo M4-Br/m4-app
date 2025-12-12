@@ -1,5 +1,7 @@
 import 'package:app_flutter_miban4/core/config/app/app.dart';
+import 'package:app_flutter_miban4/core/config/app/app_lifecycle_controller.dart';
 import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
+import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/helpers/env_helper.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
@@ -16,6 +18,11 @@ class AppSetup {
 
     await GetStorage.init();
     AppLogger.I().debug('GetStorage initialized');
+
+    await Get.putAsync(() => AuthService().init());
+    AppLogger.I().debug('Auth Service Initialized');
+
+    Get.put(AppLifecycleController(), permanent: true);
 
     Get.put(UserRx(), permanent: true);
     AppLogger.I().debug('User RX Initialized');
@@ -39,7 +46,5 @@ class AppSetup {
         appRunner: () => runApp(const MiBan4()),
       );
     }
-
-    AppLogger.I().debug('Sentry initialized');
   }
 }

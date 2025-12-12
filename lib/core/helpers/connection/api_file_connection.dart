@@ -1,82 +1,25 @@
 import 'dart:convert';
-import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
-import 'package:app_flutter_miban4/core/config/consts/paths/app_endpoints.dart';
-import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
-import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
-import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
+import 'dart:io';
 
 import 'package:app_flutter_miban4/core/config/consts/app_header.dart';
+import 'package:app_flutter_miban4/core/config/consts/paths/app_endpoints.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
-class ApiConnection {
-  ApiConnection();
-
-  Future<T> get<T>({
-    required String endpoint,
-    required T Function(dynamic) fromJson,
-    Map<String, dynamic>? queryParameters,
-    Map<String, String>? extraHeaders,
-  }) async {
-    final uri = Uri.parse('${AppEndpoints.baseUrl}$endpoint').replace(
-      queryParameters: queryParameters,
-    );
-
-    final headers = {
-      ...const AppHeader().headers,
-      if (extraHeaders != null) ...extraHeaders,
-    };
-
-    if (kDebugMode) {
-      print('>>> [GET] $uri');
-      print('>>> Headers: $headers');
-    }
-
-    final response = await http.get(uri, headers: headers);
-
-    return _handleResponse(response, fromJson, 'GET');
-  }
+class ApiMultipartConnection {
+  ApiMultipartConnection();
 
   Future<T> post<T>({
     required String endpoint,
-    T Function(dynamic)? fromJson,
-    Object? body,
-    Map<String, dynamic>? queryParameters,
-    Map<String, String>? extraHeaders,
-  }) async {
-    final uri = Uri.parse('${AppEndpoints.baseUrl}$endpoint').replace(
-      queryParameters: queryParameters,
-    );
-
-    final headers = {
-      ...const AppHeader().headers,
-      if (extraHeaders != null) ...extraHeaders,
-    };
-
-    if (kDebugMode) {
-      print('>>> [POST] $uri');
-      print('>>> Headers: $headers');
-      print('>>> Body: $body');
-    }
-
-    final response = await http.post(
-      uri,
-      headers: headers,
-      body: body != null ? json.encode(body) : null,
-    );
-
-    final parser = fromJson ?? (_) => null as T;
-
-    return _handleResponse(response, parser, 'POST');
-  }
-
-  Future<T> delete<T>({
-    required String endpoint,
     required T Function(dynamic) fromJson,
-    Map<String, dynamic>? body,
+    Map<String, String>? fields,
+    Map<String, File>? files,
     Map<String, dynamic>? queryParameters,
     Map<String, String>? extraHeaders,
+    String httpMethod = 'POST',
   }) async {
     final uri = Uri.parse('${AppEndpoints.baseUrl}$endpoint').replace(
       queryParameters: queryParameters,
@@ -86,20 +29,45 @@ class ApiConnection {
       ...const AppHeader().headers,
       if (extraHeaders != null) ...extraHeaders,
     };
+    headers.remove('Content-Type');
 
     if (kDebugMode) {
-      print('>>> [DELETE] $uri');
+      print('>>> [MULTIPART $httpMethod] $uri');
       print('>>> Headers: $headers');
-      print('>>> Body: $body');
+      print('>>> Fields: $fields');
+      print('>>> Files: ${files?.keys.toList()}');
     }
 
-    final response = await http.delete(
-      uri,
-      headers: headers,
-      body: body != null ? json.encode(body) : null,
-    );
+    var request = http.MultipartRequest(httpMethod, uri);
+    request.headers.addAll(headers);
 
-    return _handleResponse(response, fromJson, 'DELETE');
+    if (fields != null) {
+      request.fields.addAll(fields);
+    }
+
+    if (files != null) {
+      for (var entry in files.entries) {
+        final fieldName = entry.key;
+        final file = entry.value;
+        var stream = http.ByteStream(file.openRead());
+        var length = await file.length();
+
+        var multipartFile = http.MultipartFile(
+          fieldName,
+          stream,
+          length,
+          filename: file.path.split('/').last,
+          contentType: MediaType('image', 'jpeg'),
+        );
+        request.files.add(multipartFile);
+      }
+    }
+
+    final streamedResponse = await request.send();
+
+    final response = await http.Response.fromStream(streamedResponse);
+
+    return _handleResponse(response, fromJson, 'MULTIPART $httpMethod');
   }
 
   T _handleResponse<T>(
@@ -132,9 +100,6 @@ class ApiConnection {
           StackTrace.current);
 
       if (response.statusCode == 401 || response.statusCode == 403) {
-        if (Get.currentRoute != AppRoutes.login) {
-          AuthService.to.logout();
-        }
         throw UnauthorizedException(message: errorMessage);
       }
 

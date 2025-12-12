@@ -68,4 +68,22 @@ class AppEndpoints {
   static const String tranferP2P = '/transactions/p2p';
   static const String transferTED = '/transactions/ted';
   static const String transferFindContact = '/account/document';
+
+  //complete profile
+  static const String onboardingAddress = '/v2/register/individual/step3';
+  static const String onboardingProfession = '/v2/register/individual/step4';
+  static const String onboardingPersonalData = '/v2/register/individual/step5';
+  static const String onboardingDocumentPhoto = '/v2/register/individual/step6';
+  static const String onboardingDocumentSelfie =
+      '/v2/register/individual/step7';
+  static const String onboardingSelfie = '/v2/register/individual/step8';
+
+  //cep
+  static const String cep = '/viacep';
+
+  //profession
+  static const String profession = '/v2/register/individual/step4/type';
+
+  //Bank List
+  static const String bankList = '/banks_list';
 }

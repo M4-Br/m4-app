@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/auth/service/auth_guard.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/features/TED/bindings/transfer_bank_choose_bindings.dart';
 import 'package:app_flutter_miban4/features/TED/bindings/transfer_contacts_bindings.dart';
@@ -19,36 +20,42 @@ class TransferPages {
     GetPage(
         name: AppRoutes.transfer,
         page: () => const TransferContactsPage(),
-        binding: TransferContactsBindings()),
+        binding: TransferContactsBindings(),
+        middlewares: [AuthGuard()]),
 
     //Transfer New Contact
     GetPage(
         name: AppRoutes.transferNewContact,
         page: () => const TransferNewContactPage(),
-        binding: TransferNewContactBindings()),
+        binding: TransferNewContactBindings(),
+        middlewares: [AuthGuard()]),
 
     //Transfer Bank
     GetPage(
         name: AppRoutes.transferBank,
         page: () => const TransferBankPage(),
-        binding: TransferBankChooseBindings()),
+        binding: TransferBankChooseBindings(),
+        middlewares: [AuthGuard()]),
 
     //Transfer Value
     GetPage(
         name: AppRoutes.transferValueAndConfirm,
         page: () => const TransferValuePage(),
-        binding: TransferValueBindings()),
+        binding: TransferValueBindings(),
+        middlewares: [AuthGuard()]),
 
     //Transfer Success
     GetPage(
         name: AppRoutes.transferSuccess,
         page: () => const TransferSuccessPage(),
-        binding: TransferSuccessBindings()),
+        binding: TransferSuccessBindings(),
+        middlewares: [AuthGuard()]),
 
     //Transfer Voucher
     GetPage(
         name: AppRoutes.transferVoucher,
         page: () => const TransferVoucherPage(),
-        binding: TransferVoucherBindings()),
+        binding: TransferVoucherBindings(),
+        middlewares: [AuthGuard()]),
   ];
 }

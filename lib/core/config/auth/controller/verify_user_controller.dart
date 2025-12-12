@@ -1,8 +1,10 @@
+import 'package:app_flutter_miban4/core/config/app/app_lifecycle_controller.dart';
 import 'package:app_flutter_miban4/core/config/auth/controller/auth_redirect_controller.dart';
 import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/auth_login_request.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/verify_user_response.dart';
 import 'package:app_flutter_miban4/core/config/auth/repositories/auth_repository.dart';
+import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/log/scope_config.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
@@ -63,14 +65,17 @@ class VerifyAccountController extends GetxController {
         await Future.delayed(const Duration(milliseconds: 500));
         loginWithBiometrics();
       }
-      // --------------------------
-    } catch (e) {
-      AppLogger.I().error('Erro ao verificar biometria', e, StackTrace.current);
+    } catch (e, s) {
+      AppLogger.I().error('Erro ao verificar biometria', e, s);
     }
   }
 
   Future<void> loginWithBiometrics() async {
     try {
+      if (Get.isRegistered<AppLifecycleController>()) {
+        Get.find<AppLifecycleController>().setAuthenticating(true);
+      }
+
       final didAuthenticate = await _localAuth.authenticate(
         localizedReason: 'Autenticar para entrar',
         options:
@@ -94,6 +99,11 @@ class VerifyAccountController extends GetxController {
       AppLogger.I().error('Biometria Error', e, StackTrace.current);
     } finally {
       isLoading(false);
+      await Future.delayed(const Duration(milliseconds: 500));
+
+      if (Get.isRegistered<AppLifecycleController>()) {
+        Get.find<AppLifecycleController>().setAuthenticating(false);
+      }
     }
   }
 
@@ -109,6 +119,8 @@ class VerifyAccountController extends GetxController {
         AppLogger.I().info('Biometric Login Success');
         box.write('token', auth.token);
         box.write('document', auth.payload.document);
+
+        AuthService.to.loginSuccess(auth.token);
 
         AuthRedirect.login();
       }

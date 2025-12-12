@@ -14,7 +14,7 @@
         android:allowBackup="false"
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/launcher_icon"
-        android:label="Miban4"
+        android:label="M4"
         android:usesCleartextTraffic="true">
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
+import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
 import 'package:app_flutter_miban4/core/config/consts/paths/app_endpoints.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
@@ -232,6 +233,8 @@ class ProfilePage extends GetView<ProfileController> {
     );
   }
 
+  //TODO: Ajustar Profile para controller.
+
   void _showLogoutConfirmation(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -256,7 +259,7 @@ class ProfilePage extends GetView<ProfileController> {
                       buttonType: AppButtonType.filled,
                       onPressed: () async {
                         Get.back();
-                        Get.offAllNamed(AppRoutes.splash);
+                        AuthService.to.logout();
                       },
                       labelText: 'logout_exit'.tr,
                     )),

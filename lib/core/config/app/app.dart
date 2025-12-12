@@ -1,4 +1,6 @@
+import 'package:app_flutter_miban4/core/config/app/app_lifecycle_controller.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/features/geral/widgets/privacy_curtain.dart';
 import 'package:app_flutter_miban4/l18n/app_strings.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +43,22 @@ class MiBan4 extends StatelessWidget {
           Locale('en', 'US'),
           Locale('es', 'ES'),
         ],
+        builder: (context, child) {
+          return Stack(
+            children: [
+              child ?? const SizedBox(),
+              GetX<AppLifecycleController>(
+                init: AppLifecycleController(),
+                builder: (controller) {
+                  if (controller.isPrivacyEnabled.value) {
+                    return const PrivacyCurtain();
+                  }
+                  return const SizedBox();
+                },
+              ),
+            ],
+          );
+        },
       ),
     );
   }

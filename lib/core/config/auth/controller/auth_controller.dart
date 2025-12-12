@@ -3,6 +3,7 @@ import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/auth_login_request.dart';
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
 import 'package:app_flutter_miban4/core/config/auth/repositories/auth_repository.dart';
+import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/log/scope_config.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
@@ -60,6 +61,9 @@ class AuthController extends GetxController {
       if (auth.token.isNotEmpty) {
         AppLogger.I().info('Auth Login Success');
         box.write('token', auth.token);
+
+        AuthService.to.loginSuccess(auth.token);
+
         AppLogger.I().debug('Token ${auth.token} saved at Storage');
 
         await _secureStorage.write(key: 'user_password', value: password.text);
