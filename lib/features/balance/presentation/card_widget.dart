@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_content.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class CardWidget extends GetView<BalanceController> {
     return Container(
       height: 220,
       alignment: Alignment.topLeft,
-      width: MediaQuery.of(context).size.width * 0.8,
+      width: context.mq.size.width * 0.8,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         gradient: LinearGradient(
@@ -54,7 +55,7 @@ class CardWidget extends GetView<BalanceController> {
             const SizedBox(width: 20),
             Padding(
               padding: const EdgeInsets.only(left: 8),
-              child: Image.asset(assetPath, width: 100),
+              child: Image.asset(assetPath, width: context.mq.size.width * 0.1),
             ),
             const SizedBox(height: 20),
             Padding(

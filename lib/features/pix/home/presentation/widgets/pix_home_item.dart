@@ -28,8 +28,8 @@ class PixHomeItem extends StatelessWidget {
       color: Colors.white,
       child: InkWell(
         onTap: onPressed,
-        splashColor: primaryColor.withOpacity(0.1),
-        highlightColor: primaryColor.withOpacity(0.05),
+        splashColor: primaryColor.withValues(alpha: 0.1),
+        highlightColor: primaryColor.withValues(alpha: 0.05),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
@@ -37,7 +37,7 @@ class PixHomeItem extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: primaryColor.withOpacity(0.1),
+                  color: primaryColor.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(

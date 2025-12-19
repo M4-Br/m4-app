@@ -8,6 +8,6 @@ class UrlHelper {
       return fromEnv;
     }
 
-    return dotenv.env['URL_RELEASE'] ?? '';
+    return dotenv.env['URL_HOMOL'] ?? '';
   }
 }

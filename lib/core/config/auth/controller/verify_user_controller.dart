@@ -12,6 +12,7 @@ import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -144,17 +145,33 @@ class VerifyAccountController extends GetxController {
       return null;
     }
 
-    if (!document.text.isCpf) {
-      ShowToaster.toasterInfo(message: 'Digite um CPF Válido');
+    final cleanDoc = document.text.replaceAll(RegExp(r'[^0-9]'), '');
+
+    if (kDebugMode) {
+      print('--- DEBUG LOGIN ---');
+      print('Original: ${document.text}');
+      print('Limpo: $cleanDoc');
+      print('Tamanho: ${cleanDoc.length}');
+      print('É CPF Válido (GetUtils)? ${GetUtils.isCpf(cleanDoc)}');
+      print('-------------------');
+    }
+
+    if (cleanDoc.length <= 11) {
+      if (!GetUtils.isCpf(cleanDoc)) {
+        ShowToaster.toasterInfo(message: 'Digite um CPF Válido');
+        return null;
+      }
+    } else {
+      if (!GetUtils.isCnpj(cleanDoc)) {
+        ShowToaster.toasterInfo(message: 'Digite um CNPJ Válido');
+        return null;
+      }
     }
 
     isLoading(true);
     try {
       final response = await AuthRepository().verifyAccount(
-        document: document.text
-            .replaceAll('.', '')
-            .replaceAll('-', '')
-            .replaceAll('/', ''),
+        document: cleanDoc,
       );
 
       if (response != null) {

@@ -127,7 +127,7 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
       {required String title, required dynamic party}) {
     return Card(
       elevation: 2,
-      shadowColor: Colors.grey.withOpacity(0.2),
+      shadowColor: Colors.grey.withValues(alpha: 0.2),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -181,7 +181,7 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, -5),
           ),

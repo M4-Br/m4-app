@@ -71,7 +71,7 @@ class ServicesPage extends GetView<ServicesController> {
         height: 45,
         width: 45,
         decoration: BoxDecoration(
-          color: secondaryColor.withOpacity(0.1),
+          color: secondaryColor.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(12),
         ),
         child: const Icon(Icons.receipt_long_outlined, color: secondaryColor),

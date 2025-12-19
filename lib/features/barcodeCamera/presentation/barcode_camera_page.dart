@@ -51,7 +51,7 @@ class BarcodeCameraPage extends GetView<BarcodeCameraController> {
                   child: Container(
                     width: scanWindowWidth * 0.9,
                     height: 2,
-                    color: Colors.redAccent.withOpacity(0.7),
+                    color: Colors.redAccent.withValues(alpha: 0.7),
                   ),
                 ),
                 Positioned(
@@ -76,7 +76,8 @@ class BarcodeCameraPage extends GetView<BarcodeCameraController> {
                         height: 45,
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white.withOpacity(0.2),
+                            backgroundColor:
+                                Colors.white.withValues(alpha: 0.2),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             side: const BorderSide(
@@ -94,7 +95,8 @@ class BarcodeCameraPage extends GetView<BarcodeCameraController> {
                         height: 45,
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor.withOpacity(0.8),
+                            backgroundColor:
+                                primaryColor.withValues(alpha: 0.8),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                           ),

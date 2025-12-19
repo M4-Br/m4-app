@@ -37,7 +37,7 @@ class OnboardingPages {
       binding: OnboardingRegisterPhoneBindings(),
     ),
     GetPage(
-      name: AppRoutes.onboardingPhoneConfirm,
+      name: AppRoutes.onboardingConfirmPhone,
       page: () => const OnboardingConfirmPhonePage(),
       binding: OnboardingConfirmPhoneBindings(),
     ),

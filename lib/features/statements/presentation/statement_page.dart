@@ -72,7 +72,7 @@ class StatementPage extends GetView<StatementController> {
 
                   return ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: amountColor.withOpacity(0.1),
+                      backgroundColor: amountColor.withValues(alpha: 0.1),
                       child: Text(
                         statement.dayTransaction.toString(),
                         style: TextStyle(
@@ -193,7 +193,7 @@ class StatementPage extends GetView<StatementController> {
                     boxShadow: isSelected
                         ? [
                             BoxShadow(
-                              color: primaryColor.withOpacity(0.3),
+                              color: primaryColor.withValues(alpha: 0.3),
                               blurRadius: 4,
                               offset: const Offset(0, 2),
                             )

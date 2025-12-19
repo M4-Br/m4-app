@@ -25,11 +25,12 @@ class CompleteProfileAddressRequest {
     return {
       'individual_id': individualId,
       'postal_code': postalCode,
-      'type': type,
+      'address_type_id': type,
       'street': street,
       'number': number,
       'neighborhood': neighborhood,
       'complement': complement,
+      'country': 'Brazil', //TODO: Ajustar o país
       'state': state,
       'city': city,
     };

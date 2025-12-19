@@ -65,7 +65,7 @@ class OnboardingRegisterPhoneController extends GetxController {
           await OnboardingRegisterPhoneRepository().registerPhone(request);
 
       if (response.id != 0) {
-        Get.toNamed(AppRoutes.onboardingPhoneConfirm,
+        Get.toNamed(AppRoutes.onboardingConfirmPhone,
             arguments: {'id': id.value, 'prefix': phonePrefix, 'phone': phone});
         return response;
       }

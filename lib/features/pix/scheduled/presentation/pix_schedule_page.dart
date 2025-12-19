@@ -124,12 +124,12 @@ class PixSchedulePage extends GetView<PixScheduleController> {
                   decoration: BoxDecoration(
                       color: controller
                           .getStatusColor(pix.status)
-                          .withOpacity(0.1),
+                          .withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                           color: controller
                               .getStatusColor(pix.status)
-                              .withOpacity(0.5))),
+                              .withValues(alpha: 0.5))),
                   child: AppText.bodySmall(
                     context,
                     pix.status,

@@ -70,7 +70,7 @@ class QrCodeCameraPage extends GetView<QrCodeCameraController> {
                     height: 45,
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor.withOpacity(0.8),
+                        backgroundColor: primaryColor.withValues(alpha: 0.8),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25)),
                       ),

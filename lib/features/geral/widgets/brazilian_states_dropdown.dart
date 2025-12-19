@@ -19,7 +19,7 @@ class StatesDropdown extends StatelessWidget {
     return DropdownSearch<String>(
       items: (filter, loadProps) => BrazilianStates.abbreviations,
       selectedItem: selectedState,
-      onSaved: onChanged,
+      onSelected: onChanged,
       filterFn: (item, filter) =>
           item.toLowerCase().contains(filter.toLowerCase()),
       decoratorProps: DropDownDecoratorProps(

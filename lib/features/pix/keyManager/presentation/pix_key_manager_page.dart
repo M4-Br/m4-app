@@ -37,7 +37,7 @@ class PixKeyManagerPage extends GetView<PixKeyManagerController> {
             ),
             if (controller.isLoading.value)
               Container(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withValues(alpha: 0.3),
                 child: const Center(
                   child: CircularProgressIndicator(color: Colors.white),
                 ),
@@ -105,7 +105,7 @@ class PixKeyManagerPage extends GetView<PixKeyManagerController> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           )

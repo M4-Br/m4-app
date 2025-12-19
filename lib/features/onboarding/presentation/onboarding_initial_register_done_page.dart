@@ -23,7 +23,7 @@ class OnboardingInitialRegisterDonePage
         children: [
           const Spacer(),
           SvgPicture.asset(
-            'assets/images/miban4_colored_logo.svg',
+            'assets/images/m4_logo_colored.svg',
             width: Get.width * 0.5,
           ),
           const SizedBox(height: AppDimens.kPaddingXL), // gapXL

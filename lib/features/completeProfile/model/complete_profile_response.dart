@@ -17,3 +17,24 @@ class ProfileStep {
     );
   }
 }
+
+class CompleteProfileResponse {
+  final int id;
+  final List<ProfileStep> steps;
+
+  CompleteProfileResponse({
+    required this.id,
+    required this.steps,
+  });
+
+  factory CompleteProfileResponse.fromJson(Map<String, dynamic> json) {
+    var stepsList = json['steps'] as List;
+    List<ProfileStep> stepsItems =
+        stepsList.map((i) => ProfileStep.fromJson(i)).toList();
+
+    return CompleteProfileResponse(
+      id: json['id'],
+      steps: stepsItems,
+    );
+  }
+}

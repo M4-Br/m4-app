@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:image/image.dart' as imageLib;
+import 'package:image/image.dart' as image_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 
@@ -12,16 +12,16 @@ class ImageHelper {
   }) async {
     try {
       final bytes = await file.readAsBytes();
-      imageLib.Image? image = imageLib.decodeImage(bytes);
+      image_lib.Image? image = image_lib.decodeImage(bytes);
 
       if (image == null) {
         throw Exception('Não foi possível decodificar a imagem.');
       }
 
-      image = imageLib.bakeOrientation(image);
+      image = image_lib.bakeOrientation(image);
 
       if (image.width > targetWidth) {
-        image = imageLib.copyResize(image, width: targetWidth);
+        image = image_lib.copyResize(image, width: targetWidth);
       }
 
       final directory = await getTemporaryDirectory();
@@ -29,7 +29,7 @@ class ImageHelper {
       final resizedFile = File('${directory.path}/$fileName');
 
       await resizedFile.writeAsBytes(
-        imageLib.encodeJpg(image, quality: quality),
+        image_lib.encodeJpg(image, quality: quality),
       );
 
       return resizedFile;

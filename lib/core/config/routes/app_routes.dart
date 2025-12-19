@@ -9,27 +9,6 @@ class AppRoutes {
   static const String login = '/login';
   static const String password = '/password';
 
-  //Rotas de Onboarding
-  static const String onboarding = '/onboarding';
-  static const String onboardingStepOne = '/onboarding_one';
-  static const String onboardingStepTwo = '/onboarding_two';
-  static const String onboardingStepThree = '/onboarding_three';
-  static const String onboardingStepFour = '/onboarding_four';
-  static const String onboardingStepFive = '/onboarding_five';
-  static const String onboardingStepSix = '/onboarding_six';
-  static const String onboardingStepSeven = '/onboarding_seven';
-  static const String onboardingStepEight = '/onboarding_eight';
-  static const String onboardingPhoneConfirm = '/onboarding_phone_confirm';
-  static const String onboardingEmailConfirm = '/onboarding_email_confirm';
-  static const String onboardingDocumentChoose = '/onboarding_document_choose';
-  static const String onboardingSelfieConfirm = '/onboarding_selfie_confirm';
-  static const String onboardingPasswordRegister =
-      '/onboarding_password_register';
-  static const String onboardingPrivacyPolicy = '/onboarding_password_register';
-  static const String onboardingReview = '/onboarding_review';
-  static const String onboardingApproved = '/onboarding_approved';
-  static const String codeValidate = '/code_validate';
-
   //NEW ONBOARDING
   static const String onboardingDocument = '/register';
   static const String onboardingBasicData = '$onboardingDocument/initial';
@@ -113,4 +92,16 @@ class AppRoutes {
 
   //web
   static const String webView = '/web';
+
+  //Complete Profile
+  static const String complete = '/complete';
+  static const String completeAddress = '$complete/address';
+  static const String completeProfession = '$complete/profession';
+  static const String completePersonalData = '$complete/personal_data';
+  static const String completeDocumentChoose = '$complete/choose';
+  static const String completeDocumentPhoto = '$complete/document';
+  static const String completeDocumentPhotoSelfie = '$complete/document_selfie';
+  static const String completeSelfie = '$complete/selfie';
+  static const String completeConfirmSelfie = '$complete/confirm_selfie';
+  static const String completeInReview = '$complete/review';
 }

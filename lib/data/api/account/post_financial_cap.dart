@@ -37,8 +37,8 @@ Future<Map<String, dynamic>> postFinancialCap(
       body: body);
 
   if (response.statusCode == 200 ||
-      response.body == 201 ||
-      response.body == 202) {
+      response.statusCode == 201 ||
+      response.statusCode == 202) {
     final jsonMap = json.decode(response.body);
     return jsonMap;
   } else {

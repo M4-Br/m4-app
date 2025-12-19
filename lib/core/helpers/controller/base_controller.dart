@@ -29,12 +29,12 @@ abstract class BaseController extends GetxController {
       isLoading(true);
       await action();
     } on UnauthorizedException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
+      ShowToaster.toasterInfo(message: message ?? e.message);
       userRx.handleUnauthenticatedUser();
     } on ServerException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
+      ShowToaster.toasterInfo(message: message ?? e.message);
     } on ApiException catch (e) {
-      ShowToaster.toasterInfo(message: e.message);
+      ShowToaster.toasterInfo(message: message ?? e.message);
     } catch (e, s) {
       AppLogger.I().error('Base Controller', e, s);
       rethrow;

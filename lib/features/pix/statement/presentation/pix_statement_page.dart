@@ -19,7 +19,7 @@ class PixStatementPage extends GetView<PixStatementController> {
       appBar: AppBar(
         title: AppText.titleLarge(
           context,
-          'list'.tr,
+          'statement'.tr,
           color: Colors.white,
         ),
         centerTitle: true,
@@ -82,7 +82,7 @@ class PixStatementPage extends GetView<PixStatementController> {
 
                   return ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: amountColor.withOpacity(0.1),
+                      backgroundColor: amountColor.withValues(alpha: 0.1),
                       child: Text(
                         list.details.transactionDate.split('-').last,
                         style: TextStyle(
@@ -201,7 +201,7 @@ class PixStatementPage extends GetView<PixStatementController> {
                     boxShadow: isSelected
                         ? [
                             BoxShadow(
-                              color: primaryColor.withOpacity(0.3),
+                              color: primaryColor.withValues(alpha: 0.3),
                               blurRadius: 4,
                               offset: const Offset(0, 2),
                             )

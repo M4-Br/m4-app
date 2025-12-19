@@ -5,6 +5,7 @@ import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/helpers/env_helper.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
+import 'package:app_flutter_miban4/features/completeProfile/controller/redirect_complete_profile_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -29,6 +30,9 @@ class AppSetup {
 
     Get.put(BalanceRx(), permanent: true);
     AppLogger.I().debug('Balance RX Initialized');
+
+    Get.put(RedirectCompleteProfileController(), permanent: true);
+    AppLogger.I().debug('Complete Profiler Initialized');
 
     if (kDebugMode) {
       AppLogger.I()

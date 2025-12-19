@@ -42,19 +42,19 @@ class AuthRedirect {
 
     // Status pendente ou aprovado mas último passo não concluído
     if (!response.steps.last.done) {
-      if (response.steps.last.id == 9 && !response.steps.last.done) {
-        // Step 9 equivale à tela de revisão
-        if (response.steps.last.done == false && response.steps.last.id == 9) {
-          AppLogger.I().info(
-              'Cadastro em revisão, redirecionando para OnboardingInReviewPage');
-          Get.toNamed(AppRoutes.onboardingReview);
-        } else {
-          AppLogger.I().info(
-              'Cadastro aprovado, redirecionando para OnboardingApprovedPage');
-          Get.toNamed(AppRoutes.onboardingApproved);
-        }
-        return;
-      }
+      // if (response.steps.last.id == 9 && !response.steps.last.done) {
+      //   // Step 9 equivale à tela de revisão
+      //   if (response.steps.last.done == false && response.steps.last.id == 9) {
+      //     AppLogger.I().info(
+      //         'Cadastro em revisão, redirecionando para OnboardingInReviewPage');
+      //     Get.toNamed(AppRoutes.onboardingReview);
+      //   } else {
+      //     AppLogger.I().info(
+      //         'Cadastro aprovado, redirecionando para OnboardingApprovedPage');
+      //     Get.toNamed(AppRoutes.onboardingApproved);
+      //   }
+      //   return;
+      // }
     }
     AppLogger.I().error('Auth Redirect', Exception('Resposta inválida da API'),
         StackTrace.current, {'response': response.toString()});

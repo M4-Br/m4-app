@@ -70,13 +70,13 @@ class AppEndpoints {
   static const String transferFindContact = '/account/document';
 
   //complete profile
-  static const String onboardingAddress = '/v2/register/individual/step3';
-  static const String onboardingProfession = '/v2/register/individual/step4';
-  static const String onboardingPersonalData = '/v2/register/individual/step5';
-  static const String onboardingDocumentPhoto = '/v2/register/individual/step6';
-  static const String onboardingDocumentSelfie =
-      '/v2/register/individual/step7';
-  static const String onboardingSelfie = '/v2/register/individual/step8';
+  static const String completeAddress = '/v2/register/individual/step3';
+  static const String completeProfession = '/v2/register/individual/step4';
+  static const String completePersonalData = '/v2/register/individual/step5';
+  static const String completeDocumentPhoto = '/v2/register/individual/step6';
+  static const String completeDocumentSelfie = '/v2/register/individual/step7';
+  static const String completeSelfie = '/v2/register/individual/step8';
+  static const String getDocument = '/account/document';
 
   //cep
   static const String cep = '/viacep';

@@ -6,6 +6,7 @@ class CustomPageBody extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
+  final bool enableIntrinsicHeight;
 
   const CustomPageBody({
     super.key,
@@ -13,6 +14,7 @@ class CustomPageBody extends StatelessWidget {
     this.padding,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.enableIntrinsicHeight = true,
   });
 
   @override
@@ -30,17 +32,23 @@ class CustomPageBody extends StatelessWidget {
                 minHeight: constraints.maxHeight -
                     (padding?.vertical ?? defaultPadding.vertical),
               ),
-              child: IntrinsicHeight(
-                child: Column(
-                  mainAxisAlignment: mainAxisAlignment,
-                  crossAxisAlignment: crossAxisAlignment,
-                  children: children,
-                ),
-              ),
+              child: enableIntrinsicHeight
+                  ? IntrinsicHeight(
+                      child: _buildColumn(),
+                    )
+                  : _buildColumn(),
             ),
           );
         },
       ),
+    );
+  }
+
+  Widget _buildColumn() {
+    return Column(
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      children: children,
     );
   }
 }

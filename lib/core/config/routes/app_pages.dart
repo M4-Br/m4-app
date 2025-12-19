@@ -1,5 +1,6 @@
 import 'package:app_flutter_miban4/core/config/routes/barcodePages/barcode_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/cameraPage/camera_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/completeProfilePages/complete_profile_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/homePage/home_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/loginPages/login_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/notificationsPage/notifications_page.dart';
@@ -52,6 +53,9 @@ class AppPages {
     ...CameraPages.pages,
 
     //Barcode Screens
-    ...BarcodePages.pages
+    ...BarcodePages.pages,
+
+    //Complete Profile Screens
+    ...CompletePropfilePages.pages
   ];
 }

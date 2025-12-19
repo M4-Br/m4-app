@@ -39,6 +39,18 @@ class ProfilePage extends GetView<ProfileController> {
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
+                  if (controller.showCompleteProfileOption)
+                    ListTile(
+                        leading: const Icon(Icons.incomplete_circle_sharp,
+                            color: Colors.redAccent),
+                        title: const Text(
+                          'Complete seu perfil',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.redAccent),
+                        ),
+                        subtitle: const Text('Você tem pendências no cadastro'),
+                        onTap: () => controller.redirectToCompleteProfile()),
                   ExpansionTile(
                     leading: const Icon(Icons.person_pin_outlined,
                         color: Colors.black),
