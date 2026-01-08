@@ -10,7 +10,8 @@ class OnboardingRegisterPasswordRepository {
         body: {
           'individual_id': id,
           'password': password,
-          'confirm_password': password
+          'confirm_password': password,
+          'register_m4': true
         },
         fromJson: (json) => OnboardingRegisterPasswordResponse.fromJson(json));
   }

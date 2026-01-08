@@ -31,6 +31,7 @@ class PixTransferController extends BaseController {
   void onInit() {
     super.onInit();
     final args = Get.arguments;
+
     if (args != null && args is Map) {
       if (args['key'] is PixValidateKeyResponse) {
         pixData = args['key'];
@@ -38,12 +39,35 @@ class PixTransferController extends BaseController {
         _handleError('Objeto Pix inválido no Map');
         return;
       }
+
       transferType = args['type']?.toString() ?? 'DEFAULT';
+
+      if (args.containsKey('prefilledAmount') &&
+          args['prefilledAmount'] != null) {
+        _setPrefilledAmount(args['prefilledAmount'].toString());
+      }
     } else if (args is PixValidateKeyResponse) {
       pixData = args;
       transferType = 'KEY';
     } else {
       _handleError('Argumentos inválidos ou nulos');
+    }
+  }
+
+  void _setPrefilledAmount(String rawValue) {
+    try {
+      String cleanValue = rawValue.replaceAll(',', '.');
+      cleanValue = cleanValue.replaceAll(RegExp(r'[^0-9.]'), '');
+
+      double? value = double.tryParse(cleanValue);
+
+      if (value != null) {
+        final formatted =
+            NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$').format(value);
+        amountController.text = formatted;
+      }
+    } catch (e, s) {
+      AppLogger.I().error('Erro ao preencher valor automático', e, s);
     }
   }
 
@@ -176,9 +200,16 @@ class PixTransferController extends BaseController {
           await PixTransferRepository().doTransfer(request: request);
 
       if (result.success == true) {
-        Get.toNamed(AppRoutes.pixInvoice, arguments: result);
+        ShowToaster.toasterInfo(
+            message: 'Transferência realizada com sucesso!');
+        Get.toNamed(AppRoutes.pixInvoice, arguments: {
+          'result': result,
+          'request': request,
+        });
+      } else {
+        ShowToaster.toasterInfo(
+            message: 'Erro ao realizar transferência.', isError: true);
       }
-      ShowToaster.toasterInfo(message: 'Transferência realizada com sucesso!');
     });
   }
 }

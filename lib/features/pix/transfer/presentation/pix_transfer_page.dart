@@ -171,15 +171,21 @@ class PixTransferPage extends GetView<PixTransferController> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(fontSize: 16)),
-          const Spacer(),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 16),
+          ),
+          const SizedBox(width: 16),
           Expanded(
-            flex: 0,
             child: Text(
               value,
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.end,
               overflow: TextOverflow.ellipsis,
+              maxLines: 2,
             ),
           ),
         ],

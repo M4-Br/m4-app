@@ -6,6 +6,10 @@ final _brlFormatter = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
 extension StringRobustCurrencyExtension on String {
   double toCurrencyDouble() {
     try {
+      if (isEmpty) return 0.0;
+      if (contains('.')) {
+        return double.tryParse(this) ?? 0.0;
+      }
       final numericString = replaceAll(RegExp(r'[^0-9]'), '');
 
       if (numericString.isEmpty) {

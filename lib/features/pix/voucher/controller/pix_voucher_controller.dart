@@ -6,6 +6,7 @@ import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
+import 'package:app_flutter_miban4/features/pix/transfer/model/pix_transfer_request.dart';
 import 'package:app_flutter_miban4/features/pix/transfer/model/pix_transfer_response.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ import 'package:share_plus/share_plus.dart';
 
 class PixVoucherController extends BaseController {
   late PixTransferResponse voucherData;
+  late PixTransferRequest requestData;
 
   GlobalKey voucherRepaintKey = GlobalKey();
 
@@ -32,21 +34,28 @@ class PixVoucherController extends BaseController {
     }
   }
 
-  void _handleInvalidData() {
+  void _handleInvalidData({bool isPartial = false}) {
     AppLogger.I().error('Pix Voucher', 'Dados inválidos ou nulos no argumento',
         StackTrace.current);
 
-    voucherData = PixTransferResponse(
-      amount: '0',
-      receiverName: 'Desconhecido',
-      bankName: 'Não informado',
-      transactionDate: DateTime.now().toIso8601String(),
-      success: true,
-    );
+    if (!isPartial) {
+      voucherData = PixTransferResponse(
+        amount: '0',
+        receiverName: 'Desconhecido',
+        bankName: 'Não informado',
+        transactionDate: DateTime.now().toIso8601String(),
+        success: true,
+      );
+    }
 
-    ShowToaster.toasterInfo(
-        message: 'Não foi possível carregar todos os detalhes do comprovante.',
-        isError: true);
+    if (!isPartial) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ShowToaster.toasterInfo(
+            message:
+                'Não foi possível carregar todos os detalhes do comprovante.',
+            isError: true);
+      });
+    }
   }
 
   String get formattedDate => voucherData.transactionDate.toVoucherFormat();
@@ -61,8 +70,8 @@ class PixVoucherController extends BaseController {
     }
   }
 
-  String get receiverName => voucherData.receiverName;
-  String get bankName => voucherData.bankName;
+  String get receiverName => requestData.payee.name;
+  String get bankName => requestData.payee.bankBranchNumber;
   String get payerName => userRx.user.value?.payload.fullName ?? 'Usuário';
 
   void closeVoucher() {

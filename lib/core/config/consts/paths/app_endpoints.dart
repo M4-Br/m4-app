@@ -84,6 +84,9 @@ class AppEndpoints {
   //profession
   static const String profession = '/v2/register/individual/step4/type';
 
+  //favorites
+  static const String favorites = '/favorites/';
+
   //Bank List
   static const String bankList = '/banks_list';
 }

@@ -1,6 +1,7 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
+import 'package:app_flutter_miban4/features/AI/widget/ai_show_modal.dart';
 import 'package:app_flutter_miban4/features/balance/presentation/card_widget.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_icons_controller.dart';
 
@@ -95,6 +96,13 @@ class HomePage extends GetView<HomeIconsController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          IconButton(
+            onPressed: () => AiModal.openAiSearch(),
+            icon: const Icon(
+              Icons.assistant,
+              color: Colors.white,
+            ),
+          ),
           Obx(() => Expanded(
                 child: Text(
                   _user.user.value?.payload.username ?? '',
