@@ -123,8 +123,6 @@ class TransferValueController extends BaseController {
       return;
     }
 
-    print('Click');
-
     _openConfirmationSheet();
   }
 
