@@ -54,7 +54,7 @@ class CompleteProfileConfirmSelfiePage
             children: [
               Expanded(
                 child: AppButton(
-                  labelText: 'onboarding_confirm_again'.toUpperCase().tr,
+                  labelText: 'onboarding_confirm_again'.tr.toUpperCase(),
                   buttonType: AppButtonType.outlined,
                   color: Colors.black,
                   onPressed: () async => controller.retakePhoto(),
@@ -63,7 +63,7 @@ class CompleteProfileConfirmSelfiePage
               const SizedBox(width: 16),
               Expanded(
                 child: AppButton(
-                  labelText: 'onboarding_confirm_cool'.toUpperCase().tr,
+                  labelText: 'onboarding_confirm_cool'.tr.toUpperCase(),
                   buttonType: AppButtonType.filled,
                   color: secondaryColor,
                   onPressed: () async => controller.confirmPhoto(),

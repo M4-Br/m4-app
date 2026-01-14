@@ -2,10 +2,13 @@ import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
+// Importe o Repository e o Model
+import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_verify_steps_repository.dart';
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
+import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
 import 'package:get/get.dart';
 
 class HomeMenuItem {
@@ -30,7 +33,11 @@ class HomeIconsController extends BaseController {
 
   RxList<HomeIconsResponse> apiIcons = <HomeIconsResponse>[].obs;
   var hasLoadedIcons = false.obs;
+
   final RxBool incomplete = false.obs;
+  final RxBool isAccountProcessing = false.obs;
+
+  var isLoading = false.obs;
 
   final Map<String, String> _localIconAssets = {
     '1': 'assets/icons/ic_home_payment.png',
@@ -74,13 +81,40 @@ class HomeIconsController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    registerIncomplete();
+    checkProfileStatus();
     fetchIcons();
   }
 
-  void registerIncomplete() {
-    if (userRx.user.value?.payload.aliasAccount?.accountId == null) {
-      incomplete.value = true;
+  Future<void> checkProfileStatus() async {
+    final document = userRx.user.value?.payload.document;
+    if (document == null) return;
+
+    try {
+      final result = await CompleteProfileVerifyStepsRepository()
+          .fetchProfileSteps(document);
+
+      final hasPendingSteps = result.steps.any((step) {
+        return step.stepId >= 3 && step.stepId <= 8 && !step.done;
+      });
+
+      if (hasPendingSteps) {
+        incomplete.value = true;
+        isAccountProcessing.value = false;
+        return;
+      }
+
+      incomplete.value = false;
+
+      final hasAliasAccount =
+          userRx.user.value?.payload.aliasAccount?.accountId != null;
+
+      if (!hasAliasAccount) {
+        isAccountProcessing.value = true;
+      } else {
+        isAccountProcessing.value = false;
+      }
+    } catch (e) {
+      AppLogger.I().error('Home Check Profile', e, StackTrace.current);
     }
   }
 
@@ -96,15 +130,37 @@ class HomeIconsController extends BaseController {
     }, message: 'Erro ao carregar os ícones');
   }
 
-  void onMenuOptionTap(String id, String title) {
+  void onMenuOptionTap(String id, String title) async {
     const restrictedIds = ['1', '2', '10', '11', '19'];
 
-    if (restrictedIds.contains(id) && incomplete.value) {
-      CustomDialogs.showInformationDialog(
+    if (restrictedIds.contains(id)) {
+      if (incomplete.value) {
+        CustomDialogs.showConfirmationDialog(
+          loading: isLoading,
+          title: 'Cadastro Incompleto',
           content:
-              'Para utilizar essa funcionalidade é preciso completar seu cadastro',
-          onCancel: () => Get.back());
-      return;
+              'Para utilizar essa funcionalidade é preciso finalizar os passos do seu cadastro.',
+          confirmText: 'Completar',
+          onConfirm: () async {
+            isLoading.value = true;
+            await Get.find<ProfileController>().redirectToCompleteProfile();
+            isLoading.value = false;
+            if (Get.currentRoute == AppRoutes.homeView) {
+              Get.back();
+            }
+          },
+        );
+        return;
+      }
+
+      if (isAccountProcessing.value) {
+        CustomDialogs.showInformationDialog(
+            title: 'Conta em Análise',
+            content:
+                'Seu cadastro foi enviado e sua conta bancária está sendo criada. Aguarde alguns instantes.',
+            onCancel: () => Get.back());
+        return;
+      }
     }
 
     switch (id) {
