@@ -26,10 +26,10 @@ class ProfileController extends BaseController {
   }
 
   Future<void> redirectToCompleteProfile() async {
+    await fetchSteps();
+
     if (steps.value != null) {
       await redirect.handleRedirect(steps.value!);
-
-      await fetchSteps();
     }
   }
 

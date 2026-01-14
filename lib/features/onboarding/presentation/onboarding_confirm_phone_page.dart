@@ -89,6 +89,7 @@ class OnboardingConfirmPhonePage
               );
             },
           ),
+          const Spacer(),
           const SizedBox(height: AppDimens.kPaddingM),
           Obx(
             () => bottomButton(

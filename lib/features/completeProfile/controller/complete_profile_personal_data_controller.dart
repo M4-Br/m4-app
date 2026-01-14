@@ -3,6 +3,7 @@ import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart'
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/completeProfile/model/complete_profile_personal_data_request.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_personal_data_repository.dart';
+import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -109,6 +110,10 @@ class CompleteProfilePersonalDataController extends BaseController {
           result.steps.firstWhereOrNull((step) => step.stepId == 5);
 
       if (personalDataStep!.done == true) {
+        if (Get.isRegistered<ProfileController>()) {
+          Get.find<ProfileController>().fetchSteps();
+        }
+
         Get.toNamed(AppRoutes.completeDocumentChoose);
       }
     });

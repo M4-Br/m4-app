@@ -3,7 +3,8 @@ import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_selfie_repository.dart';
-import 'package:get/route_manager.dart';
+import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CompleteProfileSelfieController extends BaseController {
@@ -34,6 +35,10 @@ class CompleteProfileSelfieController extends BaseController {
           .sendSelfie(id: id, photo: photo);
 
       if (result.id != 0) {
+        if (Get.isRegistered<ProfileController>()) {
+          Get.find<ProfileController>().fetchSteps();
+        }
+
         Get.toNamed(AppRoutes.completeConfirmSelfie, arguments: result);
       }
     });

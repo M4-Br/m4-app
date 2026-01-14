@@ -2,6 +2,7 @@ import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_document_photo_repository.dart';
+import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -65,6 +66,10 @@ class CompleteProfileDocumentPhotoController extends BaseController {
 
   void nextStep() {
     if (isFrontSent.value && isBackSent.value) {
+      if (Get.isRegistered<ProfileController>()) {
+        Get.find<ProfileController>().fetchSteps();
+      }
+
       Get.toNamed(AppRoutes.completeDocumentPhotoSelfie);
     } else {
       ShowToaster.toasterInfo(message: 'Envie as duas fotos para continuar.');
