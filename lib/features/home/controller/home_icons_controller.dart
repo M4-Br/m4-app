@@ -1,6 +1,7 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
+import 'package:app_flutter_miban4/features/AI/widget/ai_show_modal.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 // Importe o Repository e o Model
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_verify_steps_repository.dart';
@@ -37,7 +38,7 @@ class HomeIconsController extends BaseController {
   final RxBool incomplete = false.obs;
   final RxBool isAccountProcessing = false.obs;
 
-  var isLoading = false.obs;
+  var isLoadingIa = false.obs;
 
   final Map<String, String> _localIconAssets = {
     '1': 'assets/icons/ic_home_payment.png',
@@ -219,5 +220,37 @@ class HomeIconsController extends BaseController {
 
   void openNotifications() {
     Get.toNamed(AppRoutes.notifications);
+  }
+
+  void openAiSearch() {
+    if (incomplete.value) {
+      CustomDialogs.showConfirmationDialog(
+        loading: isLoadingIa,
+        title: 'Cadastro Incompleto',
+        content:
+            'Para utilizar essa funcionalidade é preciso finalizar os passos do seu cadastro.',
+        confirmText: 'Completar',
+        onConfirm: () async {
+          isLoading.value = true;
+          await Get.find<ProfileController>().redirectToCompleteProfile();
+          isLoading.value = false;
+          if (Get.currentRoute == AppRoutes.homeView) {
+            Get.back();
+          }
+        },
+      );
+      return;
+    }
+
+    if (isAccountProcessing.value) {
+      CustomDialogs.showInformationDialog(
+          title: 'Conta em Análise',
+          content:
+              'Seu cadastro foi enviado e sua conta bancária está sendo criada. Aguarde alguns instantes.',
+          onCancel: () => Get.back());
+      return;
+    }
+
+    AiModal.openAiSearch();
   }
 }

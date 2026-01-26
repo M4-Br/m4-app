@@ -97,7 +97,7 @@ class HomePage extends GetView<HomeIconsController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            onPressed: () => AiModal.openAiSearch(),
+            onPressed: controller.openAiSearch,
             icon: const Icon(
               Icons.assistant,
               color: Colors.white,
