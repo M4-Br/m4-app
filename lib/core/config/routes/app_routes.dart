@@ -33,6 +33,7 @@ class AppRoutes {
   //Rotas do Profile
   static const String financialData = '$profile/financial_data';
   static const String plans = '$profile/plans';
+  static const String changePasswordEmailConfirm = '$profile/validate';
   static const String changePasswordFromProfile = '$profile/change_password';
   static const String privacyPolicyFromProfile = '$profile/privacy_policy';
   static const String termsFromProfile = '$profile/terms';

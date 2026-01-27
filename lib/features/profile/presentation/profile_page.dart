@@ -109,7 +109,7 @@ class ProfilePage extends GetView<ProfileController> {
                         alignment: Alignment.centerLeft,
                         child: TextButton(
                           onPressed: () =>
-                              Get.toNamed(AppRoutes.changePasswordFromProfile),
+                              Get.toNamed(AppRoutes.changePasswordEmailConfirm),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 58.0),
                             child: Text('change_app_password'.tr,

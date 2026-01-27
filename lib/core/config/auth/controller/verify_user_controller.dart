@@ -55,17 +55,26 @@ class VerifyAccountController extends GetxController {
       final bool canAuthenticate =
           canAuthenticateWithBiometrics || await _localAuth.isDeviceSupported();
 
-      final storedPass = await _secureStorage.read(key: 'user_password');
-      final storedDoc = await _secureStorage.read(key: 'user_document');
+      IOSOptions iOptions =
+          const IOSOptions(accessibility: KeychainAccessibility.first_unlock);
+
+      final storedPass =
+          await _secureStorage.read(key: 'user_password', iOptions: iOptions);
+      final storedDoc =
+          await _secureStorage.read(key: 'user_document', iOptions: iOptions);
 
       final bool isAvailable =
           canAuthenticate && (storedPass != null && storedDoc != null);
 
       canCheckBiometrics.value = isAvailable;
-      if (isAvailable) {
+
+      // Motivo: No iOS, chamar isso automaticamente no onInit causa conflito de UI
+      // e pode gerar crash se o SecureStorage não estiver pronto.
+      /* if (isAvailable) {
         await Future.delayed(const Duration(milliseconds: 500));
-        loginWithBiometrics();
+        loginWithBiometrics(); 
       }
+      */
     } catch (e, s) {
       AppLogger.I().error('Erro ao verificar biometria', e, s);
     }
@@ -178,6 +187,8 @@ class VerifyAccountController extends GetxController {
         AppLogger.I().info('Auth Verify Success');
         box.write('document', response.document);
         AppLogger.I().debug('Document ${response.document} saved at Storage');
+
+        userRx.updateFromVerification(response);
 
         AuthRedirect.handleRedirect(response);
       }

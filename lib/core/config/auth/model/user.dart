@@ -14,6 +14,7 @@ class Payload {
     required this.avatarUrl,
     required this.fullName,
     required this.phone,
+    this.userId,
   });
 
   factory Payload.fromJson(Map<String, dynamic> json) {
@@ -22,6 +23,7 @@ class Payload {
 
     return Payload(
       id: json['individual_id'] as int,
+      userId: json['user_id'] as int?,
       companyId: json['company_id'] as int?,
       username: json['username'] as String,
       email: json['email'] as String,
@@ -39,6 +41,7 @@ class Payload {
   }
 
   final int id;
+  final int? userId;
   final int? companyId;
   final String username;
   final String email;
@@ -50,6 +53,38 @@ class Payload {
   final String? avatarUrl;
   final String fullName;
   final Phone phone;
+
+  Payload copyWith({
+    int? id,
+    int? userId,
+    int? companyId,
+    String? username,
+    String? email,
+    String? document,
+    Color? cardColor,
+    Color? cardFontColor,
+    String? qrCode,
+    AliasAccount? aliasAccount,
+    String? avatarUrl,
+    String? fullName,
+    Phone? phone,
+  }) {
+    return Payload(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      companyId: companyId ?? this.companyId,
+      username: username ?? this.username,
+      email: email ?? this.email,
+      document: document ?? this.document,
+      cardColor: cardColor ?? this.cardColor,
+      cardFontColor: cardFontColor ?? this.cardFontColor,
+      qrCode: qrCode ?? this.qrCode,
+      aliasAccount: aliasAccount ?? this.aliasAccount,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
+      fullName: fullName ?? this.fullName,
+      phone: phone ?? this.phone,
+    );
+  }
 }
 
 Color _colorFromHex(String hexColor) {
@@ -133,4 +168,14 @@ class User {
 
   final Payload payload;
   final String token;
+
+  User copyWith({
+    Payload? payload,
+    String? token,
+  }) {
+    return User(
+      payload: payload ?? this.payload,
+      token: token ?? this.token,
+    );
+  }
 }

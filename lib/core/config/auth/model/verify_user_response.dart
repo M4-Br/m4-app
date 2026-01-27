@@ -7,6 +7,7 @@ class VerifyUserResponse {
     required this.firstAccess,
     required this.defaulter,
     required this.steps,
+    required this.userData,
   });
 
   factory VerifyUserResponse.fromJson(Map<String, dynamic> json) {
@@ -20,6 +21,7 @@ class VerifyUserResponse {
       steps: (json['steps'] as List<dynamic>)
           .map((e) => Steps.fromJson(e as Map<String, dynamic>))
           .toList(),
+      userData: UserData.fromJson(json['user'] as Map<String, dynamic>),
     );
   }
 
@@ -30,6 +32,7 @@ class VerifyUserResponse {
   final bool firstAccess;
   final bool defaulter;
   final List<Steps> steps;
+  final UserData userData;
 }
 
 class Steps {
@@ -50,4 +53,16 @@ class Steps {
   final int id;
   final bool done;
   final String name;
+}
+
+class UserData {
+  const UserData({
+    required this.id,
+  });
+
+  factory UserData.fromJson(Map<String, dynamic> json) {
+    return UserData(id: json['id']);
+  }
+
+  final int id;
 }

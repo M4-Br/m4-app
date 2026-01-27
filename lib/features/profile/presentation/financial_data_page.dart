@@ -19,7 +19,6 @@ class FinancialDataPage extends GetView<FinancialController> {
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
         title: 'account_data'.tr,
-        showBackButton: false,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
