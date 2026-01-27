@@ -9,7 +9,7 @@ import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/log/scope_config.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
-import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
+import 'package:app_flutter_miban4/core/helpers/formatters/mask.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/foundation.dart';

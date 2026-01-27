@@ -1,7 +1,7 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
-import 'package:app_flutter_miban4/core/helpers/formatters/maks.dart';
+import 'package:app_flutter_miban4/core/helpers/formatters/maks_apply.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/geral/controller/favorites_controller.dart';
 import 'package:app_flutter_miban4/features/geral/model/favorites_response.dart';

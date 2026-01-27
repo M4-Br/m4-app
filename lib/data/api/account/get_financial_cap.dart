@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> getFinancialCap() async {
@@ -9,9 +8,8 @@ Future<Map<String, dynamic>> getFinancialCap() async {
     'app-key': '2z4R55CZdPiuKVJeOnCmWp8krhexXzINcKwOc22y1US49TaBEHqDJhN3wMqp',
   };
 
-  final response = await http.get(
-      Uri.parse('${ApiUrls.baseUrl}/payment_capacity/id'),
-      headers: headers);
+  final response =
+      await http.get(Uri.parse('API/payment_capacity/id'), headers: headers);
 
   if (response.statusCode == 200) {
     final jsonMap = json.decode(response.body);

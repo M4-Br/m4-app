@@ -11,7 +11,9 @@ class UserRx extends GetxController {
     if (user.value == null) return;
 
     final newPayload = user.value!.payload.copyWith(
+      id: response.id,
       userId: response.userData.id,
+      email: response.email,
     );
 
     user.value = user.value!.copyWith(payload: newPayload);

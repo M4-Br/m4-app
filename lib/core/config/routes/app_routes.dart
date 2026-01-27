@@ -8,6 +8,8 @@ class AppRoutes {
   //Rotas de Login
   static const String login = '/login';
   static const String password = '/password';
+  static const String authValidateToken = '$password/validate';
+  static const String authChangePassword = '$password/change';
 
   //NEW ONBOARDING
   static const String onboardingDocument = '/register';

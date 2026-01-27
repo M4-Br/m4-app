@@ -5,7 +5,7 @@ import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
-import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
+import 'package:app_flutter_miban4/core/helpers/formatters/mask.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
