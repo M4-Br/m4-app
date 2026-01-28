@@ -3,6 +3,7 @@ import 'package:app_flutter_miban4/features/completeProfile/controller/redirect_
 import 'package:app_flutter_miban4/features/completeProfile/model/complete_profile_response.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_verify_steps_repository.dart';
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class ProfileController extends BaseController {
   final RedirectCompleteProfileController redirect;
@@ -10,9 +11,12 @@ class ProfileController extends BaseController {
 
   final steps = Rxn<CompleteProfileResponse>();
 
+  final appVersion = ''.obs;
+
   @override
   void onInit() {
     fetchSteps();
+    _loadVersion();
     super.onInit();
   }
 
@@ -39,5 +43,10 @@ class ProfileController extends BaseController {
     return steps.value!.steps.any((step) {
       return step.stepId >= 3 && step.stepId <= 8 && !step.done;
     });
+  }
+
+  Future<void> _loadVersion() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    appVersion.value = '${packageInfo.version} (${packageInfo.buildNumber})';
   }
 }

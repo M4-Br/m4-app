@@ -1,5 +1,5 @@
 import 'package:app_flutter_miban4/core/config/auth/model/user.dart';
-import 'package:app_flutter_miban4/core/config/auth/model/verify_user_response.dart'; // Importe o VerifyResponse
+import 'package:app_flutter_miban4/core/config/auth/model/verify_user_response.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:get/get.dart';
@@ -7,18 +7,27 @@ import 'package:get/get.dart';
 class UserRx extends GetxController {
   Rx<User?> user = Rx<User?>(null);
 
+  Rx<VerifyUserResponse?> verifyResponse = Rx<VerifyUserResponse?>(null);
+
+  String get userEmail {
+    return user.value?.payload.email ?? verifyResponse.value?.email ?? '';
+  }
+
+  int? get userId {
+    return user.value?.payload.userId ?? verifyResponse.value?.userData.id;
+  }
+
   void updateFromVerification(VerifyUserResponse response) {
-    if (user.value == null) return;
+    verifyResponse.value = response;
+    if (user.value != null) {
+      final newPayload = user.value!.payload.copyWith(
+        userId: response.userData.id,
+        email: response.email,
+      );
 
-    final newPayload = user.value!.payload.copyWith(
-      id: response.id,
-      userId: response.userData.id,
-      email: response.email,
-    );
-
-    user.value = user.value!.copyWith(payload: newPayload);
-
-    user.refresh();
+      user.value = user.value!.copyWith(payload: newPayload);
+      user.refresh();
+    }
   }
 
   void handleUnauthenticatedUser() {
@@ -28,5 +37,10 @@ class UserRx extends GetxController {
         onCancel: () => Get.offAllNamed(AppRoutes.splash),
       );
     }
+  }
+
+  void clear() {
+    user.value = null;
+    verifyResponse.value = null;
   }
 }

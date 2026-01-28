@@ -39,9 +39,13 @@ class AuthValidateTokenController extends GetxController {
   }
 
   void _loadUserEmail() {
-    final userEmail = userRx.user.value?.payload.email;
-    if (userEmail != null) {
-      email.value = userEmail;
+    final emailSalvo = userRx.userEmail;
+
+    if (emailSalvo.isNotEmpty) {
+      email.value = emailSalvo;
+    } else {
+      // Opcional: Tratar caso o email não venha de lugar nenhum
+      // Ex: Voltar para tela anterior
     }
   }
 

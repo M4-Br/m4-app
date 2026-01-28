@@ -158,10 +158,10 @@ class ProfilePage extends GetView<ProfileController> {
                   Padding(
                     padding: const EdgeInsets.all(32),
                     child: Center(
-                      child: Text(
-                        'version'.tr,
-                        style: const TextStyle(color: Colors.black54),
-                      ),
+                      child: Obx(() => Text(
+                            'Versão ${controller.appVersion.value}',
+                            style: const TextStyle(color: Colors.black54),
+                          )),
                     ),
                   ),
                 ],
@@ -244,8 +244,6 @@ class ProfilePage extends GetView<ProfileController> {
       ),
     );
   }
-
-  //TODO: Ajustar Profile para controller.
 
   void _showLogoutConfirmation(BuildContext context) {
     showModalBottomSheet(
