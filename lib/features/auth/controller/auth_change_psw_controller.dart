@@ -23,12 +23,34 @@ class AuthChangePswController extends GetxController {
 
   var isLoading = false.obs;
 
+  // Variável local para garantir que temos o ID
+  int? _safeUserId;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _loadUserData();
+  }
+
   @override
   void onClose() {
     passwordController.dispose();
     newPasswordController.dispose();
     confirmNewPasswordController.dispose();
     super.onClose();
+  }
+
+  void _loadUserData() {
+    // CORREÇÃO CRUCIAL:
+    // Usamos userRx.userId (o getter inteligente) em vez de acessar user.value direto.
+    // Isso pega o ID do 'verifyResponse' já que o login ainda não existe.
+    _safeUserId = userRx.userId;
+
+    if (_safeUserId == null || _safeUserId == 0) {
+      AppLogger.I().error('ID do usuário não encontrado no UserRx',
+          Exception('User ID Null'), StackTrace.current);
+      // Opcional: Você pode forçar a saída da tela se não tiver ID
+    }
   }
 
   void toggleObscure() {
@@ -38,18 +60,31 @@ class AuthChangePswController extends GetxController {
   Future<void> submitChangePassword() async {
     if (!formKey.currentState!.validate()) return;
 
+    // Validação de segurança antes de chamar a API
+    if (_safeUserId == null || _safeUserId == 0) {
+      ShowToaster.toasterInfo(
+          message: 'Erro ao identificar o usuário. Reinicie o processo.');
+      return;
+    }
+
+    // Nota: Verifique se sua API espera int ou String.
+    // Mantive int.parse conforme seu código original.
     final int password = int.parse(newPasswordController.text);
 
     isLoading(true);
 
     try {
-      await _repository.changePassword(userRx.user.value!.payload.id, password);
+      // Passamos a variável segura _safeUserId! (que já checamos não ser nula acima)
+      await _repository.changePassword(_safeUserId!, password);
 
       CustomDialogs.showInformationDialog(
         title: 'message'.tr,
         content: 'change_password_changed'.tr,
         onCancel: () {
-          Get.until((route) => route.settings.name == AppRoutes.login);
+          // Mudei para onConfirm (botão OK)
+          Get.back(); // Fecha o Dialog
+          // Limpa toda a pilha e volta pro login para obrigar o usuário a logar com a senha nova
+          Get.offAllNamed(AppRoutes.login);
         },
       );
     } catch (e, s) {
