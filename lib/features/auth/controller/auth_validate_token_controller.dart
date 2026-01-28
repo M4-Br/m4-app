@@ -18,6 +18,9 @@ class AuthValidateTokenController extends GetxController {
 
   final RxString email = ''.obs;
 
+  // Inicializa com 0. Usamos RxInt para ser reativo se necessário.
+  final RxInt userId = 0.obs;
+
   final RxInt countdown = 60.obs;
   final RxBool canResend = false.obs;
   Timer? _timer;
@@ -27,8 +30,13 @@ class AuthValidateTokenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _loadUserEmail();
-    sendToken();
+    _loadUserData();
+    if (userId.value != 0 && email.value.isNotEmpty) {
+      sendToken();
+    } else {
+      AppLogger.I().error('Tentativa de enviar token sem ID ou Email válidos.',
+          Exception('Enviar token'), StackTrace.current);
+    }
   }
 
   @override
@@ -38,14 +46,18 @@ class AuthValidateTokenController extends GetxController {
     super.onClose();
   }
 
-  void _loadUserEmail() {
+  void _loadUserData() {
+    // Acessa os getters do UserRx (que tratam a nulidade internamente)
     final emailSalvo = userRx.userEmail;
+    final idSalvo = userRx.userId;
 
     if (emailSalvo.isNotEmpty) {
       email.value = emailSalvo;
-    } else {
-      // Opcional: Tratar caso o email não venha de lugar nenhum
-      // Ex: Voltar para tela anterior
+    }
+
+    // Verifica se não é nulo antes de atribuir
+    if (idSalvo != null && idSalvo != 0) {
+      userId.value = idSalvo;
     }
   }
 
@@ -64,13 +76,21 @@ class AuthValidateTokenController extends GetxController {
   }
 
   Future<void> sendToken() async {
-    if (email.value.isEmpty) return;
+    // Validação de segurança: Verifica se ID e Email existem
+    if (email.value.isEmpty || userId.value == 0) {
+      CustomDialogs.showInformationDialog(
+        content: 'Erro ao identificar usuário. Tente novamente.',
+        onCancel: () => Get.back(),
+      );
+      return;
+    }
 
     isLoading(true);
 
     try {
       startTimer();
-      await _repository.sendToken(userRx.user.value!.payload.userId!);
+      // CORREÇÃO AQUI: Usa .value para passar o int, não o RxInt
+      await _repository.sendToken(userId.value);
     } catch (e, s) {
       AppLogger.I().error('Send Token', e, s);
     } finally {
@@ -91,7 +111,7 @@ class AuthValidateTokenController extends GetxController {
       } else {
         CustomDialogs.showInformationDialog(
           content: 'Código inválido ou expirado.',
-          onCancel: () => Get.back(),
+          onCancel: () => Get.back(), // Fecha o dialog apenas
         );
       }
     } catch (e, s) {

@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
+import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dimens.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
@@ -46,7 +47,7 @@ class AuthValidateTokenPage extends GetView<AuthValidateTokenController> {
                 context,
                 textAlign: TextAlign.center,
                 'token_sent_message'.trParams({
-                  'email': controller.email.value,
+                  'email': controller.email.value.maskedEmail,
                 }),
               )),
           const SizedBox(height: AppDimens.kPaddingXL),
