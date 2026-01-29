@@ -6,7 +6,7 @@ class AuthChangePswRepository {
   final _api = ApiConnection();
 
   Future<OnboardingRegisterPasswordResponse> changePassword(
-      int id, int password, bool resetSteps) async {
+      int id, String password, bool resetSteps) async {
     return await _api.post(
         endpoint: AppEndpoints.onboardingRegisterPassword,
         body: {

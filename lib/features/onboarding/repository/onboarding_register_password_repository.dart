@@ -4,7 +4,7 @@ import 'package:app_flutter_miban4/features/onboarding/model/onboarding_register
 
 class OnboardingRegisterPasswordRepository {
   Future<OnboardingRegisterPasswordResponse> registerPassword(
-      int id, int password) async {
+      int id, String password) async {
     return await ApiConnection().post(
         endpoint: AppEndpoints.onboardingRegisterPassword,
         body: {

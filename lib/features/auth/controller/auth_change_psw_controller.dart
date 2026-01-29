@@ -61,7 +61,7 @@ class AuthChangePswController extends GetxController {
       return;
     }
 
-    final int password = int.parse(newPasswordController.text);
+    final String password = newPasswordController.text;
     bool completed = false;
 
     try {

@@ -50,7 +50,7 @@ class ChangePasswordController extends BaseController {
       return;
     }
 
-    final int password = int.parse(newPasswordController.text);
+    final String password = newPasswordController.text;
     bool completed = false;
 
     try {
