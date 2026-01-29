@@ -15,7 +15,9 @@ class CompleteProfileSelfieController extends BaseController {
       final XFile? photo = await _picker.pickImage(
         source: ImageSource.camera,
         preferredCameraDevice: CameraDevice.front,
-        imageQuality: 50,
+        imageQuality: 60,
+        maxHeight: 1200,
+        maxWidth: 1200,
       );
 
       if (photo != null) {
@@ -29,7 +31,7 @@ class CompleteProfileSelfieController extends BaseController {
 
   Future<void> _uploadSelfie(XFile photo) async {
     await executeSafe(() async {
-      final id = userRx.user.value!.payload.id.toString();
+      final id = userRx.individualId!.toString();
 
       final result = await CompleteProfileSelfieRepository()
           .sendSelfie(id: id, photo: photo);

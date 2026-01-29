@@ -15,8 +15,10 @@ class CompleteProfileSelfieDocumentController extends BaseController {
     try {
       final XFile? photo = await _picker.pickImage(
         source: ImageSource.camera,
-        preferredCameraDevice: CameraDevice.front,
         imageQuality: 80,
+        maxHeight: 1200,
+        maxWidth: 1200,
+        preferredCameraDevice: CameraDevice.front,
       );
 
       if (photo != null) {
@@ -34,7 +36,7 @@ class CompleteProfileSelfieDocumentController extends BaseController {
         print('Enviando Selfie com Documento: ${photo.path}');
       }
 
-      final id = userRx.user.value!.payload.id.toString();
+      final id = userRx.individualId!.toString();
 
       final result = await CompleteProfileDocumentSelfieRepository()
           .sendDocumentSelfie(id, photo);

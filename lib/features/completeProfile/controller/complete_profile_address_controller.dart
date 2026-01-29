@@ -116,7 +116,7 @@ class CompleteProfileAddressController extends BaseController {
 
       final result = await CompleteProfileAddressRepository().sendAddress(
           CompleteProfileAddressRequest(
-              individualId: userRx.user.value!.payload.id,
+              individualId: userRx.individualId!,
               postalCode: postalCode,
               type: typeId,
               street: addressEc.text,

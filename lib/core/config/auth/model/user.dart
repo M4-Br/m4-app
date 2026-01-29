@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/auth/model/verify_user_response.dart';
 import 'package:flutter/material.dart';
 
 class Payload {
@@ -15,6 +16,7 @@ class Payload {
     required this.fullName,
     required this.phone,
     this.userId,
+    this.steps,
   });
 
   factory Payload.fromJson(Map<String, dynamic> json) {
@@ -37,6 +39,7 @@ class Payload {
       avatarUrl: json['avatar_url'] as String?,
       fullName: json['full_name'] as String,
       phone: Phone.fromJson(json['phone'] as Map<String, dynamic>),
+      steps: null,
     );
   }
 
@@ -53,6 +56,7 @@ class Payload {
   final String? avatarUrl;
   final String fullName;
   final Phone phone;
+  final List<Steps>? steps;
 
   Payload copyWith({
     int? id,
@@ -68,6 +72,7 @@ class Payload {
     String? avatarUrl,
     String? fullName,
     Phone? phone,
+    List<Steps>? steps,
   }) {
     return Payload(
       id: id ?? this.id,
@@ -83,6 +88,7 @@ class Payload {
       avatarUrl: avatarUrl ?? this.avatarUrl,
       fullName: fullName ?? this.fullName,
       phone: phone ?? this.phone,
+      steps: steps ?? this.steps,
     );
   }
 }

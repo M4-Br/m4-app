@@ -6,14 +6,14 @@ class ChangePasswordRepository {
   final _api = ApiConnection();
 
   Future<OnboardingRegisterPasswordResponse> changePassword(
-      int id, int password) async {
+      int id, int password, bool resetSteps) async {
     return await _api.post(
         endpoint: AppEndpoints.onboardingRegisterPassword,
         body: {
           'individual_id': id,
           'password': password,
           'confirm_password': password,
-          'register_m4': true
+          'register_m4': resetSteps
         },
         fromJson: (json) => OnboardingRegisterPasswordResponse.fromJson(json));
   }

@@ -39,7 +39,7 @@ class CompleteProfileProfessionController extends BaseController {
 
       final result = await CompleteProfileProfessionRepository().sendProfession(
           CompleteProfileProfessionRequest(
-              id: userRx.user.value!.payload.id,
+              id: userRx.individualId!,
               professionId: professionId,
               income: rawIncome));
 

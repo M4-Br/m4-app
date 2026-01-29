@@ -95,7 +95,7 @@ class CompleteProfilePersonalDataController extends BaseController {
 
       final result = await CompleteProfilePersonalDataRepository()
           .sendPersonalData(CompleteProfilePersonalDataRequest(
-              id: userRx.user.value!.payload.id.toString(),
+              id: userRx.individualId!.toString(),
               username: nameEc.text,
               documentState: selectedRgState.value.toString(),
               documentNumber: cleanRg,
