@@ -202,8 +202,8 @@ class HomeIconsController extends BaseController {
         AppLogger.I().info('Going to Warnings');
         break;
       case '23':
-        // TODO: Contabilidade
-        AppLogger.I().info('Going to Contabilidade');
+        Get.toNamed(AppRoutes.accountingHome);
+        AppLogger.I().info('Going to Accounting');
         break;
       case '24':
         Get.toNamed(AppRoutes.services);

@@ -107,4 +107,9 @@ class AppRoutes {
   static const String completeSelfie = '$complete/selfie';
   static const String completeConfirmSelfie = '$complete/confirm_selfie';
   static const String completeInReview = '$complete/review';
+
+  //accounting
+  static const String accountingHome = '/accounting';
+  static const String accountingPayment = '$accountingHome/payment';
+  static const String accountingReports = '$accountingHome/reports';
 }

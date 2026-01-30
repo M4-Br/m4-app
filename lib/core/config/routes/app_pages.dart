@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/routes/accountingPages/accounting_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/barcodePages/barcode_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/cameraPage/camera_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/completeProfilePages/complete_profile_pages.dart';
@@ -56,6 +57,9 @@ class AppPages {
     ...BarcodePages.pages,
 
     //Complete Profile Screens
-    ...CompletePropfilePages.pages
+    ...CompletePropfilePages.pages,
+
+    //Accounting Screend
+    ...AccountingPages.pages
   ];
 }
