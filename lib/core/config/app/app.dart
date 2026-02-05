@@ -17,8 +17,18 @@ class MiBan4 extends StatelessWidget {
     final box = GetStorage();
     String? language = box.read('language');
 
-    Locale initialLocale =
-        language != null ? Locale(language) : Get.deviceLocale!;
+    Locale initialLocale;
+
+    if (language != null) {
+      if (language.contains('_')) {
+        final parts = language.split('_');
+        initialLocale = Locale(parts[0], parts[1]);
+      } else {
+        initialLocale = Locale(language);
+      }
+    } else {
+      initialLocale = const Locale('pt', 'BR');
+    }
 
     return GestureDetector(
       onTap: () {
@@ -43,6 +53,7 @@ class MiBan4 extends StatelessWidget {
           Locale('en', 'US'),
           Locale('es', 'ES'),
         ],
+        fallbackLocale: const Locale('pt', 'BR'),
         builder: (context, child) {
           return Stack(
             children: [

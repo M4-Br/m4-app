@@ -8,12 +8,14 @@ class HomeIcons extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.isLocal = false,
+    this.iconData, // Parâmetro opcional para Ícone Nativo
   });
 
   final String iconUrl;
   final String text;
   final VoidCallback onPressed;
   final bool isLocal;
+  final IconData? iconData;
 
   @override
   Widget build(BuildContext context) {
@@ -30,27 +32,11 @@ class HomeIcons extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (iconUrl.isEmpty)
-                const Icon(Icons.broken_image, size: 35, color: Colors.grey)
-              else if (isLocal)
-                Image.asset(
-                  iconUrl,
-                  width: 35,
-                  height: 35,
-                  color: secondaryColor,
-                  errorBuilder: (_, __, ___) =>
-                      const Icon(Icons.error, color: secondaryColor),
-                )
-              else
-                Image.network(
-                  iconUrl,
-                  width: 35,
-                  height: 35,
-                  color: secondaryColor,
-                  errorBuilder: (_, __, ___) =>
-                      const Icon(Icons.error, color: secondaryColor),
-                ),
+              // Chamamos a função de construção
+              _buildIconContent(),
+
               const SizedBox(height: 8),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Text(
@@ -66,6 +52,46 @@ class HomeIcons extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildIconContent() {
+    // 1. PRIORIDADE MÁXIMA: Verifica se tem IconData
+    // Se tiver, retorna ele IMEDIATAMENTE e ignora se a URL é vazia.
+    if (iconData != null) {
+      return Icon(
+        iconData,
+        size: 35,
+        color: secondaryColor, // Usa a cor secundária como solicitado
+      );
+    }
+
+    // 2. Só agora verifica se a URL está vazia
+    // Se não tinha IconData E a URL é vazia, então está quebrado
+    if (iconUrl.isEmpty) {
+      return const Icon(Icons.broken_image, size: 35, color: Colors.grey);
+    }
+
+    // 3. Verifica se é Asset Local
+    if (isLocal) {
+      return Image.asset(
+        iconUrl,
+        width: 35,
+        height: 35,
+        color: secondaryColor,
+        errorBuilder: (_, __, ___) =>
+            const Icon(Icons.error, color: secondaryColor),
+      );
+    }
+
+    // 4. Se não for nada disso, é Imagem da Rede
+    return Image.network(
+      iconUrl,
+      width: 35,
+      height: 35,
+      color: secondaryColor,
+      errorBuilder: (_, __, ___) =>
+          const Icon(Icons.error, color: secondaryColor),
     );
   }
 }

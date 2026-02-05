@@ -112,4 +112,7 @@ class AppRoutes {
   static const String accountingHome = '/accounting';
   static const String accountingPayment = '$accountingHome/payment';
   static const String accountingReports = '$accountingHome/reports';
+
+  //offers
+  static const String offersHome = '/offers';
 }

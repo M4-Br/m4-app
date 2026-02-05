@@ -336,7 +336,7 @@ class StringsEsES {
     'display2': 'Pantalla de Confirmación de Teléfono',
     'phone_confirm': 'Confirmación de Teléfono',
     'balance': 'Estado del Saldo',
-    'balance_available': 'Saldo Disponible',
+    'balance_available': 'Disponible',
     'balance_transational': 'Saldo en Ahorros',
     'balance_insufficient': 'Saldo Insuficiente',
     'home_view': 'Botones de inicio',
@@ -626,6 +626,10 @@ class StringsEsES {
         'No se pudo procesar su solicitud en este momento. Por favor, inténtelo de nuevo.',
     'contability_title': 'Contabilidad',
     'services_title': 'Servicios',
+    'health_title': 'Salud',
+    'news_title': 'Novedades',
+    'docs_title': 'Documentos',
+    'services_page_title': 'Servicios',
     'validator_isEmpty': 'Completa el campo',
     'try_again': 'Intentar de nuevo',
     'token_sent_message':
@@ -637,7 +641,5 @@ class StringsEsES {
     'confirm_password_hint': 'Vuelva a ingresar la contraseña deseada',
     'password_required': 'La contraseña es obligatoria',
     'codeLang': 'es_ES',
-    'version': 'Versión 6.0.2 - Lanzamiento (223)',
-    'version_app': '6.0.2'
   };
 }

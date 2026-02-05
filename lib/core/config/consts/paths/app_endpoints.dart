@@ -91,4 +91,7 @@ class AppEndpoints {
 
   //Bank List
   static const String bankList = '/banks_list';
+
+  //Offers List
+  static const String offers = '/offers';
 }

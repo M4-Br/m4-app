@@ -21,51 +21,55 @@ class HomePage extends GetView<HomeIconsController> {
       body: Stack(
         children: [
           _buildBackgroundWaves(),
-          _buildHeader(),
-          const Align(
-            alignment: Alignment.topCenter,
-            child: Padding(
-              padding: EdgeInsets.only(top: 90),
-              child: CardWidget(),
-            ),
-          ),
-          Positioned.fill(
-            top: 315,
-            child: Obx(() {
-              if (controller.isLoading.value) {
-                return const Center(
-                  child: AppLoading(),
-                );
-              }
+          Column(
+            children: [
+              const SizedBox(height: 100),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: CardWidget(),
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: Obx(() {
+                  if (controller.isLoading.value) {
+                    return const Center(child: AppLoading());
+                  }
 
-              final menuItems = controller.combinedMenuList;
+                  final menuItems = controller.combinedMenuList;
 
-              if (menuItems.isEmpty) {
-                return const Center(child: Text('Nenhum serviço disponível'));
-              }
+                  if (menuItems.isEmpty) {
+                    return const Center(
+                        child: Text('Nenhum serviço disponível'));
+                  }
 
-              return GridView.builder(
-                padding: const EdgeInsets.only(top: 10, bottom: 20),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 1.0,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                ),
-                itemCount: menuItems.length,
-                itemBuilder: (context, index) {
-                  final item = menuItems[index];
-                  return HomeIcons(
-                    iconUrl: item.iconPath,
-                    text: item.title,
-                    isLocal: item.isLocal,
-                    onPressed: () =>
-                        controller.onMenuOptionTap(item.id, item.title),
+                  return GridView.builder(
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 16, bottom: 20, top: 0),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      childAspectRatio: 1.0,
+                      mainAxisSpacing: 8,
+                      crossAxisSpacing: 8,
+                    ),
+                    itemCount: menuItems.length,
+                    itemBuilder: (context, index) {
+                      final item = menuItems[index];
+                      return HomeIcons(
+                        iconUrl: item.iconPath ?? '',
+                        iconData: item.iconData,
+                        text: item.title,
+                        isLocal: item.isLocal,
+                        onPressed: () =>
+                            controller.onMenuOptionTap(item.id, item.title),
+                      );
+                    },
                   );
-                },
-              );
-            }),
+                }),
+              ),
+            ],
           ),
+          _buildHeader(),
         ],
       ),
     );

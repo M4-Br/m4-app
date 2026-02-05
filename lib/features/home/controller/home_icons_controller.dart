@@ -3,25 +3,27 @@ import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/features/AI/widget/ai_show_modal.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
-// Importe o Repository e o Model
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_verify_steps_repository.dart';
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeMenuItem {
   final String id;
   final String title;
-  final String iconPath;
+  final String? iconPath;
+  final IconData? iconData;
   final bool isLocal;
 
   HomeMenuItem({
     required this.id,
     required this.title,
-    required this.iconPath,
+    this.iconPath,
+    this.iconData,
     this.isLocal = true,
   });
 }
@@ -52,31 +54,75 @@ class HomeIconsController extends BaseController {
     '31': 'assets/icons/ic_home_warning.png',
     '23': 'assets/icons/ic_contabil.png',
     '24': 'assets/icons/ic_services.png',
+    '25': 'assets/icons/ic_home_payment.png',
+  };
+
+  final Map<String, String> _customTitles = {
+    '19': 'Área Pix',
+    '30': 'Novidades',
   };
 
   List<HomeMenuItem> get combinedMenuList {
-    List<HomeMenuItem> list = [];
+    final desiredOrder = ['23', '25', '26', '11', '10', '19', '14', '30', '24'];
+
+    List<HomeMenuItem> allItems = [];
+
     for (var icon in apiIcons) {
-      list.add(HomeMenuItem(
-        id: icon.id,
-        title: icon.title,
-        iconPath: _localIconAssets[icon.id] ?? '',
-        isLocal: _localIconAssets.containsKey(icon.id),
+      if (desiredOrder.contains(icon.id)) {
+        final finalTitle = _customTitles[icon.id] ?? icon.title;
+
+        allItems.add(HomeMenuItem(
+          id: icon.id,
+          title: finalTitle,
+          iconPath: _localIconAssets[icon.id],
+          isLocal: _localIconAssets.containsKey(icon.id),
+        ));
+      }
+    }
+
+    if (desiredOrder.contains('23')) {
+      allItems.add(HomeMenuItem(
+        id: '23',
+        title: 'contability_title'.tr,
+        iconPath: _localIconAssets['23'],
       ));
     }
 
-    list.add(HomeMenuItem(
-      id: '23',
-      title: 'contability_title'.tr,
-      iconPath: _localIconAssets['23']!,
-    ));
-    list.add(HomeMenuItem(
-      id: '24',
-      title: 'services_title'.tr,
-      iconPath: _localIconAssets['24']!,
-    ));
+    if (desiredOrder.contains('24')) {
+      allItems.add(HomeMenuItem(
+        id: '24',
+        title: 'services_title'.tr,
+        iconPath: _localIconAssets['24'],
+      ));
+    }
 
-    return list;
+    if (desiredOrder.contains('25')) {
+      allItems.add(HomeMenuItem(
+        id: '25',
+        title: 'docs_title'.tr,
+        iconData: Icons.edit_document,
+      ));
+    }
+
+    if (desiredOrder.contains('26')) {
+      allItems.add(HomeMenuItem(
+        id: '26',
+        title: 'health_title'.tr,
+        iconData: Icons.health_and_safety,
+      ));
+    }
+
+    final orderMap = {
+      for (var item in desiredOrder) item: desiredOrder.indexOf(item)
+    };
+
+    allItems.sort((a, b) {
+      final indexA = orderMap[a.id] ?? 999;
+      final indexB = orderMap[b.id] ?? 999;
+      return indexA.compareTo(indexB);
+    });
+
+    return allItems;
   }
 
   @override
@@ -165,25 +211,25 @@ class HomeIconsController extends BaseController {
     }
 
     switch (id) {
-      case '1':
-        Get.toNamed(AppRoutes.paymentLink);
-        AppLogger.I().info('Going to Payment Link');
+      case '23':
+        Get.toNamed(AppRoutes.accountingHome);
+        AppLogger.I().info('Going to Accounting');
         break;
-      case '2':
-        Get.toNamed(AppRoutes.pixQrCodeReader);
-        AppLogger.I().info('Going to QR Code Payment');
+      case '25':
+        // Get.toNamed(AppRoutes.pixQrCodeReader);
+        AppLogger.I().info('Going to Documents');
         break;
-      case '10':
-        Get.toNamed(AppRoutes.barcode);
-        AppLogger.I().info('Going to Barcode Payment');
+      case '26':
+        // Get.toNamed(AppRoutes.barcode);
+        AppLogger.I().info('Going to Health');
         break;
       case '11':
         Get.toNamed(AppRoutes.transfer);
         AppLogger.I().info('Going to Transfer Page');
         break;
-      case '12':
-        CustomDialogs.showInformationDialog(
-            content: 'unavailable'.tr, onCancel: () => Get.back());
+      case '10':
+        Get.toNamed(AppRoutes.barcode);
+        AppLogger.I().info('Going to Barcode Payment');
         break;
       case '14':
         Get.toNamed(AppRoutes.store);
@@ -200,10 +246,6 @@ class HomeIconsController extends BaseController {
       case '31':
         _openWebView('https://miban4.com/#faq', title);
         AppLogger.I().info('Going to Warnings');
-        break;
-      case '23':
-        Get.toNamed(AppRoutes.accountingHome);
-        AppLogger.I().info('Going to Accounting');
         break;
       case '24':
         Get.toNamed(AppRoutes.services);
