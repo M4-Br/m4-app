@@ -2,19 +2,24 @@
 
 import 'package:get/get.dart';
 import 'package:app_flutter_miban4/features/accounting/model/accounting_report_model.dart';
+import 'package:app_flutter_miban4/features/accounting/model/accounting_summary_model.dart'; // Importe o model
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 
 class AccountingReportsController extends GetxController {
   final isLoading = false.obs;
 
-  final availableYears = List<int>.generate(10, (i) => 2025 - i);
+  AccountingSummaryModel? companyData;
 
-  final selectedYear = 2024.obs;
+  final availableYears = List<int>.generate(10, (i) => 2026 - i);
+
+  final selectedYear = 2026.obs;
   final reports = <AccountingReportModel>[].obs;
 
   @override
   void onInit() {
     super.onInit();
+    companyData = Get.arguments as AccountingSummaryModel?;
+
     fetchReports(selectedYear.value);
   }
 
@@ -28,9 +33,12 @@ class AccountingReportsController extends GetxController {
 
     await Future.delayed(const Duration(milliseconds: 600));
 
-    if (year == 2024) {
+    if (year == 2026) {
       reports.value = [
-        AccountingReportModel(title: 'IRPJ Ajuste Anual', date: '10.02.2025'),
+        AccountingReportModel(title: 'IRPJ Ajuste Anual', date: '10.02.2026'),
+      ];
+    } else if (year == 2025) {
+      reports.value = [
         AccountingReportModel(title: 'Declaração Simples', date: '10.01.2025'),
         AccountingReportModel(
             title: 'Resultados Exercício', date: '10.02.2025'),

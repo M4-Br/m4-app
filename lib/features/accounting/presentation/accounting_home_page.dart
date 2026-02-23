@@ -1,6 +1,7 @@
 // lib/features/accounting/page/accounting_home_page.dart
 
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
+import 'package:app_flutter_miban4/features/accounting/model/accounting_summary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_flutter_miban4/features/accounting/controller/accounting_home_controller.dart';
@@ -15,33 +16,75 @@ class AccountingHomePage extends GetView<AccountingHomeController> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: const CustomAppBar(title: 'CONTABILIDADE'),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return const Center(child: AppLoading());
-        }
+      body: Column(
+        children: [
+          _buildYearSelector(),
+          Expanded(
+            child: Obx(() {
+              if (controller.isLoading.value) {
+                return const Center(child: AppLoading());
+              }
 
-        final data = controller.summary.value;
-        if (data == null) return const Center(child: Text('Sem dados'));
+              final data = controller.summary.value;
 
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildCompanyHeader(data),
-              const SizedBox(height: 24),
-              _buildSectionTitle('Obrigações Fiscais'),
-              const SizedBox(height: 8),
-              _buildObligationsList(data),
-              const SizedBox(height: 24),
-              _buildReportsButton(),
-              const SizedBox(
-                height: 24,
-              ),
-            ],
+              if (data == null) {
+                return Center(
+                  child: Text(
+                      'Nenhum dado para ${controller.selectedYear.value}',
+                      style: const TextStyle(color: Colors.grey)),
+                );
+              }
+
+              return SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildCompanyHeader(data),
+                    const SizedBox(height: 24),
+                    _buildSectionTitle('Obrigações Fiscais'),
+                    const SizedBox(height: 8),
+                    _buildObligationsList(data),
+                    const SizedBox(height: 24),
+                    _buildReportsButton(),
+                    const SizedBox(height: 24),
+                  ],
+                ),
+              );
+            }),
           ),
-        );
-      }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildYearSelector() {
+    return Container(
+      height: 60,
+      color: Colors.white,
+      child: Obx(() => ListView.separated(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            itemCount: controller.availableYears.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 8),
+            itemBuilder: (context, index) {
+              final year = controller.availableYears[index];
+              final isSelected = controller.selectedYear.value == year;
+
+              return ChoiceChip(
+                label: Text(year.toString()),
+                selected: isSelected,
+                selectedColor: primaryColor,
+                labelStyle: TextStyle(
+                    color: isSelected ? Colors.white : Colors.black87,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal),
+                onSelected: (selected) {
+                  if (selected) controller.changeYear(year);
+                },
+              );
+            },
+          )),
     );
   }
 
@@ -65,7 +108,7 @@ class AccountingHomePage extends GetView<AccountingHomeController> {
               ],
             ),
             const Divider(),
-            _buildInfoRow('CNPJ', data.cnpj),
+            _buildInfoRow('CNPJ', data.document ?? 'N/A'),
             _buildInfoRow('Classe', data.taxClass),
             _buildInfoRow('Faixa', data.incomeRange),
             const SizedBox(height: 8),
@@ -112,28 +155,58 @@ class AccountingHomePage extends GetView<AccountingHomeController> {
     );
   }
 
-  Widget _buildObligationsList(data) {
+  Widget _buildObligationsList(AccountingSummaryModel data) {
+    final currentYearStr = controller.selectedYear.value.toString();
+
+    final filteredHistory = data.history.where((TaxObligation item) {
+      return item.monthYear.endsWith(currentYearStr);
+    }).toList();
+
+    if (filteredHistory.isEmpty) {
+      return Card(
+        elevation: 0,
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(color: Colors.grey.withValues(alpha: 0.2))),
+        child: const Padding(
+          padding: EdgeInsets.all(32.0),
+          child: Center(
+            child: Text(
+              'Nenhuma obrigação fiscal para este ano.',
+              style: TextStyle(color: Colors.grey),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: Colors.grey.withValues(alpha: 0.2))),
       child: ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: data.history.length,
+        itemCount: filteredHistory.length,
         separatorBuilder: (_, __) => const Divider(height: 1),
         itemBuilder: (context, index) {
-          final item = data.history[index];
-          final isPending = item.status == 'Pend';
+          final item = filteredHistory[index];
+
+          final isPending = item.status == 'Pend' || item.status == 'pending';
 
           return ListTile(
             contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             title: Text(item.monthYear,
-                style: const TextStyle(fontWeight: FontWeight.w600)),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             subtitle: Text(
-                "R\$ ${item.value.toStringAsFixed(2).replaceAll('.', ',')}"),
+                "R\$ ${item.value.toStringAsFixed(2).replaceAll('.', ',')}",
+                style: TextStyle(color: Colors.grey[700], fontSize: 14)),
             trailing: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
               decoration: BoxDecoration(
                 color: isPending ? Colors.red[50] : Colors.green[50],
                 borderRadius: BorderRadius.circular(20),

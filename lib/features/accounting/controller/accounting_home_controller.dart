@@ -3,42 +3,47 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/features/accounting/model/accounting_summary_model.dart';
+import 'package:app_flutter_miban4/features/accounting/repository/accounting_repository.dart';
 import 'package:get/get.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 
 class AccountingHomeController extends BaseController {
   final summary = Rxn<AccountingSummaryModel>();
 
+  final availableYears = <int>[].obs;
+  final selectedYear = DateTime.now().year.obs;
+
   @override
   void onInit() {
     super.onInit();
-    _fetchAccountingData();
+    _generateYears();
+    fetchAccountingData();
   }
 
-  Future<void> _fetchAccountingData() async {
+  void _generateYears() {
+    final currentYear = DateTime.now().year;
+    availableYears.value = List.generate(4, (index) => currentYear - index);
+  }
+
+  void changeYear(int year) {
+    if (selectedYear.value != year) {
+      selectedYear.value = year;
+      fetchAccountingData();
+    }
+  }
+
+  Future<void> fetchAccountingData() async {
     try {
       isLoading.value = true;
-      await Future.delayed(const Duration(seconds: 1));
+      final response = await AccountingRepository()
+          .fetchAccounting(year: selectedYear.value);
 
-      summary.value = AccountingSummaryModel(
-        cnpj: '12.345.678/0001-00',
-        referenceDate: '16.Fev.2025',
-        taxClass: 'Simples Nacional',
-        incomeRange: '0 até 340 mil',
-        currentTaxDue: 250.00,
-        dueDay: 20,
-        history: [
-          TaxObligation(
-              monthYear: 'Setembro/25', value: 250.00, status: 'Pend'),
-          TaxObligation(monthYear: 'Agosto/25', value: 250.00, status: 'Ok'),
-          TaxObligation(monthYear: 'Julho/25', value: 250.00, status: 'Ok'),
-          TaxObligation(monthYear: 'Junho/25', value: 250.00, status: 'Ok'),
-          TaxObligation(monthYear: 'Maio/25', value: 250.00, status: 'Ok'),
-          TaxObligation(monthYear: 'Abril/25', value: 250.00, status: 'Ok'),
-        ],
-      );
+      summary.value = response;
     } catch (e) {
-      ShowToaster.toasterInfo(message: 'Erro ao carregar dados contábeis');
+      summary.value = null;
+      ShowToaster.toasterInfo(
+          message:
+              'Nenhum dado ou erro ao carregar o ano de ${selectedYear.value}');
     } finally {
       isLoading.value = false;
     }
@@ -51,6 +56,12 @@ class AccountingHomeController extends BaseController {
   }
 
   void goToReports() {
-    Get.toNamed(AppRoutes.accountingReports);
+    final currentSummary = summary.value;
+    if (currentSummary != null) {
+      Get.toNamed(AppRoutes.accountingReports, arguments: currentSummary);
+    } else {
+      ShowToaster.toasterInfo(
+          message: 'Aguarde o carregamento dos dados da empresa.');
+    }
   }
 }

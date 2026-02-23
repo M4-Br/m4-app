@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 const Color primaryColor = Color(0xFF002A4D);
-const Color secondaryColor = Color(0xFFB4520C);
+const Color secondaryColor = Color(0xFF2E7D32);
 const Color thirdColor = Color(0xFF021B30);
 
 const Color defaultButtonColor = Color(0xFFB4520C);

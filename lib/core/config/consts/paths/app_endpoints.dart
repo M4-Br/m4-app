@@ -94,4 +94,7 @@ class AppEndpoints {
 
   //Offers List
   static const String offers = '/offers';
+
+  //Accounting
+  static const String accountingData = '/tax_data';
 }

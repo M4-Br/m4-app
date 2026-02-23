@@ -1,3 +1,5 @@
+// lib/features/accounting/page/accounting_reports_page.dart
+
 import 'package:app_flutter_miban4/features/accounting/controller/accounting_reports_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +17,11 @@ class AccountingReportsPage extends GetView<AccountingReportsController> {
       body: Column(
         children: [
           _buildYearSelector(controller),
-
+          if (controller.companyData != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+              child: _buildCompanyHeader(controller.companyData!),
+            ),
           Obx(() => Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 child: Align(
@@ -29,12 +35,13 @@ class AccountingReportsPage extends GetView<AccountingReportsController> {
                   ),
                 ),
               )),
-
-          // 3. Lista de Relatórios
           Expanded(
             child: Obx(() {
               if (controller.isLoading.value) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                    child: CircularProgressIndicator(
+                  color: secondaryColor,
+                ));
               }
 
               if (controller.reports.isEmpty) {
@@ -42,7 +49,7 @@ class AccountingReportsPage extends GetView<AccountingReportsController> {
               }
 
               return ListView.separated(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 itemCount: controller.reports.length,
                 separatorBuilder: (_, __) => const SizedBox(height: 12),
                 itemBuilder: (context, index) {
@@ -52,6 +59,47 @@ class AccountingReportsPage extends GetView<AccountingReportsController> {
               );
             }),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCompanyHeader(data) {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Dados da Empresa',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: primaryColor)),
+                Icon(Icons.business, color: secondaryColor),
+              ],
+            ),
+            const Divider(),
+            _buildInfoRow('CNPJ', data.document ?? 'N/A'),
+            _buildInfoRow('Classe', data.taxClass),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label, style: const TextStyle(color: Colors.black54)),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.w500)),
         ],
       ),
     );
@@ -122,13 +170,11 @@ class AccountingReportsPage extends GetView<AccountingReportsController> {
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Botão Download
             IconButton(
               icon: const Icon(Icons.download_rounded, color: secondaryColor),
               onPressed: () => controller.downloadReport(report),
               tooltip: 'Baixar',
             ),
-            // Botão Compartilhar
             IconButton(
               icon: const Icon(Icons.share, color: Colors.grey),
               onPressed: () => controller.shareReport(report),

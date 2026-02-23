@@ -62,7 +62,7 @@ class ServicesPage extends GetView<ServicesController> {
 
   Widget _buildServiceTile(BuildContext context, ServicesData item) {
     final description = item.description;
-    final tradeName = item.company.name;
+    final tradeName = item.company?.name ?? 'Empresa Parceira';
     final value = item.value;
 
     return ListTile(

@@ -1,9 +1,7 @@
 // lib/features/accounting/model/accounting_summary_model.dart
 
-import 'package:app_flutter_miban4/core/helpers/extensions/numbers.dart';
-
 class AccountingSummaryModel {
-  final String cnpj;
+  final String? document;
   final String referenceDate;
   final String taxClass;
   final String incomeRange;
@@ -12,7 +10,7 @@ class AccountingSummaryModel {
   final List<TaxObligation> history;
 
   AccountingSummaryModel({
-    required this.cnpj,
+    required this.document,
     required this.referenceDate,
     required this.taxClass,
     required this.incomeRange,
@@ -23,15 +21,17 @@ class AccountingSummaryModel {
 
   factory AccountingSummaryModel.fromJson(Map<String, dynamic> json) {
     return AccountingSummaryModel(
-        cnpj: json['cnpj'] as String,
-        referenceDate: json['reference_date'] as String,
-        taxClass: json['tax_class'] as String,
-        incomeRange: json['income_range'] as String,
-        currentTaxDue: (json['current_tax_due'] as String).toCurrencyDouble(),
-        dueDay: json['due_date'] as int,
-        history: (json['history'] as List<dynamic>)
-            .map((e) => TaxObligation.fromJson(e as Map<String, dynamic>))
-            .toList());
+      document: json['document'] as String?,
+      referenceDate: json['reference_date'] as String? ?? '',
+      taxClass: json['tax_class'] as String? ?? '',
+      incomeRange: json['income_range'] as String? ?? '',
+      currentTaxDue: (json['current_tax_due'] as num?)?.toDouble() ?? 0.0,
+      dueDay: json['due_date'] as int? ?? 0,
+      history: (json['history'] as List<dynamic>?)
+              ?.map((e) => TaxObligation.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
   }
 }
 
@@ -48,9 +48,10 @@ class TaxObligation {
 
   factory TaxObligation.fromJson(Map<String, dynamic> json) {
     return TaxObligation(
-      monthYear: json[''] as String,
-      value: (json[''] as String).toCurrencyDouble(),
-      status: json[''] as String,
+      // Chaves preenchidas corretamente
+      monthYear: json['month_year'] as String? ?? '',
+      value: (json['value'] as num?)?.toDouble() ?? 0.0,
+      status: json['status'] as String? ?? '',
     );
   }
 }
