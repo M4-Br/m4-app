@@ -122,32 +122,38 @@ class StatementController extends BaseController {
 
   Future<void> fetchStatementsDetails(
       {required String startDate, required String endDate}) async {
-    await executeSafe(() async {
-      final currentUser = userRx.user.value;
-      if (currentUser == null) {
-        throw Exception('Usuário não autenticado. Impossível buscar extrato.');
-      }
+    await executeSafe(
+      () async {
+        final currentUser = userRx.user.value;
+        if (currentUser == null) {
+          statements.value = null;
+          return;
+        }
 
-      final account = currentUser.payload.aliasAccount;
-      if (account == null) {
-        throw Exception('Conta do usuário não encontrada.');
-      }
+        final account = currentUser.payload.aliasAccount;
+        if (account == null) {
+          statements.value = null;
+          return;
+        }
 
-      String? accountIdToFetch;
+        String? accountIdToFetch;
 
-      if (selectedAccountType.value == AccountType.economy) {
-        accountIdToFetch = account.economyAccountId;
-      } else {
-        accountIdToFetch = account.accountId;
-      }
+        if (selectedAccountType.value == AccountType.economy) {
+          accountIdToFetch = account.economyAccountId;
+        } else {
+          accountIdToFetch = account.accountId;
+        }
 
-      final statementsData = await StatementRepository().fetchStatements(
-        accountId: accountIdToFetch,
-        startDate: startDate,
-        endDate: endDate,
-      );
+        final statementsData = await StatementRepository().fetchStatements(
+          accountId: accountIdToFetch,
+          startDate: startDate,
+          endDate: endDate,
+        );
 
-      statements.value = statementsData;
-    }, message: 'Erro ao buscar extrato');
+        statements.value = statementsData;
+      },
+      message: 'Erro ao buscar extrato',
+      showErrorToast: false,
+    );
   }
 }

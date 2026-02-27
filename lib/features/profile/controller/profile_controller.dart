@@ -22,8 +22,14 @@ class ProfileController extends BaseController {
 
   Future<void> fetchSteps() async {
     await executeSafe(() async {
+      final currentUser = userRx.user.value;
+      if (currentUser == null || currentUser.payload.document.isEmpty) {
+        steps.value = null;
+        return;
+      }
+
       final result = await CompleteProfileVerifyStepsRepository()
-          .fetchProfileSteps(userRx.user.value!.payload.document);
+          .fetchProfileSteps(currentUser.payload.document);
 
       steps.value = result;
     });

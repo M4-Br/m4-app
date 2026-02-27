@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/core/config/auth/repositories/auth_repository
 import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/log/scope_config.dart';
-import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
@@ -85,8 +84,7 @@ class AuthController extends GetxController {
           );
         } else if (e.statusCode == 500) {
           CustomDialogs.showInformationDialog(
-              content: 'Verifique sua conexão e tente novamente mais tarde.',
-              onCancel: () => Get.offAllNamed(AppRoutes.splash));
+              content: e.message, onCancel: () => Get.back());
         } else {
           ShowToaster.toasterInfo(
             message: e.message,

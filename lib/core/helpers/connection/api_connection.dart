@@ -107,15 +107,29 @@ class ApiConnection {
     T Function(dynamic) fromJson,
     String method,
   ) {
+    // 1. Lemos os bytes com segurança, ignorando caracteres mal codificados
+    String safeBody = '';
+    try {
+      safeBody = utf8.decode(response.bodyBytes, allowMalformed: true);
+    } catch (_) {
+      safeBody = response.body; // Fallback
+    }
+
     if (kDebugMode) {
       print('>>> [$method] Status: ${response.statusCode}');
-      print('>>> [$method] Response: ${response.body}');
+
+      // 2. Evita imprimir aquele HTML gigante que trava o console
+      if (safeBody.trim().startsWith('<!DOCTYPE html>')) {
+        print(
+            '>>> [$method] Response: [Página HTML de Erro Retornada - Ocultada do Log]');
+      } else {
+        print('>>> [$method] Response: $safeBody');
+      }
     }
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       try {
-        final decodedBody =
-            response.body.isNotEmpty ? json.decode(response.body) : null;
+        final decodedBody = safeBody.isNotEmpty ? json.decode(safeBody) : null;
         return fromJson(decodedBody);
       } catch (e, s) {
         AppLogger.I().error('JSON Parsing Error on Success', e, s);
@@ -124,12 +138,15 @@ class ApiConnection {
             statusCode: response.statusCode);
       }
     } else {
-      final String errorMessage = _extractErrorMessage(response);
+      // Passamos o statusCode e o safeBody para não precisar acessar response.body de novo
+      final String errorMessage = _extractErrorMessage(
+          response.statusCode, safeBody, response.reasonPhrase);
 
       AppLogger.I().error(
-          'API Error $method - ${response.request?.url}',
-          'Status: ${response.statusCode}, Message: $errorMessage',
-          StackTrace.current);
+        'API Error $method - ${response.request?.url}',
+        'Status: ${response.statusCode}, Message: $errorMessage',
+        kIsWeb ? StackTrace.empty : StackTrace.current,
+      );
 
       if (response.statusCode == 401 || response.statusCode == 403) {
         if (Get.currentRoute != AppRoutes.login) {
@@ -149,13 +166,14 @@ class ApiConnection {
     }
   }
 
-  String _extractErrorMessage(http.Response response) {
-    if (response.statusCode >= 500) {
+  String _extractErrorMessage(
+      int statusCode, String safeBody, String? reasonPhrase) {
+    if (statusCode >= 500) {
       return 'Ocorreu um erro em nossos servidores. Por favor, tente novamente mais tarde.';
     }
 
     try {
-      final decodedBody = json.decode(response.body);
+      final decodedBody = json.decode(safeBody);
       if (decodedBody is Map) {
         if (decodedBody.containsKey('message') &&
             decodedBody['message'] is String) {
@@ -171,14 +189,14 @@ class ApiConnection {
         }
       }
     } catch (_) {
-      if (response.body.isNotEmpty &&
-          !response.body.trim().startsWith('<!DOCTYPE html>')) {
-        return response.body;
+      if (safeBody.isNotEmpty &&
+          !safeBody.trim().startsWith('<!DOCTYPE html>')) {
+        return safeBody;
       }
     }
 
-    if (response.reasonPhrase != null && response.reasonPhrase!.isNotEmpty) {
-      return response.reasonPhrase!;
+    if (reasonPhrase != null && reasonPhrase.isNotEmpty) {
+      return reasonPhrase;
     }
 
     return 'Ocorreu um erro inesperado. Por favor, contate o suporte.';

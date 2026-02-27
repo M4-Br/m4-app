@@ -57,12 +57,15 @@ class ProfilePage extends GetView<ProfileController> {
                     title: Text('account_myAccount'.tr),
                     children: [
                       _buildExpansionContent([
+                        _buildDetailRow('account_bank'.tr,
+                            account?.bankNumber ?? 'Em análise'),
                         _buildDetailRow(
-                            'account_bank'.tr, account?.bankNumber ?? ''),
-                        _buildDetailRow('account_agency'.tr,
-                            account?.branchNumber.toString() ?? ''),
-                        _buildDetailRow(
-                            'account_account'.tr, account?.accountNumber ?? ''),
+                            'account_agency'.tr,
+                            (account != null)
+                                ? account.branchNumber.toString()
+                                : 'Em análise'),
+                        _buildDetailRow('account_account'.tr,
+                            account?.accountNumber ?? 'Em análise'),
                       ]),
                     ],
                   ),

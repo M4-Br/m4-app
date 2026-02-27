@@ -134,7 +134,8 @@ class HomeIconsController extends BaseController {
 
   Future<void> checkProfileStatus() async {
     final document = userRx.user.value?.payload.document;
-    if (document == null) return;
+    // Evita requisição se não houver documento
+    if (document == null || document.isEmpty) return;
 
     try {
       final result = await CompleteProfileVerifyStepsRepository()
@@ -152,8 +153,8 @@ class HomeIconsController extends BaseController {
 
       incomplete.value = false;
 
-      final hasAliasAccount =
-          userRx.user.value?.payload.aliasAccount?.accountId != null;
+      // CORREÇÃO: Verificação segura para evitar Null Check Operator erro
+      final hasAliasAccount = userRx.user.value?.payload.aliasAccount != null;
 
       if (!hasAliasAccount) {
         isAccountProcessing.value = true;
@@ -174,7 +175,10 @@ class HomeIconsController extends BaseController {
         apiIcons.assignAll(fetchedIcons);
         hasLoadedIcons.value = true;
       }
-    }, message: 'Erro ao carregar os ícones');
+    },
+        message: 'Erro ao carregar os ícones',
+        showErrorToast:
+            false); // Adicionado showErrorToast: false para ser menos intrusivo no app startup
   }
 
   void onMenuOptionTap(String id, String title) async {
