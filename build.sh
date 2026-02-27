@@ -14,7 +14,7 @@ flutter pub get
 echo "🔐 Gerando arquivo .env..."
 
 # 3. Cria o arquivo .env
-echo "BASE_URL=$BASE_URL" > .env
+echo "BASE_URL=$URL_HOMOL" > .env
 # Se tiver mais variáveis, adicione com >> aqui
 
 echo "🏗️ Fazendo o build do projeto..."
