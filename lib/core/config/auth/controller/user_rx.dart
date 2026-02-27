@@ -16,7 +16,7 @@ class UserRx extends GetxController {
   }
 
   int? get userId {
-    return user.value?.payload.userId ?? verifyResponse.value?.userData.id;
+    return user.value?.payload.userId ?? verifyResponse.value?.userData?.id;
   }
 
   int? get individualId {
@@ -32,7 +32,7 @@ class UserRx extends GetxController {
 
     if (user.value != null) {
       final newPayload = user.value!.payload.copyWith(
-        userId: response.userData.id,
+        userId: response.userData?.id,
         email: response.email,
         steps: response.steps,
       );
