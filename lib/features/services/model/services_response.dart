@@ -1,3 +1,5 @@
+import 'package:app_flutter_miban4/core/helpers/extensions/numbers.dart';
+
 class ServicesResponse {
   const ServicesResponse({
     required this.success,
@@ -9,10 +11,12 @@ class ServicesResponse {
 
   factory ServicesResponse.fromJson(Map<String, dynamic> json) {
     return ServicesResponse(
-      success: json['success'] as bool,
-      data: (json['data'] as List<dynamic>)
-          .map((item) => ServicesData.fromJson(item as Map<String, dynamic>))
-          .toList(),
+      success: json['success'] as bool? ?? false,
+      data: (json['data'] as List<dynamic>?)
+              ?.map(
+                  (item) => ServicesData.fromJson(item as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
   }
 }
@@ -24,24 +28,28 @@ class ServicesData {
     required this.value,
     required this.companyId,
     required this.status,
-    required this.company,
+    this.company, // Transformado em opcional/anulável
   });
 
   final int id;
   final String description;
   final double value;
-  final int companyId;
+  final int? companyId;
   final String status;
-  final Company company;
+  final Company? company; // Transformado em anulável
 
   factory ServicesData.fromJson(Map<String, dynamic> json) {
     return ServicesData(
-      id: json['id'] as int,
-      description: json['description'] as String,
-      value: (json['value'] as int).toDouble(),
-      companyId: json['company_id'] as int,
-      status: json['status'] as String,
-      company: Company.fromJson(json['company'] as Map<String, dynamic>),
+      id: json['id'] as int? ?? 0,
+      description: json['description'] as String? ?? '',
+      // Tratamento seguro para números, aceitando int ou double
+      value: (json['value'] as int?)?.toString().toCurrencyDouble() ?? 0.0,
+      companyId: json['company_id'] as int?,
+      status: json['status'] as String? ?? '',
+      // Verifica se company não é nulo antes de tentar converter
+      company: json['company'] != null
+          ? Company.fromJson(json['company'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -67,13 +75,13 @@ class Company {
 
   factory Company.fromJson(Map<String, dynamic> json) {
     return Company(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      document: json['document'] as String,
-      tradeName: json['trade_name'] as String,
-      email: json['email'] as String,
-      phone: json['phone'] as String,
-      status: json['status'] as String,
+      id: json['id'] as int? ?? 0,
+      name: json['name'] as String? ?? '',
+      document: json['document'] as String? ?? '',
+      tradeName: json['trade_name'] as String? ?? '',
+      email: json['email'] as String? ?? '',
+      phone: json['phone'] as String? ?? '',
+      status: json['status'] as String? ?? '',
     );
   }
 }

@@ -67,7 +67,7 @@ class FinancialController extends BaseController {
   }
 
   Future<void> fetchFinancialCapacity() async {
-    final userId = userRx.user.value!.payload.id.toString();
+    final userId = userRx.individualId!.toString();
 
     final financialCapacity = await _repository.fetchCapacity(userId: userId);
     AppLogger.I().debug('Financial Capacity fetched');

@@ -77,6 +77,8 @@ class AppEndpoints {
   static const String completeDocumentSelfie = '/v2/register/individual/step7';
   static const String completeSelfie = '/v2/register/individual/step8';
   static const String getDocument = '/account/document';
+  static const String sendToken = '/user/send_code_email';
+  static const String validateEmail = '/user/validate_email';
 
   //cep
   static const String cep = '/viacep';
@@ -89,4 +91,10 @@ class AppEndpoints {
 
   //Bank List
   static const String bankList = '/banks_list';
+
+  //Offers List
+  static const String offers = '/offers';
+
+  //Accounting
+  static const String accountingData = '/tax_data';
 }

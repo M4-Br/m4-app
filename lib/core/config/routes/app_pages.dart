@@ -1,9 +1,11 @@
+import 'package:app_flutter_miban4/core/config/routes/accountingPages/accounting_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/barcodePages/barcode_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/cameraPage/camera_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/completeProfilePages/complete_profile_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/homePage/home_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/loginPages/login_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/notificationsPage/notifications_page.dart';
+import 'package:app_flutter_miban4/core/config/routes/offers/offers_pafes.dart';
 import 'package:app_flutter_miban4/core/config/routes/onboardingPages/onboarding_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/paymentLinkPages/payment_link_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/pixPages/pix_pages.dart';
@@ -12,6 +14,7 @@ import 'package:app_flutter_miban4/core/config/routes/servicesPages/services_pag
 import 'package:app_flutter_miban4/core/config/routes/statementPages/statement_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/storePages/store_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/transferPages/transfer_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/webviewPages/webveiew_pages.dart';
 import 'package:get/get.dart';
 
 class AppPages {
@@ -56,6 +59,15 @@ class AppPages {
     ...BarcodePages.pages,
 
     //Complete Profile Screens
-    ...CompletePropfilePages.pages
+    ...CompletePropfilePages.pages,
+
+    //Accounting Screens
+    ...AccountingPages.pages,
+
+    //Offers Screens
+    ...OffersPages.pages,
+
+    //Web Screen
+    ...WebViewPages.pages
   ];
 }

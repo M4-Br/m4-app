@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/core/config/auth/controller/verify_user_contr
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dimens.dart';
-import 'package:app_flutter_miban4/data/util/helpers/validators.dart';
+import 'package:app_flutter_miban4/core/helpers/validators.dart';
 import 'package:app_flutter_miban4/features/auth/presentation/widgets/language_selector_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

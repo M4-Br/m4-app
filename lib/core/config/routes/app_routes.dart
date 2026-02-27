@@ -8,6 +8,8 @@ class AppRoutes {
   //Rotas de Login
   static const String login = '/login';
   static const String password = '/password';
+  static const String authValidateToken = '$password/validate';
+  static const String authChangePassword = '$password/change';
 
   //NEW ONBOARDING
   static const String onboardingDocument = '/register';
@@ -33,6 +35,7 @@ class AppRoutes {
   //Rotas do Profile
   static const String financialData = '$profile/financial_data';
   static const String plans = '$profile/plans';
+  static const String changePasswordEmailConfirm = '$profile/validate';
   static const String changePasswordFromProfile = '$profile/change_password';
   static const String privacyPolicyFromProfile = '$profile/privacy_policy';
   static const String termsFromProfile = '$profile/terms';
@@ -104,4 +107,12 @@ class AppRoutes {
   static const String completeSelfie = '$complete/selfie';
   static const String completeConfirmSelfie = '$complete/confirm_selfie';
   static const String completeInReview = '$complete/review';
+
+  //accounting
+  static const String accountingHome = '/accounting';
+  static const String accountingPayment = '$accountingHome/payment';
+  static const String accountingReports = '$accountingHome/reports';
+
+  //offers
+  static const String offersHome = '/offers';
 }

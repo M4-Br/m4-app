@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/core/config/app/app_lifecycle_controller.dart
 import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
-import 'package:app_flutter_miban4/core/helpers/env_helper.dart';
+import 'package:app_flutter_miban4/core/helpers/sentry_helper.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
 import 'package:app_flutter_miban4/features/completeProfile/controller/redirect_complete_profile_controller.dart';
 import 'package:flutter/foundation.dart';

@@ -330,7 +330,7 @@ class StringsPtBR {
     'display2': 'Display Confirmação de Telefone',
     'phone_confirm': 'Confirmação de Telefone',
     'balance': 'Balance Status',
-    'balance_available': 'Saldo Disponível',
+    'balance_available': 'Economias',
     'balance_transational': 'Saldo Economias',
     'balance_insufficient': 'Saldo insuficiente',
     'home_view': 'Home Buttons',
@@ -617,6 +617,10 @@ class StringsPtBR {
     'plans_empty': 'Nenhum plano encontrado',
     'contability_title': 'Contabilidade',
     'services_title': 'Serviços',
+    'health_title': 'Saúde',
+    'news_title': 'Novidades',
+    'docs_title': 'Documentos',
+    'services_page_title': 'Serviços',
     'success': 'Sucesso',
     'dialog_500':
         'Não conseguimos processar sua solicitação no momento. Por favor, tente novamente.',
@@ -631,7 +635,5 @@ class StringsPtBR {
     'password_hint': 'Digite a senha desejada',
     'confirm_password_hint': 'Digite novamente a senha desejada',
     'codeLang': 'pt_BR',
-    'version': 'Versão 6.0.2 - Release (223)',
-    'version_app': '6.0.2'
   };
 }

@@ -325,7 +325,7 @@ class StringsEnUS {
     'display2': 'Display Confirmação de Telefone',
     'phone_confirm': 'Phone Confirmation',
     'balance': 'Balance Status',
-    'balance_available': 'Available Balance',
+    'balance_available': 'Savings',
     'balance_transational': 'Savings Balance',
     'balance_insufficient': 'Insufficient Balance',
     'home_view': 'Home Buttons',
@@ -615,6 +615,10 @@ class StringsEnUS {
         "We couldn't process your request at this time. Please try again.",
     'contability_title': 'Contability',
     'services_title': 'Services',
+    'health_title': 'Health',
+    'news_title': 'News',
+    'docs_title': 'Documents',
+    'services_page_title': 'Services',
     'validator_isEmpty': 'Fill in the field',
     'try_again': 'Try again',
     'token_sent_message':
@@ -626,7 +630,5 @@ class StringsEnUS {
     'confirm_password_hint': 'Re-enter the desired password',
     'password_required': 'Password is required',
     'codeLang': 'en_US',
-    'version': 'Version 6.0.2 - Release (223)',
-    'version_app': '6.0.2'
   };
 }

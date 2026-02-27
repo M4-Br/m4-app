@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/formatters/currency_formatter.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
-import 'package:app_flutter_miban4/data/util/helpers/validators.dart';
+import 'package:app_flutter_miban4/core/helpers/validators.dart';
 import 'package:app_flutter_miban4/features/completeProfile/controller/complete_profile_profession_controller.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart';

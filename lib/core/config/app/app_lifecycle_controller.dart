@@ -5,6 +5,7 @@ import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/log/scope_config.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -54,13 +55,24 @@ class AppLifecycleController extends GetxController
   Future<void> _handleAppResume() async {
     _isAuthenticating = true;
 
-    if (!AuthService.to.isLogged) return;
+    if (!AuthService.to.isLogged) {
+      _isAuthenticating = false;
+      return;
+    }
+
+    // SE FOR WEB, NÃO FAZ CHECK DE BIOMETRIA/RENOVAÇÃO DE SESSÃO POR CICLO DE VIDA
+    if (kIsWeb) {
+      _pausedTime = null;
+      _isAuthenticating = false;
+      return;
+    }
 
     if (_pausedTime != null) {
       final timeInBackground =
           DateTime.now().difference(_pausedTime!).inSeconds;
       if (timeInBackground < _gracePeriodSeconds) {
         _pausedTime = null;
+        _isAuthenticating = false;
         return;
       }
     }

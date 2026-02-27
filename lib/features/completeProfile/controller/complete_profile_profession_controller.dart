@@ -4,6 +4,7 @@ import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/completeProfile/model/complete_profile_profession_request.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_profession_repository.dart';
 import 'package:app_flutter_miban4/features/geral/model/professions_response.dart';
+import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,12 +39,16 @@ class CompleteProfileProfessionController extends BaseController {
 
       final result = await CompleteProfileProfessionRepository().sendProfession(
           CompleteProfileProfessionRequest(
-              id: userRx.user.value!.payload.id,
+              id: userRx.individualId!,
               professionId: professionId,
               income: rawIncome));
 
       final professionStep =
           result.steps.firstWhereOrNull((step) => step.stepId == 4);
+
+      if (Get.isRegistered<ProfileController>()) {
+        Get.find<ProfileController>().fetchSteps();
+      }
 
       if (professionStep != null && professionStep.done == true) {
         Get.toNamed(AppRoutes.completePersonalData);

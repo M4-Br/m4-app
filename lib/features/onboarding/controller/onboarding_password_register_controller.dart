@@ -60,7 +60,7 @@ class OnboardingPasswordRegisterController extends GetxController {
     isLoading.value = true;
 
     try {
-      final int password = int.parse(confirmPwsController.text);
+      final String password = confirmPwsController.text;
 
       final value = await OnboardingRegisterPasswordRepository()
           .registerPassword(id.value, password);

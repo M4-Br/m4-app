@@ -39,3 +39,20 @@ extension StringDateExtension on String {
     }
   }
 }
+
+extension EmailMasking on String {
+  String get maskedEmail {
+    if (isEmpty || !contains('@')) return this;
+
+    final parts = split('@');
+    final localPart = parts[0];
+    final domainPart = parts[1];
+    if (localPart.length <= 3) {
+      return '${localPart[0]}***@$domainPart';
+    }
+
+    final prefix = localPart.substring(0, 4);
+    final suffix = localPart.substring(localPart.length - 2);
+    return '$prefix****$suffix@$domainPart';
+  }
+}

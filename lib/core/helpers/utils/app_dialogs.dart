@@ -1,36 +1,60 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomDialogs {
   static void showConfirmationDialog({
+    String? title,
+    RxBool? loading,
     required String content,
     required VoidCallback onConfirm,
+    String? confirmText,
+    String? cancelText,
+    VoidCallback? onCancel,
   }) {
     Get.defaultDialog(
-      title: 'dialog_error'.tr.toUpperCase(),
-      content: Text(
-        content,
-        textAlign: TextAlign.center,
+      title: title?.toUpperCase() ?? 'dialog_error'.tr.toUpperCase(),
+      titleStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      content: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          content,
+          textAlign: TextAlign.center,
+        ),
       ),
-      confirm: AppButton(
-        onPressed: () async => onConfirm(),
-        labelText: 'confirm'.tr,
-      ),
+      confirm: loading != null
+          ? Obx(() => loading.value
+              ? const AppLoading()
+              : AppButton(
+                  onPressed: () async => onConfirm(),
+                  labelText: confirmText ?? 'confirm'.tr,
+                  color: secondaryColor,
+                ))
+          : AppButton(
+              onPressed: () async => onConfirm(),
+              labelText: confirmText ?? 'confirm'.tr,
+              color: secondaryColor,
+            ),
       cancel: AppButton(
         buttonType: AppButtonType.filled,
-        onPressed: () async => Get.back(),
+        onPressed: () async {
+          if (onCancel != null) onCancel();
+          Get.back();
+        },
         color: Colors.redAccent,
-        labelText: 'cancel'.tr,
+        labelText: cancelText ?? 'cancel'.tr,
       ),
     );
   }
 
   static void showInformationDialog(
-      {required String content, required VoidCallback onCancel}) {
+      {String? title,
+      required String content,
+      required VoidCallback onCancel}) {
     Get.defaultDialog(
-      title: 'dialog_error'.tr.toUpperCase(),
+      title: title ?? 'dialog_error'.tr.toUpperCase(),
       titleStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
       content: Text(
         content,

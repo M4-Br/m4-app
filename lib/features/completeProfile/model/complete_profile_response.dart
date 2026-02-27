@@ -19,7 +19,7 @@ class ProfileStep {
 }
 
 class CompleteProfileResponse {
-  final int id;
+  final int? id;
   final List<ProfileStep> steps;
 
   CompleteProfileResponse({
@@ -33,7 +33,7 @@ class CompleteProfileResponse {
         stepsList.map((i) => ProfileStep.fromJson(i)).toList();
 
     return CompleteProfileResponse(
-      id: json['id'],
+      id: json['id'] as dynamic,
       steps: stepsItems,
     );
   }

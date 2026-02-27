@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dimens.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
-import 'package:app_flutter_miban4/data/util/helpers/mask.dart';
+import 'package:app_flutter_miban4/core/helpers/formatters/mask.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/bottom_button.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/custom_textfield.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart';

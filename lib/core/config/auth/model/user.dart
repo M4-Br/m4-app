@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/auth/model/verify_user_response.dart';
 import 'package:flutter/material.dart';
 
 class Payload {
@@ -14,6 +15,8 @@ class Payload {
     required this.avatarUrl,
     required this.fullName,
     required this.phone,
+    this.userId,
+    this.steps,
   });
 
   factory Payload.fromJson(Map<String, dynamic> json) {
@@ -22,6 +25,7 @@ class Payload {
 
     return Payload(
       id: json['individual_id'] as int,
+      userId: json['user_id'] as int?,
       companyId: json['company_id'] as int?,
       username: json['username'] as String,
       email: json['email'] as String,
@@ -35,10 +39,12 @@ class Payload {
       avatarUrl: json['avatar_url'] as String?,
       fullName: json['full_name'] as String,
       phone: Phone.fromJson(json['phone'] as Map<String, dynamic>),
+      steps: null,
     );
   }
 
   final int id;
+  final int? userId;
   final int? companyId;
   final String username;
   final String email;
@@ -50,6 +56,41 @@ class Payload {
   final String? avatarUrl;
   final String fullName;
   final Phone phone;
+  final List<Steps>? steps;
+
+  Payload copyWith({
+    int? id,
+    int? userId,
+    int? companyId,
+    String? username,
+    String? email,
+    String? document,
+    Color? cardColor,
+    Color? cardFontColor,
+    String? qrCode,
+    AliasAccount? aliasAccount,
+    String? avatarUrl,
+    String? fullName,
+    Phone? phone,
+    List<Steps>? steps,
+  }) {
+    return Payload(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      companyId: companyId ?? this.companyId,
+      username: username ?? this.username,
+      email: email ?? this.email,
+      document: document ?? this.document,
+      cardColor: cardColor ?? this.cardColor,
+      cardFontColor: cardFontColor ?? this.cardFontColor,
+      qrCode: qrCode ?? this.qrCode,
+      aliasAccount: aliasAccount ?? this.aliasAccount,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
+      fullName: fullName ?? this.fullName,
+      phone: phone ?? this.phone,
+      steps: steps ?? this.steps,
+    );
+  }
 }
 
 Color _colorFromHex(String hexColor) {
@@ -133,4 +174,14 @@ class User {
 
   final Payload payload;
   final String token;
+
+  User copyWith({
+    Payload? payload,
+    String? token,
+  }) {
+    return User(
+      payload: payload ?? this.payload,
+      token: token ?? this.token,
+    );
+  }
 }

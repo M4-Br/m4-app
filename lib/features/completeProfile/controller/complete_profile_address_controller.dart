@@ -6,6 +6,7 @@ import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/completeProfile/model/complete_profile_address_request.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_address_repository.dart';
 import 'package:app_flutter_miban4/features/geral/repository/cep_repository.dart';
+import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -115,7 +116,7 @@ class CompleteProfileAddressController extends BaseController {
 
       final result = await CompleteProfileAddressRepository().sendAddress(
           CompleteProfileAddressRequest(
-              individualId: userRx.user.value!.payload.id,
+              individualId: userRx.individualId!,
               postalCode: postalCode,
               type: typeId,
               street: addressEc.text,
@@ -127,6 +128,10 @@ class CompleteProfileAddressController extends BaseController {
 
       final addressStep =
           result.steps.firstWhereOrNull((step) => step.stepId == 3);
+
+      if (Get.isRegistered<ProfileController>()) {
+        Get.find<ProfileController>().fetchSteps();
+      }
 
       if (addressStep != null && addressStep.done) {
         Get.toNamed(AppRoutes.completeProfession);

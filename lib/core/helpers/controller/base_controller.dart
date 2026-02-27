@@ -23,21 +23,32 @@ abstract class BaseController extends GetxController {
     super.onInit();
   }
 
-  Future<void> executeSafe(Future<void> Function() action,
-      {String? message}) async {
+  Future<void> executeSafe(
+    Future<void> Function() action, {
+    String? message,
+    bool showErrorToast = true,
+  }) async {
     try {
       isLoading(true);
       await action();
     } on UnauthorizedException catch (e) {
-      ShowToaster.toasterInfo(message: message ?? e.message);
+      if (showErrorToast) {
+        ShowToaster.toasterInfo(message: message ?? e.message);
+      }
       userRx.handleUnauthenticatedUser();
     } on ServerException catch (e) {
-      ShowToaster.toasterInfo(message: message ?? e.message);
+      if (showErrorToast) {
+        ShowToaster.toasterInfo(message: message ?? e.message);
+      }
     } on ApiException catch (e) {
-      ShowToaster.toasterInfo(message: message ?? e.message);
+      if (showErrorToast) {
+        ShowToaster.toasterInfo(message: message ?? e.message);
+      }
     } catch (e, s) {
       AppLogger.I().error('Base Controller', e, s);
-      rethrow;
+      if (showErrorToast) {
+        ShowToaster.toasterInfo(message: message ?? 'Erro inesperado.');
+      }
     } finally {
       isLoading(false);
     }

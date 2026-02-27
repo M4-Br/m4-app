@@ -5,7 +5,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>pt-BR</string>
 		<key>CFBundleDisplayName</key>
-		<string>Miban4</string>
+		<string>M4</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>

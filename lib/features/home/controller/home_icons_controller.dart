@@ -1,23 +1,29 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
+import 'package:app_flutter_miban4/features/AI/widget/ai_show_modal.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
+import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_verify_steps_repository.dart';
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
+import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeMenuItem {
   final String id;
   final String title;
-  final String iconPath;
+  final String? iconPath;
+  final IconData? iconData;
   final bool isLocal;
 
   HomeMenuItem({
     required this.id,
     required this.title,
-    required this.iconPath,
+    this.iconPath,
+    this.iconData,
     this.isLocal = true,
   });
 }
@@ -30,7 +36,11 @@ class HomeIconsController extends BaseController {
 
   RxList<HomeIconsResponse> apiIcons = <HomeIconsResponse>[].obs;
   var hasLoadedIcons = false.obs;
+
   final RxBool incomplete = false.obs;
+  final RxBool isAccountProcessing = false.obs;
+
+  var isLoadingIa = false.obs;
 
   final Map<String, String> _localIconAssets = {
     '1': 'assets/icons/ic_home_payment.png',
@@ -44,43 +54,115 @@ class HomeIconsController extends BaseController {
     '31': 'assets/icons/ic_home_warning.png',
     '23': 'assets/icons/ic_contabil.png',
     '24': 'assets/icons/ic_services.png',
+    '25': 'assets/icons/ic_home_payment.png',
+  };
+
+  final Map<String, String> _customTitles = {
+    '19': 'Área Pix',
+    '30': 'Novidades',
   };
 
   List<HomeMenuItem> get combinedMenuList {
-    List<HomeMenuItem> list = [];
+    final desiredOrder = ['23', '25', '26', '11', '10', '19', '14', '30', '24'];
+
+    List<HomeMenuItem> allItems = [];
+
     for (var icon in apiIcons) {
-      list.add(HomeMenuItem(
-        id: icon.id,
-        title: icon.title,
-        iconPath: _localIconAssets[icon.id] ?? '',
-        isLocal: _localIconAssets.containsKey(icon.id),
+      if (desiredOrder.contains(icon.id)) {
+        final finalTitle = _customTitles[icon.id] ?? icon.title;
+
+        allItems.add(HomeMenuItem(
+          id: icon.id,
+          title: finalTitle,
+          iconPath: _localIconAssets[icon.id],
+          isLocal: _localIconAssets.containsKey(icon.id),
+        ));
+      }
+    }
+
+    if (desiredOrder.contains('23')) {
+      allItems.add(HomeMenuItem(
+        id: '23',
+        title: 'contability_title'.tr,
+        iconPath: _localIconAssets['23'],
       ));
     }
 
-    list.add(HomeMenuItem(
-      id: '23',
-      title: 'contability_title'.tr,
-      iconPath: _localIconAssets['23']!,
-    ));
-    list.add(HomeMenuItem(
-      id: '24',
-      title: 'services_title'.tr,
-      iconPath: _localIconAssets['24']!,
-    ));
+    if (desiredOrder.contains('24')) {
+      allItems.add(HomeMenuItem(
+        id: '24',
+        title: 'services_title'.tr,
+        iconPath: _localIconAssets['24'],
+      ));
+    }
 
-    return list;
+    if (desiredOrder.contains('25')) {
+      allItems.add(HomeMenuItem(
+        id: '25',
+        title: 'docs_title'.tr,
+        iconData: Icons.edit_document,
+      ));
+    }
+
+    if (desiredOrder.contains('26')) {
+      allItems.add(HomeMenuItem(
+        id: '26',
+        title: 'health_title'.tr,
+        iconData: Icons.health_and_safety,
+      ));
+    }
+
+    final orderMap = {
+      for (var item in desiredOrder) item: desiredOrder.indexOf(item)
+    };
+
+    allItems.sort((a, b) {
+      final indexA = orderMap[a.id] ?? 999;
+      final indexB = orderMap[b.id] ?? 999;
+      return indexA.compareTo(indexB);
+    });
+
+    return allItems;
   }
 
   @override
   void onInit() {
     super.onInit();
-    registerIncomplete();
+    checkProfileStatus();
     fetchIcons();
   }
 
-  void registerIncomplete() {
-    if (userRx.user.value?.payload.aliasAccount?.accountId == null) {
-      incomplete.value = true;
+  Future<void> checkProfileStatus() async {
+    final document = userRx.user.value?.payload.document;
+    // Evita requisição se não houver documento
+    if (document == null || document.isEmpty) return;
+
+    try {
+      final result = await CompleteProfileVerifyStepsRepository()
+          .fetchProfileSteps(document);
+
+      final hasPendingSteps = result.steps.any((step) {
+        return step.stepId >= 3 && step.stepId <= 8 && !step.done;
+      });
+
+      if (hasPendingSteps) {
+        incomplete.value = true;
+        isAccountProcessing.value = false;
+        return;
+      }
+
+      incomplete.value = false;
+
+      // CORREÇÃO: Verificação segura para evitar Null Check Operator erro
+      final hasAliasAccount = userRx.user.value?.payload.aliasAccount != null;
+
+      if (!hasAliasAccount) {
+        isAccountProcessing.value = true;
+      } else {
+        isAccountProcessing.value = false;
+      }
+    } catch (e) {
+      AppLogger.I().error('Home Check Profile', e, StackTrace.current);
     }
   }
 
@@ -93,40 +175,65 @@ class HomeIconsController extends BaseController {
         apiIcons.assignAll(fetchedIcons);
         hasLoadedIcons.value = true;
       }
-    }, message: 'Erro ao carregar os ícones');
+    },
+        message: 'Erro ao carregar os ícones',
+        showErrorToast:
+            false); // Adicionado showErrorToast: false para ser menos intrusivo no app startup
   }
 
-  void onMenuOptionTap(String id, String title) {
+  void onMenuOptionTap(String id, String title) async {
     const restrictedIds = ['1', '2', '10', '11', '19'];
 
-    if (restrictedIds.contains(id) && incomplete.value) {
-      CustomDialogs.showInformationDialog(
+    if (restrictedIds.contains(id)) {
+      if (incomplete.value) {
+        CustomDialogs.showConfirmationDialog(
+          loading: isLoading,
+          title: 'Cadastro Incompleto',
           content:
-              'Para utilizar essa funcionalidade é preciso completar seu cadastro',
-          onCancel: () => Get.back());
-      return;
+              'Para utilizar essa funcionalidade é preciso finalizar os passos do seu cadastro.',
+          confirmText: 'Completar',
+          onConfirm: () async {
+            isLoading.value = true;
+            await Get.find<ProfileController>().redirectToCompleteProfile();
+            isLoading.value = false;
+            if (Get.currentRoute == AppRoutes.homeView) {
+              Get.back();
+            }
+          },
+        );
+        return;
+      }
+
+      if (isAccountProcessing.value) {
+        CustomDialogs.showInformationDialog(
+            title: 'Conta em Análise',
+            content:
+                'Seu cadastro foi enviado e sua conta bancária está sendo criada. Aguarde alguns instantes.',
+            onCancel: () => Get.back());
+        return;
+      }
     }
 
     switch (id) {
-      case '1':
-        Get.toNamed(AppRoutes.paymentLink);
-        AppLogger.I().info('Going to Payment Link');
+      case '23':
+        Get.toNamed(AppRoutes.accountingHome);
+        AppLogger.I().info('Going to Accounting');
         break;
-      case '2':
-        Get.toNamed(AppRoutes.pixQrCodeReader);
-        AppLogger.I().info('Going to QR Code Payment');
+      case '25':
+        // Get.toNamed(AppRoutes.pixQrCodeReader);
+        AppLogger.I().info('Going to Documents');
         break;
-      case '10':
-        Get.toNamed(AppRoutes.barcode);
-        AppLogger.I().info('Going to Barcode Payment');
+      case '26':
+        // Get.toNamed(AppRoutes.barcode);
+        AppLogger.I().info('Going to Health');
         break;
       case '11':
         Get.toNamed(AppRoutes.transfer);
         AppLogger.I().info('Going to Transfer Page');
         break;
-      case '12':
-        CustomDialogs.showInformationDialog(
-            content: 'unavailable'.tr, onCancel: () => Get.back());
+      case '10':
+        Get.toNamed(AppRoutes.barcode);
+        AppLogger.I().info('Going to Barcode Payment');
         break;
       case '14':
         Get.toNamed(AppRoutes.store);
@@ -144,10 +251,6 @@ class HomeIconsController extends BaseController {
         _openWebView('https://miban4.com/#faq', title);
         AppLogger.I().info('Going to Warnings');
         break;
-      case '23':
-        // TODO: Contabilidade
-        AppLogger.I().info('Going to Contabilidade');
-        break;
       case '24':
         Get.toNamed(AppRoutes.services);
         AppLogger.I().info('Going to Services');
@@ -163,5 +266,37 @@ class HomeIconsController extends BaseController {
 
   void openNotifications() {
     Get.toNamed(AppRoutes.notifications);
+  }
+
+  void openAiSearch() {
+    if (incomplete.value) {
+      CustomDialogs.showConfirmationDialog(
+        loading: isLoadingIa,
+        title: 'Cadastro Incompleto',
+        content:
+            'Para utilizar essa funcionalidade é preciso finalizar os passos do seu cadastro.',
+        confirmText: 'Completar',
+        onConfirm: () async {
+          isLoading.value = true;
+          await Get.find<ProfileController>().redirectToCompleteProfile();
+          isLoading.value = false;
+          if (Get.currentRoute == AppRoutes.homeView) {
+            Get.back();
+          }
+        },
+      );
+      return;
+    }
+
+    if (isAccountProcessing.value) {
+      CustomDialogs.showInformationDialog(
+          title: 'Conta em Análise',
+          content:
+              'Seu cadastro foi enviado e sua conta bancária está sendo criada. Aguarde alguns instantes.',
+          onCancel: () => Get.back());
+      return;
+    }
+
+    AiModal.openAiSearch();
   }
 }

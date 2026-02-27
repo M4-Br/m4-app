@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:app_flutter_miban4/data/api/url/url_api.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> postFinancialCap(
@@ -31,10 +30,8 @@ Future<Map<String, dynamic>> postFinancialCap(
     'other_cost': otherCosts
   };
 
-  final response = await http.post(
-      Uri.parse('${ApiUrls.baseUrl}/payment_capacity'),
-      headers: headers,
-      body: body);
+  final response = await http.post(Uri.parse('API/payment_capacity'),
+      headers: headers, body: body);
 
   if (response.statusCode == 200 ||
       response.statusCode == 201 ||

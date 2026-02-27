@@ -8,12 +8,14 @@ class HomeIcons extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.isLocal = false,
+    this.iconData,
   });
 
   final String iconUrl;
   final String text;
   final VoidCallback onPressed;
   final bool isLocal;
+  final IconData? iconData;
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +32,7 @@ class HomeIcons extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (iconUrl.isEmpty)
-                const Icon(Icons.broken_image, size: 35, color: Colors.grey)
-              else if (isLocal)
-                Image.asset(
-                  iconUrl,
-                  width: 35,
-                  height: 35,
-                  color: secondaryColor,
-                  errorBuilder: (_, __, ___) =>
-                      const Icon(Icons.error, color: secondaryColor),
-                )
-              else
-                Image.network(
-                  iconUrl,
-                  width: 35,
-                  height: 35,
-                  color: secondaryColor,
-                  errorBuilder: (_, __, ___) =>
-                      const Icon(Icons.error, color: secondaryColor),
-                ),
+              _buildIconContent(),
               const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -66,6 +49,40 @@ class HomeIcons extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildIconContent() {
+    if (iconData != null) {
+      return Icon(
+        iconData,
+        size: 35,
+        color: secondaryColor,
+      );
+    }
+
+    if (iconUrl.isEmpty) {
+      return const Icon(Icons.broken_image, size: 35, color: Colors.grey);
+    }
+
+    if (isLocal) {
+      return Image.asset(
+        iconUrl,
+        width: 35,
+        height: 35,
+        color: secondaryColor,
+        errorBuilder: (_, __, ___) =>
+            const Icon(Icons.error, color: secondaryColor),
+      );
+    }
+
+    return Image.network(
+      iconUrl,
+      width: 35,
+      height: 35,
+      color: secondaryColor,
+      errorBuilder: (_, __, ___) =>
+          const Icon(Icons.error, color: secondaryColor),
     );
   }
 }

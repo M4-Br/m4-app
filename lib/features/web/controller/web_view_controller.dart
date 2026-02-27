@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
+import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebviewController extends GetxController {
   late final WebViewController webViewController;
+
   final title = ''.obs;
   final isLoading = true.obs;
   final progress = 0.obs;
@@ -11,45 +14,50 @@ class WebviewController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _loadArguments();
-    _initWebViewController();
+    _initWebView();
   }
 
-  void _loadArguments() {
+  void _initWebView() {
     final args = Get.arguments;
+    String urlToLoad = '';
 
-    String url = '';
-
-    if (args != null && args is Map<String, dynamic>) {
-      url = args['url'] ?? '';
-      title.value = args['title'] ?? '';
+    if (args != null && args is Map) {
+      urlToLoad = args['url'] ?? '';
+      title.value = args['title'] ?? 'Detalhes';
     }
-    if (url.isNotEmpty) {}
-  }
 
-  void _initWebViewController() {
-    final args = Get.arguments as Map<String, dynamic>?;
-    final url = args?['url'] ?? 'https://google.com';
+    if (urlToLoad.isEmpty) {
+      urlToLoad = 'about:blank';
+      Get.snackbar('Erro', 'Link inválido ou não encontrado.');
+    }
+
     webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
-          onProgress: (int p) {
-            progress.value = p;
-          },
-          onPageStarted: (String url) {
-            isLoading.value = true;
-          },
-          onPageFinished: (String url) {
-            isLoading.value = false;
-          },
+          onProgress: (int p) => progress.value = p,
+          onPageStarted: (String url) => isLoading.value = true,
+          onPageFinished: (String url) => isLoading.value = false,
           onWebResourceError: (WebResourceError error) {
-            // Pode adicionar log de erro aqui se quiser
             isLoading.value = false;
+            if (kDebugMode) {
+              print('Erro WebView: ${error.description}');
+            }
+          },
+          onNavigationRequest: (NavigationRequest request) {
+            return NavigationDecision.navigate;
           },
         ),
-      )
-      ..loadRequest(Uri.parse(url));
+      );
+
+    try {
+      webViewController.loadRequest(Uri.parse(urlToLoad));
+    } catch (e, s) {
+      AppLogger.I().error('Web View', e, s);
+      if (kDebugMode) {
+        print('Erro ao carregar URL: $e');
+      }
+    }
   }
 }
