@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+// Removemos o import 'dart:io' que quebrava a Web!
 
 import 'package:app_flutter_miban4/core/config/consts/app_header.dart';
 import 'package:app_flutter_miban4/core/config/consts/paths/app_endpoints.dart';
@@ -8,6 +8,7 @@ import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:image_picker/image_picker.dart'; // Adicionado para suportar XFile
 
 class ApiMultipartConnection {
   ApiMultipartConnection();
@@ -16,7 +17,7 @@ class ApiMultipartConnection {
     required String endpoint,
     required T Function(dynamic) fromJson,
     Map<String, String>? fields,
-    Map<String, File>? files,
+    Map<String, XFile>? files, // Agora recebe XFile em vez de File
     Map<String, dynamic>? queryParameters,
     Map<String, String>? extraHeaders,
     String httpMethod = 'POST',
@@ -48,15 +49,15 @@ class ApiMultipartConnection {
     if (files != null) {
       for (var entry in files.entries) {
         final fieldName = entry.key;
-        final file = entry.value;
-        var stream = http.ByteStream(file.openRead());
-        var length = await file.length();
+        final xFile = entry.value;
 
-        var multipartFile = http.MultipartFile(
+        // Extrai os bytes da memória de forma segura para Web/Mobile
+        final bytes = await xFile.readAsBytes();
+
+        var multipartFile = http.MultipartFile.fromBytes(
           fieldName,
-          stream,
-          length,
-          filename: file.path.split('/').last,
+          bytes,
+          filename: xFile.name, // O XFile já sabe o nome dele
           contentType: MediaType('image', 'jpeg'),
         );
         request.files.add(multipartFile);
@@ -64,7 +65,6 @@ class ApiMultipartConnection {
     }
 
     final streamedResponse = await request.send();
-
     final response = await http.Response.fromStream(streamedResponse);
 
     return _handleResponse(response, fromJson, 'MULTIPART $httpMethod');
@@ -75,15 +75,27 @@ class ApiMultipartConnection {
     T Function(dynamic) fromJson,
     String method,
   ) {
+    // Blindagem para evitar crash com caracteres inválidos na Web
+    String safeBody = '';
+    try {
+      safeBody = utf8.decode(response.bodyBytes, allowMalformed: true);
+    } catch (_) {
+      safeBody = response.body;
+    }
+
     if (kDebugMode) {
       print('>>> [$method] Status: ${response.statusCode}');
-      print('>>> [$method] Response: ${response.body}');
+      if (safeBody.trim().startsWith('<!DOCTYPE html>')) {
+        print(
+            '>>> [$method] Response: [Página HTML de Erro Retornada - Ocultada do Log]');
+      } else {
+        print('>>> [$method] Response: $safeBody');
+      }
     }
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       try {
-        final decodedBody =
-            response.body.isNotEmpty ? json.decode(response.body) : null;
+        final decodedBody = safeBody.isNotEmpty ? json.decode(safeBody) : null;
         return fromJson(decodedBody);
       } catch (e, s) {
         AppLogger.I().error('JSON Parsing Error on Success', e, s);
@@ -92,12 +104,15 @@ class ApiMultipartConnection {
             statusCode: response.statusCode);
       }
     } else {
-      final String errorMessage = _extractErrorMessage(response);
+      final String errorMessage = _extractErrorMessage(
+          response.statusCode, safeBody, response.reasonPhrase);
 
       AppLogger.I().error(
           'API Error $method - ${response.request?.url}',
           'Status: ${response.statusCode}, Message: $errorMessage',
-          StackTrace.current);
+          kIsWeb
+              ? StackTrace.empty
+              : StackTrace.current); // Evita o crash do Get Current
 
       if (response.statusCode == 401 || response.statusCode == 403) {
         throw UnauthorizedException(message: errorMessage);
@@ -114,13 +129,14 @@ class ApiMultipartConnection {
     }
   }
 
-  String _extractErrorMessage(http.Response response) {
-    if (response.statusCode >= 500) {
+  String _extractErrorMessage(
+      int statusCode, String safeBody, String? reasonPhrase) {
+    if (statusCode >= 500) {
       return 'Ocorreu um erro em nossos servidores. Por favor, tente novamente mais tarde.';
     }
 
     try {
-      final decodedBody = json.decode(response.body);
+      final decodedBody = json.decode(safeBody);
       if (decodedBody is Map) {
         if (decodedBody.containsKey('message') &&
             decodedBody['message'] is String) {
@@ -136,14 +152,14 @@ class ApiMultipartConnection {
         }
       }
     } catch (_) {
-      if (response.body.isNotEmpty &&
-          !response.body.trim().startsWith('<!DOCTYPE html>')) {
-        return response.body;
+      if (safeBody.isNotEmpty &&
+          !safeBody.trim().startsWith('<!DOCTYPE html>')) {
+        return safeBody;
       }
     }
 
-    if (response.reasonPhrase != null && response.reasonPhrase!.isNotEmpty) {
-      return response.reasonPhrase!;
+    if (reasonPhrase != null && reasonPhrase.isNotEmpty) {
+      return reasonPhrase;
     }
 
     return 'Ocorreu um erro inesperado. Por favor, contate o suporte.';
