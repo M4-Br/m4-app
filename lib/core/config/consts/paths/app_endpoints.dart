@@ -28,7 +28,7 @@ class AppEndpoints {
   static const String fetchIcons = '/app/home_info';
 
   //profile
-  static const String userPlans = '/plans/contract/';
+  static const String plans = '/plans';
   static const String userParams = '/payment_capacity/params';
   static const String userCapacity = '/payment_capacity/';
 
@@ -97,4 +97,8 @@ class AppEndpoints {
 
   //Accounting
   static const String accountingData = '/tax_data';
+
+  //Partners
+  static const String partnerCategory = '/partner/category';
+  static const String partnerProduct = '/partner/product';
 }

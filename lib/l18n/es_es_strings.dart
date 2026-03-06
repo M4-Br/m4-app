@@ -2,7 +2,7 @@ class StringsEsES {
   static final Map<String, String> esES = {
     'page1': 'Página de Inicio de Sesión',
     'terms': 'Al continuar, aceptas la política de privacidad',
-    'cpf': 'ID de Usuario',
+    'cpf': 'ID',
     'access': 'ACCEDER',
     'privacy_policy_title': 'Política de Privacidad',
     'register': 'REGISTRARSE',
@@ -234,7 +234,7 @@ class StringsEsES {
     'transfer_to': '¿A quién estás haciendo el transpasso?',
     'transfer_noOne': 'Aún no tienes a nadie registrado.',
     'transfer_new_contact': 'Transpaso a un nuevo contacto',
-    'transfer_cpf': 'CPF o CNPJ',
+    'transfer_cpf': 'CPF ou CNPJ',
     'transfer_document': 'Número del documento',
     'page29': 'Transpasso de la Banca',
     'transfer_miban': 'Transpasso a cuenta Miban4',

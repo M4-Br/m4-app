@@ -7,6 +7,7 @@ import 'package:app_flutter_miban4/core/config/routes/loginPages/login_pages.dar
 import 'package:app_flutter_miban4/core/config/routes/notificationsPage/notifications_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/offers/offers_pafes.dart';
 import 'package:app_flutter_miban4/core/config/routes/onboardingPages/onboarding_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/partnersPages/partners_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/paymentLinkPages/payment_link_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/pixPages/pix_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/profilePages/profile_pages.dart';
@@ -68,6 +69,9 @@ class AppPages {
     ...OffersPages.pages,
 
     //Web Screen
-    ...WebViewPages.pages
+    ...WebViewPages.pages,
+
+    //Partners
+    ...PartnersPages.pages
   ];
 }

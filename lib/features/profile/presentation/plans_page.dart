@@ -1,5 +1,5 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
-import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
+import 'package:app_flutter_miban4/core/helpers/extensions/numbers.dart'; // Corrigido para extensão de Double/BRL
 import 'package:app_flutter_miban4/core/helpers/utils/app_button.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/profile/controller/plans_controller.dart';
@@ -18,7 +18,7 @@ class PlansPage extends GetView<PlansController> {
         centerTitle: true,
         title: AppText.titleLarge(
           context,
-          'account_plans'.tr,
+          'PACOTES',
           color: Colors.white,
         ),
         backgroundColor: primaryColor,
@@ -31,7 +31,7 @@ class PlansPage extends GetView<PlansController> {
         ),
       ),
       body: Obx(() {
-        if (controller.isLoading.value) {
+        if (controller.isLoading.value && controller.plans.value == null) {
           return const Center(
             child: CircularProgressIndicator(
               color: secondaryColor,
@@ -39,7 +39,8 @@ class PlansPage extends GetView<PlansController> {
           );
         }
 
-        if (controller.plans.value != null) {
+        if (controller.plans.value != null &&
+            controller.plans.value!.isNotEmpty) {
           return _buildPlansList(controller.plans.value!);
         }
 
@@ -67,92 +68,105 @@ class PlansPage extends GetView<PlansController> {
     );
   }
 
-  Widget _buildPlansList(UserPlansResponse plans) {
+  Widget _buildPlansList(List<PlanItem> plansList) {
     return ListView.builder(
-      itemCount: plans.servicePlan.products.length,
+      itemCount: plansList.length,
       itemBuilder: (context, index) {
-        final plan = plans.servicePlan.products[index];
-        return Column(
-          children: [
-            Container(
-              color: thirdColor,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          plans.servicePlan.name,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
+        final plan = plansList[index];
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: Column(
+            children: [
+              Container(
+                color: thirdColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              plan.description,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                          ],
                         ),
-                        Text(
-                          '${'plan_date'.tr} ${plans.servicePlan.renewDate}',
-                          style: const TextStyle(color: Colors.white),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'plan_actual'.tr,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          plans.servicePlan.monthlyPayment.toBRL(),
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ),
-                        Text(
-                          'plan_monthly'.tr,
-                          style: const TextStyle(color: Colors.white),
-                        )
-                      ],
-                    )
-                  ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'plan_actual'.tr,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            plan.monthlyPayment.toPlanValue(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                          Text(
+                            'plan_monthly'.tr,
+                            style: const TextStyle(color: Colors.white),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              title: Text(
-                plan.type,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              subtitle: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              if (plan.data.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text('Nenhuma vantagem cadastrada neste plano.'),
+                )
+              else
+                ...plan.data.map((dataItem) {
+                  return Column(
                     children: [
-                      Text(
-                          '${plans.servicePlan.data[index].remainingFree.toString()} ${'available_plan'.tr}'),
-                      Text(
-                          '${plans.servicePlan.data[index].free.toString()} ${'plan_total'.tr}')
+                      ListTile(
+                        title: Text(
+                          dataItem.typeDescription,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('${dataItem.free} ${'plan_total'.tr}'),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text('plan_add'.tr),
+                                Text(dataItem.fee.toPlanValue()),
+                              ],
+                            ),
+                          ],
+                        ),
+                        onTap: () {},
+                      ),
+                      Divider(
+                        thickness: 0.2,
+                        color: Colors.grey.shade800,
+                        height: 1,
+                      ),
                     ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('plan_add'.tr),
-                      Text(plans.servicePlan.data[index].fee.toBRL()),
-                    ],
-                  ),
-                ],
-              ),
-              onTap: () {},
-            ),
-            Divider(
-              thickness: 0.2,
-              color: Colors.grey.shade800,
-            ),
-          ],
+                  );
+                }),
+            ],
+          ),
         );
       },
     );

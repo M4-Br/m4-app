@@ -34,4 +34,8 @@ extension DoubleCurrencyExtension on double {
   String toCentsString() {
     return (this * 100).toStringAsFixed(0);
   }
+
+  String toPlanValue() {
+    return _brlFormatter.format(this / 100);
+  }
 }

@@ -115,4 +115,11 @@ class AppRoutes {
 
   //offers
   static const String offersHome = '/offers';
+
+  //partners
+  static const String partners = '/partners';
+  static const String partnerPurchase = '$partners/purchase';
+  static const String partnerReceipt = '$partners/receipt';
+  static const String partnerManagement = '$partners/management';
+  static const String partnerNewItem = '$partnerManagement/new';
 }

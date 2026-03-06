@@ -42,10 +42,14 @@ class AppLifecycleController extends GetxController
     if (_isAuthenticating) return;
 
     if (state == AppLifecycleState.paused) {
-      _pausedTime = DateTime.now();
-      isPrivacyEnabled.value = true;
+      if (!kIsWeb) {
+        _pausedTime = DateTime.now();
+        isPrivacyEnabled.value = true;
+      }
     } else if (state == AppLifecycleState.inactive) {
-      isPrivacyEnabled.value = true;
+      if (!kIsWeb) {
+        isPrivacyEnabled.value = true;
+      }
     } else if (state == AppLifecycleState.resumed) {
       isPrivacyEnabled.value = false;
       _handleAppResume();
@@ -60,7 +64,6 @@ class AppLifecycleController extends GetxController
       return;
     }
 
-    // SE FOR WEB, NÃO FAZ CHECK DE BIOMETRIA/RENOVAÇÃO DE SESSÃO POR CICLO DE VIDA
     if (kIsWeb) {
       _pausedTime = null;
       _isAuthenticating = false;

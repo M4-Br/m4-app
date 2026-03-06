@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
@@ -55,6 +56,7 @@ class HomeIconsController extends BaseController {
     '23': 'assets/icons/ic_contabil.png',
     '24': 'assets/icons/ic_services.png',
     '25': 'assets/icons/ic_home_payment.png',
+    'wallet_btn': 'assets/icons/ic_wallet.png',
   };
 
   final Map<String, String> _customTitles = {
@@ -63,12 +65,22 @@ class HomeIconsController extends BaseController {
   };
 
   List<HomeMenuItem> get combinedMenuList {
-    final desiredOrder = ['23', '25', '26', '11', '10', '19', '14', '30', '24'];
+    final desiredOrder = [
+      'wallet_btn',
+      '23',
+      'partners_btn',
+      '25',
+      '26',
+      '14',
+      '30',
+      '24'
+    ];
 
     List<HomeMenuItem> allItems = [];
 
     for (var icon in apiIcons) {
-      if (desiredOrder.contains(icon.id)) {
+      if (desiredOrder.contains(icon.id) &&
+          !['10', '11', '19'].contains(icon.id)) {
         final finalTitle = _customTitles[icon.id] ?? icon.title;
 
         allItems.add(HomeMenuItem(
@@ -80,11 +92,29 @@ class HomeIconsController extends BaseController {
       }
     }
 
+    if (desiredOrder.contains('wallet_btn')) {
+      allItems.add(HomeMenuItem(
+        id: 'wallet_btn',
+        title: 'Carteira Digital',
+        iconData: Icons.account_balance_wallet_outlined,
+        isLocal: true,
+      ));
+    }
+
     if (desiredOrder.contains('23')) {
       allItems.add(HomeMenuItem(
         id: '23',
         title: 'contability_title'.tr,
         iconPath: _localIconAssets['23'],
+      ));
+    }
+
+    if (desiredOrder.contains('partners_btn')) {
+      allItems.add(HomeMenuItem(
+        id: 'partners_btn',
+        title: 'Parceiros',
+        iconData: Icons.handshake_outlined,
+        isLocal: true,
       ));
     }
 
@@ -134,7 +164,6 @@ class HomeIconsController extends BaseController {
 
   Future<void> checkProfileStatus() async {
     final document = userRx.user.value?.payload.document;
-    // Evita requisição se não houver documento
     if (document == null || document.isEmpty) return;
 
     try {
@@ -153,7 +182,6 @@ class HomeIconsController extends BaseController {
 
       incomplete.value = false;
 
-      // CORREÇÃO: Verificação segura para evitar Null Check Operator erro
       final hasAliasAccount = userRx.user.value?.payload.aliasAccount != null;
 
       if (!hasAliasAccount) {
@@ -175,14 +203,19 @@ class HomeIconsController extends BaseController {
         apiIcons.assignAll(fetchedIcons);
         hasLoadedIcons.value = true;
       }
-    },
-        message: 'Erro ao carregar os ícones',
-        showErrorToast:
-            false); // Adicionado showErrorToast: false para ser menos intrusivo no app startup
+    }, message: 'Erro ao carregar os ícones', showErrorToast: false);
   }
 
   void onMenuOptionTap(String id, String title) async {
-    const restrictedIds = ['1', '2', '10', '11', '19'];
+    const restrictedIds = [
+      '1',
+      '2',
+      '10',
+      '11',
+      '19',
+      'wallet_btn',
+      'partners_btn'
+    ];
 
     if (restrictedIds.contains(id)) {
       if (incomplete.value) {
@@ -215,18 +248,24 @@ class HomeIconsController extends BaseController {
     }
 
     switch (id) {
+      case 'partners_btn':
+        Get.toNamed(AppRoutes.partners);
+        AppLogger.I().info('Going to Partners Page');
+        break;
+      case 'wallet_btn':
+        _showWalletBottomSheet();
+        break;
       case '23':
         Get.toNamed(AppRoutes.accountingHome);
         AppLogger.I().info('Going to Accounting');
         break;
       case '25':
-        // Get.toNamed(AppRoutes.pixQrCodeReader);
         AppLogger.I().info('Going to Documents');
         break;
       case '26':
-        // Get.toNamed(AppRoutes.barcode);
         AppLogger.I().info('Going to Health');
         break;
+
       case '11':
         Get.toNamed(AppRoutes.transfer);
         AppLogger.I().info('Going to Transfer Page');
@@ -235,13 +274,14 @@ class HomeIconsController extends BaseController {
         Get.toNamed(AppRoutes.barcode);
         AppLogger.I().info('Going to Barcode Payment');
         break;
-      case '14':
-        Get.toNamed(AppRoutes.store);
-        AppLogger.I().info('Going to Store Page');
-        break;
       case '19':
         Get.toNamed(AppRoutes.pixHome);
         AppLogger.I().info('Going to Pix Home');
+        break;
+
+      case '14':
+        Get.toNamed(AppRoutes.store);
+        AppLogger.I().info('Going to Store Page');
         break;
       case '30':
         _openWebView('https://miban4.com', title);
@@ -258,6 +298,84 @@ class HomeIconsController extends BaseController {
       default:
         AppLogger.I().info('Menu option $id not implemented');
     }
+  }
+
+  void _showWalletBottomSheet() {
+    const Color iconColor = primaryColor;
+
+    Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 16, bottom: 16),
+              child: Text(
+                'Carteira Digital',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListTile(
+              leading: Image.asset(
+                'assets/icons/ic_home_pix.png',
+                width: 28,
+                color: iconColor,
+              ),
+              title: const Text('Área Pix',
+                  style: TextStyle(fontWeight: FontWeight.w600)),
+              trailing: const Icon(Icons.arrow_forward_ios,
+                  size: 16, color: Colors.grey),
+              onTap: () {
+                Get.back();
+                onMenuOptionTap('19', 'Área Pix');
+              },
+            ),
+            const Divider(height: 1, indent: 56),
+            ListTile(
+              leading: Image.asset(
+                'assets/icons/ic_home_transfer.png',
+                width: 28,
+                color: iconColor,
+              ),
+              title: const Text('Transferências',
+                  style: TextStyle(fontWeight: FontWeight.w600)),
+              trailing: const Icon(Icons.arrow_forward_ios,
+                  size: 16, color: Colors.grey),
+              onTap: () {
+                Get.back();
+                onMenuOptionTap('11', 'Transferências');
+              },
+            ),
+            const Divider(height: 1, indent: 56),
+            ListTile(
+              leading: Image.asset(
+                'assets/icons/ic_home_payment_invoice.png',
+                width: 28,
+                color: iconColor,
+              ),
+              title: const Text('Pagamento de Boleto',
+                  style: TextStyle(fontWeight: FontWeight.w600)),
+              trailing: const Icon(Icons.arrow_forward_ios,
+                  size: 16, color: Colors.grey),
+              onTap: () {
+                Get.back();
+                onMenuOptionTap('10', 'Pagamento de Boleto');
+              },
+            ),
+          ],
+        ),
+      ),
+      isScrollControlled: true,
+    );
   }
 
   void _openWebView(String url, String title) {

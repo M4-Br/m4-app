@@ -1,9 +1,9 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_controller.dart';
 import 'package:app_flutter_miban4/features/home/presentation/home_page.dart';
+import 'package:app_flutter_miban4/features/profile/presentation/plans_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/profile_page.dart';
 
-import 'package:app_flutter_miban4/features/statements/presentation/statement_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +14,7 @@ class HomeViewPage extends GetView<HomeViewController> {
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
       HomePage(),
-      const StatementPage(),
+      const PlansPage(),
       const ProfilePage(),
     ];
 
@@ -38,7 +38,7 @@ class HomeViewPage extends GetView<HomeViewController> {
               ),
               BottomNavigationBarItem(
                 icon: controller.getIconForIndex(1),
-                label: 'statement_icon'.tr,
+                label: 'PACOTES',
               ),
               BottomNavigationBarItem(
                 icon: controller.getIconForIndex(2),

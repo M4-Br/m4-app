@@ -71,6 +71,37 @@ class ApiConnection {
     return _handleResponse(response, parser, 'POST');
   }
 
+  Future<T> put<T>({
+    required String endpoint,
+    required T Function(dynamic) fromJson,
+    Object? body,
+    Map<String, dynamic>? queryParameters,
+    Map<String, String>? extraHeaders,
+  }) async {
+    final uri = Uri.parse('${AppEndpoints.baseUrl}$endpoint').replace(
+      queryParameters: queryParameters,
+    );
+
+    final headers = {
+      ...const AppHeader().headers,
+      if (extraHeaders != null) ...extraHeaders,
+    };
+
+    if (kDebugMode) {
+      print('>>> [PUT] $uri');
+      print('>>> Headers: $headers');
+      print('>>> Body: $body');
+    }
+
+    final response = await http.put(
+      uri,
+      headers: headers,
+      body: body != null ? json.encode(body) : null,
+    );
+
+    return _handleResponse(response, fromJson, 'PUT');
+  }
+
   Future<T> delete<T>({
     required String endpoint,
     required T Function(dynamic) fromJson,
@@ -107,7 +138,6 @@ class ApiConnection {
     T Function(dynamic) fromJson,
     String method,
   ) {
-    // 1. Lemos os bytes com segurança, ignorando caracteres mal codificados
     String safeBody = '';
     try {
       safeBody = utf8.decode(response.bodyBytes, allowMalformed: true);
@@ -118,7 +148,6 @@ class ApiConnection {
     if (kDebugMode) {
       print('>>> [$method] Status: ${response.statusCode}');
 
-      // 2. Evita imprimir aquele HTML gigante que trava o console
       if (safeBody.trim().startsWith('<!DOCTYPE html>')) {
         print(
             '>>> [$method] Response: [Página HTML de Erro Retornada - Ocultada do Log]');
@@ -138,7 +167,6 @@ class ApiConnection {
             statusCode: response.statusCode);
       }
     } else {
-      // Passamos o statusCode e o safeBody para não precisar acessar response.body de novo
       final String errorMessage = _extractErrorMessage(
           response.statusCode, safeBody, response.reasonPhrase);
 

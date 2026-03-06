@@ -2,7 +2,7 @@ class StringsPtBR {
   static final Map<String, String> ptBR = {
     'page1': 'Login Page',
     'terms': 'Ao continuar você concorda com \n a política de privacidade',
-    'cpf': 'CPF ou CNPJ',
+    'cpf': 'ID',
     'access': 'ACESSAR',
     'privacy_policy_title': 'Política de Privacidade',
     'register': 'REGISTRE-SE',

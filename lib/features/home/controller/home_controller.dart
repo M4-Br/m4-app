@@ -14,7 +14,7 @@ class HomeViewController extends GetxController {
 
   void _setInitialIndexFromRoute(String route) {
     switch (route) {
-      case AppRoutes.statement:
+      case AppRoutes.plans:
         selectedIndex.value = 1;
         break;
       case AppRoutes.profile:
@@ -48,7 +48,7 @@ class HomeViewController extends GetxController {
       case 0: // Home
         return Image.asset('assets/icons/ic_home.png', width: 30, color: color);
       case 1: // Statement
-        return Image.asset('assets/icons/ic_statement2.png',
+        return Image.asset('assets/icons/ic_plans.png',
             width: 30, color: color);
       case 2: // Perfil
         return Image.asset('assets/icons/ic_config.png',
