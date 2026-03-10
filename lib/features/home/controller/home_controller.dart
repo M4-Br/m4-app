@@ -27,17 +27,6 @@ class HomeViewController extends GetxController {
 
   void onItemTapped(int index) {
     selectedIndex.value = index;
-
-    // Opcional: Se você quiser que a URL mude quando clica no botão (bom para Web)
-    // Cuidado: Isso pode recarregar a página se não configurar o preventDuplicates false
-    // Se for só mobile, pode ignorar o bloco abaixo.
-    /*
-    switch (index) {
-      case 0: Get.offNamed('/home', preventDuplicates: false); break;
-      case 1: Get.offNamed('/statement', preventDuplicates: false); break;
-      case 2: Get.offNamed('/profile', preventDuplicates: false); break;
-    } 
-    */
   }
 
   Widget getIconForIndex(int index) {
