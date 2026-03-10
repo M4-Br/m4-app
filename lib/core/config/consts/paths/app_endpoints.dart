@@ -101,4 +101,5 @@ class AppEndpoints {
   //Partners
   static const String partnerCategory = '/partner/category';
   static const String partnerProduct = '/partner/product';
+  static const String partnerSale = '/partner/product_sale';
 }

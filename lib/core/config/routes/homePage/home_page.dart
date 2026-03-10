@@ -3,7 +3,6 @@ import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/features/home/bindings/home_binding.dart';
 import 'package:app_flutter_miban4/features/home/presentation/home_view_page.dart';
 import 'package:app_flutter_miban4/features/profile/bindings/profile_binding.dart';
-import 'package:app_flutter_miban4/features/statements/bindings/statement_bindings.dart';
 import 'package:get/get.dart';
 
 class HomePages {
@@ -22,11 +21,11 @@ class HomePages {
         middlewares: [AuthGuard()]),
 
     //Statement Page
-    GetPage(
-        name: AppRoutes.statement,
-        page: () => const HomeViewPage(),
-        binding: StatementBindings(),
-        middlewares: [AuthGuard()]),
+    // GetPage(
+    //     name: AppRoutes.statement,
+    //     page: () => const HomeViewPage(),
+    //     binding: StatementBindings(),
+    //     middlewares: [AuthGuard()]),
 
     //Profile Page
     GetPage(

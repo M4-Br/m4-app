@@ -122,4 +122,5 @@ class AppRoutes {
   static const String partnerReceipt = '$partners/receipt';
   static const String partnerManagement = '$partners/management';
   static const String partnerNewItem = '$partnerManagement/new';
+  static const String partnerSaleHistory = '$partners/history';
 }

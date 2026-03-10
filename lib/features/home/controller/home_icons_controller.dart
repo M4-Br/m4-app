@@ -57,6 +57,7 @@ class HomeIconsController extends BaseController {
     '24': 'assets/icons/ic_services.png',
     '25': 'assets/icons/ic_home_payment.png',
     'wallet_btn': 'assets/icons/ic_wallet.png',
+    'statement_btn': 'assets/icons/ic_home_statement.png'
   };
 
   final Map<String, String> _customTitles = {
@@ -214,7 +215,8 @@ class HomeIconsController extends BaseController {
       '11',
       '19',
       'wallet_btn',
-      'partners_btn'
+      'partners_btn',
+      'statement_btn'
     ];
 
     if (restrictedIds.contains(id)) {
@@ -295,6 +297,10 @@ class HomeIconsController extends BaseController {
         Get.toNamed(AppRoutes.services);
         AppLogger.I().info('Going to Services');
         break;
+      case 'statement_btn':
+        Get.toNamed(AppRoutes.statement);
+        AppLogger.I().info('Going to Statement Page');
+        break;
       default:
         AppLogger.I().info('Menu option $id not implemented');
     }
@@ -324,6 +330,22 @@ class HomeIconsController extends BaseController {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
+            ListTile(
+              leading: const Icon(
+                Icons.receipt_long_outlined,
+                color: iconColor,
+                size: 28,
+              ),
+              title: const Text('Extrato da Conta',
+                  style: TextStyle(fontWeight: FontWeight.w600)),
+              trailing: const Icon(Icons.arrow_forward_ios,
+                  size: 16, color: Colors.grey),
+              onTap: () {
+                Get.back();
+                onMenuOptionTap('statement_btn', 'Extrato');
+              },
+            ),
+            const Divider(height: 1, indent: 56),
             ListTile(
               leading: Image.asset(
                 'assets/icons/ic_home_pix.png',

@@ -23,6 +23,12 @@ class StatementPage extends GetView<StatementController> {
           'statement'.tr,
           color: Colors.white,
         ),
+        leading: IconButton(
+            onPressed: () => Get.back(),
+            icon: Icon(
+              Icons.arrow_back_ios_new_outlined,
+              color: Colors.white,
+            )),
         centerTitle: true,
         backgroundColor: primaryColor,
         actions: [
