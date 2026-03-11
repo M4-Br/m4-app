@@ -215,7 +215,6 @@ class HomeIconsController extends BaseController {
       '11',
       '19',
       'wallet_btn',
-      'partners_btn',
       'statement_btn'
     ];
 
