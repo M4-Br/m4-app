@@ -1,16 +1,20 @@
 import 'package:app_flutter_miban4/core/config/routes/accountingPages/accounting_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/barcodePages/barcode_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/cameraPage/camera_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/cashbackPage/cashback_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/completeProfilePages/complete_profile_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/homePage/home_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/loginPages/login_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/marketplacePages/marketplace_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/meiPages/mei_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/newsletterPages/newsletter_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/notificationsPage/notifications_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/offers/offers_pafes.dart';
 import 'package:app_flutter_miban4/core/config/routes/onboardingPages/onboarding_pages.dart';
-import 'package:app_flutter_miban4/core/config/routes/partnersPages/partners_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/paymentLinkPages/payment_link_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/pixPages/pix_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/profilePages/profile_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/scorePages/score_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/servicesPages/services_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/statementPages/statement_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/storePages/store_pages.dart';
@@ -71,7 +75,19 @@ class AppPages {
     //Web Screen
     ...WebViewPages.pages,
 
-    //Partners
-    ...PartnersPages.pages
+    //Marketplace
+    ...MarketplacePages.pages,
+
+    //Newsletter
+    ...NewsletterPages.pages,
+
+    //Cashback
+    ...CashbackPages.pages,
+
+    //Score
+    ...ScorePages.pages,
+
+    //Mei
+    ...MeiPages.pages
   ];
 }

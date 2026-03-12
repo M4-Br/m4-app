@@ -116,11 +116,26 @@ class AppRoutes {
   //offers
   static const String offersHome = '/offers';
 
-  //partners
-  static const String partners = '/partners';
-  static const String partnerPurchase = '$partners/purchase';
-  static const String partnerReceipt = '$partners/receipt';
-  static const String partnerManagement = '$partners/management';
-  static const String partnerNewItem = '$partnerManagement/new';
-  static const String partnerSaleHistory = '$partners/history';
+  //marketplace
+  static const String marketplace = '/marketplace';
+  static const String marketplacePurchase = '$marketplace/purchase';
+  static const String marketplaceReceipt = '$marketplace/receipt';
+  static const String marketplaceManagement = '$marketplace/management';
+  static const String marketplaceNewItem = '$marketplaceManagement/new';
+  static const String marketplacealeHistory = '$marketplace/history';
+
+  //Digital Account
+  static const String digitalAccount = '/digital_account';
+
+  //Newsletter
+  static const String newsletter = '/newsletter';
+
+  //Cashback
+  static const String cashback = '/cashback';
+
+  //Score
+  static const String score = '/score';
+
+  //MEI
+  static const String mei = '/mei';
 }

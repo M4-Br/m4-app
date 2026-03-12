@@ -1,15 +1,13 @@
-import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/AI/widget/ai_show_modal.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_verify_steps_repository.dart';
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
-import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
-import 'package:app_flutter_miban4/features/profile/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,117 +41,45 @@ class HomeIconsController extends BaseController {
 
   var isLoadingIa = false.obs;
 
-  final Map<String, String> _localIconAssets = {
-    '1': 'assets/icons/ic_home_payment.png',
-    '2': 'assets/icons/ic_home_qrcode.png',
-    '10': 'assets/icons/ic_home_payment_invoice.png',
-    '11': 'assets/icons/ic_home_transfer.png',
-    '12': 'assets/icons/ic_home_recharge.png',
-    '14': 'assets/icons/ic_home_store.png',
-    '19': 'assets/icons/ic_home_pix.png',
-    '30': 'assets/icons/ic_home_faq.png',
-    '31': 'assets/icons/ic_home_warning.png',
-    '23': 'assets/icons/ic_contabil.png',
-    '24': 'assets/icons/ic_services.png',
-    '25': 'assets/icons/ic_home_payment.png',
-    'wallet_btn': 'assets/icons/ic_wallet.png',
-    'statement_btn': 'assets/icons/ic_home_statement.png'
-  };
-
-  final Map<String, String> _customTitles = {
-    '19': 'Área Pix',
-    '30': 'Novidades',
-  };
-
   List<HomeMenuItem> get combinedMenuList {
-    final desiredOrder = [
-      'wallet_btn',
-      '23',
-      'partners_btn',
-      '25',
-      '26',
-      '14',
-      '30',
-      '24'
+    return [
+      HomeMenuItem(
+          id: 'cashback',
+          title: 'Cashback',
+          iconData: Icons.account_balance_wallet_outlined),
+      HomeMenuItem(
+          id: 'marketplace',
+          title: 'Marketplace',
+          iconData: Icons.storefront_outlined),
+      HomeMenuItem(
+          id: 'score', title: 'Consulta de Crédito', iconData: Icons.bar_chart),
+      HomeMenuItem(
+          id: 'news', title: 'Notícias', iconData: Icons.newspaper_outlined),
+      HomeMenuItem(
+          id: 'mei', title: 'Serviços MEI', iconData: Icons.business_outlined),
+      HomeMenuItem(
+          id: 'ai',
+          title: 'Assistente MEI',
+          iconData: Icons.chat_bubble_outline),
+      HomeMenuItem(
+          id: 'stock', title: 'Estoque', iconData: Icons.receipt_long_outlined),
+      HomeMenuItem(
+          id: 'accounting',
+          title: 'Contabilidade',
+          iconData: Icons.pie_chart_outline),
+      HomeMenuItem(
+          id: 'partners',
+          title: 'Nossos Parceiros',
+          iconData: Icons.handshake_outlined),
+      HomeMenuItem(
+          id: 'clients',
+          title: 'Meus Clientes',
+          iconData: Icons.people_outline),
+      HomeMenuItem(
+          id: 'contact',
+          title: 'Fale Conosco',
+          iconData: Icons.headset_mic_outlined),
     ];
-
-    List<HomeMenuItem> allItems = [];
-
-    for (var icon in apiIcons) {
-      if (desiredOrder.contains(icon.id) &&
-          !['10', '11', '19'].contains(icon.id)) {
-        final finalTitle = _customTitles[icon.id] ?? icon.title;
-
-        allItems.add(HomeMenuItem(
-          id: icon.id,
-          title: finalTitle,
-          iconPath: _localIconAssets[icon.id],
-          isLocal: _localIconAssets.containsKey(icon.id),
-        ));
-      }
-    }
-
-    if (desiredOrder.contains('wallet_btn')) {
-      allItems.add(HomeMenuItem(
-        id: 'wallet_btn',
-        title: 'Carteira Digital',
-        iconData: Icons.account_balance_wallet_outlined,
-        isLocal: true,
-      ));
-    }
-
-    if (desiredOrder.contains('23')) {
-      allItems.add(HomeMenuItem(
-        id: '23',
-        title: 'contability_title'.tr,
-        iconPath: _localIconAssets['23'],
-      ));
-    }
-
-    if (desiredOrder.contains('partners_btn')) {
-      allItems.add(HomeMenuItem(
-        id: 'partners_btn',
-        title: 'Parceiros',
-        iconData: Icons.handshake_outlined,
-        isLocal: true,
-      ));
-    }
-
-    if (desiredOrder.contains('24')) {
-      allItems.add(HomeMenuItem(
-        id: '24',
-        title: 'services_title'.tr,
-        iconPath: _localIconAssets['24'],
-      ));
-    }
-
-    if (desiredOrder.contains('25')) {
-      allItems.add(HomeMenuItem(
-        id: '25',
-        title: 'docs_title'.tr,
-        iconData: Icons.edit_document,
-      ));
-    }
-
-    if (desiredOrder.contains('26')) {
-      allItems.add(HomeMenuItem(
-        id: '26',
-        title: 'health_title'.tr,
-        iconData: Icons.health_and_safety,
-      ));
-    }
-
-    final orderMap = {
-      for (var item in desiredOrder) item: desiredOrder.indexOf(item)
-    };
-
-    allItems.sort((a, b) {
-      final indexA = orderMap[a.id] ?? 999;
-      final indexB = orderMap[b.id] ?? 999;
-      return indexA.compareTo(indexB);
-    });
-
-    return allItems;
   }
 
   @override
@@ -208,199 +134,49 @@ class HomeIconsController extends BaseController {
   }
 
   void onMenuOptionTap(String id, String title) async {
-    const restrictedIds = [
-      '1',
-      '2',
-      '10',
-      '11',
-      '19',
-      'wallet_btn',
-      'statement_btn'
-    ];
-
-    if (restrictedIds.contains(id)) {
-      if (incomplete.value) {
-        CustomDialogs.showConfirmationDialog(
-          loading: isLoading,
-          title: 'Cadastro Incompleto',
-          content:
-              'Para utilizar essa funcionalidade é preciso finalizar os passos do seu cadastro.',
-          confirmText: 'Completar',
-          onConfirm: () async {
-            isLoading.value = true;
-            await Get.find<ProfileController>().redirectToCompleteProfile();
-            isLoading.value = false;
-            if (Get.currentRoute == AppRoutes.homeView) {
-              Get.back();
-            }
-          },
-        );
-        return;
-      }
-
-      if (isAccountProcessing.value) {
-        CustomDialogs.showInformationDialog(
-            title: 'Conta em Análise',
-            content:
-                'Seu cadastro foi enviado e sua conta bancária está sendo criada. Aguarde alguns instantes.',
-            onCancel: () => Get.back());
-        return;
-      }
-    }
+    // --- RESTRIÇÕES DESATIVADAS TEMPORARIAMENTE ---
+    /*
+    if (incomplete.value) { ... }
+    if (isAccountProcessing.value) { ... }
+    */
 
     switch (id) {
-      case 'partners_btn':
-        Get.toNamed(AppRoutes.partners);
-        AppLogger.I().info('Going to Partners Page');
+      case 'marketplace':
+        Get.toNamed(AppRoutes.marketplace);
+        AppLogger.I().info('Going to Marketplace Page');
         break;
-      case 'wallet_btn':
-        _showWalletBottomSheet();
-        break;
-      case '23':
-        Get.toNamed(AppRoutes.accountingHome);
+      case 'accounting':
+        Get.toNamed(AppRoutes.accountingHome); // Mapeado da sua rota antiga
         AppLogger.I().info('Going to Accounting');
         break;
-      case '25':
-        AppLogger.I().info('Going to Documents');
+      case 'ai':
+        openAiSearch();
         break;
-      case '26':
-        AppLogger.I().info('Going to Health');
-        break;
-
-      case '11':
-        Get.toNamed(AppRoutes.transfer);
-        AppLogger.I().info('Going to Transfer Page');
-        break;
-      case '10':
-        Get.toNamed(AppRoutes.barcode);
-        AppLogger.I().info('Going to Barcode Payment');
-        break;
-      case '19':
-        Get.toNamed(AppRoutes.pixHome);
-        AppLogger.I().info('Going to Pix Home');
-        break;
-
-      case '14':
-        Get.toNamed(AppRoutes.store);
-        AppLogger.I().info('Going to Store Page');
-        break;
-      case '30':
-        _openWebView('https://miban4.com', title);
-        AppLogger.I().info('Going to Message');
-        break;
-      case '31':
-        _openWebView('https://miban4.com/#faq', title);
-        AppLogger.I().info('Going to Warnings');
-        break;
-      case '24':
-        Get.toNamed(AppRoutes.services);
-        AppLogger.I().info('Going to Services');
-        break;
-      case 'statement_btn':
+      case 'statement_btn': // Usado dentro do BottomSheet da Carteira
         Get.toNamed(AppRoutes.statement);
         AppLogger.I().info('Going to Statement Page');
         break;
+      case 'news':
+        Get.toNamed(AppRoutes.newsletter);
+        AppLogger.I().info('Going to Newsletter Page');
+        break;
+      case 'cashback':
+        Get.toNamed(AppRoutes.cashback);
+        AppLogger.I().info('Going to Cashback Page');
+        break;
+      case 'score':
+        Get.toNamed(AppRoutes.score);
+        AppLogger.I().info('Going to Score Page');
+        break;
+      case 'mei':
+        Get.toNamed(AppRoutes.mei);
+        AppLogger.I().info('Going to Mei Page');
+        break;
+      // Adicione os outros redirecionamentos conforme for criando as rotas
       default:
         AppLogger.I().info('Menu option $id not implemented');
+        ShowToaster.toasterInfo(message: 'Em breve $title funcionalidade.');
     }
-  }
-
-  void _showWalletBottomSheet() {
-    const Color iconColor = primaryColor;
-
-    Get.bottomSheet(
-      Container(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 16, bottom: 16),
-              child: Text(
-                'Carteira Digital',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.receipt_long_outlined,
-                color: iconColor,
-                size: 28,
-              ),
-              title: const Text('Extrato da Conta',
-                  style: TextStyle(fontWeight: FontWeight.w600)),
-              trailing: const Icon(Icons.arrow_forward_ios,
-                  size: 16, color: Colors.grey),
-              onTap: () {
-                Get.back();
-                onMenuOptionTap('statement_btn', 'Extrato');
-              },
-            ),
-            const Divider(height: 1, indent: 56),
-            ListTile(
-              leading: Image.asset(
-                'assets/icons/ic_home_pix.png',
-                width: 28,
-                color: iconColor,
-              ),
-              title: const Text('Área Pix',
-                  style: TextStyle(fontWeight: FontWeight.w600)),
-              trailing: const Icon(Icons.arrow_forward_ios,
-                  size: 16, color: Colors.grey),
-              onTap: () {
-                Get.back();
-                onMenuOptionTap('19', 'Área Pix');
-              },
-            ),
-            const Divider(height: 1, indent: 56),
-            ListTile(
-              leading: Image.asset(
-                'assets/icons/ic_home_transfer.png',
-                width: 28,
-                color: iconColor,
-              ),
-              title: const Text('Transferências',
-                  style: TextStyle(fontWeight: FontWeight.w600)),
-              trailing: const Icon(Icons.arrow_forward_ios,
-                  size: 16, color: Colors.grey),
-              onTap: () {
-                Get.back();
-                onMenuOptionTap('11', 'Transferências');
-              },
-            ),
-            const Divider(height: 1, indent: 56),
-            ListTile(
-              leading: Image.asset(
-                'assets/icons/ic_home_payment_invoice.png',
-                width: 28,
-                color: iconColor,
-              ),
-              title: const Text('Pagamento de Boleto',
-                  style: TextStyle(fontWeight: FontWeight.w600)),
-              trailing: const Icon(Icons.arrow_forward_ios,
-                  size: 16, color: Colors.grey),
-              onTap: () {
-                Get.back();
-                onMenuOptionTap('10', 'Pagamento de Boleto');
-              },
-            ),
-          ],
-        ),
-      ),
-      isScrollControlled: true,
-    );
-  }
-
-  void _openWebView(String url, String title) {
-    Get.toNamed(AppRoutes.webView, arguments: {'url': url, 'title': title});
   }
 
   void openNotifications() {
@@ -408,33 +184,11 @@ class HomeIconsController extends BaseController {
   }
 
   void openAiSearch() {
-    if (incomplete.value) {
-      CustomDialogs.showConfirmationDialog(
-        loading: isLoadingIa,
-        title: 'Cadastro Incompleto',
-        content:
-            'Para utilizar essa funcionalidade é preciso finalizar os passos do seu cadastro.',
-        confirmText: 'Completar',
-        onConfirm: () async {
-          isLoading.value = true;
-          await Get.find<ProfileController>().redirectToCompleteProfile();
-          isLoading.value = false;
-          if (Get.currentRoute == AppRoutes.homeView) {
-            Get.back();
-          }
-        },
-      );
-      return;
-    }
-
-    if (isAccountProcessing.value) {
-      CustomDialogs.showInformationDialog(
-          title: 'Conta em Análise',
-          content:
-              'Seu cadastro foi enviado e sua conta bancária está sendo criada. Aguarde alguns instantes.',
-          onCancel: () => Get.back());
-      return;
-    }
+    // --- RESTRIÇÕES DESATIVADAS TEMPORARIAMENTE ---
+    /*
+    if (incomplete.value) { ... }
+    if (isAccountProcessing.value) { ... }
+    */
 
     AiModal.openAiSearch();
   }

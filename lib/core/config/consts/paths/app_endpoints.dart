@@ -98,8 +98,8 @@ class AppEndpoints {
   //Accounting
   static const String accountingData = '/tax_data';
 
-  //Partners
-  static const String partnerCategory = '/partner/category';
-  static const String partnerProduct = '/partner/product';
-  static const String partnerSale = '/partner/product_sale';
+  //Marketplace
+  static const String marketplaceCategory = '/partner/category';
+  static const String marketplaceProduct = '/partner/product';
+  static const String marketplaceale = '/partner/product_sale';
 }

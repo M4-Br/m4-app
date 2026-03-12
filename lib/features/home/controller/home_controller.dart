@@ -14,11 +14,8 @@ class HomeViewController extends GetxController {
 
   void _setInitialIndexFromRoute(String route) {
     switch (route) {
-      case AppRoutes.plans:
-        selectedIndex.value = 1;
-        break;
       case AppRoutes.profile:
-        selectedIndex.value = 2;
+        selectedIndex.value = 5;
         break;
       default:
         selectedIndex.value = 0;
@@ -34,16 +31,21 @@ class HomeViewController extends GetxController {
         selectedIndex.value == index ? secondaryColor : Colors.grey;
 
     switch (index) {
-      case 0: // Home
-        return Image.asset('assets/icons/ic_home.png', width: 30, color: color);
-      case 1: // Statement
-        return Image.asset('assets/icons/ic_plans.png',
-            width: 30, color: color);
-      case 2: // Perfil
-        return Image.asset('assets/icons/ic_config.png',
-            width: 30, color: color);
+      case 0: // Início
+        return Icon(Icons.home_outlined, size: 28, color: color);
+      case 1: // Carteira Digital
+        return Icon(Icons.account_balance_wallet_outlined,
+            size: 28, color: color);
+      case 2: // Loja (Marketplace)
+        return Icon(Icons.storefront_outlined, size: 28, color: color);
+      case 3: // Pedidos (Ícone de caixa)
+        return Icon(Icons.inventory_2_outlined, size: 28, color: color);
+      case 4: // Saúde
+        return Icon(Icons.health_and_safety_outlined, size: 28, color: color);
+      case 5: // Perfil
+        return Icon(Icons.person_outline, size: 28, color: color);
       default:
-        return Image.asset('assets/icons/ic_home.png', width: 30, color: color);
+        return Icon(Icons.home_outlined, size: 28, color: color);
     }
   }
 }
