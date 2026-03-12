@@ -42,7 +42,7 @@ class HomeViewController extends GetxController {
       case 2: // Perfil
         return Image.asset('assets/icons/ic_config.png',
             width: 30, color: color);
-      default: // Ícone padrão para segurança
+      default:
         return Image.asset('assets/icons/ic_home.png', width: 30, color: color);
     }
   }
