@@ -1,7 +1,9 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MeiServiceModel {
   final String title;
@@ -153,21 +155,29 @@ class MeiServicesController extends BaseController {
   ];
 
   // Método que abre a sua WebviewPage já existente
-  void openUrl(String url, String title) {
+  Future<void> openUrl(String url, String title) async {
     if (url.isEmpty || url.startsWith('https://exemplo.gov.br')) {
       Get.rawSnackbar(
         message: 'A URL para "$title" ainda não foi configurada.',
         snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(16),
-        borderRadius: 8,
       );
       return;
     }
 
-    Get.toNamed(AppRoutes.webView, arguments: {
-      'url': url,
-      'title': title,
-    });
+    if (kIsWeb) {
+      // Se for Web, abre em uma nova aba do navegador
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri,
+            mode: LaunchMode.externalApplication); // Abre em nova janela/aba
+      }
+    } else {
+      // Se for App Nativo, usa a sua Webview interna
+      Get.toNamed(AppRoutes.webView, arguments: {
+        'url': url,
+        'title': title,
+      });
+    }
   }
 
   void openGovPortal() {
