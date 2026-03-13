@@ -8,6 +8,8 @@ class CustomPageBody extends StatelessWidget {
   final CrossAxisAlignment crossAxisAlignment;
   final bool enableIntrinsicHeight;
 
+  final double maxWidth;
+
   const CustomPageBody({
     super.key,
     required this.children,
@@ -15,6 +17,7 @@ class CustomPageBody extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.enableIntrinsicHeight = true,
+    this.maxWidth = 800,
   });
 
   @override
@@ -23,23 +26,28 @@ class CustomPageBody extends StatelessWidget {
         EdgeInsets.symmetric(horizontal: AppDimens.kDefaultPadding);
 
     return SafeArea(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            padding: padding ?? defaultPadding,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constraints.maxHeight -
-                    (padding?.vertical ?? defaultPadding.vertical),
-              ),
-              child: enableIntrinsicHeight
-                  ? IntrinsicHeight(
-                      child: _buildColumn(),
-                    )
-                  : _buildColumn(),
-            ),
-          );
-        },
+      child: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxWidth),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                padding: padding ?? defaultPadding,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight -
+                        (padding?.vertical ?? defaultPadding.vertical),
+                  ),
+                  child: enableIntrinsicHeight
+                      ? IntrinsicHeight(
+                          child: _buildColumn(),
+                        )
+                      : _buildColumn(),
+                ),
+              );
+            },
+          ),
+        ),
       ),
     );
   }

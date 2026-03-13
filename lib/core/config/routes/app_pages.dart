@@ -2,7 +2,9 @@ import 'package:app_flutter_miban4/core/config/routes/accountingPages/accounting
 import 'package:app_flutter_miban4/core/config/routes/barcodePages/barcode_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/cameraPage/camera_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/cashbackPage/cashback_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/clientsPages/clients_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/completeProfilePages/complete_profile_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/contactPages/contact_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/homePage/home_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/loginPages/login_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/marketplacePages/marketplace_pages.dart';
@@ -11,6 +13,7 @@ import 'package:app_flutter_miban4/core/config/routes/newsletterPages/newsletter
 import 'package:app_flutter_miban4/core/config/routes/notificationsPage/notifications_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/offers/offers_pafes.dart';
 import 'package:app_flutter_miban4/core/config/routes/onboardingPages/onboarding_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/partnersPages/partners_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/paymentLinkPages/payment_link_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/pixPages/pix_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/profilePages/profile_pages.dart';
@@ -88,6 +91,15 @@ class AppPages {
     ...ScorePages.pages,
 
     //Mei
-    ...MeiPages.pages
+    ...MeiPages.pages,
+
+    //Partners
+    ...PartnersPages.pages,
+
+    //Contacts
+    ...ContactPages.pages,
+
+    //Clients
+    ...ClientsPages.pages
   ];
 }

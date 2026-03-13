@@ -19,7 +19,6 @@ class HomeViewPage extends GetView<HomeViewController> {
       MarketplacePage(),
       const Scaffold(
           body: Center(child: Text('Página: Pedidos'))), // 3: Pedidos
-      const Scaffold(body: Center(child: Text('Página: Saúde'))), // 4: Saúde
       const ProfilePage(), // 5: Perfil
     ];
 
@@ -60,10 +59,6 @@ class HomeViewPage extends GetView<HomeViewController> {
               ),
               BottomNavigationBarItem(
                 icon: controller.getIconForIndex(4),
-                label: 'Saúde',
-              ),
-              BottomNavigationBarItem(
-                icon: controller.getIconForIndex(5),
                 label: 'Perfil', // ou 'perfil_icon'.tr
               ),
             ],

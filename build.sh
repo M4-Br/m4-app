@@ -23,6 +23,10 @@ echo "NEWS_KEY=$NEWS_KEY">> .env
 echo "🏗️ Fazendo o build do projeto..."
 
 # 4. Compila o projeto
-flutter build web --release
+flutter build web --release \
+  --dart-define=SENTRY_DNS="$SENTRY_DNS" \
+  --dart-define=URL_RELEASE="$URL_RELEASE" \
+  --dart-define=URL_HOMOL="$URL_HOMOL" \
+  --dart-define=NEWS_KEY="$NEWS_KEY"
 
 echo "✅ Build concluído com sucesso!"

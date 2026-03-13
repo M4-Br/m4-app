@@ -138,4 +138,13 @@ class AppRoutes {
 
   //MEI
   static const String mei = '/mei';
+
+  //Partners
+  static const String partners = '/partners';
+
+  //Contacts
+  static const String contacts = '/contacts';
+
+  //Clients
+  static const String clients = '/clients';
 }

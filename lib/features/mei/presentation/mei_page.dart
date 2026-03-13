@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/features/mei/controller/mei_controller.dart';
+import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart'; // <-- IMPORT DO SEU WIDGET AQUI
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:app_flutter_miban4/features/mei/controller/mei_services_controller.dart';
@@ -26,26 +27,29 @@ class MeiServicesPage extends GetView<MeiServicesController> {
         ),
         titleSpacing: 0,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildHeader(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                children: [
-                  const SizedBox(height: 16),
-                  _buildTopBanner(),
-                  const SizedBox(height: 16),
-                  _buildGridServices(),
-                  const SizedBox(height: 16),
-                  _buildBottomBanner(),
-                  const SizedBox(height: 32),
-                ],
-              ),
+      // --- APLICANDO O CUSTOM PAGE BODY ---
+      body: CustomPageBody(
+        enableIntrinsicHeight: false,
+        padding:
+            EdgeInsets.zero, // Zerado para o Header azul encostar nas bordas
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _buildHeader(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 16),
+                _buildTopBanner(),
+                const SizedBox(height: 16),
+                _buildGridServices(),
+                const SizedBox(height: 16),
+                _buildBottomBanner(),
+                const SizedBox(height: 32),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -139,13 +143,14 @@ class MeiServicesPage extends GetView<MeiServicesController> {
   Widget _buildGridServices() {
     return GridView.builder(
       shrinkWrap: true,
-      physics:
-          const NeverScrollableScrollPhysics(), // Scroll quem faz é a tela inteira
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+      physics: const NeverScrollableScrollPhysics(),
+      // --- MÁGICA DA RESPONSIVIDADE FLUIDA ---
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent:
+            220, // Largura máxima do card. Ajusta automático na web.
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 1.1, // Controla a altura do cartão retangular
+        childAspectRatio: 1.1,
       ),
       itemCount: controller.services.length,
       itemBuilder: (context, index) {
@@ -182,15 +187,16 @@ class MeiServicesPage extends GetView<MeiServicesController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Fundo bem clarinho com o ícone colorido
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: service.iconColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      // --- ÍCONE MENOR ---
                       child: Icon(service.icon,
-                          color: service.iconColor, size: 24),
+                          color: service.iconColor,
+                          size: 20), // Reduzido de 24 para 20
                     ),
                     const Icon(Icons.open_in_new,
                         color: Colors.black26, size: 16),
@@ -226,7 +232,7 @@ class MeiServicesPage extends GetView<MeiServicesController> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF0F9FF), // Azul gelo bem claro
+        color: const Color(0xFFF0F9FF),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: const Color(0xFFE0F2FE)),
       ),

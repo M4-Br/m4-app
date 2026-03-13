@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/features/cashback/controller/cashback_controller.dart';
+import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart'; // <-- IMPORT DO SEU WIDGET AQUI
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,23 +31,25 @@ class CashbackPage extends GetView<CashbackController> {
           // Fundo verde no topo
           Container(
             height: 60,
+            width: double
+                .infinity, // <-- Adicionado para a faixa verde esticar na web
             color: _greenPrimary,
           ),
-          // Conteúdo rolável
-          SingleChildScrollView(
+
+          // --- AQUI ENTRA A MÁGICA DO SEU WIDGET ---
+          CustomPageBody(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildMainCard(),
-                const SizedBox(height: 16),
-                _buildStatsRow(),
-                const SizedBox(height: 24),
-                _buildStoresHeader(),
-                const SizedBox(height: 16),
-                _buildStoresList(),
-              ],
-            ),
+            crossAxisAlignment:
+                CrossAxisAlignment.start, // Mantém o alinhamento à esquerda
+            children: [
+              _buildMainCard(),
+              const SizedBox(height: 16),
+              _buildStatsRow(),
+              const SizedBox(height: 24),
+              _buildStoresHeader(),
+              const SizedBox(height: 16),
+              _buildStoresList(),
+            ],
           ),
         ],
       ),

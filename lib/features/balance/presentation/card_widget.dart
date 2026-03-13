@@ -1,6 +1,5 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
-import 'package:app_flutter_miban4/core/helpers/utils/app_content.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:flutter/material.dart';
@@ -22,13 +21,10 @@ class CardWidget extends GetView<BalanceController> {
     }
 
     final Color fontColor = currentUser.payload.cardFontColor;
-
     final String assetPath;
 
     switch (currentUser.payload.companyId) {
       case 1:
-        assetPath = 'assets/images/ic_faciap.png';
-        break;
       case 2:
         assetPath = 'assets/images/ic_faciap.png';
         break;
@@ -38,53 +34,68 @@ class CardWidget extends GetView<BalanceController> {
 
     return GestureDetector(
       onTap: () => Get.toNamed(AppRoutes.offersHome),
-      child: Container(
-        height: 220,
-        alignment: Alignment.topLeft,
-        width: context.mq.size.width * 0.8,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF2E7D32),
-              Color.fromARGB(255, 230, 213, 63),
+      child: Center(
+        // Garante que na Web o card fique centralizado se houver muito espaço
+        child: Container(
+          height: 200, // Altura padrão de um cartão
+          width: double.infinity, // Tenta preencher a tela...
+          constraints: const BoxConstraints(
+              maxWidth:
+                  380), // ...mas trava no máximo em 380px (tamanho de celular grande)
+          padding:
+              const EdgeInsets.all(24), // Padding uniforme em volta de tudo
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black
+                    .withOpacity(0.15), // Uma sombrinha leve para dar destaque
+                blurRadius: 12,
+                offset: const Offset(0, 4),
+              ),
             ],
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFF2E7D32),
+                Color.fromARGB(255, 230, 213, 63),
+              ],
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(width: 20),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child:
-                    Image.asset(assetPath, width: context.mq.size.width * 0.3),
+              // Logo com altura fixa (não usa mais MediaQuery)
+              Image.asset(
+                assetPath,
+                height: 36,
+                fit: BoxFit.contain,
               ),
-              const SizedBox(height: 50),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: AppText.titleMedium(
-                  context,
-                  'balance_available'.tr,
-                  color: fontColor,
-                ),
+
+              const Spacer(),
+
+              AppText.titleMedium(
+                context,
+                'balance_available'.tr,
+                color: fontColor,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Row(
-                  children: [
-                    Obx(() {
+
+              Row(
+                children: [
+                  Expanded(
+                    child: Obx(() {
                       final balance = controller.balanceRx.balance.value;
 
                       if (controller.isLoading.value) {
-                        return const SizedBox.square(
-                          dimension: 16,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
+                        return const Align(
+                          alignment: Alignment.centerLeft,
+                          child: SizedBox.square(
+                            dimension: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
                           ),
                         );
                       }
@@ -94,31 +105,33 @@ class CardWidget extends GetView<BalanceController> {
                             color: fontColor);
                       }
 
-                      return AppText.bodyLarge(
+                      return AppText.headlineMedium(
                         context,
                         controller.isVisible.value
                             ? balance.balanceCents.toBRL()
-                            : '******',
+                            : 'R\$ *****',
                         color: fontColor,
                       );
                     }),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () => controller.toggleVisibility(),
-                      icon: Obx(
-                        () => controller.isVisible.value
-                            ? Icon(
-                                Icons.visibility_off_outlined,
-                                color: fontColor,
-                              )
-                            : Icon(
-                                Icons.visibility_outlined,
-                                color: fontColor,
-                              ),
+                  ),
+
+                  // Botão do olhinho
+                  IconButton(
+                    onPressed: () => controller.toggleVisibility(),
+                    padding: EdgeInsets
+                        .zero, // Remove o padding interno do botão para alinhar melhor
+                    constraints: const BoxConstraints(),
+                    icon: Obx(
+                      () => Icon(
+                        controller.isVisible.value
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: fontColor,
+                        size: 28,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -126,9 +139,4 @@ class CardWidget extends GetView<BalanceController> {
       ),
     );
   }
-
-  // Color _darkenColor(Color color, [double amount = 0.2]) {
-  //   assert(amount >= 0 && amount <= 1);
-  //   return Color.lerp(color, Colors.black, amount)!;
-  // }
 }

@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/features/score/controller/score_controller.dart';
+import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart'; // <-- IMPORT DO SEU WIDGET
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,33 +25,34 @@ class ScorePage extends GetView<ScoreController> {
       ),
       body: Column(
         children: [
-          _buildPurpleHeader(),
+          _buildPurpleHeader(), // Fica de fora para esticar a tela toda na Web
           Expanded(
-            child: SingleChildScrollView(
+            // --- APLICANDO O CUSTOM PAGE BODY AQUI ---
+            child: CustomPageBody(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  _buildMainCard(),
-                  const SizedBox(height: 16),
-                  _buildInfoCard(
-                    icon: Icons.security_outlined,
-                    iconColor: _purplePrimary,
-                    iconBgColor: const Color(0xFFF3E8FF),
-                    title: 'Consulta Segura',
-                    description:
-                        'Acesso direto ao portal oficial do SPC Brasil com total segurança',
-                  ),
-                  const SizedBox(height: 12),
-                  _buildInfoCard(
-                    icon: Icons.trending_up,
-                    iconColor: const Color(0xFF2563EB),
-                    iconBgColor: const Color(0xFFDBEAFE),
-                    title: 'Análise de Risco',
-                    description:
-                        'Consulte o score e histórico dos seus clientes para avaliar o risco antes de vender a crédito',
-                  ),
-                ],
-              ),
+              enableIntrinsicHeight:
+                  false, // Previne o erro de rendering de viewport
+              children: [
+                _buildMainCard(),
+                const SizedBox(height: 16),
+                _buildInfoCard(
+                  icon: Icons.security_outlined,
+                  iconColor: _purplePrimary,
+                  iconBgColor: const Color(0xFFF3E8FF),
+                  title: 'Consulta Segura',
+                  description:
+                      'Acesso direto ao portal oficial do SPC Brasil com total segurança',
+                ),
+                const SizedBox(height: 12),
+                _buildInfoCard(
+                  icon: Icons.trending_up,
+                  iconColor: const Color(0xFF2563EB),
+                  iconBgColor: const Color(0xFFDBEAFE),
+                  title: 'Análise de Risco',
+                  description:
+                      'Consulte o score e histórico dos seus clientes para avaliar o risco antes de vender a crédito',
+                ),
+              ],
             ),
           ),
         ],

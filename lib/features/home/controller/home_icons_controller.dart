@@ -45,22 +45,19 @@ class HomeIconsController extends BaseController {
     return [
       HomeMenuItem(
           id: 'cashback',
-          title: 'Cashback',
+          title: 'Membresia',
           iconData: Icons.account_balance_wallet_outlined),
       HomeMenuItem(
           id: 'marketplace',
           title: 'Marketplace',
           iconData: Icons.storefront_outlined),
-      HomeMenuItem(
-          id: 'score', title: 'Consulta de Crédito', iconData: Icons.bar_chart),
+      HomeMenuItem(id: 'score', title: 'Crédito', iconData: Icons.bar_chart),
       HomeMenuItem(
           id: 'news', title: 'Notícias', iconData: Icons.newspaper_outlined),
       HomeMenuItem(
           id: 'mei', title: 'Serviços MEI', iconData: Icons.business_outlined),
       HomeMenuItem(
-          id: 'ai',
-          title: 'Assistente MEI',
-          iconData: Icons.chat_bubble_outline),
+          id: 'ai', title: 'IA', iconData: Icons.auto_awesome_outlined),
       HomeMenuItem(
           id: 'stock', title: 'Estoque', iconData: Icons.receipt_long_outlined),
       HomeMenuItem(
@@ -79,6 +76,10 @@ class HomeIconsController extends BaseController {
           id: 'contact',
           title: 'Fale Conosco',
           iconData: Icons.headset_mic_outlined),
+      HomeMenuItem(
+          id: 'healt',
+          title: 'Saúde',
+          iconData: Icons.health_and_safety_outlined),
     ];
   }
 
@@ -172,7 +173,18 @@ class HomeIconsController extends BaseController {
         Get.toNamed(AppRoutes.mei);
         AppLogger.I().info('Going to Mei Page');
         break;
-      // Adicione os outros redirecionamentos conforme for criando as rotas
+      case 'partners':
+        Get.toNamed(AppRoutes.partners);
+        AppLogger.I().info('Going to Partners Page');
+        break;
+      case 'contact':
+        Get.toNamed(AppRoutes.contacts);
+        AppLogger.I().info('Going to Contacts Page');
+        break;
+      case 'clients':
+        Get.toNamed(AppRoutes.clients);
+        AppLogger.I().info('Going to Clients Page');
+        break;
       default:
         AppLogger.I().info('Menu option $id not implemented');
         ShowToaster.toasterInfo(message: 'Em breve $title funcionalidade.');

@@ -25,8 +25,7 @@ class HomePage extends GetView<HomeIconsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          const Color(0xFFF8F9FA), // Fundo levemente cinza do print
+      backgroundColor: const Color(0xFFF8F9FA),
       body: SafeArea(
         child: Column(
           children: [
@@ -46,9 +45,10 @@ class HomePage extends GetView<HomeIconsController> {
                 return GridView.builder(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, // 2 colunas como no print
-                    childAspectRatio: 1.4, // Ajuste para ficar retangular
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    // AJUSTE 1: Diminuí o aspect ratio para o card ficar um pouco mais alto
+                    childAspectRatio: 1.2,
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
                   ),
@@ -103,26 +103,16 @@ class HomePage extends GetView<HomeIconsController> {
             ],
           ),
 
-          Row(
-            children: [
-              IconButton(
-                onPressed: controller.openAiSearch,
-                icon: const Icon(Icons.auto_awesome_outlined,
-                    color: Colors.black87),
-              ),
-              IconButton(
-                onPressed: controller.openNotifications,
-                icon: Obx(() => Icon(
-                      controller.notifications.hasUnreadNotifications.value
-                          ? Icons.notifications_active
-                          : Icons.notifications_outlined,
-                      color:
-                          controller.notifications.hasUnreadNotifications.value
-                              ? Colors.red
-                              : Colors.black87,
-                    )),
-              ),
-            ],
+          IconButton(
+            onPressed: controller.openNotifications,
+            icon: Obx(() => Icon(
+                  controller.notifications.hasUnreadNotifications.value
+                      ? Icons.notifications_active
+                      : Icons.notifications_outlined,
+                  color: controller.notifications.hasUnreadNotifications.value
+                      ? Colors.red
+                      : Colors.black87,
+                )),
           ),
         ],
       ),
@@ -138,30 +128,30 @@ class HomePage extends GetView<HomeIconsController> {
   }) {
     return Material(
       color: Colors.white,
-      // REMOVIDO: borderRadius: BorderRadius.circular(16), <-- Era isso que estava causando o erro
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-            16), // O arredondamento fica apenas aqui agora
+        borderRadius: BorderRadius.circular(16),
         side: BorderSide(color: Colors.grey.withValues(alpha: 0.15), width: 1),
       ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(
-            16), // No InkWell precisa manter para o efeito de clique não vazar
+        borderRadius: BorderRadius.circular(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              // AJUSTE 2: Um pouquinho mais de padding para o fundo colorido acompanhar o ícone
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 color: iconColor.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(
+                    14), // Arredondei mais para acompanhar o tamanho
               ),
               child: Icon(
                 iconData ?? Icons.grid_view_rounded,
                 color: iconColor,
-                size: 28,
+                // AJUSTE 3: O tamanho do ícone em si! Subimos de 28 para 38.
+                size: 38,
               ),
             ),
             const SizedBox(height: 12),
