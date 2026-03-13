@@ -185,6 +185,10 @@ class HomeIconsController extends BaseController {
         Get.toNamed(AppRoutes.clients);
         AppLogger.I().info('Going to Clients Page');
         break;
+      case 'stock':
+        Get.toNamed(AppRoutes.stock);
+        AppLogger.I().info('Going to Stock Page');
+        break;
       default:
         AppLogger.I().info('Menu option $id not implemented');
         ShowToaster.toasterInfo(message: 'Em breve $title funcionalidade.');

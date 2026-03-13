@@ -17,7 +17,8 @@ class NewsletterRepository {
         'https://newsapi.org/v2/everything?q=$query&language=pt&sortBy=publishedAt&apiKey=$_apiKey';
 
     if (kIsWeb) {
-      apiUrl = 'https://corsproxy.io/?${Uri.encodeComponent(apiUrl)}';
+      apiUrl =
+          'https://api.allorigins.win/raw?url=${Uri.encodeComponent(apiUrl)}';
     }
     final url = Uri.parse(apiUrl);
 

@@ -147,4 +147,7 @@ class AppRoutes {
 
   //Clients
   static const String clients = '/clients';
+
+  //Stock
+  static const String stock = '/stock';
 }

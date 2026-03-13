@@ -5,11 +5,13 @@ import 'package:app_flutter_miban4/features/marketplace/bindings/partner_new_ite
 import 'package:app_flutter_miban4/features/marketplace/bindings/partner_purchase_binding.dart';
 import 'package:app_flutter_miban4/features/marketplace/bindings/partner_receipt_binding.dart';
 import 'package:app_flutter_miban4/features/marketplace/bindings/partner_sales_history_binding.dart';
+import 'package:app_flutter_miban4/features/marketplace/bindings/stock_management_binding.dart';
 import 'package:app_flutter_miban4/features/marketplace/presentation/marketplace_management_page.dart';
 import 'package:app_flutter_miban4/features/marketplace/presentation/marketplace_new_item_page.dart';
 import 'package:app_flutter_miban4/features/marketplace/presentation/marketplace_purchase_page.dart';
 import 'package:app_flutter_miban4/features/marketplace/presentation/marketplace_receipt_page.dart';
 import 'package:app_flutter_miban4/features/marketplace/presentation/marketplace_sale_history_page.dart';
+import 'package:app_flutter_miban4/features/marketplace/presentation/stock_management_page.dart';
 import 'package:get/get.dart';
 
 class MarketplacePages {
@@ -38,6 +40,11 @@ class MarketplacePages {
         name: AppRoutes.marketplacealeHistory,
         page: () => MarketplaceSaleHistoryPage(),
         binding: MarketplaceSalesHistoryBinding(),
+        middlewares: [AuthGuard()]),
+    GetPage(
+        name: AppRoutes.stock,
+        page: () => StockManagementPage(),
+        binding: StockManagementBinding(),
         middlewares: [AuthGuard()]),
   ];
 }
