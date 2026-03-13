@@ -5,6 +5,7 @@ import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/AI/widget/ai_show_modal.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_verify_steps_repository.dart';
+import 'package:app_flutter_miban4/features/home/controller/home_controller.dart';
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
@@ -32,6 +33,8 @@ class HomeIconsController extends BaseController {
   final BalanceController balance;
 
   HomeIconsController({required this.notifications, required this.balance});
+
+  final homeViewController = Get.find<HomeViewController>();
 
   RxList<HomeIconsResponse> apiIcons = <HomeIconsResponse>[].obs;
   var hasLoadedIcons = false.obs;
@@ -143,7 +146,7 @@ class HomeIconsController extends BaseController {
 
     switch (id) {
       case 'marketplace':
-        Get.toNamed(AppRoutes.marketplace);
+        homeViewController.onItemTapped(2);
         AppLogger.I().info('Going to Marketplace Page');
         break;
       case 'accounting':
