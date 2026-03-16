@@ -47,7 +47,6 @@ class HomePage extends GetView<HomeIconsController> {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 200,
-                    // AJUSTE 1: Diminuí o aspect ratio para o card ficar um pouco mais alto
                     childAspectRatio: 1.2,
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
@@ -74,44 +73,83 @@ class HomePage extends GetView<HomeIconsController> {
     );
   }
 
-  // --- WIDGET DO CABEÇALHO ---
+  // --- WIDGET DO CABEÇALHO (BANNER VERDE) ---
+  // --- WIDGET DO CABEÇALHO (BANNER VERDE) ---
   Widget _buildCustomHeader() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+      width: double.infinity,
+      color: const Color(0xFF065F46), // Verde escuro para o Banner
+      padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Lado Esquerdo: Saudação e FACIAP
+          // LADO ESQUERDO: FACIAP (Maior) + Saiba Mais (Menor)
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
                 'assets/images/ic_faciap.png',
-                width: 100,
-                color: Colors.green,
+                width: 115, // Aumentado para ganhar destaque
+                color: Colors.white,
               ),
-              const SizedBox(height: 12),
-              Obx(() => Text(
-                    'Olá, ${controller.userRx.user.value?.payload.username.split(' ').first ?? 'Usuário'}',
-                    style: const TextStyle(
-                      color: Colors.black87,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+              const SizedBox(height: 6),
+              GestureDetector(
+                onTap: controller.openFaciapLink,
+                child: Row(
+                  children: const [
+                    Text(
+                      'SAIBA MAIS',
+                      style: TextStyle(
+                        color: Colors
+                            .white70, // Branco levemente transparente para contraste
+                        fontSize: 11, // Fonte menor
+                        fontWeight: FontWeight.w600,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.white70,
+                      ),
                     ),
-                  )),
+                    SizedBox(width: 4),
+                    Icon(Icons.open_in_new, color: Colors.white70, size: 12),
+                  ],
+                ),
+              ),
             ],
           ),
 
+          // CENTRO: Nome do Usuário
+          Obx(() {
+            final nome = controller.userRx.user.value?.payload.username
+                    .split(' ')
+                    .first ??
+                'Usuário';
+            return Text(
+              'Olá, $nome',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow
+                  .ellipsis, // Se o nome for gigantesco, ele põe "..." e não quebra a tela
+            );
+          }),
+
+          // LADO DIREITO: Notificações
           IconButton(
             onPressed: controller.openNotifications,
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
             icon: Obx(() => Icon(
                   controller.notifications.hasUnreadNotifications.value
                       ? Icons.notifications_active
                       : Icons.notifications_outlined,
                   color: controller.notifications.hasUnreadNotifications.value
-                      ? Colors.red
-                      : Colors.black87,
+                      ? const Color(
+                          0xFFFBBF24) // Laranja/Amarelo para chamar atenção
+                      : Colors.white,
                 )),
           ),
         ],
@@ -140,17 +178,15 @@ class HomePage extends GetView<HomeIconsController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              // AJUSTE 2: Um pouquinho mais de padding para o fundo colorido acompanhar o ícone
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: iconColor.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(
-                    14), // Arredondei mais para acompanhar o tamanho
+                color: iconColor.withValues(
+                    alpha: 0.1), // Atualizado para withValues!
+                borderRadius: BorderRadius.circular(14),
               ),
               child: Icon(
                 iconData ?? Icons.grid_view_rounded,
                 color: iconColor,
-                // AJUSTE 3: O tamanho do ícone em si! Subimos de 28 para 38.
                 size: 38,
               ),
             ),

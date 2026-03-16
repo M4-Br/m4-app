@@ -9,8 +9,10 @@ import 'package:app_flutter_miban4/features/home/controller/home_controller.dart
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeMenuItem {
   final String id;
@@ -91,6 +93,23 @@ class HomeIconsController extends BaseController {
     super.onInit();
     checkProfileStatus();
     fetchIcons();
+  }
+
+  Future<void> openFaciapLink() async {
+    const String url = 'https://site.faciap.org.br/';
+    const String title = 'Sobre a FACIAP';
+
+    if (kIsWeb) {
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } else {
+      Get.toNamed(AppRoutes.webView, arguments: {
+        'url': url,
+        'title': title,
+      });
+    }
   }
 
   Future<void> checkProfileStatus() async {

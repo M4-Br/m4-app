@@ -3,6 +3,7 @@ import 'package:app_flutter_miban4/features/digitalAccount/presentation/digital_
 import 'package:app_flutter_miban4/features/home/controller/home_controller.dart';
 import 'package:app_flutter_miban4/features/home/presentation/home_page.dart';
 import 'package:app_flutter_miban4/features/marketplace/presentation/marketplace_page.dart';
+import 'package:app_flutter_miban4/features/orders/presentation/orders_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/profile_page.dart';
 
 import 'package:flutter/material.dart';
@@ -17,8 +18,7 @@ class HomeViewPage extends GetView<HomeViewController> {
       HomePage(),
       DigitalAccountPage(),
       MarketplacePage(),
-      const Scaffold(
-          body: Center(child: Text('Página: Pedidos'))), // 3: Pedidos
+      OrdersPage(), // 3: Pedidos
       const ProfilePage(), // 5: Perfil
     ];
 
