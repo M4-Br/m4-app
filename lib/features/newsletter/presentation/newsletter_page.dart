@@ -227,7 +227,6 @@ class NewsletterPage extends GetView<NewsletterController> {
   Widget _buildNewsCard(NewsletterModel news) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -240,74 +239,97 @@ class NewsletterPage extends GetView<NewsletterController> {
         ],
         border: Border.all(color: Colors.grey.shade100),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Tag e Data
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF3E8FF), // Roxo claro
-                  borderRadius: BorderRadius.circular(6),
+      // Adicionamos o Material e o InkWell aqui!
+      child: Material(
+        color: Colors.transparent, // Mantém a cor do Container pai
+        child: InkWell(
+          onTap: () => controller.openNews(news), // Chama a nossa nova função
+          borderRadius: BorderRadius.circular(
+              12), // Faz o clique respeitar as bordas arredondadas
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Tag e Data
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF3E8FF),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        news.category,
+                        style: const TextStyle(
+                          color: Color(0xFF7E22CE),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.calendar_today_outlined,
+                            size: 14, color: Colors.grey),
+                        const SizedBox(width: 4),
+                        Text(
+                          news.date,
+                          style:
+                              const TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                child: Text(
-                  news.category,
+                const SizedBox(height: 12),
+                // Título
+                Text(
+                  news.title,
                   style: const TextStyle(
-                    color: Color(0xFF7E22CE), // Roxo escuro
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
                   ),
                 ),
-              ),
-              Row(
-                children: [
-                  const Icon(Icons.calendar_today_outlined,
-                      size: 14, color: Colors.grey),
-                  const SizedBox(width: 4),
-                  Text(
-                    news.date,
-                    style: const TextStyle(color: Colors.grey, fontSize: 12),
+                const SizedBox(height: 6),
+                // Descrição
+                Text(
+                  news.description,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.grey.shade600,
                   ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          // Título
-          Text(
-            news.title,
-            style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
+                ),
+                const SizedBox(height: 12),
+                // Fonte (e ícone indicando que é um link externo)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(Icons.article_outlined,
+                            size: 16, color: Colors.grey),
+                        const SizedBox(width: 4),
+                        Text(
+                          news.source,
+                          style:
+                              const TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                    // Opcional: Um íconezinho de "abrir" para deixar claro que é clicável
+                    Icon(Icons.open_in_new,
+                        size: 14, color: Colors.grey.shade400),
+                  ],
+                )
+              ],
             ),
           ),
-          const SizedBox(height: 6),
-          // Descrição
-          Text(
-            news.description,
-            style: TextStyle(
-              fontSize: 13,
-              color: Colors.grey.shade600,
-            ),
-          ),
-          const SizedBox(height: 12),
-          // Fonte
-          Row(
-            children: [
-              const Icon(Icons.article_outlined, size: 16, color: Colors.grey),
-              const SizedBox(width: 4),
-              Text(
-                news.source,
-                style: const TextStyle(color: Colors.grey, fontSize: 12),
-              ),
-            ],
-          )
-        ],
+        ),
       ),
     );
   }
