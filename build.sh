@@ -19,6 +19,7 @@ echo "SENTRY_SECURE=$SENTRY_SECURE" >> .env
 echo "URL_RELEASE=$URL_RELEASE" >> .env
 echo "URL_HOMOL=$URL_HOMOL" >> .env
 echo "NEWS_KEY=$NEWS_KEY">> .env
+echo "GEMINI_KEY=$GEMINI_KEY">> .env
 
 echo "🏗️ Fazendo o build do projeto..."
 
