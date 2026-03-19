@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/core/config/routes/accountingPages/accounting_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/aiPages/ai_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/barcodePages/barcode_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/cameraPage/camera_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/cashbackPage/cashback_pages.dart';
@@ -100,6 +101,9 @@ class AppPages {
     ...ContactPages.pages,
 
     //Clients
-    ...ClientsPages.pages
+    ...ClientsPages.pages,
+
+    //AI
+    ...AiPages.pages
   ];
 }

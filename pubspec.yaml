@@ -75,6 +75,7 @@ dependencies:
   gal: ^2.3.2
   package_info_plus: ^9.0.0
   fl_chart: ^1.2.0
+  google_generative_ai: ^0.4.7
 
 
 dev_dependencies:

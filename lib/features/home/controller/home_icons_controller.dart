@@ -2,7 +2,6 @@ import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
-import 'package:app_flutter_miban4/features/AI/widget/ai_show_modal.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_verify_steps_repository.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_controller.dart';
@@ -222,12 +221,6 @@ class HomeIconsController extends BaseController {
   }
 
   void openAiSearch() {
-    // --- RESTRIÇÕES DESATIVADAS TEMPORARIAMENTE ---
-    /*
-    if (incomplete.value) { ... }
-    if (isAccountProcessing.value) { ... }
-    */
-
-    AiModal.openAiSearch();
+    Get.toNamed(AppRoutes.aiPage);
   }
 }

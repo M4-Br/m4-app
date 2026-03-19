@@ -150,4 +150,7 @@ class AppRoutes {
 
   //Stock
   static const String stock = '/stock';
+
+  //AI
+  static const String aiPage = '/ai';
 }
