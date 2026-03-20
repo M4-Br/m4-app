@@ -1,4 +1,14 @@
 class CapacityResponse {
+  final int incomeFamily;
+  final String house;
+  final String transport;
+  final int houseCost;
+  final int transportCost;
+  final int utilitiesCost;
+  final int otherCost;
+  final bool updateRegister;
+  final String? updateDate;
+
   const CapacityResponse({
     required this.incomeFamily,
     required this.house,
@@ -8,62 +18,61 @@ class CapacityResponse {
     required this.utilitiesCost,
     required this.otherCost,
     required this.updateRegister,
-    required this.updateDate,
+    this.updateDate,
   });
 
   factory CapacityResponse.fromJson(Map<String, dynamic> json) {
     return CapacityResponse(
-      // CORRETO: Recebe o int de centavos
-      incomeFamily: json['income_family'] as int,
-
-      // CORRETO: Recebe a String do tipo (ex: "" ou "rent_home")
-      house: json['house'] as String,
-
-      // CORRETO: Recebe a String do tipo (ex: "" ou "public")
-      transport: json['transport'] as String,
-
-      // CORRETO: Recebe o int de centavos
-      houseCost: json['house_cost'] as int,
-
-      // CORRETO: Recebe o int de centavos
-      transportCost: json['transport_cost'] as int,
-
-      // CORRETO: Recebe o int de centavos
-      utilitiesCost: json['utilities_cost'] as int,
-
-      // CORRETO: Recebe o int de centavos
-      otherCost: json['other_cost'] as int,
-
-      updateRegister: json['update_register'] as bool,
-
-      // Adicionei isso baseado no seu JSON
+      incomeFamily: json['income_family'] as int? ?? 0,
+      house: json['house'] as String? ?? '',
+      transport: json['transport'] as String? ?? '',
+      houseCost: json['house_cost'] as int? ?? 0,
+      transportCost: json['transport_cost'] as int? ?? 0,
+      utilitiesCost: json['utilities_cost'] as int? ?? 0,
+      otherCost: json['other_cost'] as int? ?? 0,
+      updateRegister: json['update_register'] as bool? ?? false,
       updateDate: json['update_date'] as String?,
     );
   }
+}
 
-  //TODO: CORRIGIR
-
-  // CORRETO: int (centavos)
-  final int incomeFamily;
-
-  // CORRETO: String (tipo)
+class CapacityRequest {
+  final String userId;
+  final String groupId;
+  final String incomeFamily;
+  final String peopleFamily;
   final String house;
-
-  // CORRETO: String (tipo)
   final String transport;
+  final String houseCost;
+  final String transportCost;
+  final String utilitiesCost;
+  final String otherCost;
 
-  // CORRETO: int (centavos)
-  final int houseCost;
+  CapacityRequest({
+    required this.userId,
+    required this.groupId,
+    required this.incomeFamily,
+    required this.peopleFamily,
+    required this.house,
+    required this.transport,
+    required this.houseCost,
+    required this.transportCost,
+    required this.utilitiesCost,
+    required this.otherCost,
+  });
 
-  // CORRETO: int (centavos)
-  final int transportCost;
-
-  // CORRETO: int (centavos)
-  final int utilitiesCost;
-
-  // CORRETO: int (centavos)
-  final int otherCost;
-
-  final bool updateRegister;
-  final String? updateDate;
+  Map<String, dynamic> toJson() {
+    return {
+      'user_id': userId,
+      'group_account_id': groupId,
+      'income_family': incomeFamily,
+      'people_family': peopleFamily,
+      'house': house,
+      'transport': transport,
+      'house_cost': houseCost,
+      'transport_cost': transportCost,
+      'utilities_cost': utilitiesCost,
+      'other_cost': otherCost,
+    };
+  }
 }

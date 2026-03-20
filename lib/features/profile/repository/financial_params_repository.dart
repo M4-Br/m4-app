@@ -15,4 +15,10 @@ class FinancialParamsRepository {
         endpoint: '${AppEndpoints.userCapacity}$userId',
         fromJson: (json) => CapacityResponse.fromJson(json));
   }
+
+  Future<CapacityRequest> postCapacity(
+      {required CapacityRequest request}) async {
+    return await ApiConnection()
+        .post(endpoint: AppEndpoints.postFinancial, body: request.toJson());
+  }
 }

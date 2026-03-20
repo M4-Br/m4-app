@@ -102,4 +102,7 @@ class AppEndpoints {
   static const String marketplaceCategory = '/partner/category';
   static const String marketplaceProduct = '/partner/product';
   static const String marketplaceale = '/partner/product_sale';
+
+  //Financial Data
+  static const String postFinancial = '/payment_capacity';
 }

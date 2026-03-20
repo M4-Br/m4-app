@@ -201,12 +201,14 @@ class AccountingController extends BaseController {
   void saveLocalTransaction() {
     if (!formKey.currentState!.validate()) return;
 
-    double amount = double.tryParse(amountController.text
-            .replaceAll('R\$', '')
-            .replaceAll('.', '')
-            .replaceAll(',', '.')
-            .trim()) ??
-        0.0;
+    // 1. Pega o texto limpo, ignorando qualquer coisa que não seja número
+    String cleanText = amountController.text.replaceAll(RegExp(r'[^0-9]'), '');
+
+    // 2. Se estiver vazio, define como '0'
+    if (cleanText.isEmpty) cleanText = '0';
+
+    // 3. Converte para inteiro e divide por 100 (ex: "15000" vira 150.00)
+    double amount = double.parse(cleanText);
 
     final newTx = AppTransaction(
       id: 'local_${DateTime.now().millisecondsSinceEpoch}',

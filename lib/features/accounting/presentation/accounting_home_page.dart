@@ -228,7 +228,7 @@ class AccountingPage extends GetView<AccountingController> {
           Text(value,
               style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold)),
         ],
       ),
