@@ -84,7 +84,7 @@ class AccountingPage extends GetView<AccountingController> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
-              Text('Contabilidade Gerencial',
+              Text('Gestão Fácil',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,

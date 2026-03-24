@@ -66,7 +66,7 @@ class HomeIconsController extends BaseController {
           id: 'stock', title: 'Estoque', iconData: Icons.receipt_long_outlined),
       HomeMenuItem(
           id: 'accounting',
-          title: 'Contabilidade',
+          title: 'Gestão Fácil',
           iconData: Icons.pie_chart_outline),
       HomeMenuItem(
           id: 'partners',
