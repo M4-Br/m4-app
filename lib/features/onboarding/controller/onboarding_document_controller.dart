@@ -4,8 +4,11 @@ import 'package:app_flutter_miban4/core/helpers/connection/api_exception.dart';
 import 'package:app_flutter_miban4/features/onboarding/repository/onboarding_document_repository.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OnboardingDocumentController extends GetxController {
   final key = GlobalKey<FormState>();
@@ -13,6 +16,9 @@ class OnboardingDocumentController extends GetxController {
 
   final isLoading = false.obs;
   final enable = false.obs;
+
+  final RxBool termsAccepted = false.obs;
+  final RxBool hasReadTerms = false.obs;
 
   @override
   void onInit() {
@@ -69,5 +75,43 @@ class OnboardingDocumentController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  Future<void> openTerms() async {
+    // 1. Marca que ele já clicou para ler, liberando o Checkbox
+    hasReadTerms.value = true;
+
+    const String url = 'https://yooconn-m4.lovable.app/documents/terms';
+    const String title = 'Termos e Condições';
+
+    // 2. Abre híbrido (Web Launcher ou WebView Mobile)
+    if (kIsWeb) {
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } else {
+      Get.toNamed(AppRoutes.webView, arguments: {
+        // Confirme se a rota é essa no seu app_routes
+        'url': url,
+        'title': title,
+      });
+    }
+  }
+
+  void toggleTerms(bool? value) {
+    if (!hasReadTerms.value) {
+      Get.snackbar(
+        'Atenção',
+        'Por favor, leia os Termos e Condições primeiro clicando no link.',
+        backgroundColor: Colors.orange.shade100,
+        colorText: Colors.orange.shade900,
+      );
+      return;
+    }
+    termsAccepted.value = value ?? false;
+
+    // Se você tiver uma função que revalida o botão (ex: checkForm()), chame ela aqui:
+    // checkForm();
   }
 }
