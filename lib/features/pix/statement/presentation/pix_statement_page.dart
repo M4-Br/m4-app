@@ -23,7 +23,7 @@ class PixStatementPage extends GetView<PixStatementController> {
           color: Colors.white,
         ),
         centerTitle: true,
-        backgroundColor: primaryColor,
+        backgroundColor: Color(0xFF065F46),
         leading: IconButton(
           onPressed: () {
             FocusScope.of(context).unfocus();
@@ -110,7 +110,7 @@ class PixStatementPage extends GetView<PixStatementController> {
   Widget _buildCard(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: primaryColor,
+      color: Color(0xFF065F46),
       child: Padding(
         padding: const EdgeInsets.all(AppDimens.kDefaultPadding),
         child: Column(

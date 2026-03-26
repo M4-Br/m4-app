@@ -27,7 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: AppText.titleMedium(context, title, color: Colors.white),
       centerTitle: true,
-      backgroundColor: backgroundColor ?? primaryColor,
+      backgroundColor: Color(0xFF065F46),
       elevation: 0,
       actions: actions,
       leading: showBackButton

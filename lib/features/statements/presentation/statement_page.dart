@@ -30,7 +30,7 @@ class StatementPage extends GetView<StatementController> {
               color: Colors.white,
             )),
         centerTitle: true,
-        backgroundColor: primaryColor,
+        backgroundColor: Color(0xFF065F46),
         actions: [
           IconButton(
             tooltip: 'Selecionar período',
@@ -108,7 +108,7 @@ class StatementPage extends GetView<StatementController> {
   Widget _buildCard(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: primaryColor,
+      color: Color(0xFF065F46),
       child: Padding(
         padding: const EdgeInsets.all(AppDimens.kDefaultPadding),
         child: Column(

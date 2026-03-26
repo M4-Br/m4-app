@@ -1,5 +1,4 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
-import 'package:app_flutter_miban4/features/balance/presentation/card_widget.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart';
 import 'package:app_flutter_miban4/features/digitalAccount/controller/digital_account_controller.dart';
@@ -20,8 +19,8 @@ class DigitalAccountPage extends GetView<DigitalAccountController> {
       body: CustomPageBody(
         enableIntrinsicHeight: false,
         children: [
-          const SizedBox(height: 16),
-          const CardWidget(),
+          // const SizedBox(height: 16),
+          // const CardWidget(),
           const SizedBox(height: 24),
           _buildUnifiedServicesList(),
           const SizedBox(height: 24),

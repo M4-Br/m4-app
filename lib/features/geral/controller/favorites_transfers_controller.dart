@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/features/geral/model/favorites_response.dart'
 import 'package:app_flutter_miban4/features/geral/repository/favorites_repository.dart';
 import 'package:get/get.dart';
 
-class FavoritesController extends BaseController {
+class FavoritesTransfersController extends BaseController {
   final FavoritesRepository _repository = FavoritesRepository();
   final favoritesList = <FavoriteContactModel>[].obs;
 

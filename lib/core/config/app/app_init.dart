@@ -3,6 +3,7 @@ import 'package:app_flutter_miban4/core/config/app/app_lifecycle_controller.dart
 import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
 import 'package:app_flutter_miban4/core/config/auth/service/auth_service.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:app_flutter_miban4/core/helpers/controller/tracking_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/sentry_helper.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
 import 'package:app_flutter_miban4/features/completeProfile/controller/redirect_complete_profile_controller.dart';
@@ -24,6 +25,8 @@ class AppSetup {
     AppLogger.I().debug('Auth Service Initialized');
 
     Get.put(AppLifecycleController(), permanent: true);
+
+    Get.put(TrackerController(), permanent: true);
 
     Get.put(UserRx(), permanent: true);
     AppLogger.I().debug('User RX Initialized');

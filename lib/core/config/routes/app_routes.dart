@@ -153,4 +153,7 @@ class AppRoutes {
 
   //AI
   static const String aiPage = '/ai';
+
+  //fav
+  static const String favButtons = '/favorites';
 }

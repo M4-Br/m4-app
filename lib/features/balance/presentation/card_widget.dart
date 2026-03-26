@@ -1,12 +1,32 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
-import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
+import 'package:app_flutter_miban4/core/helpers/extensions/numbers.dart'; // Mantido caso o toBRL venha daqui
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
+import 'package:flutter/foundation.dart'; // Necessário para o kIsWeb
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart'; // Necessário para abrir links na Web
 
 class CardWidget extends GetView<BalanceController> {
   const CardWidget({super.key});
+
+  // --- FUNÇÃO PARA ABRIR A URL HÍBRIDA ---
+  Future<void> _openNews() async {
+    const String url = 'https://site.faciap.org.br/noticias/';
+    const String title = 'Notícias FACIAP';
+
+    if (kIsWeb) {
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } else {
+      Get.toNamed(AppRoutes.webView, arguments: {
+        'url': url,
+        'title': title,
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +53,8 @@ class CardWidget extends GetView<BalanceController> {
     }
 
     return GestureDetector(
-      onTap: () => Get.toNamed(AppRoutes.offersHome),
+      // --- ONTAP ATUALIZADO AQUI ---
+      onTap: _openNews,
       child: Center(
         // Garante que na Web o card fique centralizado se houver muito espaço
         child: Container(
@@ -48,8 +69,8 @@ class CardWidget extends GetView<BalanceController> {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.black
-                    .withOpacity(0.15), // Uma sombrinha leve para dar destaque
+                color: Colors.black.withValues(
+                    alpha: 0.15), // Uma sombrinha leve para dar destaque
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),

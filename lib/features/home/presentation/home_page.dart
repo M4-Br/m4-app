@@ -1,26 +1,13 @@
-import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
+import 'package:app_flutter_miban4/features/balance/presentation/card_widget.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_icons_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomePage extends GetView<HomeIconsController> {
-  HomePage({super.key});
+  const HomePage({super.key});
 
-  final Map<String, Color> _iconColors = {
-    'cashback': const Color(0xFF1ABC9C),
-    'marketplace': const Color(0xFFE67E22),
-    'financial': const Color(0xFF3498DB),
-    'credit': const Color(0xFF9B59B6),
-    'news': const Color(0xFFE74C3C),
-    'mei': const Color(0xFF2980B9),
-    'ai': const Color(0xFF16A085),
-    'stock': const Color(0xFF34495E),
-    'accounting': const Color(0xFF8E44AD),
-    'partners': const Color(0xFF1E00AD),
-    'clients': const Color(0xFF2C3E50),
-    'contact': const Color(0xFF00B8D4),
-  };
+  final Color _pastelColor = const Color(0xFF8ABAA5);
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +17,10 @@ class HomePage extends GetView<HomeIconsController> {
         child: Column(
           children: [
             _buildCustomHeader(),
+            SizedBox(
+              height: 16,
+            ),
+            CardWidget(),
             Expanded(
               child: Obx(() {
                 if (controller.isLoading.value) {
@@ -54,12 +45,11 @@ class HomePage extends GetView<HomeIconsController> {
                   itemCount: menuItems.length,
                   itemBuilder: (context, index) {
                     final item = menuItems[index];
-                    final iconColor = _iconColors[item.id] ?? primaryColor;
 
                     return _buildGridCard(
                       title: item.title,
                       iconData: item.iconData,
-                      iconColor: iconColor,
+                      iconColor: _pastelColor,
                       onTap: () =>
                           controller.onMenuOptionTap(item.id, item.title),
                     );
@@ -73,7 +63,6 @@ class HomePage extends GetView<HomeIconsController> {
     );
   }
 
-  // --- WIDGET DO CABEÇALHO (BANNER VERDE) ---
   // --- WIDGET DO CABEÇALHO (BANNER VERDE) ---
   Widget _buildCustomHeader() {
     return Container(
@@ -180,8 +169,7 @@ class HomePage extends GetView<HomeIconsController> {
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: iconColor.withValues(
-                    alpha: 0.1), // Atualizado para withValues!
+                color: iconColor.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Icon(

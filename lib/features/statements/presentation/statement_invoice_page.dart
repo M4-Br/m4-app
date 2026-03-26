@@ -23,7 +23,7 @@ class StatementInvoiceScreen extends GetView<StatementInvoiceController> {
           color: Colors.white,
         ),
         foregroundColor: Colors.white,
-        backgroundColor: primaryColor,
+        backgroundColor: Color(0xFF065F46),
         elevation: 0,
       ),
       body: Obx(() {

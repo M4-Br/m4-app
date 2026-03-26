@@ -31,7 +31,7 @@ class PixHomePage extends GetView<PixHomeController> {
   Widget _buildCard(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: primaryColor,
+      color: Color(0xFF065F46),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

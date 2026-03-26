@@ -1,7 +1,7 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
-import 'package:app_flutter_miban4/features/geral/controller/favorites_controller.dart';
+import 'package:app_flutter_miban4/features/geral/controller/favorites_transfers_controller.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_controller.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_icons_controller.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
@@ -16,7 +16,9 @@ class HomeViewBinding extends Bindings {
     Get.put<BalanceController>(
         BalanceController(balanceRx: Get.find<BalanceRx>()));
 
-    Get.lazyPut<FavoritesController>(() => FavoritesController(), fenix: true);
+    Get.lazyPut<FavoritesTransfersController>(
+        () => FavoritesTransfersController(),
+        fenix: true);
 
     Get.lazyPut<HomeIconsController>(() => HomeIconsController(
         notifications: Get.find<NotificationsController>(),

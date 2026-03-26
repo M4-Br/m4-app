@@ -325,7 +325,7 @@ class StringsEnUS {
     'display2': 'Display Confirmação de Telefone',
     'phone_confirm': 'Phone Confirmation',
     'balance': 'Balance Status',
-    'balance_available': 'Savings',
+    'balance_available': 'Balance',
     'balance_transational': 'Savings Balance',
     'balance_insufficient': 'Insufficient Balance',
     'home_view': 'Home Buttons',

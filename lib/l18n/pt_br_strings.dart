@@ -330,7 +330,7 @@ class StringsPtBR {
     'display2': 'Display Confirmação de Telefone',
     'phone_confirm': 'Confirmação de Telefone',
     'balance': 'Balance Status',
-    'balance_available': 'Economias',
+    'balance_available': 'Saldo',
     'balance_transational': 'Saldo Economias',
     'balance_insufficient': 'Saldo insuficiente',
     'home_view': 'Home Buttons',

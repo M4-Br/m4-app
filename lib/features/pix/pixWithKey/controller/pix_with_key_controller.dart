@@ -3,7 +3,7 @@ import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/formatters/maks_apply.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
-import 'package:app_flutter_miban4/features/geral/controller/favorites_controller.dart';
+import 'package:app_flutter_miban4/features/geral/controller/favorites_transfers_controller.dart';
 import 'package:app_flutter_miban4/features/geral/model/favorites_response.dart';
 import 'package:app_flutter_miban4/features/pix/pixWithKey/repository/pix_with_key_repository.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class PixWithKeyController extends BaseController {
-  final FavoritesController fav;
+  final FavoritesTransfersController fav;
   PixWithKeyController(this.fav);
 
   final PixWithKeyRepository _pixRepo = PixWithKeyRepository();

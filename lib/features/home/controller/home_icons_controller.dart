@@ -1,6 +1,7 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
+import 'package:app_flutter_miban4/core/helpers/controller/tracking_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:app_flutter_miban4/features/completeProfile/repository/complete_profile_verify_steps_repository.dart';
@@ -8,6 +9,8 @@ import 'package:app_flutter_miban4/features/home/controller/home_controller.dart
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
+// TODO: Lembre-se de importar o caminho correto do seu TrackerController aqui!
+// import 'package:app_flutter_miban4/features/tracker/controller/tracker_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,6 +51,10 @@ class HomeIconsController extends BaseController {
   List<HomeMenuItem> get combinedMenuList {
     return [
       HomeMenuItem(
+          id: 'favorites',
+          title: 'Preferências',
+          iconData: Icons.star_border_rounded),
+      HomeMenuItem(
           id: 'cashback',
           title: 'Membresia',
           iconData: Icons.account_balance_wallet_outlined),
@@ -62,8 +69,9 @@ class HomeIconsController extends BaseController {
           id: 'mei', title: 'Serviços MEI', iconData: Icons.business_outlined),
       HomeMenuItem(
           id: 'ai', title: 'IA', iconData: Icons.auto_awesome_outlined),
-      HomeMenuItem(
-          id: 'stock', title: 'Estoque', iconData: Icons.receipt_long_outlined),
+      // --- ESTOQUE OCULTO TEMPORARIAMENTE ---
+      // HomeMenuItem(
+      //     id: 'stock', title: 'Estoque', iconData: Icons.receipt_long_outlined),
       HomeMenuItem(
           id: 'accounting',
           title: 'Gestão Fácil',
@@ -82,7 +90,7 @@ class HomeIconsController extends BaseController {
           iconData: Icons.headset_mic_outlined),
       HomeMenuItem(
           id: 'healt',
-          title: 'Saúde',
+          title: 'Telemedicina',
           iconData: Icons.health_and_safety_outlined),
     ];
   }
@@ -155,6 +163,41 @@ class HomeIconsController extends BaseController {
     }, message: 'Erro ao carregar os ícones', showErrorToast: false);
   }
 
+  // --- DICIONÁRIO DE TRACKING DE CLIQUES ---
+  // Passe esta lista de IDs para o seu backend saber quem é quem!
+  int _getTrackingId(String stringId) {
+    switch (stringId) {
+      case 'cashback':
+        return 1; // Membresia
+      case 'marketplace':
+        return 2; // Marketplace
+      case 'score':
+        return 3; // Crédito
+      case 'news':
+        return 4; // Notícias
+      case 'ai':
+        return 5; // IA
+      case 'accounting':
+        return 6; // Gestão Fácil
+      case 'partners':
+        return 7; // Nossos Parceiros
+      case 'clients':
+        return 8; // Meus Clientes
+      case 'contact':
+        return 9; // Fale Conosco
+
+      // Itens não solicitados para trackear (retornam 0)
+      case 'favorites':
+        return 0;
+      case 'mei':
+        return 0;
+      case 'healt':
+        return 0;
+      default:
+        return 0;
+    }
+  }
+
   void onMenuOptionTap(String id, String title) async {
     // --- RESTRIÇÕES DESATIVADAS TEMPORARIAMENTE ---
     /*
@@ -162,19 +205,31 @@ class HomeIconsController extends BaseController {
     if (isAccountProcessing.value) { ... }
     */
 
+    // --- 1. REGISTRA O CLIQUE LOCALMENTE ---
+    int trackingId = _getTrackingId(id);
+    if (trackingId != 0) {
+      TrackerController.to.trackClick(trackingId);
+      AppLogger.I().info('Tracked click for $title (ID: $trackingId)');
+    }
+
+    // --- 2. NAVEGAÇÃO NORMAL DO APP ---
     switch (id) {
+      case 'favorites':
+        Get.toNamed(AppRoutes.favButtons);
+        AppLogger.I().info('Going to Favorites Page');
+        break;
       case 'marketplace':
         homeViewController.onItemTapped(2);
         AppLogger.I().info('Going to Marketplace Page');
         break;
       case 'accounting':
-        Get.toNamed(AppRoutes.accountingHome); // Mapeado da sua rota antiga
+        Get.toNamed(AppRoutes.accountingHome);
         AppLogger.I().info('Going to Accounting');
         break;
       case 'ai':
         openAiSearch();
         break;
-      case 'statement_btn': // Usado dentro do BottomSheet da Carteira
+      case 'statement_btn':
         Get.toNamed(AppRoutes.statement);
         AppLogger.I().info('Going to Statement Page');
         break;
@@ -206,10 +261,10 @@ class HomeIconsController extends BaseController {
         Get.toNamed(AppRoutes.clients);
         AppLogger.I().info('Going to Clients Page');
         break;
-      case 'stock':
-        Get.toNamed(AppRoutes.stock);
-        AppLogger.I().info('Going to Stock Page');
-        break;
+      // case 'stock':
+      //   Get.toNamed(AppRoutes.stock);
+      //   AppLogger.I().info('Going to Stock Page');
+      //   break;
       default:
         AppLogger.I().info('Menu option $id not implemented');
         ShowToaster.toasterInfo(message: 'Em breve $title funcionalidade.');
