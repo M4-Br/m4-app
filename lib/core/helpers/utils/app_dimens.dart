@@ -43,10 +43,10 @@ class AppDimens {
   static const double elevation = 10;
 
   static List<BoxShadow> defaultBoxShadow(BuildContext context) => <BoxShadow>[
-    BoxShadow(
-      color: Theme.of(context).cardTheme.shadowColor ?? Colors.black54,
-      blurRadius: 10,
-      offset: const Offset(2, 4),
-    ),
-  ];
+        BoxShadow(
+          color: Theme.of(context).cardTheme.shadowColor ?? Colors.black54,
+          blurRadius: 10,
+          offset: const Offset(2, 4),
+        ),
+      ];
 }

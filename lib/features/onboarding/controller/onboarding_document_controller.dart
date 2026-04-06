@@ -6,7 +6,6 @@ import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -37,14 +36,27 @@ class OnboardingDocumentController extends GetxController {
   }
 
   Future<void> register() async {
-    if (!enable.value) return;
-
-    if (key.currentState?.validate() != true) {
-      return;
+    if (!enable.value) {
+      ShowToaster.toasterInfo(
+          message: 'Preencha o CPF completo.', isError: true);
+      return; // Trava o fluxo aqui!
     }
 
     if (!documentController.text.isCpf) {
-      ShowToaster.toasterInfo(message: 'Digite um CPF Válido');
+      ShowToaster.toasterInfo(message: 'Digite um CPF válido.', isError: true);
+      return; // Trava o fluxo aqui!
+    }
+
+    if (!termsAccepted.value) {
+      ShowToaster.toasterInfo(
+          message:
+              'Você precisa ler e concordar com os Termos e Condições para continuar.',
+          isError: true);
+      return;
+    }
+
+    if (key.currentState?.validate() != true) {
+      return;
     }
 
     isLoading.value = true;
@@ -78,13 +90,11 @@ class OnboardingDocumentController extends GetxController {
   }
 
   Future<void> openTerms() async {
-    // 1. Marca que ele já clicou para ler, liberando o Checkbox
     hasReadTerms.value = true;
 
     const String url = 'https://yooconn-m4.lovable.app/documents/terms';
     const String title = 'Termos e Condições';
 
-    // 2. Abre híbrido (Web Launcher ou WebView Mobile)
     if (kIsWeb) {
       final uri = Uri.parse(url);
       if (await canLaunchUrl(uri)) {
@@ -92,7 +102,6 @@ class OnboardingDocumentController extends GetxController {
       }
     } else {
       Get.toNamed(AppRoutes.webView, arguments: {
-        // Confirme se a rota é essa no seu app_routes
         'url': url,
         'title': title,
       });
@@ -110,8 +119,5 @@ class OnboardingDocumentController extends GetxController {
       return;
     }
     termsAccepted.value = value ?? false;
-
-    // Se você tiver uma função que revalida o botão (ex: checkForm()), chame ela aqui:
-    // checkForm();
   }
 }

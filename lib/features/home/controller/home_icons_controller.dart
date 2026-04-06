@@ -9,8 +9,6 @@ import 'package:app_flutter_miban4/features/home/controller/home_controller.dart
 import 'package:app_flutter_miban4/features/home/model/home_icons_response.dart';
 import 'package:app_flutter_miban4/features/home/repository/fetch_icons_repository.dart';
 import 'package:app_flutter_miban4/features/notifications/controller/notifications_controller.dart';
-// TODO: Lembre-se de importar o caminho correto do seu TrackerController aqui!
-// import 'package:app_flutter_miban4/features/tracker/controller/tracker_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -73,9 +71,11 @@ class HomeIconsController extends BaseController {
       // HomeMenuItem(
       //     id: 'stock', title: 'Estoque', iconData: Icons.receipt_long_outlined),
       HomeMenuItem(
+          id: 'myBiz', title: 'Meu Negócio', iconData: Icons.pie_chart_outline),
+      HomeMenuItem(
           id: 'accounting',
-          title: 'Gestão Fácil',
-          iconData: Icons.pie_chart_outline),
+          title: 'Contabilidade',
+          iconPath: 'assets/icons/ic_contabil.png'),
       HomeMenuItem(
           id: 'partners',
           title: 'Nossos Parceiros',
@@ -89,7 +89,7 @@ class HomeIconsController extends BaseController {
           title: 'Fale Conosco',
           iconData: Icons.headset_mic_outlined),
       HomeMenuItem(
-          id: 'healt',
+          id: 'health',
           title: 'Telemedicina',
           iconData: Icons.health_and_safety_outlined),
     ];
@@ -103,7 +103,7 @@ class HomeIconsController extends BaseController {
   }
 
   Future<void> openFaciapLink() async {
-    const String url = 'https://site.faciap.org.br/';
+    const String url = 'https://site.faciap.org.br/nossos-parceiros/';
     const String title = 'Sobre a FACIAP';
 
     if (kIsWeb) {
@@ -178,20 +178,21 @@ class HomeIconsController extends BaseController {
       case 'ai':
         return 5; // IA
       case 'accounting':
-        return 6; // Gestão Fácil
+        return 6; // Contabilidade
       case 'partners':
         return 7; // Nossos Parceiros
       case 'clients':
         return 8; // Meus Clientes
       case 'contact':
         return 9; // Fale Conosco
-
+      case 'myBiz':
+        return 10;
+      case 'health':
+        return 11;
       // Itens não solicitados para trackear (retornam 0)
       case 'favorites':
         return 0;
       case 'mei':
-        return 0;
-      case 'healt':
         return 0;
       default:
         return 0;
@@ -222,9 +223,13 @@ class HomeIconsController extends BaseController {
         homeViewController.onItemTapped(2);
         AppLogger.I().info('Going to Marketplace Page');
         break;
+      case 'myBiz':
+        Get.toNamed(AppRoutes.myBiz);
+        AppLogger.I().info('Going to My Biz PAge');
+        break;
       case 'accounting':
         Get.toNamed(AppRoutes.accountingHome);
-        AppLogger.I().info('Going to Accounting');
+        AppLogger.I().info('Going to Accounting Page');
         break;
       case 'ai':
         openAiSearch();
@@ -260,6 +265,10 @@ class HomeIconsController extends BaseController {
       case 'clients':
         Get.toNamed(AppRoutes.clients);
         AppLogger.I().info('Going to Clients Page');
+        break;
+      case 'health':
+        Get.toNamed(AppRoutes.healthHome);
+        AppLogger.I().info('Going to Health Page');
         break;
       // case 'stock':
       //   Get.toNamed(AppRoutes.stock);

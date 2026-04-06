@@ -19,6 +19,20 @@ Widget buildCustomInput({
     maxLength: maxLength,
     inputFormatters: formatters,
     obscureText: obscureText ?? false,
+
+    // --- A MÁGICA CONTRA O BUG DO CURSOR AQUI ---
+    onTap: () {
+      // Se o Flutter criar uma seleção (onde o início é diferente do fim)
+      if (controller.selection.baseOffset !=
+          controller.selection.extentOffset) {
+        // Forçamos o cursor a ficar exatamente onde o dedo do usuário tocou
+        controller.selection = TextSelection.collapsed(
+          offset: controller.selection.extentOffset,
+        );
+      }
+    },
+    // --------------------------------------------
+
     decoration: InputDecoration(
       suffixIcon: obscureText != null
           ? IconButton(

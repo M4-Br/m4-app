@@ -1,12 +1,11 @@
-
-class HomeIconsResponse{
+class HomeIconsResponse {
   const HomeIconsResponse({
     required this.id,
     required this.position,
     required this.title,
     required this.icon,
     required this.isActive,
-});
+  });
 
   factory HomeIconsResponse.fromJson(Map<String, dynamic> json) {
     return HomeIconsResponse(
@@ -18,9 +17,9 @@ class HomeIconsResponse{
     );
   }
 
-final String id;
-final int position;
-final String title;
-final String icon;
-final bool isActive;
+  final String id;
+  final int position;
+  final String title;
+  final String icon;
+  final bool isActive;
 }

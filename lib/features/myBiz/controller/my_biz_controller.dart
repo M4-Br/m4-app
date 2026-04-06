@@ -1,13 +1,13 @@
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
-import 'package:app_flutter_miban4/features/accounting/model/accounting_transaction.dart';
+import 'package:app_flutter_miban4/features/accounting/model/accounting_transaction_model.dart';
 import 'package:app_flutter_miban4/features/marketplace/repository/marketplace_sale_repository.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class AccountingController extends BaseController {
+class MyBizController extends BaseController {
   final MarketplaceSaleRepository _repository = MarketplaceSaleRepository();
   final GetStorage _storage = GetStorage();
   final String _storageKey = 'local_accounting_db';

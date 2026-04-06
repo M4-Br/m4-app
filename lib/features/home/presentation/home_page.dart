@@ -1,5 +1,4 @@
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
-import 'package:app_flutter_miban4/features/balance/presentation/card_widget.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_icons_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,10 +16,12 @@ class HomePage extends GetView<HomeIconsController> {
         child: Column(
           children: [
             _buildCustomHeader(),
+            GestureDetector(
+                onTap: () => controller.openFaciapLink(),
+                child: Image.asset('assets/images/home_banner_partners.png')),
             SizedBox(
               height: 16,
             ),
-            CardWidget(),
             Expanded(
               child: Obx(() {
                 if (controller.isLoading.value) {

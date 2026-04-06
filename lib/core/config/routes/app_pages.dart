@@ -7,10 +7,12 @@ import 'package:app_flutter_miban4/core/config/routes/clientsPages/clients_pages
 import 'package:app_flutter_miban4/core/config/routes/completeProfilePages/complete_profile_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/contactPages/contact_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/favoritePages/favorite_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/healthRoutes/health_routes.dart';
 import 'package:app_flutter_miban4/core/config/routes/homePage/home_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/loginPages/login_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/marketplacePages/marketplace_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/meiPages/mei_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/myBizPages/my_biz_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/newsletterPages/newsletter_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/notificationsPage/notifications_page.dart';
 import 'package:app_flutter_miban4/core/config/routes/offers/offers_pafes.dart';
@@ -108,6 +110,12 @@ class AppPages {
     ...AiPages.pages,
 
     //Fav
-    ...FavoritePages.pages
+    ...FavoritePages.pages,
+
+    //My Biz
+    ...MyBizPages.pages,
+
+    //Heath
+    ...HealthPages.pages
   ];
 }

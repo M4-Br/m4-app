@@ -156,4 +156,14 @@ class AppRoutes {
 
   //fav
   static const String favButtons = '/favorites';
+
+  //My Biz
+  static const String myBiz = '/my_biz';
+
+  //health
+  static const String healthHome = '/health';
+  static const String healthPlans = '$healthHome/plans';
+  static const String healthTerms = '$healthHome/terms';
+  static const String healthAttendance = '$healthHome/attendance';
+  static const String healthScheduling = '$healthAttendance/scheduling';
 }

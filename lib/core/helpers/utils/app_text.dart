@@ -3,26 +3,27 @@ import 'package:flutter/material.dart';
 
 class AppText extends Text {
   const AppText._(
-      super.data, {
-        super.style,
-        super.maxLines,
-        super.textAlign,
-        super.overflow,
-        super.key,
-      });
+    super.data, {
+    super.style,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.key,
+  });
 
   factory AppText._internal(
-      String data,
-      TextStyle? textStyle, {
-        Color? color,
-        bool bold = false,
-        bool underline = false,
-        TextOverflow? overflow,
-        TextAlign? textAlign,
-        int? maxLines,
-        Key? key,
-      }) {
-    TextStyle style = textStyle?.copyWith(color: color) ?? TextStyle(color: color);
+    String data,
+    TextStyle? textStyle, {
+    Color? color,
+    bool bold = false,
+    bool underline = false,
+    TextOverflow? overflow,
+    TextAlign? textAlign,
+    int? maxLines,
+    Key? key,
+  }) {
+    TextStyle style =
+        textStyle?.copyWith(color: color) ?? TextStyle(color: color);
 
     if (bold) {
       style = style.copyWith(fontWeight: FontWeight.w700);
@@ -43,27 +44,28 @@ class AppText extends Text {
   }
 
   factory AppText.headlineLarge(
-      BuildContext context,
-      String text, {
-        Color? color,
-        TextAlign textAlign = TextAlign.left,
-        int maxLines = 999,
-      }) => AppText._(
-    text,
-    style: context.textTheme.headlineLarge?.copyWith(color: color),
-    textAlign: textAlign,
-    maxLines: maxLines,
-  );
+    BuildContext context,
+    String text, {
+    Color? color,
+    TextAlign textAlign = TextAlign.left,
+    int maxLines = 999,
+  }) =>
+      AppText._(
+        text,
+        style: context.textTheme.headlineLarge?.copyWith(color: color),
+        textAlign: textAlign,
+        maxLines: maxLines,
+      );
 
   factory AppText.headlineMedium(
-      BuildContext context,
-      String text, {
-        Color? color,
-        bool bold = false,
-        bool underline = false,
-        TextAlign textAlign = TextAlign.left,
-        int maxLines = 999,
-      }) {
+    BuildContext context,
+    String text, {
+    Color? color,
+    bool bold = false,
+    bool underline = false,
+    TextAlign textAlign = TextAlign.left,
+    int maxLines = 999,
+  }) {
     return AppText._internal(
       text,
       context.textTheme.headlineMedium,
@@ -75,11 +77,11 @@ class AppText extends Text {
     );
   }
   factory AppText.headlineSmall(
-      BuildContext context,
-      String text, {
-        Color? color,
-        TextAlign textAlign = TextAlign.left,
-      }) {
+    BuildContext context,
+    String text, {
+    Color? color,
+    TextAlign textAlign = TextAlign.left,
+  }) {
     return AppText._(
       text,
       style: context.textTheme.headlineSmall?.copyWith(color: color),
@@ -88,14 +90,14 @@ class AppText extends Text {
   }
 
   factory AppText.titleLarge(
-      BuildContext context,
-      String text, {
-        Color? color,
-        bool bold = false,
-        bool underline = false,
-        TextAlign textAlign = TextAlign.left,
-        int maxLines = 999,
-      }) {
+    BuildContext context,
+    String text, {
+    Color? color,
+    bool bold = false,
+    bool underline = false,
+    TextAlign textAlign = TextAlign.left,
+    int maxLines = 999,
+  }) {
     return AppText._internal(
       text,
       context.textTheme.titleLarge,
@@ -108,42 +110,44 @@ class AppText extends Text {
   }
 
   factory AppText.titleMedium(
-      BuildContext context,
-      String text, {
-        Color? color,
-        TextAlign textAlign = TextAlign.left,
-        int maxLines = 999,
-      }) => AppText._(
-    text,
-    style: context.textTheme.titleMedium?.copyWith(color: color),
-    textAlign: textAlign,
-    maxLines: maxLines,
-  );
+    BuildContext context,
+    String text, {
+    Color? color,
+    TextAlign textAlign = TextAlign.left,
+    int maxLines = 999,
+  }) =>
+      AppText._(
+        text,
+        style: context.textTheme.titleMedium?.copyWith(color: color),
+        textAlign: textAlign,
+        maxLines: maxLines,
+      );
 
   factory AppText.titleSmall(
-      BuildContext context,
-      String text, {
-        Color? color,
-        TextAlign textAlign = TextAlign.left,
-        int maxLines = 999,
-      }) => AppText._(
-    text,
-    style: context.textTheme.titleSmall?.copyWith(color: color),
-    textAlign: textAlign,
-    maxLines: maxLines,
-  );
+    BuildContext context,
+    String text, {
+    Color? color,
+    TextAlign textAlign = TextAlign.left,
+    int maxLines = 999,
+  }) =>
+      AppText._(
+        text,
+        style: context.textTheme.titleSmall?.copyWith(color: color),
+        textAlign: textAlign,
+        maxLines: maxLines,
+      );
 
   factory AppText.labelLarge(
-      BuildContext context,
-      String text, {
-        Color? color,
-        bool bold = false,
-        bool underline = false,
-        TextAlign textAlign = TextAlign.left,
-        int maxLines = 999,
-        TextOverflow? overflow,
-        Key? key,
-      }) {
+    BuildContext context,
+    String text, {
+    Color? color,
+    bool bold = false,
+    bool underline = false,
+    TextAlign textAlign = TextAlign.left,
+    int maxLines = 999,
+    TextOverflow? overflow,
+    Key? key,
+  }) {
     return AppText._internal(
       text,
       context.textTheme.labelLarge,
@@ -158,15 +162,15 @@ class AppText extends Text {
   }
 
   factory AppText.labelMedium(
-      BuildContext context,
-      String text, {
-        Color? color,
-        bool bold = false,
-        bool underline = false,
-        TextAlign textAlign = TextAlign.left,
-        int maxLines = 999,
-        TextOverflow? overflow,
-      }) {
+    BuildContext context,
+    String text, {
+    Color? color,
+    bool bold = false,
+    bool underline = false,
+    TextAlign textAlign = TextAlign.left,
+    int maxLines = 999,
+    TextOverflow? overflow,
+  }) {
     return AppText._internal(
       text,
       context.textTheme.labelMedium,
@@ -180,14 +184,14 @@ class AppText extends Text {
   }
 
   factory AppText.labelSmall(
-      BuildContext context,
-      String text, {
-        Color? color,
-        TextAlign textAlign = TextAlign.left,
-        int maxLines = 999,
-        bool bold = false,
-        bool underline = false,
-      }) {
+    BuildContext context,
+    String text, {
+    Color? color,
+    TextAlign textAlign = TextAlign.left,
+    int maxLines = 999,
+    bool bold = false,
+    bool underline = false,
+  }) {
     return AppText._internal(
       text,
       context.textTheme.labelMedium,
@@ -200,14 +204,14 @@ class AppText extends Text {
   }
 
   factory AppText.bodyLarge(
-      BuildContext context,
-      String text, {
-        Color? color,
-        TextAlign textAlign = TextAlign.left,
-        bool bold = false,
-        bool underline = false,
-        int? maxLines,
-      }) {
+    BuildContext context,
+    String text, {
+    Color? color,
+    TextAlign textAlign = TextAlign.left,
+    bool bold = false,
+    bool underline = false,
+    int? maxLines,
+  }) {
     return AppText._internal(
       text,
       context.textTheme.bodyLarge,
@@ -220,14 +224,14 @@ class AppText extends Text {
   }
 
   factory AppText.bodyMedium(
-      BuildContext context,
-      String text, {
-        Color? color,
-        bool bold = false,
-        bool underline = false,
-        int? maxLines,
-        TextAlign textAlign = TextAlign.left,
-      }) {
+    BuildContext context,
+    String text, {
+    Color? color,
+    bool bold = false,
+    bool underline = false,
+    int? maxLines,
+    TextAlign textAlign = TextAlign.left,
+  }) {
     return AppText._internal(
       text,
       context.textTheme.bodyMedium,
