@@ -86,8 +86,6 @@ class CompleteProfilePersonalDataController extends BaseController {
     await executeSafe(() async {
       String formattedBirth = _formatDateToApi(birthDateEc.text);
       String formattedRgDate = _formatDateToApi(rgDateEc.text);
-      String formattedPepDate =
-          isPep.value ? _formatDateToApi(pepDateEc.text) : '';
 
       String cleanRg = rgNumberEc.text.replaceAll('.', '').replaceAll('-', '');
 

@@ -1,4 +1,3 @@
-import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/strings.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dimens.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';

@@ -1,4 +1,3 @@
-import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/extensions/numbers.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart';

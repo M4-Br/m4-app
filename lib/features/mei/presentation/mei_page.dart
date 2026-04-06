@@ -88,7 +88,7 @@ class MeiServicesPage extends GetView<MeiServicesController> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF4F46E5).withOpacity(0.3),
+            color: const Color(0xFF4F46E5).withValues(alpha: 0.3),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -167,7 +167,7 @@ class MeiServicesPage extends GetView<MeiServicesController> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -190,7 +190,7 @@ class MeiServicesPage extends GetView<MeiServicesController> {
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: service.iconColor.withOpacity(0.1),
+                        color: service.iconColor.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       // --- ÍCONE MENOR ---

@@ -47,8 +47,9 @@ class ClientsPage extends GetView<ClientsController> {
                 _buildSummaryCard(context),
                 const SizedBox(height: 24),
                 Obx(() {
-                  if (controller.filteredClients.isEmpty)
+                  if (controller.filteredClients.isEmpty) {
                     return _buildEmptyState();
+                  }
                   return _buildClientsList(
                       context); // Passando context para o Modal
                 }),

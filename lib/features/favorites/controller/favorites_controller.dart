@@ -9,7 +9,6 @@ class FavoritesController extends BaseController {
 
   // Instância do GetStorage para ler os cliques locais
   final GetStorage _storage = GetStorage();
-  final String _storageKey = 'local_button_clicks';
 
   @override
   void onInit() {

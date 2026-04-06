@@ -1,5 +1,4 @@
 // app_bar.dart
-import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

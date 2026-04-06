@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class MockStore {
@@ -19,21 +20,21 @@ class CashbackController extends BaseController {
     MockStore(name: 'Farmácia Saúde Total', category: 'Farmacia'),
   ];
 
-  @override
-  void onInit() {
-    super.onInit();
-    // No futuro, você chama a API aqui via executeSafe()
-  }
-
   void goToCoupons() {
-    print('Ir para Cupons');
+    if (kDebugMode) {
+      print('Ir para Cupons');
+    }
   }
 
   void goToStores() {
-    print('Ir para Lojas');
+    if (kDebugMode) {
+      print('Ir para Lojas');
+    }
   }
 
   void seeAllStores() {
-    print('Ver todas as lojas');
+    if (kDebugMode) {
+      print('Ver todas as lojas');
+    }
   }
 }

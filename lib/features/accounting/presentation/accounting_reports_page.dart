@@ -64,7 +64,7 @@ class AccountingReportsPage extends GetView<AccountingReportsController> {
     );
   }
 
-  Widget _buildCompanyHeader(data) {
+  Widget _buildCompanyHeader(dynamic data) {
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -136,7 +136,8 @@ class AccountingReportsPage extends GetView<AccountingReportsController> {
     );
   }
 
-  Widget _buildReportCard(report, AccountingReportsController controller) {
+  Widget _buildReportCard(
+      dynamic report, AccountingReportsController controller) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,

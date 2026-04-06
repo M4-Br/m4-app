@@ -386,7 +386,7 @@ class StockManagementPage extends GetView<StockManagementController> {
                         children: [
                           DropdownButtonFormField<MarketplaceCategory>(
                             decoration: _inputDecoration('Categoria'),
-                            value: controller.selectedCategory.value,
+                            initialValue: controller.selectedCategory.value,
                             items: controller.availableCategories.map((cat) {
                               return DropdownMenuItem(
                                 value: cat,

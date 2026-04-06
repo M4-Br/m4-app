@@ -76,9 +76,6 @@ class AiManagerController extends BaseController {
         messages.add(ChatMessage(text: response.text!, isMax: true));
       }
     } catch (e) {
-      print('====================================');
-      print('💥 ERRO EXATO DO GOOGLE: $e');
-      print('====================================');
       messages.add(ChatMessage(
           text:
               'Puxa, minha conexão falhou aqui na agência virtual. Tente mandar de novo!',
