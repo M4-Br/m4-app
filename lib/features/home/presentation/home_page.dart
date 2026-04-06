@@ -16,9 +16,15 @@ class HomePage extends GetView<HomeIconsController> {
         child: Column(
           children: [
             _buildCustomHeader(),
-            GestureDetector(
-                onTap: () => controller.openFaciapLink(),
-                child: Image.asset('assets/images/home_banner_partners.png')),
+            Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 800),
+                child: GestureDetector(
+                    onTap: () => controller.openFaciapLink(),
+                    child:
+                        Image.asset('assets/images/home_banner_partners.png')),
+              ),
+            ),
             SizedBox(
               height: 16,
             ),
