@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_flutter_miban4/features/health/controller/health_plans_controller.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
+import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart'; // <--- SEU CUSTOM BODY AQUI
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 
 class HealthPlansPage extends GetView<HealthPlansController> {
@@ -61,13 +62,21 @@ class HealthPlansPage extends GetView<HealthPlansController> {
           return const Center(child: AppLoading());
         }
 
-        return ListView.separated(
+        // Trocando ListView por CustomPageBody
+        return CustomPageBody(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-          itemCount: plans.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 24),
-          itemBuilder: (context, index) {
-            return _buildPlanCard(plans[index]);
-          },
+          children: [
+            // O Spacer() antes do map não é necessário a menos que queira centralizar.
+            // Para criar a lista, usamos o spread operator (...) com map e adicionamos o espaçamento
+            ...plans.expand((plan) {
+              return [
+                _buildPlanCard(plan),
+                const SizedBox(
+                    height: 24), // Espaçamento equivalente ao separatorBuilder
+              ];
+            }),
+            const SizedBox(height: 16), // Espaço extra no final da rolagem
+          ],
         );
       }),
     );

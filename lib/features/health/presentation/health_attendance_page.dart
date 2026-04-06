@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_flutter_miban4/features/health/controller/health_attendance_controller.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
+import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart'; // <--- IMPORT DO SEU BODY
 
 class HealthAttendancePage extends GetView<HealthAttendanceController> {
   const HealthAttendancePage({super.key});
@@ -16,24 +17,24 @@ class HealthAttendancePage extends GetView<HealthAttendanceController> {
       body: Column(
         children: [
           _buildPatientHeader(),
+
+          // O Expanded agora abraça o seu CustomPageBody
           Expanded(
-            child: SingleChildScrollView(
+            child: CustomPageBody(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildEmergencyButton(),
-                  const SizedBox(height: 32),
-                  const Text('Especialidades',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87)),
-                  const SizedBox(height: 16),
-                  _buildSpecialtiesGrid(),
-                  const SizedBox(height: 40), // Espaço no final da rolagem
-                ],
-              ),
+              enableIntrinsicHeight: false,
+              children: [
+                _buildEmergencyButton(),
+                const SizedBox(height: 32),
+                const Text('Especialidades',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87)),
+                const SizedBox(height: 16),
+                _buildSpecialtiesGrid(),
+                const SizedBox(height: 40), // Espaço no final da rolagem
+              ],
             ),
           ),
         ],
@@ -161,7 +162,7 @@ class HealthAttendancePage extends GetView<HealthAttendanceController> {
     return GridView.builder(
       shrinkWrap: true,
       physics:
-          const NeverScrollableScrollPhysics(), // Scroll é controlado pelo SingleChildScrollView pai
+          const NeverScrollableScrollPhysics(), // Scroll é controlado pelo CustomPageBody pai
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 16,

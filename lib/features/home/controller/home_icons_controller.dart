@@ -74,7 +74,7 @@ class HomeIconsController extends BaseController {
           id: 'myBiz', title: 'Meu Negócio', iconData: Icons.pie_chart_outline),
       HomeMenuItem(
           id: 'accounting',
-          title: 'Contabilidade',
+          title: 'Gestão Contábil',
           iconPath: 'assets/icons/ic_contabil.png'),
       HomeMenuItem(
           id: 'partners',

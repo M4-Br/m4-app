@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_flutter_miban4/features/health/controller/health_terms_controller.dart';
 import 'package:app_flutter_miban4/features/geral/widgets/app_bar.dart';
+import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart'; // <--- Seu Custom Body
 
 class HealthTermsPage extends GetView<HealthTermsController> {
   const HealthTermsPage({super.key});
@@ -15,31 +16,30 @@ class HealthTermsPage extends GetView<HealthTermsController> {
       appBar: const CustomAppBar(title: 'Termos de Uso'),
       body: Column(
         children: [
+          // A parte rolável usa o CustomPageBody
           Expanded(
-            child: SingleChildScrollView(
+            child: CustomPageBody(
               padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Termos e Condições MeLife',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Ao contratar este serviço, você concorda com a disponibilização de seus dados de saúde para atendimento via telemedicina. '
-                    'O plano possui carência zero para pronto atendimento 24h. '
-                    'Consultas com especialistas devem ser agendadas conforme disponibilidade. '
-                    '\n\nO pagamento será processado mensalmente através do seu saldo M4 ou cartão cadastrado. '
-                    'O cancelamento pode ser solicitado a qualquer momento, mantendo o acesso até o fim do ciclo vigente.',
-                    style: TextStyle(color: Colors.grey.shade700, height: 1.5),
-                  ),
-                ],
-              ),
+              children: [
+                const Text(
+                  'Termos e Condições MeLife',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Ao contratar este serviço, você concorda com a disponibilização de seus dados de saúde para atendimento via telemedicina. '
+                  'O plano possui carência zero para pronto atendimento 24h. '
+                  'Consultas com especialistas devem ser agendadas conforme disponibilidade. '
+                  '\n\nO pagamento será processado mensalmente através do seu saldo M4 ou cartão cadastrado. '
+                  'O cancelamento pode ser solicitado a qualquer momento, mantendo o acesso até o fim do ciclo vigente.',
+                  style: TextStyle(color: Colors.grey.shade700, height: 1.5),
+                ),
+                const SizedBox(height: 24), // Espaço extra no final da rolagem
+              ],
             ),
           ),
 
-          // Área de Aceite
+          // Área de Aceite (Fica fixa na parte de baixo)
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
