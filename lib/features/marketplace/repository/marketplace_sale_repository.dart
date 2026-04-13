@@ -11,7 +11,7 @@ class MarketplaceSaleRepository {
   // Listar todas as vendas
   Future<List<MarketplaceSaleHistory>> getSales() async {
     return _api.get(
-      endpoint: AppEndpoints.marketplaceale,
+      endpoint: AppEndpoints.marketplacesale,
       extraHeaders: _headers,
       fromJson: (json) {
         if (json is Map && json['data'] != null) {
@@ -26,7 +26,7 @@ class MarketplaceSaleRepository {
   // Registrar uma nova venda (Store)
   Future<void> createSale(MarketplaceSale sale) async {
     return _api.post(
-      endpoint: AppEndpoints.marketplaceale,
+      endpoint: AppEndpoints.marketplacesale,
       body: sale.toJson(),
       extraHeaders: _headers,
       fromJson: (json) {},
@@ -36,7 +36,7 @@ class MarketplaceSaleRepository {
   // Detalhes de uma venda específica (Show)
   Future<MarketplaceSale?> getSaleById(int id) async {
     return _api.get(
-      endpoint: '${AppEndpoints.marketplaceale}/$id',
+      endpoint: '${AppEndpoints.marketplacesale}/$id',
       extraHeaders: _headers,
       fromJson: (json) {
         if (json is Map && json['data'] != null) {
@@ -50,7 +50,7 @@ class MarketplaceSaleRepository {
   // Atualizar dados de uma venda (Update)
   Future<void> updateSale(int id, MarketplaceSale sale) async {
     return _api.put(
-      endpoint: '${AppEndpoints.marketplaceale}/$id',
+      endpoint: '${AppEndpoints.marketplacesale}/$id',
       body: sale.toJson(),
       extraHeaders: _headers,
       fromJson: (json) {},
@@ -60,7 +60,7 @@ class MarketplaceSaleRepository {
   // Estornar/Deletar uma venda (Destroy)
   Future<void> deleteSale(int id) async {
     return _api.delete(
-      endpoint: '${AppEndpoints.marketplaceale}/$id',
+      endpoint: '${AppEndpoints.marketplacesale}/$id',
       extraHeaders: _headers,
       fromJson: (json) {},
     );

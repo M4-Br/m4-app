@@ -10,19 +10,20 @@ class MeiServiceModel {
   final String subtitle;
   final IconData icon;
   final Color iconColor;
-  final String url; // Pronto para você preencher
+  final String? url; // Pronto para você preencher
+  final VoidCallback? action;
 
   MeiServiceModel({
     required this.title,
     required this.subtitle,
     required this.icon,
     required this.iconColor,
-    required this.url,
+    this.url,
+    this.action,
   });
 }
 
 class MeiServicesController extends BaseController {
-  // Lista com todos os itens do print
   final List<MeiServiceModel> services = [
     MeiServiceModel(
       title: 'Emissão de Comprovante (CCMEI)',
@@ -45,8 +46,7 @@ class MeiServicesController extends BaseController {
       subtitle: 'Contribuição mensal e parcelamentos',
       icon: Icons.credit_card_outlined,
       iconColor: const Color(0xFF8B5CF6), // Roxo
-      url:
-          'https://www.gov.br/empresas-e-negocios/pt-br/empreendedor/servicos-para-mei/pagamento-de-contribuicao-mensal',
+      action: () => Get.toNamed(AppRoutes.dasMei),
     ),
     MeiServiceModel(
       title: 'Relatório Mensal',
@@ -154,7 +154,6 @@ class MeiServicesController extends BaseController {
     ),
   ];
 
-  // Método que abre a sua WebviewPage já existente
   Future<void> openUrl(String url, String title) async {
     if (url.isEmpty || url.startsWith('https://exemplo.gov.br')) {
       Get.rawSnackbar(
@@ -165,14 +164,11 @@ class MeiServicesController extends BaseController {
     }
 
     if (kIsWeb) {
-      // Se for Web, abre em uma nova aba do navegador
       final uri = Uri.parse(url);
       if (await canLaunchUrl(uri)) {
-        await launchUrl(uri,
-            mode: LaunchMode.externalApplication); // Abre em nova janela/aba
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
       }
     } else {
-      // Se for App Nativo, usa a sua Webview interna
       Get.toNamed(AppRoutes.webView, arguments: {
         'url': url,
         'title': title,
@@ -182,5 +178,13 @@ class MeiServicesController extends BaseController {
 
   void openGovPortal() {
     openUrl('https://gov.br/mei', 'Portal Oficial do Governo');
+  }
+
+  void handleServiceClick(MeiServiceModel service) {
+    if (service.action != null) {
+      service.action!();
+    } else {
+      openUrl(service.url ?? '', service.title);
+    }
   }
 }

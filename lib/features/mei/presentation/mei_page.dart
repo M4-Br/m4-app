@@ -177,7 +177,7 @@ class MeiServicesPage extends GetView<MeiServicesController> {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
-          onTap: () => controller.openUrl(service.url, service.title),
+          onTap: () => controller.handleServiceClick(service),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(

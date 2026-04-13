@@ -97,11 +97,12 @@ class AppEndpoints {
 
   //Accounting
   static const String accountingData = '/tax_data';
+  static const String fetchDAS = '/serpro/das';
 
   //Marketplace
   static const String marketplaceCategory = '/partner/category';
   static const String marketplaceProduct = '/partner/product';
-  static const String marketplaceale = '/partner/product_sale';
+  static const String marketplacesale = '/partner/product_sale';
 
   //Financial Data
   static const String postFinancial = '/payment_capacity';

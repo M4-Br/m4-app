@@ -3,9 +3,9 @@ import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart'
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/features/newsletter/model/newsletter_model.dart';
 import 'package:app_flutter_miban4/features/newsletter/repository/newsletter_repository.dart';
-import 'package:flutter/foundation.dart'; // Importante para o kIsWeb
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart'; // Importante para a Web
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsletterController extends BaseController {
   final NewsletterRepository _repository = NewsletterRepository();
@@ -50,10 +50,8 @@ class NewsletterController extends BaseController {
     }
   }
 
-  // --- NOVA FUNÇÃO PARA ABRIR A NOTÍCIA ---
   Future<void> openNews(NewsletterModel news) async {
-    // Substitua 'url' pelo nome real da propriedade no seu model (ex: 'link', 'sourceUrl')
-    final String url = news.source;
+    final String url = news.url;
     final String title = news.title;
 
     if (url.isEmpty) {

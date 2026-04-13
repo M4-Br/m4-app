@@ -138,6 +138,7 @@ class AppRoutes {
 
   //MEI
   static const String mei = '/mei';
+  static const String dasMei = '$mei/das';
 
   //Partners
   static const String partners = '/partners';
