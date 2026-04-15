@@ -24,15 +24,41 @@ class DasPage extends GetView<DasController> {
 
         final response = controller.dasData.value;
 
-        if (response == null ||
-            !response.success ||
-            response.data == null ||
-            response.data!.dados.isEmpty) {
+        if (response == null || !response.success || response.data == null) {
           return const Center(
-              child: Text('Nenhum boleto encontrado ou erro na busca.'));
+              child: Text('Erro ao se comunicar com a Receita Federal.'));
         }
 
-        final dadosEmpresa = response.data!.dados.first;
+        final data = response.data!;
+
+        if (data.dados.isEmpty) {
+          String errorMessage = 'Nenhum boleto encontrado para este CNPJ.';
+
+          if (data.mensagens.isNotEmpty) {
+            errorMessage = data.mensagens.first.texto;
+          }
+
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.info_outline,
+                      size: 48, color: Colors.orange),
+                  const SizedBox(height: 16),
+                  Text(
+                    errorMessage,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 16, color: Colors.black87),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
+        final dadosEmpresa = data.dados.first;
         if (dadosEmpresa.detalhamento.isEmpty) {
           return const Center(
               child: Text('Nenhum detalhamento financeiro disponível.'));

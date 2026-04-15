@@ -1,5 +1,6 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
+import 'package:app_flutter_miban4/core/helpers/formatters/maks_apply.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,7 +47,8 @@ class MeiServicesController extends BaseController {
       subtitle: 'Contribuição mensal e parcelamentos',
       icon: Icons.credit_card_outlined,
       iconColor: const Color(0xFF8B5CF6), // Roxo
-      action: () => Get.toNamed(AppRoutes.dasMei),
+      action: () =>
+          Get.find<MeiServicesController>()._showCompanySelectionModal(),
     ),
     MeiServiceModel(
       title: 'Relatório Mensal',
@@ -186,5 +188,111 @@ class MeiServicesController extends BaseController {
     } else {
       openUrl(service.url ?? '', service.title);
     }
+  }
+
+  void _showCompanySelectionModal() {
+    final company = userRx.company;
+
+    if (company == null || company.document.isEmpty) {
+      Get.rawSnackbar(
+        message: 'Você não possui uma empresa (CNPJ) cadastrada.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    }
+
+    final cnpjFormatado =
+        MaskUtil.applyMask(company.document, '##.###.###/####-##');
+
+    Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.all(24),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Selecione a Empresa',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Para qual empresa você deseja gerar o boleto DAS?',
+              style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+            ),
+            const SizedBox(height: 24),
+
+            // CARD DA EMPRESA SELECIONÁVEL
+            InkWell(
+              onTap: () {
+                Get.back(); // Fecha o modal
+                // Abre a tela de DAS passando o CNPJ PURO como argumento
+                Get.toNamed(AppRoutes.dasMei,
+                    arguments: {'cnpj': company.document});
+              },
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50,
+                  border: Border.all(color: Colors.blue.shade200),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child:
+                          const Icon(Icons.business, color: Color(0xFF3B82F6)),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            company.name, // Nome da Empresa
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'CNPJ: $cnpjFormatado', // CNPJ formatado com a máscara
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Icon(Icons.chevron_right, color: Colors.black26),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
   }
 }

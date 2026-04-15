@@ -99,6 +99,8 @@ class DasRequestModel {
 // ==========================================
 // RESPONSE (O QUE VOCÊ RECEBE DA API)
 // ==========================================
+
+// --- CLASSE PAI (QUE ESTAVA FALTANDO) ---
 class DasResponseModel {
   final bool success;
   final DasResponseDataModel? data;
@@ -114,24 +116,48 @@ class DasResponseModel {
     );
   }
 }
+// ----------------------------------------
 
 class DasResponseDataModel {
   final int status;
   final String responseId;
   final List<DadoContribuinteModel> dados;
+  final List<MensagemModel> mensagens;
 
   DasResponseDataModel({
     required this.status,
     required this.responseId,
     required this.dados,
+    required this.mensagens,
   });
 
   factory DasResponseDataModel.fromJson(Map<String, dynamic> json) {
-    var dadosList = json['dados'] as List? ?? [];
+    List<dynamic> rawDados = [];
+    if (json['dados'] is List) {
+      rawDados = json['dados'];
+    }
+
+    var mensagensList = json['mensagens'] as List? ?? [];
+
     return DasResponseDataModel(
       status: json['status'] ?? 0,
       responseId: json['response_id'] ?? '',
-      dados: dadosList.map((e) => DadoContribuinteModel.fromJson(e)).toList(),
+      dados: rawDados.map((e) => DadoContribuinteModel.fromJson(e)).toList(),
+      mensagens: mensagensList.map((e) => MensagemModel.fromJson(e)).toList(),
+    );
+  }
+}
+
+class MensagemModel {
+  final String codigo;
+  final String texto;
+
+  MensagemModel({required this.codigo, required this.texto});
+
+  factory MensagemModel.fromJson(Map<String, dynamic> json) {
+    return MensagemModel(
+      codigo: json['codigo'] ?? '',
+      texto: json['texto'] ?? '',
     );
   }
 }
@@ -188,6 +214,5 @@ class DetalhamentoDasModel {
     );
   }
 
-  // Helper para facilitar a formatação do código de barras na tela
   String get linhaDigitavel => codigoDeBarras.join(' ');
 }

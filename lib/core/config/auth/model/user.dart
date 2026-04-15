@@ -15,6 +15,7 @@ class Payload {
     required this.avatarUrl,
     required this.fullName,
     required this.phone,
+    this.company,
     this.userId,
     this.steps,
   });
@@ -39,6 +40,9 @@ class Payload {
       avatarUrl: json['avatar_url'] as String?,
       fullName: json['full_name'] as String,
       phone: Phone.fromJson(json['phone'] as Map<String, dynamic>),
+      company: json['company'] != null
+          ? Company.fromJson(json['company'] as Map<String, dynamic>)
+          : null,
       steps: null,
     );
   }
@@ -56,6 +60,7 @@ class Payload {
   final String? avatarUrl;
   final String fullName;
   final Phone phone;
+  final Company? company;
   final List<Steps>? steps;
 
   Payload copyWith({
@@ -72,6 +77,7 @@ class Payload {
     String? avatarUrl,
     String? fullName,
     Phone? phone,
+    Company? company,
     List<Steps>? steps,
   }) {
     return Payload(
@@ -88,6 +94,7 @@ class Payload {
       avatarUrl: avatarUrl ?? this.avatarUrl,
       fullName: fullName ?? this.fullName,
       phone: phone ?? this.phone,
+      company: company ?? this.company,
       steps: steps ?? this.steps,
     );
   }
@@ -157,6 +164,38 @@ class AliasAccount {
   final String economyAccountId;
   final String economyAccountNumber;
   final String economyAccountType;
+}
+
+class Company {
+  const Company({
+    required this.id,
+    required this.name,
+    required this.tradeName,
+    required this.document,
+    required this.email,
+    required this.phone,
+    required this.status,
+  });
+
+  factory Company.fromJson(Map<String, dynamic> json) {
+    return Company(
+      id: json['id'] as int,
+      name: json['name'] ?? '',
+      tradeName: json['trade_name'] ?? '',
+      document: json['document'] ?? '',
+      email: json['email'] ?? '',
+      phone: json['phone'] ?? '',
+      status: json['status'] ?? '',
+    );
+  }
+
+  final int id;
+  final String name;
+  final String tradeName;
+  final String document;
+  final String email;
+  final String phone;
+  final String status;
 }
 
 class User {

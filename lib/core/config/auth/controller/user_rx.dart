@@ -27,6 +27,18 @@ class UserRx extends GetxController {
     return user.value?.payload.steps ?? verifyResponse.value?.steps ?? [];
   }
 
+  Company? get company {
+    return user.value?.payload.company;
+  }
+
+  String? get cnpj {
+    return company?.document;
+  }
+
+  String? get companyName {
+    return company?.tradeName;
+  }
+
   void updateFromVerification(VerifyUserResponse response) {
     verifyResponse.value = response;
 
