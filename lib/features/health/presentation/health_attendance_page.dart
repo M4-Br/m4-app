@@ -17,14 +17,14 @@ class HealthAttendancePage extends GetView<HealthAttendanceController> {
       body: Column(
         children: [
           _buildPatientHeader(),
-
-          // O Expanded agora abraça o seu CustomPageBody
           Expanded(
             child: CustomPageBody(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
               enableIntrinsicHeight: false,
               children: [
                 _buildEmergencyButton(),
+                const SizedBox(height: 16), // Novo espaçamento
+                _buildDiagnosticsButton(), // <--- NOVO BOTÃO AQUI
                 const SizedBox(height: 32),
                 const Text('Especialidades',
                     style: TextStyle(
@@ -33,7 +33,7 @@ class HealthAttendancePage extends GetView<HealthAttendanceController> {
                         color: Colors.black87)),
                 const SizedBox(height: 16),
                 _buildSpecialtiesGrid(),
-                const SizedBox(height: 40), // Espaço no final da rolagem
+                const SizedBox(height: 40),
               ],
             ),
           ),
@@ -42,7 +42,75 @@ class HealthAttendancePage extends GetView<HealthAttendanceController> {
     );
   }
 
-  // --- CABEÇALHO DO PACIENTE E GERENCIAMENTO DE PLANO ---
+  // --- BOTÃO DE DIAGNÓSTICOS E RECEITAS ---
+  Widget _buildDiagnosticsButton() {
+    return InkWell(
+      onTap: () {
+        // Aqui você chamará Get.toNamed(AppRoutes.healthDiagnostics) no futuro.
+        // Por enquanto, apenas um mock via Get.snackbar
+        Get.snackbar(
+          'Em breve',
+          'A tela de Diagnósticos e Receitas será implementada aqui.',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.black87,
+          colorText: Colors.white,
+          margin: const EdgeInsets.all(16),
+        );
+      },
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.grey.shade200),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.02),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: _greenDark.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child:
+                  Icon(Icons.assignment_outlined, color: _greenDark, size: 24),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Meus Diagnósticos e Receitas',
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    'Acesse seu histórico médico',
+                    style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right, color: Colors.black26),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildPatientHeader() {
     return Container(
       width: double.infinity,
@@ -86,7 +154,6 @@ class HealthAttendancePage extends GetView<HealthAttendanceController> {
                             color: Colors.white70, fontSize: 11)),
                   ],
                 ),
-                // --- BOTÃO DE MUDAR DE PLANO AQUI ---
                 TextButton(
                   onPressed: controller.managePlan,
                   style: TextButton.styleFrom(
@@ -112,7 +179,6 @@ class HealthAttendancePage extends GetView<HealthAttendanceController> {
     );
   }
 
-  // --- BOTÃO DE PRONTO ATENDIMENTO EM DESTAQUE ---
   Widget _buildEmergencyButton() {
     return InkWell(
       onTap: controller.callEmergency,
@@ -157,18 +223,15 @@ class HealthAttendancePage extends GetView<HealthAttendanceController> {
     );
   }
 
-  // --- GRID DE ESPECIALIDADES MOCKADAS ---
   Widget _buildSpecialtiesGrid() {
     return GridView.builder(
       shrinkWrap: true,
-      physics:
-          const NeverScrollableScrollPhysics(), // Scroll é controlado pelo CustomPageBody pai
+      physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
-        childAspectRatio:
-            1.1, // Deixa o card um pouquinho mais largo do que alto
+        childAspectRatio: 1.1,
       ),
       itemCount: controller.specialties.length,
       itemBuilder: (context, index) {

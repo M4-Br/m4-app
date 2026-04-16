@@ -6,10 +6,12 @@ import 'package:app_flutter_miban4/features/appTerms/presentation/privacy_policy
 import 'package:app_flutter_miban4/features/appTerms/presentation/terms_page.dart';
 import 'package:app_flutter_miban4/features/profile/bindings/change_password_binding.dart';
 import 'package:app_flutter_miban4/features/profile/bindings/change_password_validate_code_binding.dart';
+import 'package:app_flutter_miban4/features/profile/bindings/company_manager_binding.dart';
 import 'package:app_flutter_miban4/features/profile/bindings/financial_binding.dart';
 import 'package:app_flutter_miban4/features/profile/bindings/plans_binding.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/change_password_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/change_password_validate_code_page.dart';
+import 'package:app_flutter_miban4/features/profile/presentation/company_manager_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/financial_data_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/plans_page.dart';
 import 'package:get/get.dart';
@@ -55,5 +57,12 @@ class ProfilePages {
         name: AppRoutes.privacyPolicyFromLogin,
         page: () => const PrivacyPolicyPage(),
         binding: PrivacyPolicyBindings()),
+
+    //Company
+    GetPage(
+        name: AppRoutes.companyManager,
+        page: () => CompanyManagerPage(),
+        binding: CompanyManagerBinding(),
+        middlewares: [AuthGuard()]),
   ];
 }

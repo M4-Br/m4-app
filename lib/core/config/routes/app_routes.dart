@@ -167,4 +167,7 @@ class AppRoutes {
   static const String healthTerms = '$healthHome/terms';
   static const String healthAttendance = '$healthHome/attendance';
   static const String healthScheduling = '$healthAttendance/scheduling';
+
+  //Company
+  static const String companyManager = '$profile/company';
 }

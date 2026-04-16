@@ -28,16 +28,11 @@ class HealthHomePage extends GetView<HealthHomeController> {
     );
   }
 
-  // ==========================================
-  // TELA 1: NÃO CONTRATADO (ÁREA DE VENDAS)
-  // ==========================================
   Widget _buildUncontractedState(BuildContext context) {
-    // Trocado de Column/Padding para CustomPageBody
     return CustomPageBody(
       padding: const EdgeInsets.all(24.0),
       children: [
-        const SizedBox(height: 40), // Substituindo o Spacer inicial
-        // Logo MeLife
+        const SizedBox(height: 40),
         Image.asset(
           'assets/images/me_life_logo.png',
           height: 150,
@@ -89,8 +84,7 @@ class HealthHomePage extends GetView<HealthHomeController> {
           ),
         ),
         const Spacer(),
-        const SizedBox(
-            height: 24), // Margem extra caso o Spacer suma em telas menores
+        const SizedBox(height: 24),
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
@@ -113,19 +107,14 @@ class HealthHomePage extends GetView<HealthHomeController> {
     );
   }
 
-  // ==========================================
-  // TELA 2: JÁ CONTRATADO (PAINEL DO USUÁRIO)
-  // ==========================================
   Widget _buildContractedState(BuildContext context) {
-    // Trocado de SingleChildScrollView para CustomPageBody
     return CustomPageBody(
       padding: const EdgeInsets.all(20.0),
       enableIntrinsicHeight: false,
       children: [
         Center(
           child: GestureDetector(
-            onLongPress: controller
-                .resetMock, // Segure a logo para resetar o mock nos testes!
+            onLongPress: controller.resetMock,
             child: Image.asset(
               'assets/images/me_life_logo.png',
               height: 50,
@@ -145,8 +134,6 @@ class HealthHomePage extends GetView<HealthHomeController> {
                 fontWeight: FontWeight.bold,
                 color: Colors.black87)),
         const SizedBox(height: 12),
-
-        // CARTÃO DO TITULAR
         Material(
           color: Colors.transparent,
           child: InkWell(
@@ -189,8 +176,6 @@ class HealthHomePage extends GetView<HealthHomeController> {
                     ],
                   ),
                   const SizedBox(height: 24),
-
-                  // --- ÁREA DO NOME E ÍCONE DE CLIQUE ---
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -210,8 +195,6 @@ class HealthHomePage extends GetView<HealthHomeController> {
                           ],
                         ),
                       ),
-
-                      // O "Chevron" indicando que é clicável
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
@@ -222,8 +205,6 @@ class HealthHomePage extends GetView<HealthHomeController> {
                       )
                     ],
                   ),
-                  // -------------------------------------
-
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -268,7 +249,6 @@ class HealthHomePage extends GetView<HealthHomeController> {
                 color: Colors.black87)),
         const SizedBox(height: 12),
 
-        // BOTÃO ADICIONAR DEPENDENTE
         InkWell(
           onTap: controller.addDependent,
           borderRadius: BorderRadius.circular(12),
@@ -314,7 +294,6 @@ class HealthHomePage extends GetView<HealthHomeController> {
     );
   }
 
-  // --- CARDS DE PRÓXIMAS CONSULTAS ---
   Widget _buildUpcomingAppointments() {
     return Obx(() {
       if (controller.upcomingAppointments.isEmpty) {

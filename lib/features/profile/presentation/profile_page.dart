@@ -291,6 +291,10 @@ class ProfilePage extends GetView<ProfileController> {
               _buildDetailRow('account_document'.tr,
                   cpfMaskFormatter.maskText(payload.document)),
             ]),
+            _buildSimpleMenuItem(
+                Icons.factory_outlined,
+                'MINHAS EMPRESAS (CNPJ)',
+                () => Get.toNamed(AppRoutes.companyManager)),
             _buildDivider(),
             _buildSimpleMenuItem(Icons.monetization_on_outlined,
                 'account_data'.tr, () => Get.toNamed(AppRoutes.financialData)),

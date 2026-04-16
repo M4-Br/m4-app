@@ -30,17 +30,6 @@ class DigitalAccountPage extends GetView<DigitalAccountController> {
     );
   }
 
-  void _showComingSoonSnackbar() {
-    Get.rawSnackbar(
-      message: 'Esse serviço estará disponível em breve.',
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.black87,
-      borderRadius: 8,
-      margin: const EdgeInsets.all(16),
-      duration: const Duration(seconds: 3),
-    );
-  }
-
   Widget _buildUnifiedServicesList() {
     const Color iconColor = primaryColor;
 
