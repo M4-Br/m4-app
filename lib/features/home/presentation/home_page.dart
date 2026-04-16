@@ -15,54 +15,81 @@ class HomePage extends GetView<HomeIconsController> {
       body: SafeArea(
         child: Column(
           children: [
+            // Cabeçalho verde fixo no topo
             _buildCustomHeader(),
-            Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 800),
-                child: GestureDetector(
-                    onTap: () => controller.openFaciapLink(),
-                    child:
-                        Image.asset('assets/images/home_banner_partners.png')),
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
+
+            // O Expanded agora contém o scroll principal da página
             Expanded(
-              child: Obx(() {
-                if (controller.isLoading.value) {
-                  return const Center(child: AppLoading());
-                }
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 16),
 
-                final menuItems = controller.combinedMenuList;
+                    // BANNER AQUI (Agora ele rola junto com a página)
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 800),
+                        child: GestureDetector(
+                          onTap: () => controller.openFaciapLink(),
+                          child: Image.asset(
+                              'assets/images/home_banner_partners.png'),
+                        ),
+                      ),
+                    ),
 
-                if (menuItems.isEmpty) {
-                  return const Center(child: Text('Nenhum serviço disponível'));
-                }
+                    const SizedBox(height: 16),
 
-                return GridView.builder(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 1.2,
-                    mainAxisSpacing: 12,
-                    crossAxisSpacing: 12,
-                  ),
-                  itemCount: menuItems.length,
-                  itemBuilder: (context, index) {
-                    final item = menuItems[index];
+                    // O GRID DENTRO DO OBX
+                    Obx(() {
+                      if (controller.isLoading.value) {
+                        return const Padding(
+                          padding: EdgeInsets.all(32.0),
+                          child: Center(child: AppLoading()),
+                        );
+                      }
 
-                    return _buildGridCard(
-                      title: item.title,
-                      iconData: item.iconData,
-                      iconColor: _pastelColor,
-                      onTap: () =>
-                          controller.onMenuOptionTap(item.id, item.title),
-                    );
-                  },
-                );
-              }),
+                      final menuItems = controller.combinedMenuList;
+
+                      if (menuItems.isEmpty) {
+                        return const Padding(
+                          padding: EdgeInsets.all(32.0),
+                          child:
+                              Center(child: Text('Nenhum serviço disponível')),
+                        );
+                      }
+
+                      return GridView.builder(
+                        shrinkWrap:
+                            true, // IMPORTANTE: Deixa o GridView com o tamanho exato dos itens
+                        physics:
+                            const NeverScrollableScrollPhysics(), // IMPORTANTE: Desativa o scroll interno do GridView
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 1.2,
+                          mainAxisSpacing: 12,
+                          crossAxisSpacing: 12,
+                        ),
+                        itemCount: menuItems.length,
+                        itemBuilder: (context, index) {
+                          final item = menuItems[index];
+
+                          return _buildGridCard(
+                            title: item.title,
+                            iconData: item.iconData,
+                            iconColor: _pastelColor,
+                            onTap: () =>
+                                controller.onMenuOptionTap(item.id, item.title),
+                          );
+                        },
+                      );
+                    }),
+                    const SizedBox(height: 32), // Um respiro no final da tela
+                  ],
+                ),
+              ),
             ),
           ],
         ),
