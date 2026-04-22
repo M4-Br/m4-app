@@ -88,19 +88,20 @@ class CardWidget extends GetView<BalanceController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Logo com altura fixa (não usa mais MediaQuery)
-              Image.asset(
-                assetPath,
-                height: 36,
-                fit: BoxFit.contain,
-              ),
+              // Image.asset(
+              //   assetPath,
+              //   height: 36,
+              //   fit: BoxFit.contain,
+              // ),
 
-              const Spacer(),
+              // const Spacer(),
 
               AppText.titleMedium(
                 context,
                 'balance_available'.tr,
                 color: fontColor,
               ),
+              Spacer(),
 
               Row(
                 children: [

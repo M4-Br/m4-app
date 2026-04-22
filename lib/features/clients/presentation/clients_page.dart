@@ -13,7 +13,7 @@ import 'package:app_flutter_miban4/features/geral/widgets/body_page.dart';
 class ClientsPage extends GetView<ClientsController> {
   const ClientsPage({super.key});
 
-  final Color _darkHeader = const Color(0xFF1E293B);
+  final Color _darkHeader = const Color(0xFF065F46);
   final Color _bgLight = const Color(0xFFF8F9FA);
   final Color _textDark = const Color(0xFF1F2937);
 
@@ -135,7 +135,7 @@ class ClientsPage extends GetView<ClientsController> {
                 style: TextStyle(
                     color: Colors.white, fontWeight: FontWeight.w600)),
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF0F172A),
+              backgroundColor: const Color(0xFF065F46),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

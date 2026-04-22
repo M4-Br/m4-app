@@ -33,6 +33,9 @@ class MarketplacePage extends GetView<MarketplaceController> {
       body: Column(
         children: [
           _buildHeaderAndSearch(),
+          SizedBox(
+            height: 35,
+          ),
           Expanded(
             child: Obx(() {
               if (controller.isLoading.value &&

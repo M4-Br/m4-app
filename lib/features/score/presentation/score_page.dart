@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class ScorePage extends GetView<ScoreController> {
   const ScorePage({super.key});
 
-  final Color _purplePrimary = const Color(0xFF9333EA);
+  final Color _purplePrimary = const Color(0xFF065F46);
   final Color _bgLight = const Color(0xFFF8F9FA);
   final Color _textDark = const Color(0xFF1F2937);
   final Color _textGrey = const Color(0xFF6B7280);

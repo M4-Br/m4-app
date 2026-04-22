@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class MeiServicesPage extends GetView<MeiServicesController> {
   const MeiServicesPage({super.key});
 
-  final Color _bluePrimary = const Color(0xFF3B82F6); // Azul vibrante do topo
+  final Color _bluePrimary = const Color(0xFF065F46); // Azul vibrante do topo
   final Color _bgLight = const Color(0xFFF8F9FA); // Fundo cinza claro
 
   @override
@@ -84,7 +84,7 @@ class MeiServicesPage extends GetView<MeiServicesController> {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF4F46E5), // Azul um pouco mais escuro/índigo
+        color: const Color(0xFF065F46), // Azul um pouco mais escuro/índigo
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(

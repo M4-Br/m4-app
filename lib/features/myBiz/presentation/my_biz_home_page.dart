@@ -19,7 +19,7 @@ class MyBizPage extends GetView<MyBizController> {
   final Color _textDark = const Color(0xFF1F2937);
 
   // Cores dos Cards (Baseadas no print)
-  final Color _colorIncome = const Color(0xFF10B981); // Verde
+  final Color _colorIncome = const Color(0xFF065F46); // Verde
   final Color _colorExpense = const Color(0xFFEF4444); // Vermelho
   final Color _colorProfit = const Color(0xFF3B82F6); // Azul
   final Color _colorMargin = const Color(0xFFA855F7); // Roxo
@@ -178,19 +178,19 @@ class MyBizPage extends GetView<MyBizController> {
             _buildMetricCard(
                 'Receitas',
                 controller.totalIncome.value.toPlanValue(),
-                _colorIncome,
+                Color(0xFF065F46),
                 Icons.trending_up),
             _buildMetricCard(
                 'Despesas',
                 controller.totalExpense.value.toPlanValue(),
-                _colorExpense,
+                Color(0xFF065F46),
                 Icons.trending_down),
             _buildMetricCard('Lucro', controller.netProfit.value.toPlanValue(),
-                _colorProfit, Icons.attach_money),
+                Color(0xFF065F46), Icons.attach_money),
             _buildMetricCard(
                 'Margem',
                 controller.profitMargin.value.toPlanValue(),
-                _colorMargin,
+                Color(0xFF065F46),
                 Icons.pie_chart_outline),
           ],
         ));

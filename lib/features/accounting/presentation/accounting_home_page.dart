@@ -17,7 +17,7 @@ class AccountingHomePage extends GetView<AccountingHomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: const CustomAppBar(title: 'CONTABILIDADE'),
+      appBar: const CustomAppBar(title: 'GESTÃO CONTÁBIL'),
       body: Column(
         children: [
           _buildYearSelector(),

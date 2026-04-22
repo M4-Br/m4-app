@@ -12,7 +12,7 @@ class NewsletterPage extends GetView<NewsletterController> {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA), // Fundo cinza claro
       appBar: AppBar(
-        backgroundColor: const Color(0xFFDC2626), // Vermelho do cabeçalho
+        backgroundColor: const Color(0xFF065F46),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -59,7 +59,7 @@ class NewsletterPage extends GetView<NewsletterController> {
   Widget _buildRedHeader() {
     return Container(
       width: double.infinity,
-      color: const Color(0xFFDC2626),
+      color: const Color(0xFF065F46),
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 24),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,12 +188,12 @@ class NewsletterPage extends GetView<NewsletterController> {
         decoration: BoxDecoration(
           // Lógica de cores: Vermelho se for 'Todas', Cinza clarinho se for os outros selecionados
           color: isSelected && isRed
-              ? const Color(0xFFDC2626)
+              ? const Color(0xFF065F46)
               : (isSelected ? Colors.grey.shade100 : Colors.white),
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: isSelected && isRed
-                ? const Color(0xFFDC2626)
+                ? const Color(0xFF065F46)
                 : (isSelected ? Colors.grey.shade400 : Colors.grey.shade300),
           ),
         ),

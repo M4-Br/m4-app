@@ -53,10 +53,10 @@ class HomeViewPage extends GetView<HomeViewController> {
                 icon: controller.getIconForIndex(2),
                 label: 'Loja',
               ),
-              BottomNavigationBarItem(
-                icon: controller.getIconForIndex(3),
-                label: 'Pedidos',
-              ),
+              // BottomNavigationBarItem(
+              //   icon: controller.getIconForIndex(3),
+              //   label: 'Pedidos',
+              // ),
               BottomNavigationBarItem(
                 icon: controller.getIconForIndex(4),
                 label: 'Perfil', // ou 'perfil_icon'.tr

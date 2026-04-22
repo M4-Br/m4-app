@@ -108,37 +108,37 @@ class HomePage extends GetView<HomeIconsController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // LADO ESQUERDO: FACIAP (Maior) + Saiba Mais (Menor)
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(
-                'assets/images/ic_faciap.png',
-                width: 115, // Aumentado para ganhar destaque
-                color: Colors.white,
-              ),
-              const SizedBox(height: 6),
-              GestureDetector(
-                onTap: controller.openFaciapLink,
-                child: Row(
-                  children: const [
-                    Text(
-                      'SAIBA MAIS',
-                      style: TextStyle(
-                        color: Colors
-                            .white70, // Branco levemente transparente para contraste
-                        fontSize: 11, // Fonte menor
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.white70,
-                      ),
-                    ),
-                    SizedBox(width: 4),
-                    Icon(Icons.open_in_new, color: Colors.white70, size: 12),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     Image.asset(
+          //       'assets/images/ic_faciap.png',
+          //       width: 115, // Aumentado para ganhar destaque
+          //       color: Colors.white,
+          //     ),
+          //     const SizedBox(height: 6),
+          //     GestureDetector(
+          //       onTap: controller.openFaciapLink,
+          //       child: Row(
+          //         children: const [
+          //           Text(
+          //             'SAIBA MAIS',
+          //             style: TextStyle(
+          //               color: Colors
+          //                   .white70, // Branco levemente transparente para contraste
+          //               fontSize: 11, // Fonte menor
+          //               fontWeight: FontWeight.w600,
+          //               decoration: TextDecoration.underline,
+          //               decorationColor: Colors.white70,
+          //             ),
+          //           ),
+          //           SizedBox(width: 4),
+          //           Icon(Icons.open_in_new, color: Colors.white70, size: 12),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // ),
 
           // CENTRO: Nome do Usuário
           Obx(() {

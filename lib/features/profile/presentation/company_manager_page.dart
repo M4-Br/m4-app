@@ -131,17 +131,17 @@ class CompanyManagerPage extends GetView<CompanyManagerController> {
         children: [
           Row(
             children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: _bluePrimary.withValues(alpha: 0.1),
-                    shape: BoxShape.circle),
-                child: Icon(Icons.business, color: _bluePrimary),
-              ),
+              // Container(
+              //   padding: const EdgeInsets.all(10),
+              //   decoration: BoxDecoration(
+              //       color: _bluePrimary.withValues(alpha: 0.1),
+              //       shape: BoxShape.circle),
+              //   child: Icon(Icons.business, color: _bluePrimary),
+              // ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(company.name,
                         style: const TextStyle(

@@ -53,9 +53,15 @@ class HomeIconsController extends BaseController {
           title: 'Preferências',
           iconData: Icons.star_border_rounded),
       HomeMenuItem(
-          id: 'cashback',
-          title: 'Membresia',
-          iconData: Icons.account_balance_wallet_outlined),
+          id: 'myBiz', title: 'Meu Negócio', iconData: Icons.pie_chart_outline),
+      HomeMenuItem(
+          id: 'accounting',
+          title: 'Gestão Contábil',
+          iconPath: 'assets/icons/ic_contabil.png'),
+      // HomeMenuItem(
+      //     id: 'cashback',
+      //     title: 'Membresia',
+      //     iconData: Icons.account_balance_wallet_outlined),
       HomeMenuItem(
           id: 'marketplace',
           title: 'Marketplace',
@@ -63,19 +69,13 @@ class HomeIconsController extends BaseController {
       HomeMenuItem(id: 'score', title: 'Crédito', iconData: Icons.bar_chart),
       HomeMenuItem(
           id: 'news', title: 'Notícias', iconData: Icons.newspaper_outlined),
-      HomeMenuItem(
-          id: 'mei', title: 'Serviços MEI', iconData: Icons.business_outlined),
+      HomeMenuItem(id: 'mei', title: 'MEI', iconData: Icons.business_outlined),
       HomeMenuItem(
           id: 'ai', title: 'IA', iconData: Icons.auto_awesome_outlined),
       // --- ESTOQUE OCULTO TEMPORARIAMENTE ---
       // HomeMenuItem(
       //     id: 'stock', title: 'Estoque', iconData: Icons.receipt_long_outlined),
-      HomeMenuItem(
-          id: 'myBiz', title: 'Meu Negócio', iconData: Icons.pie_chart_outline),
-      HomeMenuItem(
-          id: 'accounting',
-          title: 'Gestão Contábil',
-          iconPath: 'assets/icons/ic_contabil.png'),
+
       HomeMenuItem(
           id: 'partners',
           title: 'Nossos Parceiros',
