@@ -1,7 +1,7 @@
 flutter_native_splash:
   # Imagem principal (para Android antigo e iOS)
-  image: assets/images/m4_splash.png
-  color: "#002A4D"
+  image: assets/images/yooconn.png
+  color: "#FFFFFF"
 
   # AJUSTE 1: Garante que no Android antigo e iOS a imagem fique no centro sem esticar
   android_gravity: center
@@ -9,11 +9,11 @@ flutter_native_splash:
 
   # AJUSTE 2: Configuração específica para Android 12+ (Onde ocorre a "bola")
   android_12:
-    image: assets/images/m4_splash.png
+    image: assets/images/yooconn.png
     
     # A cor de fundo da tela
-    color: "#002A4D"
+    color: "#FFFFFF"
     
     # IMPORTANTE: A cor de fundo DA BOLA (ícone). 
     # Deve ser a mesma do fundo para parecer que a imagem está flutuando livremente.
-    icon_background_color: "#002A4D"
+    icon_background_color: "#FFFFFF"

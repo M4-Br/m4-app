@@ -15,7 +15,7 @@ class LoginPage extends GetView<VerifyAccountController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: Colors.white, // Fundo alterado para Branco
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -34,8 +34,9 @@ class LoginPage extends GetView<VerifyAccountController> {
                       child: SizedBox(
                         width: 200,
                         child: Image.asset(
-                          'assets/images/m4_ic_logo.png',
+                          'assets/images/yooconn.png',
                           width: 120,
+                          // Removido o color: Colors.white para exibir as cores originais
                         ),
                       ),
                     ),
@@ -46,11 +47,12 @@ class LoginPage extends GetView<VerifyAccountController> {
                       child: Form(
                         key: controller.formKey,
                         child: TextFormField(
-                          cursorColor: Colors.white,
+                          cursorColor: primaryColor, // Cursor na cor primária
                           controller: controller.document,
                           keyboardType: TextInputType.number,
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 20),
+                              color: Colors.black87,
+                              fontSize: 20), // Texto digitado escuro
                           inputFormatters: [
                             MaskedTextInputFormatterShifter(
                                 maskONE: 'XXX.XXX.XXX-XX',
@@ -60,16 +62,25 @@ class LoginPage extends GetView<VerifyAccountController> {
                           decoration: InputDecoration(
                             isDense: true,
                             border: InputBorder.none,
-                            enabledBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.grey
+                                      .shade400), // Linha inferior cinza claro
                             ),
-                            focusedBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: primaryColor,
+                                  width: 2), // Linha primária quando focado
                             ),
                             contentPadding: EdgeInsets.zero,
                             labelText: 'cpf'.tr,
-                            labelStyle: const TextStyle(
-                              color: Colors.white,
+                            labelStyle: TextStyle(
+                              color: Colors.grey.shade600, // Label cinza escuro
+                              fontSize: 16,
+                            ),
+                            floatingLabelStyle: TextStyle(
+                              color:
+                                  primaryColor, // Label primário quando flutuando
                               fontSize: 16,
                             ),
                           ),
@@ -85,35 +96,37 @@ class LoginPage extends GetView<VerifyAccountController> {
                           isLoading: controller.isLoading.value,
                           labelText: 'access'.tr,
                           onPressed: () => controller.authVerify(),
-                          buttonType: AppButtonType.outlined,
-                          color: Colors.white,
+                          buttonType: AppButtonType
+                              .filled, // Mudei para Filled (preenchido) para dar contraste no fundo branco
+                          color: primaryColor, // Botão na cor primária
                         ),
                       ),
                     ),
                     Obx(() {
                       if (controller.canCheckBiometrics.value) {
                         return Padding(
-                          padding:
-                              const EdgeInsets.only(top: 20.0), // Espaçamento
+                          padding: const EdgeInsets.only(top: 20.0),
                           child: InkWell(
                             onTap: () => controller.loginWithBiometrics(),
-                            child: const Column(
+                            child: Column(
                               children: [
                                 Icon(Icons.fingerprint,
-                                    size: 50, color: Colors.white),
-                                SizedBox(height: 5),
+                                    size: 50,
+                                    color:
+                                        primaryColor), // Ícone na cor primária
+                                const SizedBox(height: 5),
                                 Text(
                                   'Entrar com digital',
                                   style: TextStyle(
-                                      color: Colors.white70, fontSize: 12),
+                                      color: Colors.grey.shade700,
+                                      fontSize: 12), // Texto cinza escuro
                                 ),
                               ],
                             ),
                           ),
                         );
                       }
-                      return const SizedBox
-                          .shrink(); // Não mostra nada se não tiver biometria
+                      return const SizedBox.shrink();
                     }),
                     Align(
                       alignment: Alignment.center,
@@ -121,7 +134,7 @@ class LoginPage extends GetView<VerifyAccountController> {
                         onPressed: () async =>
                             Get.toNamed(AppRoutes.privacyPolicyFromLogin),
                         buttonType: AppButtonType.text,
-                        color: Colors.white,
+                        color: Colors.grey.shade700, // Texto cinza escuro
                         labelText: 'terms'.tr,
                       ),
                     ),
@@ -130,9 +143,11 @@ class LoginPage extends GetView<VerifyAccountController> {
                       onPressed: () async {
                         Get.toNamed(AppRoutes.onboardingDocument);
                       },
-                      buttonType: AppButtonType.filled,
-                      color: thirdColor,
+                      buttonType: AppButtonType
+                          .outlined, // Mudei para Outline para diferenciar do botão "Acessar"
+                      color: primaryColor, // Cor primária no contorno
                     ),
+                    const SizedBox(height: 16), // Um espaço extra no final
                   ],
                 ),
               ),

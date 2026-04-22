@@ -1,4 +1,3 @@
-import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dimens.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +7,7 @@ class PrivacyCurtain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: primaryColor,
+      color: Colors.white,
       width: double.infinity,
       height: double.infinity,
       child: Center(
@@ -16,7 +15,7 @@ class PrivacyCurtain extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             gapXL,
-            Image.asset('assets/images/m4_ic_logo.png'),
+            Image.asset('assets/images/yooconn.png'),
           ],
         ),
       ),
