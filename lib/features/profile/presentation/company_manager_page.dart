@@ -16,8 +16,7 @@ class CompanyManagerPage extends GetView<CompanyManagerController> {
       backgroundColor: Colors.grey[50],
       appBar: const CustomAppBar(title: 'Gerenciar Empresas'),
       body: Obx(() {
-        final company = controller.userRx.company;
-        final isReplacing = controller.isReplacingDocument.value;
+        final company = controller.currentCompany.value;
 
         return CustomPageBody(
           padding: const EdgeInsets.all(24),
@@ -29,84 +28,32 @@ class CompanyManagerPage extends GetView<CompanyManagerController> {
             ),
             const SizedBox(height: 16),
 
-            if (company != null && company.document.isNotEmpty)
+            if (controller.isLoading.value && company == null)
+              const Center(child: CircularProgressIndicator())
+            else if (company != null && company.document.isNotEmpty)
               _buildCompanyCard(company)
             else
               _buildEmptyState(),
 
-            const SizedBox(height: 32),
-
-            // --- ÁREA DINÂMICA DE ATUALIZAÇÃO ---
-            if (isReplacing || company == null) ...[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Enviar Novo Cartão CNPJ',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  if (isReplacing)
-                    TextButton(
-                      onPressed: controller.cancelReplacement,
-                      child: const Text('Cancelar',
-                          style: TextStyle(color: Colors.red)),
-                    )
-                ],
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Selecione o arquivo PDF atualizado da sua empresa para validação.',
-                style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
-              ),
-              const SizedBox(height: 16),
-              _buildUploadBox(),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: controller.selectedFileName.value.isEmpty
-                      ? null
-                      : controller.uploadPdf,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _bluePrimary,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  child: controller.isLoading.value
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                              color: Colors.white, strokeWidth: 2))
-                      : const Text('CONFIRMAR ATUALIZAÇÃO',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold)),
-                ),
-              ),
-            ],
-
             const Spacer(),
 
             // Botão para cadastrar uma OUTRA empresa (Nova)
-            if (!isReplacing)
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton.icon(
-                  onPressed: () => _showAddCompanyModal(context),
-                  icon: Icon(Icons.add_business, color: _bluePrimary),
-                  label: Text('CADASTRAR NOVA EMPRESA',
-                      style: TextStyle(
-                          color: _bluePrimary, fontWeight: FontWeight.bold)),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    side: BorderSide(color: _bluePrimary, width: 1.5),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: () => _showAddCompanyModal(context),
+                icon: Icon(Icons.add_business, color: _bluePrimary),
+                label: Text('CADASTRAR NOVA EMPRESA',
+                    style: TextStyle(
+                        color: _bluePrimary, fontWeight: FontWeight.bold)),
+                style: OutlinedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  side: BorderSide(color: _bluePrimary, width: 1.5),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
                 ),
               ),
+            ),
           ],
         );
       }),
@@ -131,13 +78,6 @@ class CompanyManagerPage extends GetView<CompanyManagerController> {
         children: [
           Row(
             children: [
-              // Container(
-              //   padding: const EdgeInsets.all(10),
-              //   decoration: BoxDecoration(
-              //       color: _bluePrimary.withValues(alpha: 0.1),
-              //       shape: BoxShape.circle),
-              //   child: Icon(Icons.business, color: _bluePrimary),
-              // ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
@@ -155,33 +95,6 @@ class CompanyManagerPage extends GetView<CompanyManagerController> {
               ),
             ],
           ),
-          const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Divider(height: 1)),
-
-          // --- BOTÕES DE AÇÃO DO CARD ---
-          Row(
-            children: [
-              Expanded(
-                child: TextButton.icon(
-                  onPressed: controller.viewCurrentPdf,
-                  icon: const Icon(Icons.visibility_outlined, size: 18),
-                  label: const Text('Visualizar'),
-                  style: TextButton.styleFrom(foregroundColor: _bluePrimary),
-                ),
-              ),
-              Container(width: 1, height: 20, color: Colors.grey.shade200),
-              Expanded(
-                child: TextButton.icon(
-                  onPressed: controller.toggleReplaceMode,
-                  icon: const Icon(Icons.refresh_rounded, size: 18),
-                  label: const Text('Trocar Doc'),
-                  style: TextButton.styleFrom(
-                      foregroundColor: Colors.orange.shade700),
-                ),
-              ),
-            ],
-          )
         ],
       ),
     );
@@ -213,9 +126,6 @@ class CompanyManagerPage extends GetView<CompanyManagerController> {
 
   // --- MODAL DE CADASTRO ---
   void _showAddCompanyModal(BuildContext context) {
-    // Limpa o mock de arquivo caso o usuário tenha fechado o modal antes
-    controller.removePdfFile();
-
     Get.bottomSheet(
       isScrollControlled:
           true, // Permite que o modal ocupe mais espaço (útil pra formulários)
@@ -263,12 +173,6 @@ class CompanyManagerPage extends GetView<CompanyManagerController> {
                     const SizedBox(height: 12),
                     _buildTextField('Telefone', controller.phoneController,
                         mask: phoneMaskFormatter),
-                    const SizedBox(height: 24),
-                    const Text('Cartão CNPJ (PDF)',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16)),
-                    const SizedBox(height: 8),
-                    Obx(() => _buildUploadBox()),
                     const SizedBox(height: 32),
                   ],
                 ),
@@ -317,56 +221,6 @@ class CompanyManagerPage extends GetView<CompanyManagerController> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      ),
-    );
-  }
-
-  Widget _buildUploadBox() {
-    final hasFile = controller.selectedFileName.value.isNotEmpty;
-
-    return InkWell(
-      onTap: hasFile ? controller.removePdfFile : controller.pickPdfFile,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-        decoration: BoxDecoration(
-          color: hasFile ? Colors.blue.shade50 : Colors.grey.shade50,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-              color: hasFile ? _bluePrimary : Colors.grey.shade400,
-              width: 1.5,
-              style: hasFile
-                  ? BorderStyle.solid
-                  : BorderStyle.none), // pontilhado simulado
-        ),
-        child: Column(
-          children: [
-            Icon(
-              hasFile ? Icons.file_present : Icons.upload_file,
-              color: hasFile ? _bluePrimary : Colors.grey.shade500,
-              size: 32,
-            ),
-            const SizedBox(height: 12),
-            Text(
-              hasFile
-                  ? controller.selectedFileName.value
-                  : 'Toque para anexar o PDF',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: hasFile ? _bluePrimary : Colors.grey.shade700,
-                fontWeight: hasFile ? FontWeight.bold : FontWeight.normal,
-                fontSize: 14,
-              ),
-            ),
-            if (hasFile)
-              const Padding(
-                padding: EdgeInsets.only(top: 8.0),
-                child: Text('Toque para remover',
-                    style: TextStyle(color: Colors.red, fontSize: 12)),
-              )
-          ],
-        ),
       ),
     );
   }

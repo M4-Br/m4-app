@@ -31,6 +31,7 @@ class AppEndpoints {
   static const String plans = '/plans';
   static const String userParams = '/payment_capacity/params';
   static const String userCapacity = '/payment_capacity/';
+  static const String company = '/company';
 
   //statements
   static const String statement = '/v2/statements';
