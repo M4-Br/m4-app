@@ -1,6 +1,6 @@
 flutter_native_splash:
   # Imagem principal (para Android antigo e iOS)
-  image: assets/images/yooconn.png
+  image: assets/images/splash_combined_logo.png
   color: "#FFFFFF"
 
   # AJUSTE 1: Garante que no Android antigo e iOS a imagem fique no centro sem esticar

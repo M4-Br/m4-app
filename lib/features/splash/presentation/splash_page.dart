@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/features/splash/controller/splash_screen_controller.dart';
 
 import 'package:flutter/material.dart';
@@ -21,7 +22,21 @@ class SplashPage extends GetView<SplashScreenController> {
                 opacity: controller.fadeAnimation.value,
                 child: Transform.scale(
                   scale: controller.sizeAnimation.value,
-                  child: Image.asset('assets/images/yooconn.png'),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/yooconn.png',
+                        height: 150,
+                      ),
+                      const SizedBox(width: 16),
+                      Image.asset(
+                        'assets/images/m4_ic_logo.png',
+                        height: 60,
+                        color: primaryColor,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
