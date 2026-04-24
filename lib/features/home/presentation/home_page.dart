@@ -31,8 +31,7 @@ class HomePage extends GetView<HomeIconsController> {
                         constraints: const BoxConstraints(maxWidth: 800),
                         child: GestureDetector(
                           onTap: () => controller.openFaciapLink(),
-                          child: Image.asset(
-                              'assets/images/home_banner_partners.png'),
+                          child: Image.asset('assets/images/home_banner.png'),
                         ),
                       ),
                     ),
@@ -79,7 +78,8 @@ class HomePage extends GetView<HomeIconsController> {
                           return _buildGridCard(
                             title: item.title,
                             iconData: item.iconData,
-                            iconColor: _pastelColor,
+                            iconPath: item.iconPath,
+                            iconColor: item.color ?? _pastelColor,
                             onTap: () =>
                                 controller.onMenuOptionTap(item.id, item.title),
                           );
@@ -184,6 +184,7 @@ class HomePage extends GetView<HomeIconsController> {
   Widget _buildGridCard({
     required String title,
     required IconData? iconData,
+    String? iconPath,
     required Color iconColor,
     required VoidCallback onTap,
   }) {
@@ -206,11 +207,14 @@ class HomePage extends GetView<HomeIconsController> {
                 color: iconColor.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(14),
               ),
-              child: Icon(
-                iconData ?? Icons.grid_view_rounded,
-                color: iconColor,
-                size: 38,
-              ),
+              child: iconPath != null
+                  ? Image.asset(iconPath,
+                      width: 38, height: 38, color: iconColor)
+                  : Icon(
+                      iconData ?? Icons.grid_view_rounded,
+                      color: iconColor,
+                      size: 38,
+                    ),
             ),
             const SizedBox(height: 12),
             Padding(

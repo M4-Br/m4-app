@@ -131,7 +131,7 @@ class AccountingHomePage extends GetView<AccountingHomeController> {
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
-                          color: Colors.deepOrange)),
+                          color: Colors.green)),
                 ],
               ),
             ),

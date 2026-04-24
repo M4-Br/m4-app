@@ -36,8 +36,8 @@ class HomeViewController extends GetxController {
       case 1: // Carteira Digital
         return Icon(Icons.account_balance_wallet_outlined,
             size: 28, color: color);
-      case 2: // Loja (Marketplace)
-        return Icon(Icons.storefront_outlined, size: 28, color: color);
+      case 2: // IA
+        return Icon(Icons.auto_awesome_outlined, size: 28, color: color);
       // case 3: // Pedidos (Ícone de caixa)
       //   return Icon(Icons.inventory_2_outlined, size: 28, color: color);
       case 3: // Perfil

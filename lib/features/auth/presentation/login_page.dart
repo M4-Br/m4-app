@@ -31,20 +31,9 @@ class LoginPage extends GetView<VerifyAccountController> {
                       padding: const EdgeInsets.symmetric(
                         horizontal: AppDimens.kPaddingXL,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/yooconn.png',
-                            height: 150,
-                          ),
-                          const SizedBox(width: 16),
-                          Image.asset(
-                            'assets/images/m4_ic_logo.png',
-                            height: 60,
-                            color: primaryColor,
-                          ),
-                        ],
+                      child: Image.asset(
+                        'assets/images/yooconn.png',
+                        height: 150,
                       ),
                     ),
                     Padding(

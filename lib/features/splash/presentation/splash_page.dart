@@ -25,14 +25,10 @@ class SplashPage extends GetView<SplashScreenController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        'assets/images/yooconn.png',
-                        height: 150,
-                      ),
                       const SizedBox(width: 16),
                       Image.asset(
                         'assets/images/m4_ic_logo.png',
-                        height: 60,
+                        height: 150,
                         color: primaryColor,
                       ),
                     ],

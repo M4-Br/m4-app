@@ -1,8 +1,8 @@
 import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
+import 'package:app_flutter_miban4/features/ai/presentation/ai_manager_page.dart';
 import 'package:app_flutter_miban4/features/digitalAccount/presentation/digital_account_page.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_controller.dart';
 import 'package:app_flutter_miban4/features/home/presentation/home_page.dart';
-import 'package:app_flutter_miban4/features/marketplace/presentation/marketplace_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/profile_page.dart';
 
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class HomeViewPage extends GetView<HomeViewController> {
     final List<Widget> widgetOptions = <Widget>[
       HomePage(),
       DigitalAccountPage(),
-      MarketplacePage(),
+      AiManagerPage(),
       // OrdersPage(), // 3: Pedidos
       const ProfilePage(), // 5: Perfil
     ];
@@ -50,7 +50,7 @@ class HomeViewPage extends GetView<HomeViewController> {
               ),
               BottomNavigationBarItem(
                 icon: controller.getIconForIndex(2),
-                label: 'Loja',
+                label: 'IA',
               ),
               // BottomNavigationBarItem(
               //   icon: controller.getIconForIndex(3),

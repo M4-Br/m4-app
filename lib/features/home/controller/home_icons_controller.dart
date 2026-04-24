@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
@@ -20,6 +21,7 @@ class HomeMenuItem {
   final String? iconPath;
   final IconData? iconData;
   final bool isLocal;
+  final Color? color;
 
   HomeMenuItem({
     required this.id,
@@ -27,6 +29,7 @@ class HomeMenuItem {
     this.iconPath,
     this.iconData,
     this.isLocal = true,
+    this.color,
   });
 }
 
@@ -69,17 +72,13 @@ class HomeIconsController extends BaseController {
       HomeMenuItem(id: 'score', title: 'Crédito', iconData: Icons.bar_chart),
       HomeMenuItem(
           id: 'news', title: 'Notícias', iconData: Icons.newspaper_outlined),
-      HomeMenuItem(id: 'mei', title: 'MEI', iconData: Icons.business_outlined),
       HomeMenuItem(
-          id: 'ai', title: 'IA', iconData: Icons.auto_awesome_outlined),
+          id: 'mei', title: 'Documentos', iconData: Icons.business_outlined),
+      // HomeMenuItem(
+      //     id: 'ai', title: 'IA', iconData: Icons.auto_awesome_outlined),
       // --- ESTOQUE OCULTO TEMPORARIAMENTE ---
       // HomeMenuItem(
       //     id: 'stock', title: 'Estoque', iconData: Icons.receipt_long_outlined),
-
-      HomeMenuItem(
-          id: 'partners',
-          title: 'Nossos Parceiros',
-          iconData: Icons.handshake_outlined),
       HomeMenuItem(
           id: 'clients',
           title: 'Meus Clientes',
@@ -92,6 +91,15 @@ class HomeIconsController extends BaseController {
           id: 'health',
           title: 'Telemedicina',
           iconData: Icons.health_and_safety_outlined),
+      HomeMenuItem(
+        id: 'pix',
+        title: 'Pix',
+        iconPath: 'assets/icons/ic_home_pix.png',
+      ),
+      HomeMenuItem(
+          id: 'partners',
+          title: 'Nossos Parceiros',
+          iconData: Icons.handshake_outlined),
     ];
   }
 
@@ -189,6 +197,8 @@ class HomeIconsController extends BaseController {
         return 10;
       case 'health':
         return 11;
+      case 'pix':
+        return 15;
       // Itens não solicitados para trackear (retornam 0)
       case 'favorites':
         return 0;
@@ -269,6 +279,10 @@ class HomeIconsController extends BaseController {
       case 'health':
         Get.toNamed(AppRoutes.healthHome);
         AppLogger.I().info('Going to Health Page');
+        break;
+      case 'pix':
+        Get.toNamed(AppRoutes.pixHome);
+        AppLogger.I().info('Going to Pix Home');
         break;
       // case 'stock':
       //   Get.toNamed(AppRoutes.stock);

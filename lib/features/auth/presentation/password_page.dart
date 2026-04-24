@@ -43,20 +43,9 @@ class PasswordPage extends GetView<AuthController> {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 32, 0, 50),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/yooconn.png',
-                                height: 150,
-                              ),
-                              const SizedBox(width: 16),
-                              Image.asset(
-                                'assets/images/m4_ic_logo.png',
-                                height: 60,
-                                color: primaryColor,
-                              ),
-                            ],
+                          child: Image.asset(
+                            'assets/images/yooconn.png',
+                            height: 150,
                           ),
                         ),
                         Padding(
