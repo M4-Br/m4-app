@@ -30,7 +30,7 @@ class CompleteProfileAddressRequest {
       'number': number,
       'neighborhood': neighborhood,
       'complement': complement,
-      'country': 'Brazil', //TODO: Ajustar o país
+      'country': 'Brazil',
       'state': state,
       'city': city,
     };

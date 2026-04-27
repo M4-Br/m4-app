@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/features/newsletter/controller/newsletter_controller.dart';
 import 'package:app_flutter_miban4/features/newsletter/model/newsletter_model.dart';
@@ -22,7 +23,7 @@ class NewsletterPage extends GetView<NewsletterController> {
       body: Column(
         children: [
           _buildRedHeader(),
-          _buildFilters(),
+          _buildFilters(context),
           Expanded(
             child: Obx(() {
               if (controller.isLoading.value) {
@@ -85,7 +86,7 @@ class NewsletterPage extends GetView<NewsletterController> {
     );
   }
 
-  Widget _buildFilters() {
+  Widget _buildFilters(BuildContext context) {
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 16),
@@ -93,78 +94,96 @@ class NewsletterPage extends GetView<NewsletterController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Primeira linha de filtros (Fontes)
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Obx(() => Row(
-                  // <-- Obx adicionado aqui
-                  children: [
-                    _buildFilterChip(
-                      title: 'Todas', // Número removido
-                      isSelected:
-                          controller.selectedSourceFilter.value == 'Todas',
-                      isRed: true,
-                      onTap: () => controller.setSourceFilter('Todas'),
-                    ),
-                    const SizedBox(width: 8),
-                    _buildFilterChip(
-                      title: 'Informativos Associa+', // Número removido
-                      isSelected:
-                          controller.selectedSourceFilter.value == 'Associa+',
-                      onTap: () => controller.setSourceFilter('Associa+'),
-                    ),
-                    const SizedBox(width: 8),
-                    _buildFilterChip(
-                      title: 'Notícias Externas', // Número removido
-                      isSelected:
-                          controller.selectedSourceFilter.value == 'Externas',
-                      onTap: () => controller.setSourceFilter('Externas'),
-                    ),
-                  ],
-                )),
+          ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(
+              dragDevices: {
+                PointerDeviceKind.touch,
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.trackpad,
+              },
+            ),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Obx(() => Row(
+                    // <-- Obx adicionado aqui
+                    children: [
+                      _buildFilterChip(
+                        title: 'Todas', // Número removido
+                        isSelected:
+                            controller.selectedSourceFilter.value == 'Todas',
+                        isRed: true,
+                        onTap: () => controller.setSourceFilter('Todas'),
+                      ),
+                      const SizedBox(width: 8),
+                      _buildFilterChip(
+                        title: 'Informativos Associa+', // Número removido
+                        isSelected:
+                            controller.selectedSourceFilter.value == 'Associa+',
+                        onTap: () => controller.setSourceFilter('Associa+'),
+                      ),
+                      const SizedBox(width: 8),
+                      _buildFilterChip(
+                        title: 'Notícias Externas', // Número removido
+                        isSelected:
+                            controller.selectedSourceFilter.value == 'Externas',
+                        onTap: () => controller.setSourceFilter('Externas'),
+                      ),
+                    ],
+                  )),
+            ),
           ),
           const SizedBox(height: 12),
           // Segunda linha de filtros (Categorias)
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Obx(() => Row(
-                  // <-- Obx adicionado aqui
-                  children: [
-                    _buildFilterChip(
-                      title: 'Todas',
-                      isSelected:
-                          controller.selectedCategoryFilter.value == 'Todas',
-                      isRed: true,
-                      icon: Icons.grid_view_rounded,
-                      onTap: () => controller.setCategoryFilter('Todas'),
-                    ),
-                    const SizedBox(width: 8),
-                    _buildFilterChip(
-                      title: 'Economia',
-                      isSelected:
-                          controller.selectedCategoryFilter.value == 'Economia',
-                      icon: Icons.trending_up,
-                      onTap: () => controller.setCategoryFilter('Economia'),
-                    ),
-                    const SizedBox(width: 8),
-                    _buildFilterChip(
-                      title: 'Negócios',
-                      isSelected:
-                          controller.selectedCategoryFilter.value == 'Negócios',
-                      icon: Icons.domain,
-                      onTap: () => controller.setCategoryFilter('Negócios'),
-                    ),
-                    const SizedBox(width: 8),
-                    _buildFilterChip(
-                      title: 'MEI',
-                      isSelected:
-                          controller.selectedCategoryFilter.value == 'MEI',
-                      icon: Icons.attach_money,
-                      onTap: () => controller.setCategoryFilter('MEI'),
-                    ),
-                  ],
-                )),
+          ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(
+              dragDevices: {
+                PointerDeviceKind.touch,
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.trackpad,
+              },
+            ),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Obx(() => Row(
+                    // <-- Obx adicionado aqui
+                    children: [
+                      _buildFilterChip(
+                        title: 'Todas',
+                        isSelected:
+                            controller.selectedCategoryFilter.value == 'Todas',
+                        isRed: true,
+                        icon: Icons.grid_view_rounded,
+                        onTap: () => controller.setCategoryFilter('Todas'),
+                      ),
+                      const SizedBox(width: 8),
+                      _buildFilterChip(
+                        title: 'Economia',
+                        isSelected: controller.selectedCategoryFilter.value ==
+                            'Economia',
+                        icon: Icons.trending_up,
+                        onTap: () => controller.setCategoryFilter('Economia'),
+                      ),
+                      const SizedBox(width: 8),
+                      _buildFilterChip(
+                        title: 'Negócios',
+                        isSelected: controller.selectedCategoryFilter.value ==
+                            'Negócios',
+                        icon: Icons.domain,
+                        onTap: () => controller.setCategoryFilter('Negócios'),
+                      ),
+                      const SizedBox(width: 8),
+                      _buildFilterChip(
+                        title: 'MEI',
+                        isSelected:
+                            controller.selectedCategoryFilter.value == 'MEI',
+                        icon: Icons.attach_money,
+                        onTap: () => controller.setCategoryFilter('MEI'),
+                      ),
+                    ],
+                  )),
+            ),
           ),
         ],
       ),

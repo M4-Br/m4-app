@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
+import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/formatters/maks_apply.dart';
 import 'package:flutter/foundation.dart';
@@ -165,17 +166,27 @@ class MeiServicesController extends BaseController {
       return;
     }
 
-    if (kIsWeb) {
-      final uri = Uri.parse(url);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      }
-    } else {
-      Get.toNamed(AppRoutes.webView, arguments: {
-        'url': url,
-        'title': title,
-      });
-    }
+    CustomDialogs.showConfirmationDialog(
+      title: 'Serviço Externo',
+      content:
+          'Você está acessando um serviço externo e a Yooconn não se responsabiliza pelos dados fornecidos.',
+      confirmText: 'Acessar',
+      cancelText: 'Cancelar',
+      onConfirm: () async {
+        Get.back();
+        if (kIsWeb) {
+          final uri = Uri.parse(url);
+          if (await canLaunchUrl(uri)) {
+            await launchUrl(uri, mode: LaunchMode.externalApplication);
+          }
+        } else {
+          Get.toNamed(AppRoutes.webView, arguments: {
+            'url': url,
+            'title': title,
+          });
+        }
+      },
+    );
   }
 
   void openGovPortal() {

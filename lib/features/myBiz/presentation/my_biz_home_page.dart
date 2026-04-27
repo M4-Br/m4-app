@@ -22,7 +22,6 @@ class MyBizPage extends GetView<MyBizController> {
   final Color _colorIncome = const Color(0xFF065F46); // Verde
   final Color _colorExpense = const Color(0xFFEF4444); // Vermelho
   final Color _colorProfit = const Color(0xFF3B82F6); // Azul
-  final Color _colorMargin = const Color(0xFFA855F7); // Roxo
 
   @override
   Widget build(BuildContext context) {

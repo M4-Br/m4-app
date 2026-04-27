@@ -1,4 +1,3 @@
-import 'package:app_flutter_miban4/core/config/app/app_colors.dart';
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
@@ -230,7 +229,7 @@ class HomeIconsController extends BaseController {
         AppLogger.I().info('Going to Favorites Page');
         break;
       case 'marketplace':
-        homeViewController.onItemTapped(2);
+        Get.toNamed(AppRoutes.marketplace);
         AppLogger.I().info('Going to Marketplace Page');
         break;
       case 'myBiz':

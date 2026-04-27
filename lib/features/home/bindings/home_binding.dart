@@ -1,4 +1,5 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:app_flutter_miban4/features/ai/bindings/ai_manager_binding.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
 import 'package:app_flutter_miban4/features/geral/controller/favorites_transfers_controller.dart';
@@ -19,6 +20,8 @@ class HomeViewBinding extends Bindings {
     Get.lazyPut<FavoritesTransfersController>(
         () => FavoritesTransfersController(),
         fenix: true);
+
+    Get.lazyPut<AiManagerBinding>(() => AiManagerBinding());
 
     Get.lazyPut<HomeIconsController>(() => HomeIconsController(
         notifications: Get.find<NotificationsController>(),

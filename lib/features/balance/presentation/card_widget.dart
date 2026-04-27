@@ -41,15 +41,12 @@ class CardWidget extends GetView<BalanceController> {
     }
 
     final Color fontColor = currentUser.payload.cardFontColor;
-    final String assetPath;
 
     switch (currentUser.payload.companyId) {
       case 1:
       case 2:
-        assetPath = 'assets/images/ic_faciap.png';
         break;
       default:
-        assetPath = 'assets/images/ic_faciap.png';
     }
 
     return GestureDetector(
