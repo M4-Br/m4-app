@@ -107,4 +107,7 @@ class AppEndpoints {
 
   //Financial Data
   static const String postFinancial = '/payment_capacity';
+
+  //Telemedicine
+  static const String specialties = '/specialties';
 }

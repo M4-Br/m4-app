@@ -32,7 +32,27 @@ class HealthAttendancePage extends GetView<HealthAttendanceController> {
                         fontWeight: FontWeight.bold,
                         color: Colors.black87)),
                 const SizedBox(height: 16),
-                _buildSpecialtiesGrid(),
+                Obx(() {
+                  if (controller.isLoadingSpecialties.value) {
+                    return const Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 32),
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+
+                  if (controller.specialties.isEmpty) {
+                    return const Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 32),
+                        child: Text('Nenhuma especialidade encontrada.'),
+                      ),
+                    );
+                  }
+
+                  return _buildSpecialtiesGrid();
+                }),
                 const SizedBox(height: 40),
               ],
             ),
