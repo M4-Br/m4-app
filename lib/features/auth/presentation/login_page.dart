@@ -79,6 +79,15 @@ class LoginPage extends GetView<VerifyAccountController> {
                                   primaryColor, // Label primário quando flutuando
                               fontSize: 16,
                             ),
+                            errorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: colorRed), // Linha vermelha em erro
+                            ),
+                            focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: colorRed,
+                                  width: 2), // Linha vermelha focada em erro
+                            ),
                           ),
                         ),
                       ),

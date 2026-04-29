@@ -183,15 +183,34 @@ class HealthHomePage extends GetView<HealthHomeController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Obx(() => Text(controller.userName.value,
+                            Obx(() => Text(
+                                controller.beneficiary.value?.name ?? '',
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold))),
                             const SizedBox(height: 4),
-                            const Text('Titular',
-                                style: TextStyle(
-                                    color: Colors.white54, fontSize: 13)),
+                            Obx(() {
+                              final b = controller.beneficiary.value;
+                              if (b == null) {
+                                return const Text('Titular',
+                                    style: TextStyle(
+                                        color: Colors.white54, fontSize: 13));
+                              }
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      'Titular • CPF: ${controller.maskCpf(b.cpf)}',
+                                      style: const TextStyle(
+                                          color: Colors.white54, fontSize: 13)),
+                                  const SizedBox(height: 2),
+                                  Text(controller.maskPhone(b.phone),
+                                      style: const TextStyle(
+                                          color: Colors.white54, fontSize: 12)),
+                                ],
+                              );
+                            }),
                           ],
                         ),
                       ),
@@ -215,10 +234,10 @@ class HealthHomePage extends GetView<HealthHomeController> {
                           const Text('Contrato',
                               style: TextStyle(
                                   color: Colors.white54, fontSize: 11)),
-                          Text(controller.contractNumber,
+                          Obx(() => Text(controller.contractNumberFormatted,
                               style: const TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
+                                  fontWeight: FontWeight.w500))),
                         ],
                       ),
                       Column(
@@ -227,10 +246,10 @@ class HealthHomePage extends GetView<HealthHomeController> {
                           const Text('Adesão',
                               style: TextStyle(
                                   color: Colors.white54, fontSize: 11)),
-                          Text(controller.acquisitionDate,
+                          Obx(() => Text(controller.acquisitionDateFormatted,
                               style: const TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
+                                  fontWeight: FontWeight.w500))),
                         ],
                       ),
                     ],

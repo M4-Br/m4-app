@@ -98,6 +98,12 @@ class AuthChangePswPage extends GetView<AuthChangePswController> {
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: secondaryColor),
         ),
+        errorBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: colorRed), // Linha vermelha em erro
+        ),
+        focusedErrorBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: colorRed, width: 2), // Linha vermelha focada em erro
+        ),
         suffixIcon: IconButton(
           onPressed: () => this.controller.toggleObscure(),
           icon: Icon(

@@ -110,4 +110,5 @@ class AppEndpoints {
 
   //Telemedicine
   static const String specialties = '/specialties';
+  static const String beneficiaries = '/beneficiaries';
 }

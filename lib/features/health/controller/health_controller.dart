@@ -1,22 +1,35 @@
+import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_toaster.dart';
 import 'package:app_flutter_miban4/core/config/auth/controller/user_rx.dart';
+import 'package:app_flutter_miban4/features/health/model/health_beneficiary.dart';
+import 'package:app_flutter_miban4/features/health/repository/health_repository.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 
 class HealthHomeController extends BaseController {
   final GetStorage _storage = GetStorage();
+  final HealthRepository _repository = HealthRepository();
+
   final String _storageKey = 'mock_melife_contracted';
   final String _storagePlanKey = 'mock_melife_plan_name';
   final String _appointmentsKey = 'mock_melife_appointments';
 
   final RxBool isContracted = false.obs;
+  final Rxn<HealthBeneficiary> beneficiary = Rxn<HealthBeneficiary>();
 
   final RxString planName = 'MeLife Essencial'.obs;
   final String contractNumber = 'ML-20260406-001';
   final String acquisitionDate = '06/04/2026';
   final RxString userName = 'Usuário'.obs;
+
+  String get contractNumberFormatted =>
+      beneficiary.value?.uuid.split('-').first.toUpperCase() ?? contractNumber;
+  String get acquisitionDateFormatted => beneficiary.value?.createdAt != null
+      ? DateFormat('dd/MM/yyyy').format(beneficiary.value!.createdAt!)
+      : acquisitionDate;
 
   // --- NOVA LISTA REATIVA DE AGENDAMENTOS ---
   final RxList<Map<String, dynamic>> upcomingAppointments =
@@ -28,6 +41,43 @@ class HealthHomeController extends BaseController {
     _loadUserData();
     _loadContractState();
     _loadAppointments(); // Carrega ao iniciar
+    fetchBeneficiaryData();
+  }
+
+  Future<void> fetchBeneficiaryData() async {
+    isLoading.value = true;
+    try {
+      final userRx = Get.find<UserRx>();
+      final document = userRx.user.value?.payload.document;
+
+      if (document == null) return;
+
+      final data = await _repository.fetchBeneficiary(document);
+      beneficiary.value = data;
+
+      isContracted.value = data.isActive;
+      userName.value = data.name;
+      if (data.plans.isNotEmpty) {
+        planName.value = data.plans.first.plan.name;
+      }
+    } catch (e, s) {
+      AppLogger.I().error('Erro ao buscar dados do beneficiário', e, s);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  String maskCpf(String cpf) {
+    if (cpf.length != 11) return cpf;
+    return '${cpf.substring(0, 3)}.${cpf.substring(3, 6)}.${cpf.substring(6, 9)}-${cpf.substring(9)}';
+  }
+
+  String maskPhone(String phone) {
+    if (phone.length == 13) {
+      // 55 11 99999 8888
+      return '+${phone.substring(0, 2)} (${phone.substring(2, 4)}) ${phone.substring(4, 9)}-${phone.substring(9)}';
+    }
+    return phone;
   }
 
   void _loadUserData() {
