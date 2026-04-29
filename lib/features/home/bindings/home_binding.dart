@@ -29,9 +29,6 @@ class HomeViewBinding extends Bindings {
 
     Get.lazyPut<HomeViewController>(() => HomeViewController());
 
-    // Get.lazyPut<StatementController>(
-    //     () => StatementController(balance: Get.find<BalanceRx>()));
-
     Get.lazyPut<PlansController>(() => PlansController());
 
     AppLogger.I().debug('Home depencies injected');
