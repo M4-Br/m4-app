@@ -1,5 +1,7 @@
+import 'package:app_flutter_miban4/core/helpers/utils/app_enums.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_loading.dart';
 import 'package:app_flutter_miban4/features/home/controller/home_icons_controller.dart';
+import 'package:app_flutter_miban4/features/profile/service/customization_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -57,6 +59,31 @@ class HomePage extends GetView<HomeIconsController> {
                         );
                       }
 
+                      final style = CustomizationService.to.homeIconStyle.value;
+
+                      if (style == HomeIconStyle.verticalList) {
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
+                          itemCount: menuItems.length,
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 8),
+                          itemBuilder: (context, index) {
+                            final item = menuItems[index];
+                            return _buildListCard(
+                              title: item.title,
+                              iconData: item.iconData,
+                              iconPath: item.iconPath,
+                              iconColor: item.color ?? _pastelColor,
+                              onTap: () => controller.onMenuOptionTap(
+                                  item.id, item.title),
+                            );
+                          },
+                        );
+                      }
+
                       return GridView.builder(
                         shrinkWrap:
                             true, // IMPORTANTE: Deixa o GridView com o tamanho exato dos itens
@@ -65,9 +92,12 @@ class HomePage extends GetView<HomeIconsController> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
                         gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                            SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 200,
-                          childAspectRatio: 1.2,
+                          childAspectRatio: style == HomeIconStyle.iconOnly ||
+                                  style == HomeIconStyle.textOnly
+                              ? 1.5
+                              : 1.2,
                           mainAxisSpacing: 12,
                           crossAxisSpacing: 12,
                         ),
@@ -80,6 +110,7 @@ class HomePage extends GetView<HomeIconsController> {
                             iconData: item.iconData,
                             iconPath: item.iconPath,
                             iconColor: item.color ?? _pastelColor,
+                            style: style,
                             onTap: () =>
                                 controller.onMenuOptionTap(item.id, item.title),
                           );
@@ -186,8 +217,12 @@ class HomePage extends GetView<HomeIconsController> {
     required IconData? iconData,
     String? iconPath,
     required Color iconColor,
+    required HomeIconStyle style,
     required VoidCallback onTap,
   }) {
+    final showIcon = style == HomeIconStyle.standard || style == HomeIconStyle.iconOnly;
+    final showText = style == HomeIconStyle.standard || style == HomeIconStyle.textOnly;
+
     return Material(
       color: Colors.white,
       elevation: 0,
@@ -201,38 +236,84 @@ class HomePage extends GetView<HomeIconsController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: iconColor.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: iconPath != null
-                  ? Image.asset(iconPath,
-                      width: 38, height: 38, color: iconColor)
-                  : Icon(
-                      iconData ?? Icons.grid_view_rounded,
-                      color: iconColor,
-                      size: 38,
-                    ),
-            ),
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.black87,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
+            if (showIcon)
+              Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: iconColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(14),
                 ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+                child: iconPath != null
+                    ? Image.asset(iconPath,
+                        width: 38, height: 38, color: iconColor)
+                    : Icon(
+                        iconData ?? Icons.grid_view_rounded,
+                        color: iconColor,
+                        size: 38,
+                      ),
               ),
-            ),
+            if (showIcon && showText) const SizedBox(height: 12),
+            if (showText)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildListCard({
+    required String title,
+    required IconData? iconData,
+    String? iconPath,
+    required Color iconColor,
+    required VoidCallback onTap,
+  }) {
+    return Material(
+      color: Colors.white,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: Colors.grey.withValues(alpha: 0.15), width: 1),
+      ),
+      child: ListTile(
+        onTap: onTap,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        leading: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: iconColor.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: iconPath != null
+              ? Image.asset(iconPath, width: 24, height: 24, color: iconColor)
+              : Icon(
+                  iconData ?? Icons.grid_view_rounded,
+                  color: iconColor,
+                  size: 24,
+                ),
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.black87,
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailing: const Icon(Icons.chevron_right, color: Colors.black26),
       ),
     );
   }

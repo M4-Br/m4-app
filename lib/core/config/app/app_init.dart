@@ -7,6 +7,7 @@ import 'package:app_flutter_miban4/core/helpers/controller/tracking_controller.d
 import 'package:app_flutter_miban4/core/helpers/sentry_helper.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
 import 'package:app_flutter_miban4/features/completeProfile/controller/redirect_complete_profile_controller.dart';
+import 'package:app_flutter_miban4/features/profile/service/customization_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -23,6 +24,9 @@ class AppSetup {
 
     await Get.putAsync(() => AuthService().init());
     AppLogger.I().debug('Auth Service Initialized');
+
+    await Get.putAsync(() => CustomizationService().init());
+    AppLogger.I().debug('Customization Service Initialized');
 
     Get.put(AppLifecycleController(), permanent: true);
 

@@ -14,6 +14,8 @@ import 'package:app_flutter_miban4/features/profile/presentation/change_password
 import 'package:app_flutter_miban4/features/profile/presentation/company_manager_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/financial_data_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/plans_page.dart';
+import 'package:app_flutter_miban4/features/profile/bindings/customization_binding.dart';
+import 'package:app_flutter_miban4/features/profile/presentation/customization_page.dart';
 import 'package:get/get.dart';
 
 class ProfilePages {
@@ -63,6 +65,12 @@ class ProfilePages {
         name: AppRoutes.companyManager,
         page: () => CompanyManagerPage(),
         binding: CompanyManagerBinding(),
+        middlewares: [AuthGuard()]),
+    //Customization
+    GetPage(
+        name: AppRoutes.customization,
+        page: () => const CustomizationPage(),
+        binding: CustomizationBinding(),
         middlewares: [AuthGuard()]),
   ];
 }

@@ -170,4 +170,7 @@ class AppRoutes {
 
   //Company
   static const String companyManager = '$profile/company';
+
+  //Customization
+  static const String customization = '$profile/customization';
 }
