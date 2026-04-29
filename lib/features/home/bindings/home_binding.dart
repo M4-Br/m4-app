@@ -1,5 +1,4 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
-import 'package:app_flutter_miban4/features/ai/bindings/ai_manager_binding.dart';
 import 'package:app_flutter_miban4/features/ai/controller/ai_manager_controller.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
