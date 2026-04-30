@@ -143,12 +143,14 @@ flutter:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/playstore.png"
+  image_path: "assets/icons/ic_yooconn.png"
   min_sdk_android: 21 # recomendável para evitar problemas de build
 
   # Configuração para Android 8+ e 12+ (Resolve o problema do ícone feio/cortado)
-  adaptive_icon_background: "#002A4D" 
-  adaptive_icon_foreground: "assets/images/playstore.png"
+  adaptive_icon_background: "#FFFFFF" 
+  adaptive_icon_foreground: "assets/icons/ic_yooconn.png"
+  remove_alpha_ios: true
+
 
   # Se quiser remover ícones da Web para economizar espaço
   web:
