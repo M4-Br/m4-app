@@ -1,4 +1,4 @@
-package mibanka4.app_flutter_miban4
+package com.yooconnm4
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

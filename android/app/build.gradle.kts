@@ -15,7 +15,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.app_flutter_miban4"
+    namespace = "com.yooconnm4"
     compileSdk = 36
     ndkVersion = "29.0.13599879"
 
@@ -29,7 +29,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "mibanka4.release"
+        applicationId = "com.yooconnm4"
         minSdk = 27
         targetSdk = 36
         versionCode = 1
