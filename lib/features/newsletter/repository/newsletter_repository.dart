@@ -3,6 +3,7 @@ import 'package:app_flutter_miban4/features/newsletter/model/newsletter_model.da
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 class NewsletterRepository {
@@ -42,10 +43,23 @@ class NewsletterRepository {
     final url = Uri.parse(apiUrl);
 
     AppLogger.I().info('Buscando GNews: $query');
-    final response = await http.get(url).timeout(const Duration(seconds: 8));
+
+    String finalUrl = apiUrl;
+    if (kIsWeb) {
+      // Proxy para evitar CORS na Web
+      finalUrl = 'https://api.allorigins.win/get?url=${Uri.encodeComponent(apiUrl)}';
+    }
+
+    final response = await http.get(Uri.parse(finalUrl)).timeout(const Duration(seconds: 8));
 
     if (response.statusCode == 200) {
-      final data = json.decode(response.body);
+      var data = json.decode(response.body);
+
+      // Se for Web, o conteúdo vem dentro de 'contents' como String
+      if (kIsWeb && data is Map && data.containsKey('contents')) {
+        data = json.decode(data['contents']);
+      }
+
       final List articles = data['articles'] ?? [];
       return articles
           .map((article) => NewsletterModel.fromJson(article, categoryName))
@@ -64,10 +78,23 @@ class NewsletterRepository {
     final url = Uri.parse(apiUrl);
 
     AppLogger.I().info('Buscando NewsAPI: $query');
-    final response = await http.get(url).timeout(const Duration(seconds: 8));
+
+    String finalUrl = apiUrl;
+    if (kIsWeb) {
+      // Proxy para evitar CORS na Web
+      finalUrl = 'https://api.allorigins.win/get?url=${Uri.encodeComponent(apiUrl)}';
+    }
+
+    final response = await http.get(Uri.parse(finalUrl)).timeout(const Duration(seconds: 8));
 
     if (response.statusCode == 200) {
-      final data = json.decode(response.body);
+      var data = json.decode(response.body);
+
+      // Se for Web, o conteúdo vem dentro de 'contents' como String
+      if (kIsWeb && data is Map && data.containsKey('contents')) {
+        data = json.decode(data['contents']);
+      }
+
       final List articles = data['articles'] ?? [];
 
       return articles
