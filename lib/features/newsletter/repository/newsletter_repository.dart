@@ -40,26 +40,20 @@ class NewsletterRepository {
       String query, String categoryName) async {
     final String apiUrl =
         'https://gnews.io/api/v4/search?q=$query&lang=pt&country=br&max=15&apikey=$_gnewsKey';
-    final url = Uri.parse(apiUrl);
 
     AppLogger.I().info('Buscando GNews: $query');
 
     String finalUrl = apiUrl;
     if (kIsWeb) {
-      // Proxy para evitar CORS na Web
-      finalUrl = 'https://api.allorigins.win/get?url=${Uri.encodeComponent(apiUrl)}';
+      // Proxy mais transparente para evitar CORS na Web
+      finalUrl = 'https://corsproxy.io/?${Uri.encodeComponent(apiUrl)}';
     }
 
-    final response = await http.get(Uri.parse(finalUrl)).timeout(const Duration(seconds: 8));
+    final response =
+        await http.get(Uri.parse(finalUrl)).timeout(const Duration(seconds: 10));
 
     if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-
-      // Se for Web, o conteúdo vem dentro de 'contents' como String
-      if (kIsWeb && data is Map && data.containsKey('contents')) {
-        data = json.decode(data['contents']);
-      }
-
+      final data = json.decode(response.body);
       final List articles = data['articles'] ?? [];
       return articles
           .map((article) => NewsletterModel.fromJson(article, categoryName))
@@ -75,26 +69,20 @@ class NewsletterRepository {
     // NewsAPI.org - Fallback
     final String apiUrl =
         'https://newsapi.org/v2/everything?q=$query&language=pt&sortBy=publishedAt&pageSize=15&apiKey=$_newsApiKey';
-    final url = Uri.parse(apiUrl);
 
     AppLogger.I().info('Buscando NewsAPI: $query');
 
     String finalUrl = apiUrl;
     if (kIsWeb) {
-      // Proxy para evitar CORS na Web
-      finalUrl = 'https://api.allorigins.win/get?url=${Uri.encodeComponent(apiUrl)}';
+      // Proxy mais transparente para evitar CORS na Web
+      finalUrl = 'https://corsproxy.io/?${Uri.encodeComponent(apiUrl)}';
     }
 
-    final response = await http.get(Uri.parse(finalUrl)).timeout(const Duration(seconds: 8));
+    final response =
+        await http.get(Uri.parse(finalUrl)).timeout(const Duration(seconds: 10));
 
     if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-
-      // Se for Web, o conteúdo vem dentro de 'contents' como String
-      if (kIsWeb && data is Map && data.containsKey('contents')) {
-        data = json.decode(data['contents']);
-      }
-
+      final data = json.decode(response.body);
       final List articles = data['articles'] ?? [];
 
       return articles
