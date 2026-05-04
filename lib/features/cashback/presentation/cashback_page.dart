@@ -19,7 +19,8 @@ class CashbackPage extends GetView<CashbackController> {
       appBar: AppBar(
         backgroundColor: _greenPrimary,
         elevation: 0,
-        title: const Text('Cashback', style: TextStyle(color: Colors.white)),
+        title: const Text('Clube de Benefícios',
+            style: TextStyle(color: Colors.white)),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),

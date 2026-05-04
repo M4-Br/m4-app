@@ -52,7 +52,7 @@ class FavoritesPage extends GetView<FavoritesController> {
 
                   return GridView.builder(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 16),
+                        horizontal: 16, vertical: 100),
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,

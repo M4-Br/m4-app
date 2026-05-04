@@ -38,9 +38,9 @@ class HomeViewController extends GetxController {
             size: 28, color: color);
       case 2: // IA
         return Icon(Icons.auto_awesome_outlined, size: 28, color: color);
-      // case 3: // Pedidos (Ícone de caixa)
-      //   return Icon(Icons.inventory_2_outlined, size: 28, color: color);
-      case 3: // Perfil
+      case 3: // Documentos
+        return Icon(Icons.description_outlined, size: 28, color: color);
+      case 4: // Perfil
         return Icon(Icons.person_outline, size: 28, color: color);
       default:
         return Icon(Icons.home_outlined, size: 28, color: color);

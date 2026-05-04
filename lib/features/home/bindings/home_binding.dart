@@ -1,5 +1,6 @@
 import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/features/ai/controller/ai_manager_controller.dart';
+import 'package:app_flutter_miban4/features/documents/controller/documents_controller.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_controller.dart';
 import 'package:app_flutter_miban4/features/balance/controller/balance_rx.dart';
 import 'package:app_flutter_miban4/features/geral/controller/favorites_transfers_controller.dart';
@@ -28,6 +29,8 @@ class HomeViewBinding extends Bindings {
         balance: Get.find<BalanceController>()));
 
     Get.lazyPut<HomeViewController>(() => HomeViewController());
+
+    Get.lazyPut<DocumentsController>(() => DocumentsController());
 
     Get.lazyPut<PlansController>(() => PlansController());
 

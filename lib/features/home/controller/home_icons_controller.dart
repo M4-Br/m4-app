@@ -60,19 +60,19 @@ class HomeIconsController extends BaseController {
           id: 'accounting',
           title: 'Gestão Contábil',
           iconPath: 'assets/icons/ic_contabil.png'),
-      // HomeMenuItem(
-      //     id: 'cashback',
-      //     title: 'Membresia',
-      //     iconData: Icons.account_balance_wallet_outlined),
+      HomeMenuItem(
+          id: 'cashback',
+          title: 'Clube de Beneficios',
+          iconData: Icons.account_balance_wallet_outlined),
       HomeMenuItem(
           id: 'marketplace',
-          title: 'Marketplace',
+          title: 'Balcão de Negócios',
           iconData: Icons.storefront_outlined),
       HomeMenuItem(id: 'score', title: 'Crédito', iconData: Icons.bar_chart),
       HomeMenuItem(
           id: 'news', title: 'Notícias', iconData: Icons.newspaper_outlined),
       HomeMenuItem(
-          id: 'mei', title: 'Documentos', iconData: Icons.business_outlined),
+          id: 'mei', title: 'Serviços MEI', iconData: Icons.business_outlined),
       // HomeMenuItem(
       //     id: 'ai', title: 'IA', iconData: Icons.auto_awesome_outlined),
       // --- ESTOQUE OCULTO TEMPORARIAMENTE ---
@@ -171,13 +171,14 @@ class HomeIconsController extends BaseController {
   }
 
   // --- DICIONÁRIO DE TRACKING DE CLIQUES ---
-  // Passe esta lista de IDs para o seu backend saber quem é quem!
+  // Mapeamento único de IDs para o backend. 
+  // Nota: IDs 10-14 são reservados para Conta Digital e 16-23 para sub-itens do Pix.
   int _getTrackingId(String stringId) {
     switch (stringId) {
       case 'cashback':
-        return 1; // Membresia
+        return 1; // Clube de Benefícios
       case 'marketplace':
-        return 2; // Marketplace
+        return 2; // Balcão de Negócios
       case 'score':
         return 3; // Crédito
       case 'news':
@@ -185,24 +186,25 @@ class HomeIconsController extends BaseController {
       case 'ai':
         return 5; // IA
       case 'accounting':
-        return 6; // Contabilidade
+        return 6; // Gestão Contábil
       case 'partners':
         return 7; // Nossos Parceiros
       case 'clients':
         return 8; // Meus Clientes
       case 'contact':
         return 9; // Fale Conosco
-      case 'myBiz':
-        return 10;
-      case 'health':
-        return 11;
+      case 'statement_btn':
+        return 10; // Extrato (Conforme DigitalAccountController)
       case 'pix':
-        return 15;
-      // Itens não solicitados para trackear (retornam 0)
-      case 'favorites':
-        return 0;
+        return 15; // Pix Entry
+      case 'myBiz':
+        return 24; // Meu Negócio (Ajustado para evitar conflito com ID 10)
+      case 'health':
+        return 25; // Telemedicina (Ajustado para evitar conflito com ID 11)
       case 'mei':
-        return 0;
+        return 26; // Serviços MEI
+      case 'favorites':
+        return 27; // Preferências
       default:
         return 0;
     }

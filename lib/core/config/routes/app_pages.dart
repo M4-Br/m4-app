@@ -6,6 +6,7 @@ import 'package:app_flutter_miban4/core/config/routes/cashbackPage/cashback_page
 import 'package:app_flutter_miban4/core/config/routes/clientsPages/clients_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/completeProfilePages/complete_profile_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/contactPages/contact_pages.dart';
+import 'package:app_flutter_miban4/core/config/routes/documentsPages/documents_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/favoritePages/favorite_pages.dart';
 import 'package:app_flutter_miban4/core/config/routes/healthRoutes/health_routes.dart';
 import 'package:app_flutter_miban4/core/config/routes/homePage/home_page.dart';
@@ -116,6 +117,9 @@ class AppPages {
     ...MyBizPages.pages,
 
     //Heath
-    ...HealthPages.pages
+    ...HealthPages.pages,
+
+    //Documents
+    ...DocumentsPages.pages
   ];
 }

@@ -4,6 +4,7 @@ import 'package:app_flutter_miban4/features/digitalAccount/presentation/digital_
 import 'package:app_flutter_miban4/features/home/controller/home_controller.dart';
 import 'package:app_flutter_miban4/features/home/presentation/home_page.dart';
 import 'package:app_flutter_miban4/features/profile/presentation/profile_page.dart';
+import 'package:app_flutter_miban4/features/documents/presentation/documents_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,8 +18,8 @@ class HomeViewPage extends GetView<HomeViewController> {
       HomePage(),
       DigitalAccountPage(),
       AiManagerPage(),
-      // OrdersPage(), // 3: Pedidos
-      const ProfilePage(), // 5: Perfil
+      const DocumentsPage(), // 3: Documentos
+      const ProfilePage(), // 4: Perfil
     ];
 
     return Scaffold(
@@ -52,13 +53,13 @@ class HomeViewPage extends GetView<HomeViewController> {
                 icon: controller.getIconForIndex(2),
                 label: 'IA',
               ),
-              // BottomNavigationBarItem(
-              //   icon: controller.getIconForIndex(3),
-              //   label: 'Pedidos',
-              // ),
               BottomNavigationBarItem(
                 icon: controller.getIconForIndex(3),
-                label: 'Perfil', // ou 'perfil_icon'.tr
+                label: 'Documentos',
+              ),
+              BottomNavigationBarItem(
+                icon: controller.getIconForIndex(4),
+                label: 'Perfil',
               ),
             ],
             currentIndex: controller.selectedIndex.value,

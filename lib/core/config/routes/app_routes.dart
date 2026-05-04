@@ -173,4 +173,7 @@ class AppRoutes {
 
   //Customization
   static const String customization = '$profile/customization';
+
+  //Documents
+  static const String documents = '/documents';
 }

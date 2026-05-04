@@ -24,6 +24,13 @@ class NewsletterPage extends GetView<NewsletterController> {
         children: [
           _buildRedHeader(),
           _buildFilters(context),
+          Obx(() => controller.isFilterLoading.value
+              ? const LinearProgressIndicator(
+                  backgroundColor: Colors.transparent,
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF065F46)),
+                  minHeight: 2,
+                )
+              : const SizedBox(height: 2)),
           Expanded(
             child: Obx(() {
               if (controller.isLoading.value) {
@@ -175,11 +182,35 @@ class NewsletterPage extends GetView<NewsletterController> {
                       ),
                       const SizedBox(width: 8),
                       _buildFilterChip(
+                        title: 'Relacionados',
+                        isSelected: controller.selectedCategoryFilter.value ==
+                            'Relacionados',
+                        icon: Icons.hub_outlined,
+                        onTap: () => controller.setCategoryFilter('Relacionados'),
+                      ),
+                      const SizedBox(width: 8),
+                      _buildFilterChip(
+                        title: 'Inovação',
+                        isSelected: controller.selectedCategoryFilter.value ==
+                            'Inovação',
+                        icon: Icons.lightbulb_outline,
+                        onTap: () => controller.setCategoryFilter('Inovação'),
+                      ),
+                      const SizedBox(width: 8),
+                      _buildFilterChip(
                         title: 'MEI',
                         isSelected:
                             controller.selectedCategoryFilter.value == 'MEI',
                         icon: Icons.attach_money,
                         onTap: () => controller.setCategoryFilter('MEI'),
+                      ),
+                      const SizedBox(width: 8),
+                      _buildFilterChip(
+                        title: 'Brasil',
+                        isSelected: controller.selectedCategoryFilter.value ==
+                            'Brasil',
+                        icon: Icons.flag_outlined,
+                        onTap: () => controller.setCategoryFilter('Brasil'),
                       ),
                     ],
                   )),

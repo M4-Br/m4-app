@@ -1,3 +1,4 @@
+import 'package:app_flutter_miban4/core/config/log/logger.dart';
 import 'package:app_flutter_miban4/core/config/routes/app_routes.dart';
 import 'package:app_flutter_miban4/core/helpers/controller/base_controller.dart';
 import 'package:app_flutter_miban4/core/helpers/utils/app_dialogs.dart';
@@ -12,6 +13,7 @@ class NewsletterController extends BaseController {
   final NewsletterRepository _repository = NewsletterRepository();
 
   final RxList<NewsletterModel> newsList = <NewsletterModel>[].obs;
+  final RxBool isFilterLoading = false.obs;
 
   final RxString selectedSourceFilter = 'Todas'.obs;
   final RxString selectedCategoryFilter = 'Todas'.obs;
@@ -19,13 +21,17 @@ class NewsletterController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    fetchNewsFromApi();
+    fetchNewsFromApi(isInitial: true);
   }
 
-  Future<void> fetchNewsFromApi() async {
-    await executeSafe(() async {
-      newsList.clear();
+  Future<void> fetchNewsFromApi({bool isInitial = false}) async {
+    if (isInitial) {
+      isLoading.value = true;
+    } else {
+      isFilterLoading.value = true;
+    }
 
+    try {
       String query = 'economia OR negócios OR MEI OR empreendedorismo';
       String categoryName = 'Destaque';
 
@@ -36,8 +42,21 @@ class NewsletterController extends BaseController {
 
       final results = await _repository.fetchNews(query, categoryName);
 
-      newsList.assignAll(results);
-    }, message: 'Erro ao buscar as notícias na internet.');
+      if (results.isNotEmpty) {
+        newsList.assignAll(results);
+      } else if (isInitial) {
+        newsList.clear();
+      }
+    } catch (e, s) {
+      AppLogger.I().error('Erro ao buscar notícias', e, s);
+      if (isInitial) {
+        ShowToaster.toasterInfo(
+            message: 'Não foi possível carregar as notícias.', isError: true);
+      }
+    } finally {
+      isLoading.value = false;
+      isFilterLoading.value = false;
+    }
   }
 
   void setSourceFilter(String source) {
