@@ -45,12 +45,13 @@ class NewsletterRepository {
 
     String finalUrl = apiUrl;
     if (kIsWeb) {
-      // Proxy mais transparente para evitar CORS na Web
-      finalUrl = 'https://corsproxy.io/?${Uri.encodeComponent(apiUrl)}';
+      // Usando allorigins/raw para evitar 403 e CORS na Web
+      finalUrl = 'https://api.allorigins.win/raw?url=${Uri.encodeComponent(apiUrl)}';
     }
 
-    final response =
-        await http.get(Uri.parse(finalUrl)).timeout(const Duration(seconds: 10));
+    final response = await http
+        .get(Uri.parse(finalUrl), headers: {'Accept': 'application/json'})
+        .timeout(const Duration(seconds: 12));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
@@ -74,12 +75,13 @@ class NewsletterRepository {
 
     String finalUrl = apiUrl;
     if (kIsWeb) {
-      // Proxy mais transparente para evitar CORS na Web
-      finalUrl = 'https://corsproxy.io/?${Uri.encodeComponent(apiUrl)}';
+      // Usando allorigins/raw para evitar 403 e CORS na Web
+      finalUrl = 'https://api.allorigins.win/raw?url=${Uri.encodeComponent(apiUrl)}';
     }
 
-    final response =
-        await http.get(Uri.parse(finalUrl)).timeout(const Duration(seconds: 10));
+    final response = await http
+        .get(Uri.parse(finalUrl), headers: {'Accept': 'application/json'})
+        .timeout(const Duration(seconds: 12));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
